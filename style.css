@@ -10,28 +10,33 @@ body {
   color: #2c3e50;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   text-align: center;
   margin: 6px 0;
 }
 
 h1 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
+h3 {
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
 /* ===============================
    DASHBOARD CARDS
    =============================== */
@@ -141,4 +146,5 @@ tbody tr:hover {
     font-size: 13px;
   }
 }
+
 

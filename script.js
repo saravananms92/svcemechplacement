@@ -22,6 +22,17 @@ function renderData(data) {
 
   document.getElementById("placed").innerHTML =
     `<h3>Students Placed</h3><p>${data.placedCount}</p>`;
+  
+  // -------------------------------
+  // Calculate Placement Percentage
+  // -------------------------------
+  let placementPercentage = 0;
+  if (data.optedStudents > 0) {
+    placementPercentage = ((data.placedCount / data.optedStudents) * 100).toFixed(2);
+  }
+
+  document.getElementById("percentage").innerHTML =
+    `<h3>Placement %</h3><p>${placementPercentage}%</p>`;
 
   const tbody = document.getElementById("studentTable");
   tbody.innerHTML = "";
@@ -48,5 +59,6 @@ loadData();
 
 // Auto refresh every 60 seconds
 setInterval(loadData, 60000);
+
 
 

@@ -33,10 +33,10 @@ function renderData(data) {
 
   document.getElementById("percentage").innerHTML =
     `<h3>Placement %</h3><p>${placementPercentage}%</p>`;
-
+ 
+  // Populate table
   const tbody = document.getElementById("studentTable");
   tbody.innerHTML = "";
-
   data.placedStudents.forEach(s => {
     tbody.innerHTML += `
       <tr>
@@ -59,6 +59,7 @@ loadData();
 
 // Auto refresh every 60 seconds
 setInterval(loadData, 60000);
+
 
 
 

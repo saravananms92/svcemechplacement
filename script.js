@@ -1,57 +1,39 @@
-<script>
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(loadData);
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?api=1";
 
 function loadData() {
-  google.script.run.withSuccessHandler(renderData).getPlacementData();
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => renderData(data))
+    .catch(err => console.error("API Error:", err));
 }
 
 function renderData(data) {
-  document.getElementById('total').innerHTML =
+  document.getElementById("total").innerHTML =
     `<h3>Total Students</h3><p>${data.totalStudents}</p>`;
 
-  document.getElementById('opted').innerHTML =
+  document.getElementById("opted").innerHTML =
     `<h3>Opted for Placement</h3><p>${data.optedStudents}</p>`;
 
-  document.getElementById('placed').innerHTML =
+  document.getElementById("placed").innerHTML =
     `<h3>Students Placed</h3><p>${data.placedCount}</p>`;
 
-  drawChart(data.companySummary);
-  populateTable(data.placedStudents);
-}
+  const tbody = document.getElementById("studentTable");
+  tbody.innerHTML = "";
 
-function drawChart(companyData) {
-  let chartData = [['Company', 'Students']];
-  companyData.forEach(r => {
-    chartData.push([r.company, Number(r.total)]);
-  });
-
-  let data = google.visualization.arrayToDataTable(chartData);
-
-  let options = {
-    title: 'Company-wise Placements',
-    legend: { position: 'none' }
-  };
-
-  let chart = new google.visualization.ColumnChart(
-    document.getElementById('chart')
-  );
-  chart.draw(data, options);
-}
-
-function populateTable(students) {
-  let tbody = document.querySelector('#studentTable tbody');
-  tbody.innerHTML = '';
-
-  students.forEach(s => {
-    let row = `<tr>
-      <td>${s.name}</td>
-      <td>${s.company}</td>
-      <td>${s.type}</td>
-    </tr>`;
-    tbody.innerHTML += row;
+  data.placedStudents.forEach(s => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${s.programme}</td>
+        <td>${s.name}</td>
+        <td>${s.company}</td>
+        <td>${s.type}</td>
+      </tr>`;
   });
 }
-</script>
 
+// Initial load
+loadData();
 
+// Auto refresh every 60 seconds
+setInterval(loadData, 60000);

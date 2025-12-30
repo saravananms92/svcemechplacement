@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Placement Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>Department of Mechanical Engineering</h1>
+  <p>Placement Dashboard</p>
+</header>
+
+<section class="kpi-bar">
+  <div>Total Students: <span id="total"></span></div>
+  <div>Placed: <span id="placed"></span></div>
+  <div>Unplaced: <span id="unplaced"></span></div>
+  <div>Placement %: <span id="percent"></span></div>
+</section>
+
+<section class="container">
+
+  <!-- LEFT COLUMN -->
+  <div class="column left">
+    <h2>Student Placement Status</h2>
+    <table id="studentTable">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="column right">
+    <h2>Company Details</h2>
+    <table id="companyTable">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Company Type Distribution</h2>
+    <canvas id="companyChart"></canvas>
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

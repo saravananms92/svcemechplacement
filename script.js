@@ -72,6 +72,51 @@ function drawCompanyChart(placedStudents) {
   );
   chart.draw(data, options);
 }
+/* =========================
+   Programme-wise Chart
+========================= */
+function drawProgrammeChart(programmeCount) {
+  let chartData = [["Programme", "Students"]];
+
+  for (let programme in programmeCount) {
+    chartData.push([programme, programmeCount[programme]]);
+  }
+
+  const data = google.visualization.arrayToDataTable(chartData);
+
+  const options = {
+    title: "Programme-wise Placement",
+    legend: { position: "none" }
+  };
+
+  const chart = new google.visualization.ColumnChart(
+    document.getElementById("programmeChart")
+  );
+  chart.draw(data, options);
+}
+
+/* =========================
+   Top 10 Package Chart
+========================= */
+function drawTopPackageChart(topPackages) {
+  let chartData = [["Student", "Package (LPA)"]];
+
+  topPackages.forEach(s => {
+    chartData.push([s.name, s.package]);
+  });
+
+  const data = google.visualization.arrayToDataTable(chartData);
+
+  const options = {
+    title: "Top 10 Highest Packages",
+    legend: { position: "none" }
+  };
+
+  const chart = new google.visualization.BarChart(
+    document.getElementById("packageChart")
+  );
+  chart.draw(data, options);
+}
 
 /*************************************
  * RENDER DASHBOARD
@@ -116,9 +161,11 @@ function renderData(data) {
 
   // Draw charts
   google.charts.setOnLoadCallback(() => {
-    drawStatusChart(data.optedStudents, data.placedCount);
-    drawCompanyChart(data.placedStudents);
-  });
+  drawStatusChart(data.optedStudents, data.placedCount);
+  drawCompanyChart(data.placedStudents);
+  drawProgrammeChart(data.programmeCount);
+  drawTopPackageChart(data.topPackages);
+});
 }
 
 /*************************************
@@ -139,4 +186,5 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+
 

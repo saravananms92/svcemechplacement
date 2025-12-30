@@ -9,11 +9,14 @@ fetch(API_URL)
     document.getElementById("total").textContent =
       data.summary.totalStudents;
 
-    document.getElementById("placed").textContent =
+    document.getElementById("Placed").textContent =
       data.summary.placed;
 
-    document.getElementById("unplaced").textContent =
+    document.getElementById("Unplaced").textContent =
       data.summary.unplaced;
+
+    document.getElementById("Not applicable").textContent =
+      data.summary.notApplicable;
 
     document.getElementById("percent").textContent =
       data.summary.placementPercentage + "%";
@@ -66,4 +69,5 @@ function drawCompanyChart(stats) {
     }
   });
 }
+
 

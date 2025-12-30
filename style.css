@@ -169,6 +169,22 @@ tbody tr:hover {
   padding: 10px;
   background: #fff;
 }
+/* =========================
+   Top-right status bar
+========================= */
+#status {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 12px;
+  color: #555;
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
 
 
 

@@ -35,6 +35,12 @@ function renderData(data) {
         <td>${s.type}</td>
       </tr>`;
   });
+  // =========================
+  // Add Last Updated timestamp
+  // =========================
+  const now = new Date();
+  document.getElementById("lastUpdated").innerText = 
+    "Last Updated: " + now.toLocaleString();
 }
 
 // Initial load
@@ -42,4 +48,5 @@ loadData();
 
 // Auto refresh every 60 seconds
 setInterval(loadData, 60000);
+
 

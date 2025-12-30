@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwiR2ryblrClwrfaQxal04c2jIUGknMhuqFIv4uF3QYo2T8HArG8Sou-Bp6XUVEGt4g/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbw6NW8cq8n4Wgk4gwTtqaDIQH9PtQxgLKCjLcPxQuQapm8jKEoN8uz8VjLagW18k8_k/exec";
 
 fetch(API_URL)
   .then(res => res.json())
@@ -66,3 +66,4 @@ function drawCompanyChart(stats) {
     }
   });
 }
+

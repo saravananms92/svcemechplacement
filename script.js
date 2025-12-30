@@ -1,5 +1,7 @@
 const API_URL =
   "https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?api=1";
+let refreshInterval = 60; // seconds
+let countdown = refreshInterval;
 
 function loadData() {
   fetch(API_URL)
@@ -7,6 +9,9 @@ function loadData() {
     .then(data => renderData(data))
     .catch(err => console.error("API Error:", err));
 }
+
+// Reset countdown
+  countdown = refreshInterval;
 
 function renderData(data) {
   document.getElementById("total").innerHTML =
@@ -37,3 +42,4 @@ loadData();
 
 // Auto refresh every 60 seconds
 setInterval(loadData, 60000);
+

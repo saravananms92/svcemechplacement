@@ -154,11 +154,11 @@ tbody tr:hover {
 /* Charts layout */
 .charts {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 30px auto;
-  max-width: 1200px;
+  margin: 20px auto;
+  max-width: 1500px;
 }
 
 .chart-box {
@@ -184,6 +184,7 @@ tbody tr:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 1000;
 }
+
 
 
 

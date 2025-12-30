@@ -36,7 +36,7 @@ function drawStatusChart(opted, placed) {
   ]);
 
   const options = {
-    title: "Placement Status Overview",
+    title: "Distribution of Opted vs Placed Students",
     pieHole: 0.4,
     legend: { position: "bottom" }
   };
@@ -139,3 +139,4 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+

@@ -88,7 +88,7 @@ table {
 
 th, td {
   padding: 12px 10px;
-  text-align: center;
+  text-align: left;
   border: 1px solid #ddd;
   font-size: 14px;
 }
@@ -141,3 +141,4 @@ tbody tr:hover {
     font-size: 13px;
   }
 }
+

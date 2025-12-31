@@ -112,7 +112,7 @@ function drawProgrammeChart(data) {
     title: 'Programme-wise Placement',
     width: container.offsetWidth, // fit container
     height: 400,
-    chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
+    chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     hAxis: { title: 'Programme', slantedText: false, textStyle: { fontSize: 12 } },
     vAxis: { title: 'Placed Students', textStyle: { fontSize: 12 } },
     legend: { position: 'none' }
@@ -187,7 +187,7 @@ function drawTopPackageChart(data) {
   const options = {
     title: 'Top 5 Highest Packages (LPA)',
     width: container.offsetWidth,
-    height: 500,
+    height: 450,
     chartArea: { width: '60%', height: '75%', left: 60, top: 60 },
     hAxis: { title: 'Students', slantedText: false },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
@@ -229,6 +229,7 @@ window.addEventListener('resize', () => {
     drawCompanyChart(dataGlobal);
   }
 });
+
 
 
 

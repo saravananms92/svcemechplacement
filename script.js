@@ -109,7 +109,7 @@ function drawCompanyChart(data) {
 }
 
 /************************************************
- * PROGRAMME-WISE BAR
+ * PROGRAMME-WISE VERTICAL BAR (COLUMN CHART)
  ************************************************/
 function drawProgrammeChart(data) {
   const rows = [['Programme', 'Placed Students']];
@@ -120,12 +120,22 @@ function drawProgrammeChart(data) {
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  new google.visualization.BarChart(
+  new google.visualization.ColumnChart(
     document.getElementById('programmeChart')
   ).draw(table, {
     title: 'Programme-wise Placement',
-    chartArea: { width: '60%' },
-    hAxis: { minValue: 0 }
+    chartArea: { width: '70%', height: '60%' },
+    hAxis: {
+      title: 'Programme',
+      slantedText: true,
+      slantedTextAngle: 45
+    },
+    vAxis: {
+      title: 'Placed Students',
+      minValue: 0
+    },
+    colors: ['#1b9e77'],
+    legend: { position: 'none' }
   });
 }
 
@@ -184,6 +194,3 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
-
-
-

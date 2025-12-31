@@ -1,4 +1,17 @@
- /* -------------------- Global Base -------------------- */
+#update-timer {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 10pt;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
+
+/* -------------------- Global Base -------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -139,3 +152,4 @@ table tbody tr:nth-child(odd) {
     height: 300px;
   }
 }
+

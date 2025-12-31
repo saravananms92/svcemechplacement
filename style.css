@@ -35,7 +35,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2.0rem; 
+  font-size: 1.5rem; 
   margin: 20px 0 12px;
   text-align: center;
   color: #002244;
@@ -98,9 +98,9 @@ h3 {
     height: 300px;
   }
 
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.8rem; }
-  h3 { font-size: 1.4rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2.0rem; }
+  h3 { font-size: 0.8rem; }
 }
 
 /* Table Styling */
@@ -131,12 +131,13 @@ table tbody tr:nth-child(odd) {
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.8rem; }
-  h3 { font-size: 1.4rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 0.8rem; }
 
   .cards { flex-direction: column; align-items: center; }
   .chart-box { width: 100%; height: 300px; }
 }
+
 
 

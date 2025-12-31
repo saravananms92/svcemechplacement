@@ -19,6 +19,7 @@
   <h2>DEPARTMENT OF MECHANICAL ENGINEERING</h2>
   <h2>Batch 2022–2026 Placement Dashboard</h2>
 
+  <!-- KPI CARDS -->
   <div class="cards">
     <div class="card" id="total"></div>
     <div class="card" id="opted"></div>
@@ -26,25 +27,36 @@
     <div class="card" id="percentage"></div>
   </div>
 
+  <!-- GOOGLE CHARTS -->
   <h2>Placement Analytics</h2>
-
   <div class="charts">
     <div id="statusChart" class="chart-box"></div>
     <div id="companyChart" class="chart-box"></div>
   </div>
-  <h2>Programme-wise Placement</h2>
-  <div id="programmeChart" class="chart-box"></div>
+
+  <!-- CHART.JS DASHBOARD -->
+  <h2>Programme-wise Analytics</h2>
+  <div class="dashboard">
+    <div class="chart-card">
+      <canvas id="programmeChart"></canvas>
+    </div>
+  </div>
 
   <h2>Top 10 Highest Packages</h2>
-  <div id="packageChart" class="chart-box"></div>
+  <div class="dashboard">
+    <div class="chart-card">
+      <canvas id="topPackageChart"></canvas>
+    </div>
+  </div>
 
+  <!-- STATUS -->
   <h2>Details of the Placed Students</h2>
-
   <div id="status" style="text-align:center; margin-bottom:10px;">
     <span id="lastUpdated">Last Updated: --</span> |
     <span id="refreshCountdown">Next refresh in: 60s</span>
   </div>
 
+  <!-- TABLE -->
   <table>
     <thead>
       <tr>
@@ -54,23 +66,11 @@
         <th>Company Type</th>
       </tr>
     </thead>
-    <tbody id="studentTable">
-      <!-- Data inserted by script.js -->
-    </tbody>
+    <tbody id="studentTable"></tbody>
   </table>
 
-  <!-- JavaScript (ONLY ONCE, AT END) -->
+  <!-- SCRIPT -->
   <script src="script.js"></script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

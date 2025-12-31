@@ -1,3 +1,19 @@
+/************************************************
+ * GOOGLE CHARTS LOADER
+ ************************************************/
+google.charts.load('current', { packages: ['corechart', 'bar'] });
+google.charts.setOnLoadCallback(fetchAndDrawCharts);
+
+/************************************************
+ * APPS SCRIPT WEB APP URL
+ * (MUST be the latest deployed URL)
+ ************************************************/
+const DATA_URL =
+  'PASTE_YOUR_NEW_DEPLOYMENT_URL_HERE';
+
+/************************************************
+ * FETCH CONTROLLER
+ ************************************************/
 async function fetchAndDrawCharts() {
   try {
     const response = await fetch(DATA_URL);
@@ -5,7 +21,7 @@ async function fetchAndDrawCharts() {
 
     console.log('DATA RECEIVED:', data);
 
-    // 🔥 FIX: validate OBJECT, not ARRAY
+    // ✅ OBJECT VALIDATION (IMPORTANT)
     if (!data || !data.placedStudents) {
       alert('No data received from Google Sheet');
       return;
@@ -23,4 +39,153 @@ async function fetchAndDrawCharts() {
     console.error('Fetch error:', error);
     alert('Failed to load placement data');
   }
+}
+
+/************************************************
+ * KPI CARDS
+ ************************************************/
+function updateKPIs(data) {
+  document.getElementById('total').innerText =
+    `Total Students\n${data.totalStudents}`;
+
+  document.getElementById('opted').innerText =
+    `Opted for Placement\n${data.optedStudents}`;
+
+  document.getElementById('placed').innerText =
+    `Placed\n${data.placedCount}`;
+
+  const percent =
+    data.totalStudents > 0
+      ? ((data.placedCount / data.totalStudents) * 100).toFixed(1)
+      : 0;
+
+  document.getElementById('percentage').innerText =
+    `Placement %\n${percent}%`;
+}
+
+/************************************************
+ * PLACEMENT STATUS PIE
+ ************************************************/
+function drawPlacementStatusChart(data) {
+  const placed = data.placedCount;
+  const notPlaced = data.totalStudents - placed;
+
+  const rows = [
+    ['Status', 'Count'],
+    ['Placed', placed],
+    ['Not Placed', notPlaced]
+  ];
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  new google.visualization.PieChart(
+    document.getElementById('statusChart')
+  ).draw(table, {
+    title: 'Placement Status',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
+  });
+}
+
+/************************************************
+ * COMPANY TYPE PIE
+ ************************************************/
+function drawCompanyChart(data) {
+  const map = {};
+
+  data.placedStudents.forEach(s => {
+    const type = s.type || 'Unknown';
+    map[type] = (map[type] || 0) + 1;
+  });
+
+  const rows = [['Company Type', 'Count']];
+  Object.keys(map).forEach(k => rows.push([k, map[k]]));
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  new google.visualization.PieChart(
+    document.getElementById('companyChart')
+  ).draw(table, {
+    title: 'Company Type Distribution',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
+  });
+}
+
+/************************************************
+ * PROGRAMME-WISE BAR
+ ************************************************/
+function drawProgrammeChart(data) {
+  const rows = [['Programme', 'Placed Students']];
+
+  for (let prog in data.programmeCount) {
+    rows.push([prog, data.programmeCount[prog]]);
+  }
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  new google.visualization.BarChart(
+    document.getElementById('programmeChart')
+  ).draw(table, {
+    title: 'Programme-wise Placement',
+    chartArea: { width: '60%' },
+    hAxis: { minValue: 0 }
+  });
+}
+
+/************************************************
+ * TOP 10 PACKAGES BAR
+ ************************************************/
+function drawTopPackageChart(data) {
+
+  if (!data.topPackages || data.topPackages.length === 0) {
+    document.getElementById('topPackageChart').innerHTML =
+      '<b>No package data available</b>';
+    return;
+  }
+
+  const rows = [['Student', 'Package (LPA)', { role: 'annotation' }]];
+
+  data.topPackages.forEach(s => {
+    rows.push([s.name, s.package, s.package + ' LPA']);
+  });
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  new google.visualization.BarChart(
+    document.getElementById('topPackageChart')
+  ).draw(table, {
+    title: 'Top 10 Highest Packages (LPA)',
+    chartArea: { width: '60%' },
+    hAxis: { minValue: 0 },
+    annotations: { alwaysOutside: true }
+  });
+}
+
+/************************************************
+ * STUDENT TABLE
+ ************************************************/
+function populateStudentTable(data) {
+  const tbody = document.getElementById('studentTable');
+  tbody.innerHTML = '';
+
+  data.placedStudents.forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${s.programme}</td>
+      <td>${s.name}</td>
+      <td>${s.company}</td>
+      <td>${s.type}</td>
+      <td>${s.package}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+/************************************************
+ * LAST UPDATED
+ ************************************************/
+function updateLastUpdated() {
+  document.getElementById('lastUpdated').innerText =
+    'Last Updated: ' + new Date().toLocaleString();
 }

@@ -108,7 +108,7 @@ function drawTopPackageChart(topPackages) {
   const data = google.visualization.arrayToDataTable(chartData);
 
   const options = {
-    title: "Top 10 Highest Packages",
+    title: "Top 10 Highest Packages (LPA)",
     legend: { position: "none" }
   };
 
@@ -186,6 +186,7 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+
 
 
 

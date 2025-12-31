@@ -52,7 +52,7 @@ function updateKPIs(data) {
 
   const percent =
     data.totalStudents > 0
-      ? ((data.placedCount / data.totalStudents) * 100).toFixed(1)
+      ? ((data.placedCount / data.optedStudents) * 100).toFixed(1)
       : 0;
 
   document.getElementById('percentage').innerText =
@@ -172,7 +172,6 @@ function populateStudentTable(data) {
       <td>${s.name}</td>
       <td>${s.company}</td>
       <td>${s.type}</td>
-      <td>${s.package}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -185,4 +184,5 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 

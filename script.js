@@ -28,10 +28,7 @@ async function fetchAndDrawCharts() {
     populateStudentTable(data);
     updateLastUpdated();
 
-  } catch (error) {
-    console.error('Fetch error:', error);
-    alert('Failed to load placement data. Check console for details.');
-  }
+  } 
 }
 
 /************************************************
@@ -162,3 +159,4 @@ function populateStudentTable(data) {
 function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleString();
 }
+

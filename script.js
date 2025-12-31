@@ -1,7 +1,7 @@
 google.charts.load('current', {'packages':['corechart', 'bar', 'table']});
 google.charts.setOnLoadCallback(fetchAndDrawCharts);
 
-const DATA_URL = 'YOUR_DEPLOYED_SCRIPT_URL_HERE?api=1'; // replace with your Apps Script URL
+const DATA_URL = 'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec'; 
 
 async function fetchAndDrawCharts() {
   try {
@@ -171,6 +171,7 @@ function updateLastUpdated() {
   const now = new Date();
   document.getElementById('lastUpdated').innerText = `Last Updated: ${now.toLocaleString()}`;
 }
+
 
 
 

@@ -124,11 +124,11 @@ function drawProgrammeChart(data) {
     document.getElementById('programmeChart')
   ).draw(table, {
     title: 'Programme-wise Placement',
-    chartArea: { width: '70%', height: '60%' },
+    chartArea: { width: '100%', height: '70%' },
     hAxis: {
       title: 'Programme',
       slantedText: true,
-      slantedTextAngle: 45
+      slantedTextAngle: 0
     },
     vAxis: {
       title: 'Placed Students',
@@ -194,3 +194,4 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+

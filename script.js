@@ -6,7 +6,7 @@ google.charts.setOnLoadCallback(fetchAndDrawCharts);
 
 const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
-
+  
 /************************************************
  * FETCH CONTROLLER
  ************************************************/
@@ -206,6 +206,7 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 
 
 

@@ -12,6 +12,10 @@
 </div>
 
 <body>
+  
+  <div id="update-timer">
+    Last Updated: <span id="last-updated">12/31/2025, 12:24:31 PM</span> | Next refresh in: <span id="countdown">60</span>s
+  </div>
 
   <h1>SRI VENKATESWARA COLLEGE OF ENGINEERING</h1>
   <h3>(Autonomous - Affiliated to Anna University)</h3>
@@ -67,8 +71,31 @@
   </table>
 
   <script src="script.js"></script>
+  
+  <!-- Countdown JavaScript -->
+  <script>
+    let countdown = 60; // seconds
+    const countdownElem = document.getElementById('countdown');
+    const lastUpdatedElem = document.getElementById('last-updated');
+
+    function updateTimer() {
+      countdownElem.textContent = countdown;
+      if (countdown <= 0) {
+        // Reset countdown and update last updated timestamp
+        countdown = 60;
+        const now = new Date();
+        lastUpdatedElem.textContent = now.toLocaleString();
+      } else {
+        countdown--;
+      }
+    }
+
+    // Run update every 1 second
+    setInterval(updateTimer, 1000);
+  </script>
 </body>
 </html>
+
 
 
 

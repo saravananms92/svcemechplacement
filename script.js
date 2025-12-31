@@ -4,7 +4,7 @@
 const API_URL =
   "https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?api=1";
 
-let refreshInterval = 60; // seconds
+let refreshInterval = 60;
 let countdown = refreshInterval;
 
 /*************************************
@@ -25,7 +25,7 @@ function loadData() {
 }
 
 /*************************************
- * DRAW CHARTS
+ * DRAW CHART FUNCTIONS
  *************************************/
 function drawStatusChart(opted, placed) {
   const data = google.visualization.arrayToDataTable([
@@ -34,95 +34,66 @@ function drawStatusChart(opted, placed) {
     ["Placed Students", placed]
   ]);
 
-  const options = {
-    title: "Distribution of Opted vs Placed Students",
-    pieHole: 0.4,
-    legend: { position: "bottom" }
-  };
-
   const chart = new google.visualization.PieChart(
     document.getElementById("statusChart")
   );
-  chart.draw(data, options);
+  chart.draw(data, { pieHole: 0.4, legend: { position: "bottom" } });
 }
 
 function drawCompanyChart(placedStudents) {
-  let companyTypeCount = {};
-
+  const count = {};
   placedStudents.forEach(s => {
-    companyTypeCount[s.type] = (companyTypeCount[s.type] || 0) + 1;
+    count[s.type] = (count[s.type] || 0) + 1;
   });
 
-  let chartData = [["Company Type", "Students"]];
-  for (let type in companyTypeCount) {
-    chartData.push([type, companyTypeCount[type]]);
-  }
-
-  const data = google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: "Company Type Distribution",
-    legend: { position: "bottom" }
-  };
+  const chartData = [["Company Type", "Students"]];
+  Object.keys(count).forEach(k => chartData.push([k, count[k]]));
 
   const chart = new google.visualization.ColumnChart(
     document.getElementById("companyChart")
   );
-  chart.draw(data, options);
+  chart.draw(
+    google.visualization.arrayToDataTable(chartData),
+    { legend: { position: "bottom" } }
+  );
 }
 
-/* =========================
-   Programme-wise Chart
-========================= */
 function drawProgrammeChart(programmeCount) {
-  let chartData = [["Programme", "Students"]];
-
-  for (let programme in programmeCount) {
-    chartData.push([programme, programmeCount[programme]]);
-  }
-
-  const data = google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: "Programme-wise Analytics",
-    legend: { position: "none" },
-    hAxis: { title: "Programme" },
-    vAxis: { title: "Students" }
-  };
+  const chartData = [["Programme", "Students"]];
+  Object.keys(programmeCount).forEach(p =>
+    chartData.push([p, programmeCount[p]])
+  );
 
   const chart = new google.visualization.ColumnChart(
     document.getElementById("programmeChart")
   );
-  chart.draw(data, options);
+  chart.draw(
+    google.visualization.arrayToDataTable(chartData),
+    { legend: "none" }
+  );
 }
 
-/* =========================
-   Top 10 Package Chart
-========================= */
 function drawTopPackageChart(topPackages) {
-  let chartData = [["Student", "Package (LPA)"]];
-
-  topPackages.forEach(s => {
-    chartData.push([s.name, Number(s.package)]);
-  });
-
-  const data = google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: "Top 10 Highest Packages (LPA)",
-    legend: { position: "none" },
-    hAxis: {
-      title: "Package (LPA)",
-      minValue: 0
-    },
-    height: 260,
-    colors: ["#1a5276"]
-  };
+  const chartData = [["Student", "Package (LPA)"]];
+  topPackages.forEach(s => chartData.push([s.name, s.package]));
 
   const chart = new google.visualization.BarChart(
-    document.getElementById("topPackageChart")
+    document.getElementById("packageChart")
   );
-  chart.draw(data, options);
+  chart.draw(
+    google.visualization.arrayToDataTable(chartData),
+    { legend: "none" }
+  );
+}
+
+/*************************************
+ * DRAW ALL CHARTS
+ *************************************/
+function drawAllCharts(data) {
+  drawStatusChart(data.optedStudents, data.placedCount);
+  drawCompanyChart(data.placedStudents);
+  drawProgrammeChart(data.programmeCount);
+  drawTopPackageChart(data.topPackages);
 }
 
 /*************************************
@@ -130,7 +101,6 @@ function drawTopPackageChart(topPackages) {
  *************************************/
 function renderData(data) {
 
-  /* KPI CARDS */
   document.getElementById("total").innerHTML =
     `<h3>Total Students</h3><p>${data.totalStudents}</p>`;
 
@@ -140,19 +110,15 @@ function renderData(data) {
   document.getElementById("placed").innerHTML =
     `<h3>Students Placed</h3><p>${data.placedCount}</p>`;
 
-  let placementPercentage = 0;
-  if (data.optedStudents > 0) {
-    placementPercentage =
-      ((data.placedCount / data.optedStudents) * 100).toFixed(2);
-  }
+  const percent = data.optedStudents
+    ? ((data.placedCount / data.optedStudents) * 100).toFixed(2)
+    : 0;
 
   document.getElementById("percentage").innerHTML =
-    `<h3>Placement %</h3><p>${placementPercentage}%</p>`;
+    `<h3>Placement %</h3><p>${percent}%</p>`;
 
-  /* TABLE */
   const tbody = document.getElementById("studentTable");
   tbody.innerHTML = "";
-
   data.placedStudents.forEach(s => {
     tbody.innerHTML += `
       <tr>
@@ -163,28 +129,23 @@ function renderData(data) {
       </tr>`;
   });
 
-  /* LAST UPDATED */
   document.getElementById("lastUpdated").innerText =
     "Last Updated: " + new Date().toLocaleString();
 
-  /* DRAW ALL CHARTS */
-  google.charts.setOnLoadCallback(function () {
-    drawStatusChart(data.optedStudents, data.placedCount);
-    drawCompanyChart(data.placedStudents);
-    drawProgrammeChart(data.programmeCount);
-    drawTopPackageChart(data.topPackages);
-  });
+  google.charts.setOnLoadCallback(() => drawAllCharts(data));
 }
 
 /*************************************
- * COUNTDOWN TIMER
+ * AUTO REFRESH TIMER
  *************************************/
 setInterval(() => {
   countdown--;
-
-  if (countdown <= 0) {
-    loadData();
-  }
-
+  if (countdown <= 0) loadData();
   document.getElementById("refreshCountdown").innerText =
-    `Next refresh in:
+    `Next refresh in: ${countdown}s`;
+}, 1000);
+
+/*************************************
+ * INITIAL LOAD
+ *************************************/
+loadData();

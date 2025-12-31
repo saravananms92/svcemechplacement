@@ -1,21 +1,27 @@
-/* ================= GOOGLE CHARTS LOAD ================= */
-google.charts.load('current', {
-  packages: ['corechart', 'bar', 'table']
-});
+/*******************************
+ * GOOGLE CHARTS LOADER
+ *******************************/
+google.charts.load('current', { packages: ['corechart', 'bar'] });
 google.charts.setOnLoadCallback(fetchAndDrawCharts);
 
-/* ================= DATA SOURCE ================= */
+/*******************************
+ * APPS SCRIPT JSON URL
+ *******************************/
 const DATA_URL =
-  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
+  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?api=1';
 
-/* ================= FETCH DATA ================= */
+/*******************************
+ * FETCH + MAIN CONTROLLER
+ *******************************/
 async function fetchAndDrawCharts() {
   try {
     const response = await fetch(DATA_URL);
     const data = await response.json();
 
+    console.log('DATA RECEIVED:', data); // DEBUG – keep this
+
     if (!Array.isArray(data) || data.length === 0) {
-      console.error('No data received');
+      alert('No data received from Google Sheet');
       return;
     }
 
@@ -28,133 +34,115 @@ async function fetchAndDrawCharts() {
     updateLastUpdated();
 
   } catch (error) {
-    console.error('Error fetching placement data:', error);
+    console.error('Fetch error:', error);
+    alert('Failed to load placement data');
   }
 }
 
-/* ================= KPI CARDS ================= */
+/*******************************
+ * KPI CARDS
+ *******************************/
 function updateKPIs(data) {
   const total = data.length;
   const opted = data.filter(d => d['PLACEMENT STATUS']).length;
   const placed = data.filter(d => d['PLACEMENT STATUS'] === 'Placed').length;
   const percentage = total ? ((placed / total) * 100).toFixed(1) : 0;
 
-  document.getElementById('total').innerText =
-    `Total Students\n${total}`;
-  document.getElementById('opted').innerText =
-    `Opted for Placement\n${opted}`;
-  document.getElementById('placed').innerText =
-    `Placed\n${placed}`;
-  document.getElementById('percentage').innerText =
-    `Placement %\n${percentage}%`;
+  document.getElementById('total').innerText = `Total Students\n${total}`;
+  document.getElementById('opted').innerText = `Opted for Placement\n${opted}`;
+  document.getElementById('placed').innerText = `Placed\n${placed}`;
+  document.getElementById('percentage').innerText = `Placement %\n${percentage}%`;
 }
 
-/* ================= PLACEMENT STATUS ================= */
+/*******************************
+ * PLACEMENT STATUS PIE
+ *******************************/
 function drawPlacementStatusChart(data) {
-  const statusCount = {};
+  const map = {};
 
   data.forEach(d => {
     const status = d['PLACEMENT STATUS'] || 'Not Placed';
-    statusCount[status] = (statusCount[status] || 0) + 1;
+    map[status] = (map[status] || 0) + 1;
   });
 
-  const chartData = [['Status', 'Count', { role: 'annotation' }]];
-  Object.keys(statusCount).forEach(key => {
-    chartData.push([key, statusCount[key], statusCount[key]]);
-  });
+  const rows = [['Status', 'Count']];
+  Object.keys(map).forEach(k => rows.push([k, map[k]]));
 
-  const dataTable =
-    google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: 'Placement Status',
-    pieHole: 0.4,
-    legend: { position: 'right' },
-    chartArea: { width: '70%', height: '70%' },
-    colors: ['#1b9e77', '#d95f02', '#7570b3']
-  };
+  const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.PieChart(
     document.getElementById('statusChart')
-  ).draw(dataTable, options);
+  ).draw(table, {
+    title: 'Placement Status',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
+  });
 }
 
-/* ================= COMPANY TYPE ================= */
+/*******************************
+ * COMPANY TYPE PIE
+ *******************************/
 function drawCompanyChart(data) {
-  const companyCount = {};
+  const map = {};
 
   data.forEach(d => {
     const type = d['COMPANY TYPE'] || 'Unknown';
-    companyCount[type] = (companyCount[type] || 0) + 1;
+    map[type] = (map[type] || 0) + 1;
   });
 
-  const chartData = [['Company Type', 'Count', { role: 'annotation' }]];
-  Object.keys(companyCount).forEach(key => {
-    chartData.push([key, companyCount[key], companyCount[key]]);
-  });
+  const rows = [['Company Type', 'Count']];
+  Object.keys(map).forEach(k => rows.push([k, map[k]]));
 
-  const dataTable =
-    google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: 'Company Type Distribution',
-    pieHole: 0.4,
-    legend: { position: 'right' },
-    chartArea: { width: '70%', height: '70%' }
-  };
+  const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.PieChart(
     document.getElementById('companyChart')
-  ).draw(dataTable, options);
+  ).draw(table, {
+    title: 'Company Type Distribution',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
+  });
 }
 
-/* ================= PROGRAMME-WISE ================= */
+/*******************************
+ * PROGRAMME-WISE BAR
+ *******************************/
 function drawProgrammeChart(data) {
-  const programmeCount = {};
+  const map = {};
 
   data.forEach(d => {
-    const programme = d['PROGRAMME'] || 'Unknown';
-    programmeCount[programme] =
-      (programmeCount[programme] || 0) + 1;
+    const prog = d['PROGRAMME'] || 'Unknown';
+    map[prog] = (map[prog] || 0) + 1;
   });
 
-  const chartData = [['Programme', 'Count', { role: 'annotation' }]];
-  Object.keys(programmeCount).forEach(key => {
-    chartData.push([key, programmeCount[key], programmeCount[key]]);
-  });
+  const rows = [['Programme', 'Students']];
+  Object.keys(map).forEach(k => rows.push([k, map[k]]));
 
-  const dataTable =
-    google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: 'Programme-wise Placement',
-    chartArea: { width: '60%' },
-    hAxis: { title: 'Count', minValue: 0 },
-    vAxis: { title: 'Programme' },
-    annotations: { alwaysOutside: true },
-    colors: ['#1b9e77']
-  };
+  const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.BarChart(
     document.getElementById('programmeChart')
-  ).draw(dataTable, options);
+  ).draw(table, {
+    title: 'Programme-wise Placement',
+    chartArea: { width: '60%' },
+    hAxis: { minValue: 0 }
+  });
 }
 
-/* ================= TOP 10 PACKAGES ================= */
+/*******************************
+ * TOP 5 PACKAGES BAR (IMPORTANT)
+ *******************************/
 function drawTopPackageChart(data) {
-
   const cleaned = [];
 
   data.forEach(d => {
-    const student = d['STUDENT NAME'];
     const pkg = Number(d['PACKAGE']);
-
-    if (!student || isNaN(pkg) || pkg <= 0) return;
-
-    cleaned.push({
-      student: student,
-      package: pkg
-    });
+    if (!isNaN(pkg) && pkg > 0) {
+      cleaned.push({
+        student: d['STUDENT NAME'],
+        pkg: pkg
+      });
+    }
   });
 
   if (cleaned.length === 0) {
@@ -163,38 +151,27 @@ function drawTopPackageChart(data) {
     return;
   }
 
-  cleaned.sort((a, b) => b.package - a.package);
-  const top10 = cleaned.slice(0, 10);
+  cleaned.sort((a, b) => b.pkg - a.pkg);
+  const top5 = cleaned.slice(0, 5);
 
-  const chartData =
-    [['Student', 'Package (LPA)', { role: 'annotation' }]];
+  const rows = [['Student', 'Package (LPA)', { role: 'annotation' }]];
+  top5.forEach(d => rows.push([d.student, d.pkg, d.pkg + ' LPA']));
 
-  top10.forEach(d => {
-    chartData.push([
-      d.student,
-      d.package,
-      d.package + ' LPA'
-    ]);
-  });
-
-  const dataTable =
-    google.visualization.arrayToDataTable(chartData);
-
-  const options = {
-    title: 'Top 10 Highest Packages (LPA)',
-    chartArea: { width: '60%' },
-    hAxis: { title: 'Package (LPA)', minValue: 0 },
-    vAxis: { title: 'Student Name' },
-    annotations: { alwaysOutside: true },
-    colors: ['#0b8043']
-  };
+  const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.BarChart(
     document.getElementById('topPackageChart')
-  ).draw(dataTable, options);
+  ).draw(table, {
+    title: 'Top 5 Highest Packages (LPA)',
+    chartArea: { width: '60%' },
+    hAxis: { minValue: 0 },
+    annotations: { alwaysOutside: true }
+  });
 }
 
-/* ================= STUDENT TABLE ================= */
+/*******************************
+ * STUDENT TABLE
+ *******************************/
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
   tbody.innerHTML = '';
@@ -202,20 +179,22 @@ function populateStudentTable(data) {
   data
     .filter(d => d['PLACEMENT STATUS'] === 'Placed')
     .forEach(d => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${d['PROGRAMME'] || ''}</td>
-        <td>${d['STUDENT NAME'] || ''}</td>
-        <td>${d['COMPANY NAME'] || ''}</td>
-        <td>${d['COMPANY TYPE'] || ''}</td>
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${d['PROGRAMME']}</td>
+        <td>${d['STUDENT NAME']}</td>
+        <td>${d['COMPANY NAME']}</td>
+        <td>${d['COMPANY TYPE']}</td>
+        <td>${d['PACKAGE'] || ''}</td>
       `;
-      tbody.appendChild(row);
+      tbody.appendChild(tr);
     });
 }
 
-/* ================= LAST UPDATED ================= */
+/*******************************
+ * LAST UPDATED
+ *******************************/
 function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
-

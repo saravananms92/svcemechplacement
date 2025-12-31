@@ -64,7 +64,7 @@ function updateKPIs(data) {
  ************************************************/
 function drawPlacementStatusChart(data) {
   const placed = data.placedCount;
-  const notPlaced = data.totalStudents - placed;
+  const notPlaced = data.optedStudents - placed;
 
   const rows = [
     ['Status', 'Count'],
@@ -184,5 +184,6 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 
 

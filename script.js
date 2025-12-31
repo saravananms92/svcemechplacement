@@ -74,16 +74,37 @@ function drawProgrammeChart(programmeCount) {
 }
 
 function drawTopPackageChart(topPackages) {
-  const chartData = [["Student", "Package (LPA)"]];
-  topPackages.forEach(s => chartData.push([s.name, s.package]));
 
+  // SAFETY CHECK
+  if (!topPackages || topPackages.length === 0) {
+    document.getElementById("topPackageChart").innerHTML =
+      "<p style='text-align:center;color:#999'>No package data available</p>";
+    return;
+  }
+  const chartData = [["Student", "Package (LPA)"]];
+  topPackages.forEach(s => {
+    chartData.push([s.name, Number(s.package)]);
+  });
+  
+const data = google.visualization.arrayToDataTable(chartData);
+
+  const options = {
+    title: "Top 10 Highest Packages (LPA)",
+    legend: { position: "none" },
+    bars: "horizontal",
+    height: 400,
+    hAxis: {
+      title: "Package (LPA)",
+      minValue: 0
+    },
+    vAxis: {
+      textStyle: { fontSize: 11 }
+    }
+  };
   const chart = new google.visualization.BarChart(
-    document.getElementById("packageChart")
+    document.getElementById("topPackageChart")
   );
-  chart.draw(
-    google.visualization.arrayToDataTable(chartData),
-    { legend: "none" }
-  );
+  chart.draw(data, options);
 }
 
 /*************************************
@@ -93,7 +114,7 @@ function drawAllCharts(data) {
   drawStatusChart(data.optedStudents, data.placedCount);
   drawCompanyChart(data.placedStudents);
   drawProgrammeChart(data.programmeCount);
-  drawTopPackageChart(data.topPackages);
+  drawTopPackageChart(data.topPackageChart);
 }
 
 /*************************************
@@ -149,3 +170,4 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+

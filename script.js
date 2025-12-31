@@ -120,6 +120,50 @@ function drawProgrammeChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, options);
 }
+/************************************************
+ * CORE vs NON-CORE – PROGRAMME-WISE
+ ************************************************/
+function drawCoreNonCoreChart(data) {
+  const el = document.getElementById('coreNonCoreChart');
+
+  if (!data.coreNonCoreCount) {
+    el.innerHTML = '<b>No Core / Non-Core data available</b>';
+    return;
+  }
+
+  const rows = [
+    ['Programme', 'Core', 'Non-Core']
+  ];
+
+  Object.keys(data.coreNonCoreCount).forEach(p => {
+    rows.push([
+      p,
+      data.coreNonCoreCount[p].Core,
+      data.coreNonCoreCount[p].NonCore
+    ]);
+  });
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  const options = {
+    title: 'Core vs Non-Core Placements (Programme-wise)',
+    height: 420,
+    chartArea: { left: 80, top: 70, width: '65%', height: '60%' },
+    hAxis: {
+      title: 'Programme',
+      textStyle: { fontSize: 12 }
+    },
+    vAxis: {
+      title: 'Number of Students',
+      minValue: 0
+    },
+    colors: ['#2E7D32', '#EF6C00'],
+    bar: { groupWidth: '55%' },
+    legend: { position: 'top' }
+  };
+
+  new google.visualization.ColumnChart(el).draw(table, options);
+}
 
 /************************************************
  * TOP 5 PACKAGES COLUMN CHART
@@ -185,5 +229,6 @@ window.addEventListener('resize', () => {
     drawCompanyChart(dataGlobal);
   }
 });
+
 
 

@@ -1,7 +1,7 @@
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
-google.charts.load('current', { packages: ['corechart'] });
+google.charts.load('current', { packages: ['corechart', 'bar'] });
 google.charts.setOnLoadCallback(fetchAndDrawCharts);
 
 const DATA_URL =
@@ -10,10 +10,13 @@ const DATA_URL =
 /************************************************
  * FETCH CONTROLLER
  ************************************************/
+let dataGlobal = null; // for responsive redraw
+
 async function fetchAndDrawCharts() {
   try {
     const response = await fetch(DATA_URL);
     const data = await response.json();
+    dataGlobal = data; // store globally for redraw
 
     if (!data || !data.placedStudents) {
       alert('No data received from Google Sheet');
@@ -28,16 +31,19 @@ async function fetchAndDrawCharts() {
     populateStudentTable(data);
     updateLastUpdated();
 
-  } 
+  } catch (err) {
+    console.error('Fetch Error:', err);
+    alert('Failed to fetch placement data. Check your network or the Google Sheet URL.');
+  }
 }
 
 /************************************************
  * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
-  document.getElementById('total').innerText = `Total Students\n${data.totalStudents}`;
-  document.getElementById('opted').innerText = `Opted for Placement\n${data.optedStudents}`;
-  document.getElementById('placed').innerText = `Placed\n${data.placedCount}`;
+  document.getElementById('total').innerText = `Total Students\n${data.totalStudents || 0}`;
+  document.getElementById('opted').innerText = `Opted for Placement\n${data.optedStudents || 0}`;
+  document.getElementById('placed').innerText = `Placed\n${data.placedCount || 0}`;
 
   const percent = data.optedStudents > 0 ? ((data.placedCount / data.optedStudents) * 100).toFixed(1) : 0;
   document.getElementById('percentage').innerText = `Placement %\n${percent}%`;
@@ -47,9 +53,13 @@ function updateKPIs(data) {
  * PLACEMENT STATUS PIE
  ************************************************/
 function drawPlacementStatusChart(data) {
-  const rows = [['Status', 'Count'], ['Placed', data.placedCount], ['Not Placed', data.optedStudents - data.placedCount]];
-  const table = google.visualization.arrayToDataTable(rows);
+  const rows = [
+    ['Status', 'Count'],
+    ['Placed', data.placedCount || 0],
+    ['Not Placed', (data.optedStudents || 0) - (data.placedCount || 0)]
+  ];
 
+  const table = google.visualization.arrayToDataTable(rows);
   new google.visualization.PieChart(document.getElementById('statusChart')).draw(table, {
     title: 'Placement Status',
     pieHole: 0.4,
@@ -82,12 +92,13 @@ function drawCompanyChart(data) {
  * PROGRAMME-WISE COLUMN CHART
  ************************************************/
 function drawProgrammeChart(data) {
+  const container = document.getElementById('programmeChart');
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
-    document.getElementById('programmeChart').innerHTML = '<b>No Programme data available</b>';
+    container.innerHTML = '<b>No Programme data available</b>';
     return;
   }
 
-  const colors = ['#1b9e77', '#d95f02']; // two programs
+  const colors = ['#1b9e77', '#d95f02'];
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
   for (let prog in data.programmeCount) {
@@ -98,25 +109,16 @@ function drawProgrammeChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   const options = {
-    title: 'Programme‑wise Placement',
-    // give more space for bars and axes
-    width: 800,
+    title: 'Programme-wise Placement',
+    width: container.offsetWidth, // fit container
     height: 400,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
-    hAxis: {
-      title: 'Programme',
-      textStyle: { fontSize: 12 }, // consistent text
-      slantedText: false
-    },
-    vAxis: {
-      title: 'Placed Students',
-      textStyle: { fontSize: 12 }
-    },
+    hAxis: { title: 'Programme', slantedText: false, textStyle: { fontSize: 12 } },
+    vAxis: { title: 'Placed Students', textStyle: { fontSize: 12 } },
     legend: { position: 'none' }
   };
 
-  new google.visualization.ColumnChart(document.getElementById('programmeChart'))
-    .draw(table, options);
+  new google.visualization.ColumnChart(container).draw(table, options);
 }
 
 /************************************************
@@ -140,8 +142,10 @@ function drawTopPackageChart(data) {
 
   const options = {
     title: 'Top 10 Highest Packages (LPA)',
-    chartArea: { width: '70%', height: '60%', left: 60, top: 60 },
-    hAxis: { title: 'Students', slantedText: true, slantedTextAngle: 45 },
+    width: container.offsetWidth,
+    height: 450,
+    chartArea: { width: '70%', height: '65%', left: 60, top: 60 },
+    hAxis: { title: 'Students', slantedText: false },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
@@ -170,4 +174,14 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleString();
 }
 
-
+/************************************************
+ * REDRAW ON WINDOW RESIZE
+ ************************************************/
+window.addEventListener('resize', () => {
+  if (dataGlobal) {
+    drawProgrammeChart(dataGlobal);
+    drawTopPackageChart(dataGlobal);
+    drawPlacementStatusChart(dataGlobal);
+    drawCompanyChart(dataGlobal);
+  }
+});

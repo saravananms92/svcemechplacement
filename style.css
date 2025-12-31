@@ -161,5 +161,11 @@ table tbody tr:nth-child(odd) {
   transform:scale(1.05);
 }
 
+.recruiters img{
+  background:#fff;
+  padding:8px;
+  border-radius:8px;
+}
+
 
 

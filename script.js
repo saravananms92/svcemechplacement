@@ -144,7 +144,6 @@ function drawProgrammeChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.ColumnChart(container).draw(table, {
-    title: 'Programme-wise Placement',
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     hAxis: { title: 'Programme' },
@@ -172,7 +171,6 @@ function drawCoreNonCoreChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.ColumnChart(el).draw(table, {
-    title: 'Core vs Non-Core Placements',
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
@@ -203,7 +201,6 @@ function drawTopPackageChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.ColumnChart(container).draw(table, {
-    title: 'Top 5 Highest Packages (LPA)',
     height: 450,
     chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
@@ -242,3 +239,4 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+

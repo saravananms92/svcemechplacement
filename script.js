@@ -143,8 +143,8 @@ function drawTopPackageChart(data) {
   const options = {
     title: 'Top 5 Highest Packages (LPA)',
     width: container.offsetWidth,
-    height: 450,
-    chartArea: { width: '70%', height: '65%', left: 60, top: 60 },
+    height: 500,
+    chartArea: { width: '60%', height: '75%', left: 60, top: 60 },
     hAxis: { title: 'Students', slantedText: false },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
@@ -185,4 +185,5 @@ window.addEventListener('resize', () => {
     drawCompanyChart(dataGlobal);
   }
 });
+
 

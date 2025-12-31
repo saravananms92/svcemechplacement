@@ -109,33 +109,33 @@ function drawCompanyChart(data) {
  * PROGRAMME-WISE VERTICAL BAR (COLUMN CHART)
  ************************************************/
 function drawProgrammeChart(data) {
-  const rows = [['Programme', 'Placed Students', { role: 'style' }]];
+  // Use two different colors for the two programmes
+  const colors = ['#1b9e77', '#d95f02']; 
 
-  // Add each programme with a different color
-  const colors = ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02'];
-  let colorIndex = 0;
+  const rows = [['Programme', 'Placed Students', { role: 'style' }]];
+  let index = 0;
 
   for (let prog in data.programmeCount) {
-    rows.push([prog, data.programmeCount[prog], colors[colorIndex % colors.length]]);
-    colorIndex++;
+    rows.push([prog, data.programmeCount[prog], colors[index]]);
+    index++;
   }
 
   const table = google.visualization.arrayToDataTable(rows);
 
   const options = {
     title: 'Programme-wise Placement',
-    chartArea: { width: '60%', height: '60%', left: 60, top: 60 }, // center chart
+    chartArea: { width: '60%', height: '60%', left: 60, top: 60 },
     hAxis: {
       title: 'Programme',
       slantedText: true,
-      slantedTextAngle: 45
+      slantedTextAngle: 0
     },
     vAxis: {
       title: 'Placed Students',
       minValue: 0
     },
     legend: { position: 'none' },
-    bar: { groupWidth: '60%' }
+    bar: { groupWidth: '50%' } // adjusts bar width for two programs
   };
 
   const chart = new google.visualization.ColumnChart(
@@ -143,7 +143,6 @@ function drawProgrammeChart(data) {
   );
   chart.draw(table, options);
 }
-
 /************************************************
  * TOP 10 PACKAGES BAR
  ************************************************/
@@ -199,6 +198,7 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 
 
 

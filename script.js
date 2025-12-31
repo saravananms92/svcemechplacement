@@ -21,7 +21,6 @@ function loadData() {
     .then(data => renderData(data))
     .catch(err => console.error("API Error:", err));
 
-  // reset countdown after refresh
   countdown = refreshInterval;
 }
 
@@ -51,8 +50,7 @@ function drawCompanyChart(placedStudents) {
   let companyTypeCount = {};
 
   placedStudents.forEach(s => {
-    companyTypeCount[s.type] =
-      (companyTypeCount[s.type] || 0) + 1;
+    companyTypeCount[s.type] = (companyTypeCount[s.type] || 0) + 1;
   });
 
   let chartData = [["Company Type", "Students"]];
@@ -72,6 +70,7 @@ function drawCompanyChart(placedStudents) {
   );
   chart.draw(data, options);
 }
+
 /* =========================
    Programme-wise Chart
 ========================= */
@@ -86,7 +85,9 @@ function drawProgrammeChart(programmeCount) {
 
   const options = {
     title: "Programme-wise Analytics",
-    legend: { position: "none" }
+    legend: { position: "none" },
+    hAxis: { title: "Programme" },
+    vAxis: { title: "Students" }
   };
 
   const chart = new google.visualization.ColumnChart(
@@ -102,18 +103,24 @@ function drawTopPackageChart(topPackages) {
   let chartData = [["Student", "Package (LPA)"]];
 
   topPackages.forEach(s => {
-    chartData.push([s.name, s.package]);
+    chartData.push([s.name, Number(s.package)]);
   });
 
   const data = google.visualization.arrayToDataTable(chartData);
 
   const options = {
     title: "Top 10 Highest Packages (LPA)",
-    legend: { position: "none" }
+    legend: { position: "none" },
+    hAxis: {
+      title: "Package (LPA)",
+      minValue: 0
+    },
+    height: 260,
+    colors: ["#1a5276"]
   };
 
   const chart = new google.visualization.BarChart(
-    document.getElementById("packageChart")
+    document.getElementById("topPackageChart")
   );
   chart.draw(data, options);
 }
@@ -123,7 +130,7 @@ function drawTopPackageChart(topPackages) {
  *************************************/
 function renderData(data) {
 
-  // Cards
+  /* KPI CARDS */
   document.getElementById("total").innerHTML =
     `<h3>Total Students</h3><p>${data.totalStudents}</p>`;
 
@@ -142,9 +149,10 @@ function renderData(data) {
   document.getElementById("percentage").innerHTML =
     `<h3>Placement %</h3><p>${placementPercentage}%</p>`;
 
-  // Table
+  /* TABLE */
   const tbody = document.getElementById("studentTable");
   tbody.innerHTML = "";
+
   data.placedStudents.forEach(s => {
     tbody.innerHTML += `
       <tr>
@@ -155,17 +163,17 @@ function renderData(data) {
       </tr>`;
   });
 
-  // Last updated time
+  /* LAST UPDATED */
   document.getElementById("lastUpdated").innerText =
     "Last Updated: " + new Date().toLocaleString();
 
-  // Draw charts
-  google.charts.setOnLoadCallback(() => {
-  drawStatusChart(data.optedStudents, data.placedCount);
-  drawCompanyChart(data.placedStudents);
-  drawProgrammeChart(data.programmeCount);
-  drawTopPackageChart(data.topPackages);
-});
+  /* DRAW ALL CHARTS */
+  google.charts.setOnLoadCallback(function () {
+    drawStatusChart(data.optedStudents, data.placedCount);
+    drawCompanyChart(data.placedStudents);
+    drawProgrammeChart(data.programmeCount);
+    drawTopPackageChart(data.topPackages);
+  });
 }
 
 /*************************************
@@ -179,14 +187,4 @@ setInterval(() => {
   }
 
   document.getElementById("refreshCountdown").innerText =
-    `Next refresh in: ${countdown}s`;
-}, 1000);
-
-/*************************************
- * INITIAL LOAD
- *************************************/
-loadData();
-
-
-
-
+    `Next refresh in:

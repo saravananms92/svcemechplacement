@@ -1,31 +1,48 @@
-/* -------- Heading Styles -------- */
-h1 {
-  font-size: 2.5em;  /* Adjust the size as needed */
-  margin-top: 20px;  /* Gap above the heading */
-  margin-bottom: 15px; /* Gap below the heading */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 20px;
 }
 
-h2 {
-  font-size: 2em;
-  margin-top: 18px;
-  margin-bottom: 12px;
+h1, h2, h3 {
+  text-align: center;
 }
 
-h3 {
-  font-size: 1.5em;
-  margin-top: 15px;
-  margin-bottom: 10px;
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
 }
 
-/* Optional: responsive heading sizes */
-@media screen and (max-width: 768px) {
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.7em;
-  }
-  h3 {
-    font-size: 1.3em;
-  }
+.card {
+  background: white;
+  padding: 20px;
+  width: 25%;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
+.card p {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #2c3e50;
+  color: white;
+}
+</style>
+

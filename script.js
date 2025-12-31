@@ -122,7 +122,7 @@ function drawProgrammeChart(data) {
 }
 
 /************************************************
- * TOP 10 PACKAGES COLUMN CHART
+ * TOP 5 PACKAGES COLUMN CHART
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
@@ -131,7 +131,7 @@ function drawTopPackageChart(data) {
     return;
   }
 
-  const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d','#666666','#1f78b4','#b2df8a'];
+  const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
 
   const rows = [['Student','Package (LPA)',{ role: 'annotation' },{ role: 'style' }]];
   data.topPackages.forEach((s, index) => {
@@ -141,7 +141,7 @@ function drawTopPackageChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   const options = {
-    title: 'Top 10 Highest Packages (LPA)',
+    title: 'Top 5 Highest Packages (LPA)',
     width: container.offsetWidth,
     height: 450,
     chartArea: { width: '70%', height: '65%', left: 60, top: 60 },
@@ -185,3 +185,4 @@ window.addEventListener('resize', () => {
     drawCompanyChart(dataGlobal);
   }
 });
+

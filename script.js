@@ -87,7 +87,7 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#1b9e77', '#d95f02']; // two programmes
+  const colors = ['#1b9e77', '#d95f02']; // two programs
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
   for (let prog in data.programmeCount) {
@@ -98,15 +98,25 @@ function drawProgrammeChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   const options = {
-    title: 'Programme-wise Placement',
-    chartArea: { width: '60%', height: '60%', left: 60, top: 60 },
-    hAxis: { title: 'Programme', slantedText: false },
-    vAxis: { title: 'Placed Students', minValue: 0 },
-    legend: { position: 'none' },
-    bar: { groupWidth: '50%' }
+    title: 'Programme‑wise Placement',
+    // give more space for bars and axes
+    width: 800,
+    height: 400,
+    chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
+    hAxis: {
+      title: 'Programme',
+      textStyle: { fontSize: 12 }, // consistent text
+      slantedText: false
+    },
+    vAxis: {
+      title: 'Placed Students',
+      textStyle: { fontSize: 12 }
+    },
+    legend: { position: 'none' }
   };
 
-  new google.visualization.ColumnChart(document.getElementById('programmeChart')).draw(table, options);
+  new google.visualization.ColumnChart(document.getElementById('programmeChart'))
+    .draw(table, options);
 }
 
 /************************************************
@@ -159,4 +169,5 @@ function populateStudentTable(data) {
 function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleString();
 }
+
 

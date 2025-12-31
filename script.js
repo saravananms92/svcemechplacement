@@ -14,26 +14,28 @@ let dataGlobal = null; // for responsive redraw
 
 async function fetchAndDrawCharts() {
   try {
-    const response = await fetch(DATA_URL);
-    const data = await response.json();
-    dataGlobal = data; // store globally for redraw
+    console.log("Fetching data...");
 
-    if (!data || !data.placedStudents) {
-      alert('No data received from Google Sheet');
-      return;
-    }
+    const response = await fetch(DATA_URL);
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+
+    const data = await response.json();
+    console.log("DATA RECEIVED:", data);
 
     updateKPIs(data);
     drawPlacementStatusChart(data);
     drawCompanyChart(data);
     drawProgrammeChart(data);
     drawTopPackageChart(data);
+    drawCoreNonCoreChart(data); // if added
     populateStudentTable(data);
-    updateLastUpdated();
 
   } catch (err) {
-    console.error('Fetch Error:', err);
-    alert('Failed to fetch placement data. Check your network or the Google Sheet URL.');
+    console.error("FETCH ERROR:", err);
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      "<p style='color:red;text-align:center'>Data load failed</p>"
+    );
   }
 }
 
@@ -229,6 +231,7 @@ window.addEventListener('resize', () => {
     drawCompanyChart(dataGlobal);
   }
 });
+
 
 
 

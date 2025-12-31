@@ -1,13 +1,23 @@
-google.charts.load('current', { packages: ['corechart', 'bar', 'table'] });
+/* ================= GOOGLE CHARTS LOAD ================= */
+google.charts.load('current', {
+  packages: ['corechart', 'bar', 'table']
+});
 google.charts.setOnLoadCallback(fetchAndDrawCharts);
 
-const DATA_URL = 'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
+/* ================= DATA SOURCE ================= */
+const DATA_URL =
+  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?api=1';
 
-/* ---------- FETCH DATA ---------- */
+/* ================= FETCH DATA ================= */
 async function fetchAndDrawCharts() {
   try {
     const response = await fetch(DATA_URL);
     const data = await response.json();
+
+    if (!Array.isArray(data) || data.length === 0) {
+      console.error('No data received');
+      return;
+    }
 
     updateKPIs(data);
     drawPlacementStatusChart(data);
@@ -17,25 +27,29 @@ async function fetchAndDrawCharts() {
     populateStudentTable(data);
     updateLastUpdated();
 
-  } catch (err) {
-    console.error('Error fetching placement data:', err);
+  } catch (error) {
+    console.error('Error fetching placement data:', error);
   }
 }
 
-/* ---------- KPI CARDS ---------- */
+/* ================= KPI CARDS ================= */
 function updateKPIs(data) {
   const total = data.length;
   const opted = data.filter(d => d['PLACEMENT STATUS']).length;
   const placed = data.filter(d => d['PLACEMENT STATUS'] === 'Placed').length;
   const percentage = total ? ((placed / total) * 100).toFixed(1) : 0;
 
-  document.getElementById('total').innerText = `Total Students\n${total}`;
-  document.getElementById('opted').innerText = `Opted for Placement\n${opted}`;
-  document.getElementById('placed').innerText = `Placed\n${placed}`;
-  document.getElementById('percentage').innerText = `Placement %\n${percentage}%`;
+  document.getElementById('total').innerText =
+    `Total Students\n${total}`;
+  document.getElementById('opted').innerText =
+    `Opted for Placement\n${opted}`;
+  document.getElementById('placed').innerText =
+    `Placed\n${placed}`;
+  document.getElementById('percentage').innerText =
+    `Placement %\n${percentage}%`;
 }
 
-/* ---------- PLACEMENT STATUS CHART ---------- */
+/* ================= PLACEMENT STATUS ================= */
 function drawPlacementStatusChart(data) {
   const statusCount = {};
 
@@ -45,23 +59,27 @@ function drawPlacementStatusChart(data) {
   });
 
   const chartData = [['Status', 'Count', { role: 'annotation' }]];
-  Object.keys(statusCount).forEach(k => {
-    chartData.push([k, statusCount[k], statusCount[k]]);
+  Object.keys(statusCount).forEach(key => {
+    chartData.push([key, statusCount[key], statusCount[key]]);
   });
+
+  const dataTable =
+    google.visualization.arrayToDataTable(chartData);
 
   const options = {
     title: 'Placement Status',
     pieHole: 0.4,
+    legend: { position: 'right' },
     chartArea: { width: '70%', height: '70%' },
-    legend: { position: 'right' }
+    colors: ['#1b9e77', '#d95f02', '#7570b3']
   };
 
   new google.visualization.PieChart(
     document.getElementById('statusChart')
-  ).draw(google.visualization.arrayToDataTable(chartData), options);
+  ).draw(dataTable, options);
 }
 
-/* ---------- COMPANY TYPE CHART ---------- */
+/* ================= COMPANY TYPE ================= */
 function drawCompanyChart(data) {
   const companyCount = {};
 
@@ -71,64 +89,71 @@ function drawCompanyChart(data) {
   });
 
   const chartData = [['Company Type', 'Count', { role: 'annotation' }]];
-  Object.keys(companyCount).forEach(k => {
-    chartData.push([k, companyCount[k], companyCount[k]]);
+  Object.keys(companyCount).forEach(key => {
+    chartData.push([key, companyCount[key], companyCount[key]]);
   });
+
+  const dataTable =
+    google.visualization.arrayToDataTable(chartData);
 
   const options = {
     title: 'Company Type Distribution',
     pieHole: 0.4,
-    chartArea: { width: '70%', height: '70%' },
-    legend: { position: 'right' }
+    legend: { position: 'right' },
+    chartArea: { width: '70%', height: '70%' }
   };
 
   new google.visualization.PieChart(
     document.getElementById('companyChart')
-  ).draw(google.visualization.arrayToDataTable(chartData), options);
+  ).draw(dataTable, options);
 }
 
-/* ---------- PROGRAMME-WISE CHART ---------- */
+/* ================= PROGRAMME-WISE ================= */
 function drawProgrammeChart(data) {
   const programmeCount = {};
 
   data.forEach(d => {
-    const prog = d['PROGRAMME'] || 'Unknown';
-    programmeCount[prog] = (programmeCount[prog] || 0) + 1;
+    const programme = d['PROGRAMME'] || 'Unknown';
+    programmeCount[programme] =
+      (programmeCount[programme] || 0) + 1;
   });
 
   const chartData = [['Programme', 'Count', { role: 'annotation' }]];
-  Object.keys(programmeCount).forEach(k => {
-    chartData.push([k, programmeCount[k], programmeCount[k]]);
+  Object.keys(programmeCount).forEach(key => {
+    chartData.push([key, programmeCount[key], programmeCount[key]]);
   });
+
+  const dataTable =
+    google.visualization.arrayToDataTable(chartData);
 
   const options = {
     title: 'Programme-wise Placement',
     chartArea: { width: '60%' },
     hAxis: { title: 'Count', minValue: 0 },
     vAxis: { title: 'Programme' },
-    annotations: { alwaysOutside: true }
+    annotations: { alwaysOutside: true },
+    colors: ['#1b9e77']
   };
 
   new google.visualization.BarChart(
     document.getElementById('programmeChart')
-  ).draw(google.visualization.arrayToDataTable(chartData), options);
+  ).draw(dataTable, options);
 }
 
-/* ---------- TOP 10 PACKAGES CHART (FIXED) ---------- */
+/* ================= TOP 10 PACKAGES ================= */
 function drawTopPackageChart(data) {
 
   const cleaned = [];
 
   data.forEach(d => {
-    let student = d['STUDENT NAME'];
-    let pkg = d['PACKAGE'];
+    const student = d['STUDENT NAME'];
+    const pkg = Number(d['PACKAGE']);
 
-    if (pkg === null || pkg === '' || pkg === undefined) return;
-    if (isNaN(pkg)) return;
+    if (!student || isNaN(pkg) || pkg <= 0) return;
 
     cleaned.push({
       student: student,
-      package: Number(pkg)
+      package: pkg
     });
   });
 
@@ -141,25 +166,35 @@ function drawTopPackageChart(data) {
   cleaned.sort((a, b) => b.package - a.package);
   const top10 = cleaned.slice(0, 10);
 
-  const chartData = [['Student', 'Package (LPA)', { role: 'annotation' }]];
+  const chartData =
+    [['Student', 'Package (LPA)', { role: 'annotation' }]];
+
   top10.forEach(d => {
-    chartData.push([d.student, d.package, d.package + ' LPA']);
+    chartData.push([
+      d.student,
+      d.package,
+      d.package + ' LPA'
+    ]);
   });
+
+  const dataTable =
+    google.visualization.arrayToDataTable(chartData);
 
   const options = {
     title: 'Top 10 Highest Packages (LPA)',
     chartArea: { width: '60%' },
     hAxis: { title: 'Package (LPA)', minValue: 0 },
     vAxis: { title: 'Student Name' },
-    annotations: { alwaysOutside: true }
+    annotations: { alwaysOutside: true },
+    colors: ['#0b8043']
   };
 
   new google.visualization.BarChart(
     document.getElementById('topPackageChart')
-  ).draw(google.visualization.arrayToDataTable(chartData), options);
+  ).draw(dataTable, options);
 }
 
-/* ---------- STUDENT TABLE ---------- */
+/* ================= STUDENT TABLE ================= */
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
   tbody.innerHTML = '';
@@ -169,18 +204,17 @@ function populateStudentTable(data) {
     .forEach(d => {
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td>${d['PROGRAMME']}</td>
-        <td>${d['STUDENT NAME']}</td>
-        <td>${d['COMPANY NAME']}</td>
-        <td>${d['COMPANY TYPE']}</td>
-        <td>${d['PACKAGE'] ?? ''}</td>
+        <td>${d['PROGRAMME'] || ''}</td>
+        <td>${d['STUDENT NAME'] || ''}</td>
+        <td>${d['COMPANY NAME'] || ''}</td>
+        <td>${d['COMPANY TYPE'] || ''}</td>
       `;
       tbody.appendChild(row);
     });
 }
 
-/* ---------- LAST UPDATED ---------- */
+/* ================= LAST UPDATED ================= */
 function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
-    `Last Updated: ${new Date().toLocaleString()}`;
+    'Last Updated: ' + new Date().toLocaleString();
 }

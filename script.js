@@ -31,10 +31,7 @@ async function fetchAndDrawCharts() {
     populateStudentTable(data);
     updateLastUpdated();
 
-  } catch (error) {
-    console.error('Fetch error:', error);
-    alert('Failed to load placement data');
-  }
+  } 
 }
 
 /************************************************
@@ -124,7 +121,7 @@ function drawProgrammeChart(data) {
     document.getElementById('programmeChart')
   ).draw(table, {
     title: 'Programme-wise Placement',
-    chartArea: { width: '100%', height: '70%' },
+    chartArea: { width: '50%', height: '50%' },
     hAxis: {
       title: 'Programme',
       slantedText: true,
@@ -194,4 +191,5 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 

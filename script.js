@@ -81,7 +81,7 @@ function drawTopPackageChart(topPackages) {
       "<p style='text-align:center;color:#999'>No package data available</p>";
     return;
   }
-  const chartData = [["Student", "Package (LPA)"]];
+  const chartData = [["Student", "Package"]];
   topPackages.forEach(s => {
     chartData.push([s.name, Number(s.package)]);
   });
@@ -94,7 +94,7 @@ const data = google.visualization.arrayToDataTable(chartData);
     bars: "horizontal",
     height: 400,
     hAxis: {
-      title: "Package (LPA)",
+      title: "Package",
       minValue: 0
     },
     vAxis: {
@@ -170,4 +170,5 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+
 

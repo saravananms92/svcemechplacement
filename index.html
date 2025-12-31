@@ -7,12 +7,12 @@
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
-<div id="update-timer">
-  Last Updated: <span id="last-updated">12/31/2025, 12:24:31 PM</span> | Next refresh in: <span id="countdown">60</span>s
-</div>
-
 <body>
-  
+  <!-- Top-right update timer -->
+  <div id="update-timer">
+    Last Updated: <span id="last-updated">12/31/2025, 12:24:31 PM</span> | Next refresh in: <span id="countdown">60</span>s
+  </div>
+
   <h1>SRI VENKATESWARA COLLEGE OF ENGINEERING</h1>
   <h3>(Autonomous - Affiliated to Anna University)</h3>
   <h3>Pennalur, Sriperumbudur Tk - 602 117</h3>
@@ -46,14 +46,8 @@
     <div id="topPackageChart" class="chart-box"></div>
   </div>
 
-  <!-- STATUS -->
-  <h2>DETAILS OF THE PLACED STUDENTS</h2>
-  <div id="status">
-    <span id="lastUpdated">Last Updated: --</span> |
-    <span id="refreshCountdown">Next refresh in: 60s</span>
-  </div>
-
   <!-- TABLE -->
+  <h2>DETAILS OF THE PLACED STUDENTS</h2>
   <table>
     <thead>
       <tr>
@@ -66,8 +60,9 @@
     <tbody id="studentTable"></tbody>
   </table>
 
+  <!-- Your external script for charts/data -->
   <script src="script.js"></script>
-  
+
   <!-- Countdown JavaScript -->
   <script>
     let countdown = 60; // seconds
@@ -77,7 +72,6 @@
     function updateTimer() {
       countdownElem.textContent = countdown;
       if (countdown <= 0) {
-        // Reset countdown and update last updated timestamp
         countdown = 60;
         const now = new Date();
         lastUpdatedElem.textContent = now.toLocaleString();
@@ -86,14 +80,7 @@
       }
     }
 
-    // Run update every 1 second
     setInterval(updateTimer, 1000);
   </script>
 </body>
 </html>
-
-
-
-
-
-

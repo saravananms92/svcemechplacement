@@ -1,26 +1,19 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background: #f4f4f9;
-  color: #333;
-}
-
 /* -------- Heading Styles -------- */
 h1 {
-  font-size: 2em;  /* Adjust the size as needed */
+  font-size: 2.5em;  /* Adjust the size as needed */
   margin-top: 20px;  /* Gap above the heading */
   margin-bottom: 15px; /* Gap below the heading */
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
   margin-top: 18px;
   margin-bottom: 12px;
 }
 
 h3 {
-  font-size: 1em;
-  margin-top: 12px;
+  font-size: 1.5em;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 
@@ -36,80 +29,3 @@ h3 {
     font-size: 1.3em;
   }
 }
-
-
-.cards {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: #003366;
-  color: white;
-  padding: 20px;
-  margin: 10px;
-  width: 200px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-}
-
-.charts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 30px;
-}
-
-.chart-box {
-  width: 600px;
-  height: 400px;
-  margin: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-table th {
-  background: #003366;
-  color: white;
-}
-
-@media screen and (max-width: 768px) {
-  .chart-box {
-    width: 100%;
-    height: 350px;
-  }
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

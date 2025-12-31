@@ -162,8 +162,8 @@ tbody tr:hover {
 }
 
 .chart-box {
-  width: 350px;
-  height: 240px;
+  width: 420px;
+  height: 260px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   padding: 10px;
@@ -172,12 +172,12 @@ tbody tr:hover {
 
 /* Center the whole dashboard */
 .dashboard {
-  max-width: 1200px;        /* controls overall width */
-  margin: 0 auto;          /* centers horizontally */
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
 
   display: grid;
-  grid-template-columns: 1fr; /* single column (default) */
+  grid-template-columns: 1fr;
   gap: 30px;
 }
 
@@ -221,6 +221,7 @@ tbody tr:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 1000;
 }
+
 
 
 

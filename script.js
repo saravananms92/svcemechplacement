@@ -8,7 +8,7 @@ google.charts.setOnLoadCallback(fetchAndDrawCharts);
  * APPS SCRIPT JSON URL
  *******************************/
 const DATA_URL =
-  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec?';
+  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
 /*******************************
  * FETCH + MAIN CONTROLLER
@@ -198,4 +198,5 @@ function updateLastUpdated() {
   document.getElementById('lastUpdated').innerText =
     'Last Updated: ' + new Date().toLocaleString();
 }
+
 

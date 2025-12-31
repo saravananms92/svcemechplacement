@@ -1,160 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MECH Placement Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MECH Placement Dashboard</title>
 
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Google Charts -->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --primary:#1e3a8a;
-  --secondary:#2563eb;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#0f172a;
-}
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #2563eb;
+      --success: #16a34a;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+    }
 
-*{box-sizing:border-box;font-family:'Inter',sans-serif}
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-header{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;
-  padding:22px;
-  text-align:center;
-}
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-header h1{margin:0;font-size:1.6rem}
-header p{margin:6px 0 0;font-size:.95rem;opacity:.9}
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
 
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
+    header p {
+      margin-top: 6px;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
 
-/* KPI CARDS */
-.kpis{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-  margin-bottom:26px;
-}
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.kpi{
-  background:var(--card);
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,.06);
-  white-space:pre-line;
-  font-weight:600;
-  font-size:1rem;
-}
+    /* ---- DASHBOARD CARDS ---- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
 
-/* CHART CARDS */
-.charts{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:20px;
-}
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
+    }
 
-.chart-card{
-  background:var(--card);
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.06);
-}
+    .card:hover {
+      transform: translateY(-4px);
+    }
 
-.chart-card h2{
-  margin:0 0 10px;
-  font-size:1rem;
-  color:var(--primary);
-  text-align:center;
-}
+    .card h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #475569;
+    }
 
-.chart{
-  width:100%;
-  height:320px;
-}
+    .card .value {
+      margin-top: 8px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-/* TABLE */
-.table-card{
-  background:var(--card);
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.06);
-  margin-top:26px;
-  overflow-x:auto;
-}
+    /* ---- CHART CARDS ---- */
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:.9rem;
-}
+    .chart-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
 
-th,td{
-  padding:10px;
-  border-bottom:1px solid #e5e7eb;
-  text-align:left;
-}
+    .chart-card h2 {
+      font-size: 1rem;
+      margin: 0 0 10px 0;
+      color: var(--primary);
+      text-align: center;
+    }
 
-th{
-  background:#f1f5f9;
-}
+    .chart {
+      width: 100%;
+      height: 300px;
+    }
 
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:.85rem;
-  color:#64748b;
-}
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64748b;
+      padding: 20px;
+    }
 
-@media(max-width:600px){
-  header h1{font-size:1.3rem}
-  .chart{height:260px}
-}
-</style>
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.3rem;
+      }
+      .chart {
+        height: 260px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <h1>Mechanical Engineering Placement Dashboard</h1>
-  <p>Live Placement Statistics | 2022–2026</p>
+  <p>Live Placement Statistics • Academic Year 2022–2026</p>
 </header>
 
 <div class="container">
 
-  <!-- KPI SECTION -->
-  <div class="kpis">
-    <div class="kpi" id="total">Total Students</div>
-    <div class="kpi" id="opted">Opted for Placement</div>
-    <div class="kpi" id="placed">Placed</div>
-    <div class="kpi" id="percentage">Placement %</div>
-  </div>
-
-  <!-- CHARTS -->
-  <div class="charts">
-    <div class="chart-card">
-      <h2>Placement Status</h2>
-      <div id="statusChart" class="chart"></div>
+  <!-- SUMMARY CARDS -->
+  <div class="stats">
+    <div class="card">
+      <h3>Total Students</h3>
+      <div class="value" id="totalStudents">—</div>
     </div>
 
+    <div class="card">
+      <h3>Students Placed</h3>
+      <div class="value" id="placedStudents">—</div>
+    </div>
+
+    <div class="card">
+      <h3>Placement %</h3>
+      <div class="value" id="placementPercent">—</div>
+    </div>
+
+    <div class="card">
+      <h3>Highest Package</h3>
+      <div class="value" id="highestPackage">—</div>
+    </div>
+  </div>
+
+  <!-- CHART SECTION -->
+  <div class="charts">
+
     <div class="chart-card">
-      <h2>Company Type Distribution</h2>
-      <div id="companyChart" class="chart"></div>
+      <h2>Placement Status</h2>
+      <div id="placementChart" class="chart"></div>
     </div>
 
     <div class="chart-card">
@@ -163,30 +179,10 @@ footer{
     </div>
 
     <div class="chart-card">
-      <h2>Core vs Non-Core</h2>
-      <div id="coreNonCoreChart" class="chart"></div>
-    </div>
-
-    <div class="chart-card">
-      <h2>Top Packages</h2>
+      <h2>Top 10 Packages</h2>
       <div id="topPackageChart" class="chart"></div>
     </div>
-  </div>
 
-  <!-- TABLE -->
-  <div class="table-card">
-    <h2 style="color:var(--primary)">Placed Students</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Programme</th>
-          <th>Name</th>
-          <th>Company</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody id="studentTable"></tbody>
-    </table>
   </div>
 
 </div>
@@ -195,22 +191,9 @@ footer{
   © Department of Mechanical Engineering | Placement Cell
 </footer>
 
-<!-- ================= YOUR ORIGINAL script.js (UNCHANGED) ================= -->
+<!-- 🔽 YOUR EXISTING JS / FETCH / GOOGLE CHART CODE GOES HERE 🔽 -->
 <script>
-/************************************************
- * GOOGLE CHARTS LOADER
- ************************************************/
-google.charts.load('current', { packages: ['corechart'] });
-google.charts.setOnLoadCallback(init);
-
-const DATA_URL =
-'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
-
-let dataGlobal = null;
-
-function init(){ fetchAndDrawCharts(); }
-
-/* === REST OF YOUR JS EXACTLY AS YOU SENT === */
+  // Keep your existing fetch + chart drawing code here
 </script>
 
 </body>

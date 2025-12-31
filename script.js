@@ -1,40 +1,49 @@
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
-google.charts.load('current', { packages: ['corechart', 'bar'] });
-google.charts.setOnLoadCallback(fetchAndDrawCharts);
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(init);
 
 const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
+let dataGlobal = null;
+
+/************************************************
+ * INIT
+ ************************************************/
+function init() {
+  fetchAndDrawCharts();
+}
+
 /************************************************
  * FETCH CONTROLLER
  ************************************************/
-let dataGlobal = null; // for responsive redraw
-
 async function fetchAndDrawCharts() {
   try {
-    console.log("Fetching data...");
+    console.log('Fetching data...');
 
     const response = await fetch(DATA_URL);
-    if (!response.ok) throw new Error("HTTP error " + response.status);
+    if (!response.ok) throw new Error('HTTP error ' + response.status);
 
     const data = await response.json();
-    console.log("DATA RECEIVED:", data);
+    console.log('DATA RECEIVED:', data);
+
+    dataGlobal = data;
 
     updateKPIs(data);
     drawPlacementStatusChart(data);
     drawCompanyChart(data);
     drawProgrammeChart(data);
+    drawCoreNonCoreChart(data);
     drawTopPackageChart(data);
-    drawCoreNonCoreChart(data); // if added
     populateStudentTable(data);
 
   } catch (err) {
-    console.error("FETCH ERROR:", err);
+    console.error('FETCH ERROR:', err);
     document.body.insertAdjacentHTML(
-      "afterbegin",
-      "<p style='color:red;text-align:center'>Data load failed</p>"
+      'afterbegin',
+      "<p style='color:red;text-align:center'>⚠ Failed to load placement data</p>"
     );
   }
 }
@@ -43,12 +52,22 @@ async function fetchAndDrawCharts() {
  * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
-  document.getElementById('total').innerText = `Total Students\n${data.totalStudents || 0}`;
-  document.getElementById('opted').innerText = `Opted for Placement\n${data.optedStudents || 0}`;
-  document.getElementById('placed').innerText = `Placed\n${data.placedCount || 0}`;
+  document.getElementById('total').innerText =
+    `Total Students\n${data.totalStudents || 0}`;
 
-  const percent = data.optedStudents > 0 ? ((data.placedCount / data.optedStudents) * 100).toFixed(1) : 0;
-  document.getElementById('percentage').innerText = `Placement %\n${percent}%`;
+  document.getElementById('opted').innerText =
+    `Opted for Placement\n${data.optedStudents || 0}`;
+
+  document.getElementById('placed').innerText =
+    `Placed\n${data.placedCount || 0}`;
+
+  const percent =
+    data.optedStudents > 0
+      ? ((data.placedCount / data.optedStudents) * 100).toFixed(1)
+      : 0;
+
+  document.getElementById('percentage').innerText =
+    `Placement %\n${percent}%`;
 }
 
 /************************************************
@@ -62,7 +81,10 @@ function drawPlacementStatusChart(data) {
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
-  new google.visualization.PieChart(document.getElementById('statusChart')).draw(table, {
+
+  new google.visualization.PieChart(
+    document.getElementById('statusChart')
+  ).draw(table, {
     title: 'Placement Status',
     pieHole: 0.4,
     chartArea: { width: '75%', height: '75%' }
@@ -74,16 +96,20 @@ function drawPlacementStatusChart(data) {
  ************************************************/
 function drawCompanyChart(data) {
   const map = {};
-  data.placedStudents.forEach(s => {
+
+  (data.placedStudents || []).forEach(s => {
     const type = s.type || 'Unknown';
     map[type] = (map[type] || 0) + 1;
   });
 
   const rows = [['Company Type', 'Count']];
   Object.keys(map).forEach(k => rows.push([k, map[k]]));
+
   const table = google.visualization.arrayToDataTable(rows);
 
-  new google.visualization.PieChart(document.getElementById('companyChart')).draw(table, {
+  new google.visualization.PieChart(
+    document.getElementById('companyChart')
+  ).draw(table, {
     title: 'Company Type Distribution',
     pieHole: 0.4,
     chartArea: { width: '75%', height: '75%' }
@@ -91,52 +117,50 @@ function drawCompanyChart(data) {
 }
 
 /************************************************
- * PROGRAMME-WISE COLUMN CHART
+ * PROGRAMME-WISE PLACEMENT (VERTICAL)
  ************************************************/
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
+
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
     container.innerHTML = '<b>No Programme data available</b>';
     return;
   }
 
   const colors = ['#1b9e77', '#d95f02'];
+
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
-  for (let prog in data.programmeCount) {
-    rows.push([prog, Number(data.programmeCount[prog]) || 0, colors[i % colors.length]]);
+
+  for (let p in data.programmeCount) {
+    rows.push([
+      p,
+      Number(data.programmeCount[p]) || 0,
+      colors[i % colors.length]
+    ]);
     i++;
   }
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  const options = {
+  new google.visualization.ColumnChart(container).draw(table, {
     title: 'Programme-wise Placement',
-    width: container.offsetWidth, // fit container
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-    hAxis: { title: 'Programme', slantedText: false, textStyle: { fontSize: 12 } },
-    vAxis: { title: 'Placed Students', textStyle: { fontSize: 12 } },
+    hAxis: { title: 'Programme' },
+    vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
-  };
-
-  new google.visualization.ColumnChart(container).draw(table, options);
+  });
 }
+
 /************************************************
- * CORE vs NON-CORE – PROGRAMME-WISE
+ * CORE vs NON-CORE (GROUPED BAR)
  ************************************************/
 function drawCoreNonCoreChart(data) {
   const el = document.getElementById('coreNonCoreChart');
+  if (!el || !data.coreNonCoreCount) return;
 
-  if (!data.coreNonCoreCount) {
-    el.innerHTML = '<b>No Core / Non-Core data available</b>';
-    return;
-  }
-
-  const rows = [
-    ['Programme', 'Core', 'Non-Core']
-  ];
-
+  const rows = [['Programme', 'Core', 'Non-Core']];
   Object.keys(data.coreNonCoreCount).forEach(p => {
     rows.push([
       p,
@@ -147,31 +171,23 @@ function drawCoreNonCoreChart(data) {
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  const options = {
-    title: 'Core vs Non-Core Placements (Programme-wise)',
+  new google.visualization.ColumnChart(el).draw(table, {
+    title: 'Core vs Non-Core Placements',
     height: 420,
-    chartArea: { left: 80, top: 70, width: '65%', height: '60%' },
-    hAxis: {
-      title: 'Programme',
-      textStyle: { fontSize: 12 }
-    },
-    vAxis: {
-      title: 'Number of Students',
-      minValue: 0
-    },
+    chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
+    vAxis: { title: 'No. of Students', minValue: 0 },
     colors: ['#2E7D32', '#EF6C00'],
-    bar: { groupWidth: '55%' },
-    legend: { position: 'top' }
-  };
-
-  new google.visualization.ColumnChart(el).draw(table, options);
+    legend: { position: 'top' },
+    bar: { groupWidth: '55%' }
+  });
 }
 
 /************************************************
- * TOP 5 PACKAGES COLUMN CHART
+ * TOP 5 HIGHEST PACKAGES
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
+
   if (!data.topPackages || data.topPackages.length === 0) {
     container.innerHTML = '<b>No package data available</b>';
     return;
@@ -180,24 +196,20 @@ function drawTopPackageChart(data) {
   const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
 
   const rows = [['Student','Package (LPA)',{ role: 'annotation' },{ role: 'style' }]];
-  data.topPackages.forEach((s, index) => {
-    rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[index % colors.length]]);
+  data.topPackages.forEach((s, i) => {
+    rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  const options = {
+  new google.visualization.ColumnChart(container).draw(table, {
     title: 'Top 5 Highest Packages (LPA)',
-    width: container.offsetWidth,
     height: 450,
-    chartArea: { width: '60%', height: '75%', left: 60, top: 60 },
-    hAxis: { title: 'Students', slantedText: false },
+    chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
-  };
-
-  new google.visualization.ColumnChart(container).draw(table, options);
+  });
 }
 
 /************************************************
@@ -206,33 +218,27 @@ function drawTopPackageChart(data) {
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
   tbody.innerHTML = '';
-  data.placedStudents.forEach(s => {
+
+  (data.placedStudents || []).forEach(s => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${s.programme}</td><td>${s.name}</td><td>${s.company}</td><td>${s.type}</td>`;
+    tr.innerHTML = `
+      <td>${s.programme}</td>
+      <td>${s.name}</td>
+      <td>${s.company}</td>
+      <td>${s.type}</td>
+    `;
     tbody.appendChild(tr);
   });
 }
 
 /************************************************
- * LAST UPDATED
- ************************************************/
-function updateLastUpdated() {
-  document.getElementById('lastUpdated').innerText = 'Last Updated: ' + new Date().toLocaleString();
-}
-
-/************************************************
- * REDRAW ON WINDOW RESIZE
+ * RESPONSIVE REDRAW
  ************************************************/
 window.addEventListener('resize', () => {
-  if (dataGlobal) {
-    drawProgrammeChart(dataGlobal);
-    drawTopPackageChart(dataGlobal);
-    drawPlacementStatusChart(dataGlobal);
-    drawCompanyChart(dataGlobal);
-  }
+  if (!dataGlobal) return;
+
+  drawProgrammeChart(dataGlobal);
+  drawTopPackageChart(dataGlobal);
+  drawPlacementStatusChart(dataGlobal);
+  drawCompanyChart(dataGlobal);
 });
-
-
-
-
-

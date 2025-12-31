@@ -85,7 +85,7 @@ function drawProgrammeChart(programmeCount) {
   const data = google.visualization.arrayToDataTable(chartData);
 
   const options = {
-    title: "Programme-wise Placement",
+    title: "Programme-wise Analytics",
     legend: { position: "none" }
   };
 
@@ -186,5 +186,6 @@ setInterval(() => {
  * INITIAL LOAD
  *************************************/
 loadData();
+
 
 

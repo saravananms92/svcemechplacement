@@ -20,7 +20,7 @@
 /* left-aligned logo */
 .left-logo{
   position:absolute;
-  top:20px;
+  top:30px;
   left:20px;
   height:100px;
 }
@@ -260,6 +260,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

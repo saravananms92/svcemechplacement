@@ -146,8 +146,7 @@ function drawProgrammeChart(data) {
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-    hAxis: { title: 'Programme' },
-    vAxis: { title: 'Placed Students', minValue: 0 },
+        vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
   });
 }
@@ -175,7 +174,7 @@ function drawCoreNonCoreChart(data) {
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
     colors: ['#2E7D32', '#EF6C00'],
-    legend: { position: 'top' },
+    legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
 }
@@ -239,4 +238,5 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 

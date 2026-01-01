@@ -127,7 +127,7 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#0aa1d8', '#8504c4'];
+  const colors = ['#0aa1d8', '#a0548a'];
 
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
@@ -173,7 +173,7 @@ function drawCoreNonCoreChart(data) {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
-    colors: ['#7eaabf', '#c55885'],
+    colors: ['#c1ca51', '#c55885'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
@@ -238,6 +238,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

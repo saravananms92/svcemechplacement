@@ -217,26 +217,29 @@ section, h2 {
 table {
   width: 100%;
   border-collapse: collapse;
+  background: #ffffff;
   margin-top: 20px;
-  font-size: 0.95rem;
+  font-size: 14px;
 }
 
 table th,
 table td {
-  border: 1px solid #bbb;
   padding: 10px;
   text-align: left;
+  background: #FF9933;
+  color: #ffffff;
 }
 
 table th {
   background: #003366;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
 }
 
 table tbody tr:nth-child(odd) {
-  background: #fafafa;
+  background: #fff7ed;
 }
 
 /* Responsive */
@@ -276,6 +279,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

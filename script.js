@@ -212,8 +212,8 @@ function drawTopPackageChart(data) {
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
-  const table = document.querySelector("table");
-  const rows = table.tBodies[0].rows;
+  const table = document.getElementById("Placed Students");
+  const rows = table.getElementsByTagName("tbody")[0].rows;
 
   for (let i = 0; i < rows.length; i++) {
     let text = rows[i].innerText.toLowerCase();
@@ -252,6 +252,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

@@ -14,22 +14,22 @@
 .svce-header{
   position:relative;   /* IMPORTANT */
   text-align:center;
-  padding:24px 16px 20px;
+  padding:5px 16px 20px;
 }
 
 /* right-aligned logo */
 .right-logo{
   position:absolute;
-  top:30px;
-  right:250px;
-  height:200px;
+  top:5px;
+  right:350px;
+  height:250px;
 }
 
 /* Mobile fix */
 @media(max-width:500px){
   .right-logo{
     height:50px;
-    top:10px;
+    top:5px;
     right:10px;
   }
 }
@@ -37,8 +37,8 @@
 /* left-aligned logo */
 .left-logo{
   position:absolute;
-  top:30px;
-  left:50px;
+  top:5px;
+  left:250px;
   height:80px;
 }
 
@@ -46,7 +46,7 @@
 @media(max-width:500px){
   .left-logo{
     height:40px;
-    top:10px;
+    top:5px;
     left:10px;
   }
 }
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

@@ -173,7 +173,7 @@ function drawCoreNonCoreChart(data) {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
-    colors: ['#2E7D32', '#EF6C00'],
+    colors: ['#2E7D32', '#E25822'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
@@ -238,5 +238,6 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 

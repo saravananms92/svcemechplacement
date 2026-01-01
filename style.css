@@ -91,7 +91,7 @@ h3 {
 /* ===== NAVBAR ===== */
 .navbar {
   position: sticky;
-  top: 0;
+  top: 30px;
   z-index: 1000;
   background: #ffffff;
   border-bottom: 3px solid #FF9933;
@@ -274,6 +274,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

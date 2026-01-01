@@ -213,7 +213,7 @@ section, h2 {
   margin:20px auto;  /* center the chart */
 }
 
-/* Table Styling */
+/* ===== TABLE STYLING (OPTIMIZED) ===== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -222,24 +222,33 @@ table {
   font-size: 14px;
 }
 
-table th,
-table td {
-  padding: 10px;
-  text-align: left;
-  background: #FF9933;
+/* Header */
+table thead th {
+  background: #2c2c2c;
   color: #ffffff;
-}
-
-table th {
-  background: #faf4c5;
-  color: black;
+  padding: 12px 10px;
+  text-align: left;
   text-transform: uppercase;
   font-size: 13px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
+/* Body cells */
+table tbody td {
+  padding: 10px;
+  text-align: left;
+  color: #2c2c2c;
+  background: #ffffff;
+}
+
+/* Alternate rows */
 table tbody tr:nth-child(odd) {
-  background: #fff7ed;
+  background: #fff3e0;
+}
+
+/* Hover effect */
+table tbody tr:hover {
+  background: #ffe0b2;
 }
 
 /* Responsive */
@@ -279,6 +288,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

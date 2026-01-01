@@ -26,7 +26,7 @@
 }
 
 /* Mobile fix */
-@media(max-width:768px){
+@media(max-width:500px){
   .right-logo{
     height:50px;
     top:10px;
@@ -43,7 +43,7 @@
 }
 
 /* Mobile fix */
-@media(max-width:768px){
+@media(max-width:500px){
   .left-logo{
     height:50px;
     top:10px;
@@ -206,6 +206,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

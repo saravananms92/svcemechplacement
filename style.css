@@ -11,6 +11,29 @@
   font-family: Arial, sans-serif;
 }
 
+.svce-header{
+  position:relative;   /* IMPORTANT */
+  text-align:center;
+  padding:24px 16px 20px;
+}
+
+/* Right-aligned logo */
+.right-logo{
+  position:absolute;
+  top:16px;
+  right:20px;
+  height:65px;
+}
+
+/* Mobile fix */
+@media(max-width:768px){
+  .right-logo{
+    height:50px;
+    top:10px;
+    right:10px;
+  }
+}
+
 /* ================================
    COLLEGE HEADER
 ================================ */
@@ -237,6 +260,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

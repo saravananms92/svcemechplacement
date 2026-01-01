@@ -34,6 +34,21 @@
   text-align:center;
   flex:1;
 }
+
+/* Reduce gap between h1 & h3 */
+.college-title h1{
+  margin:0;
+  font-size:1.5rem;
+  color:var(--primary);
+}
+
+.college-title h3{
+  margin:4px 0 0;   /* 👈 GAP FIXED HERE */
+  font-weight:500;
+  font-size:0.95rem;
+  color:#444;
+  line-height:1.3;
+}
 @media (max-width: 768px){
   .college-header{
     flex-direction:column;
@@ -222,6 +237,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

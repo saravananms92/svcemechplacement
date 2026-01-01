@@ -219,7 +219,20 @@ function searchTable() {
 
   for (let i = 0; i < rows.length; i++) {
     const rowText = rows[i].innerText.toLowerCase();
-    rows[i].style.display = rowText.includes(filter) ? "" : "none";
+    if (rowText.includes(filter)) {
+      row.style.display = "";
+      row.style.backgroundColor = "#fff8e1"; // Highlight matching rows
+    } else {
+      row.style.display = "";
+      row.style.backgroundColor = i % 2 === 0 ? "#ffffff" : "#fff3e0"; // Original zebra rows
+    }
+  }
+
+  // If search box is empty, reset all rows
+  if (filter === "") {
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].style.backgroundColor = i % 2 === 0 ? "#ffffff" : "#fff3e0";
+    }
   }
 }
 
@@ -253,5 +266,6 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 

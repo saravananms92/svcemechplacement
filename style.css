@@ -34,6 +34,23 @@
   }
 }
 
+/* left-aligned logo */
+.left-logo{
+  position:absolute;
+  top:30px;
+  right:20px;
+  height:100px;
+}
+
+/* Mobile fix */
+@media(max-width:768px){
+  .left-logo{
+    height:50px;
+    top:10px;
+    left:10px;
+  }
+}
+
 /* Global Base */
 body {
   font-family: Arial, sans-serif;
@@ -189,6 +206,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

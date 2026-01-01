@@ -150,7 +150,7 @@ h3 {
 .cards {
   max-width: 1200px;
   margin: 30px auto;
-  padding: 0 16px;
+  padding: 10px 16px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
@@ -303,6 +303,7 @@ table tbody tr:hover {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

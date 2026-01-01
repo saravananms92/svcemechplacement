@@ -14,13 +14,13 @@
 .svce-header{
   position:relative;   /* IMPORTANT */
   text-align:center;
-  padding:5px 16px 20px;
+  padding:0px 16px 20px;
 }
 
 /* right-aligned logo */
 .right-logo{
   position:absolute;
-  top:5px;
+  top:0px;
   right:350px;
   height:150px;
 }
@@ -37,9 +37,9 @@
 /* left-aligned logo */
 .left-logo{
   position:absolute;
-  top:5px;
-  left:250px;
-  height:180px;
+  top:0px;
+  left:200px;
+  height:150px;
 }
 
 /* Mobile fix */
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

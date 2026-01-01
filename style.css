@@ -21,7 +21,7 @@
 .right-logo{
   position:absolute;
   top:30px;
-  right:20px;
+  right:50px;
   height:100px;
 }
 
@@ -38,7 +38,7 @@
 .left-logo{
   position:absolute;
   top:30px;
-  left:20px;
+  left:50px;
   height:80px;
 }
 
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

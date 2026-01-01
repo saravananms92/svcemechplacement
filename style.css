@@ -133,10 +133,16 @@ h3 {
 
 /* Dashboard Cards */
 .cards {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 1200px;
+  margin: 30px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  margin: 20px 0;
+  padding: 22px 20px;
+  border-top: 5px solid #FF9933;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 html {
@@ -274,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

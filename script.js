@@ -212,12 +212,12 @@ function drawTopPackageChart(data) {
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
-  const table = document.getElementById("Placed Students");
-  const rows = table.getElementsByTagName("tbody")[0].rows;
+  const tbody = document.getElementById("studentTable"); // tbody element
+  const rows = tbody.getElementsByTagName("tr");
 
   for (let i = 0; i < rows.length; i++) {
-    let text = rows[i].innerText.toLowerCase();
-    rows[i].style.display = text.includes(filter) ? "" : "none";
+    const rowText = rows[i].innerText.toLowerCase();
+    rows[i].style.display = rowText.includes(filter) ? "" : "none";
   }
 }
 </script>
@@ -252,6 +252,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

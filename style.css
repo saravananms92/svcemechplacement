@@ -11,43 +11,58 @@
   font-family: Arial, sans-serif;
 }
 
-.svce-header{
-  position:relative;   /* IMPORTANT */
-  text-align:center;
-  padding:0px 16px 20px;
+/* ===== RESPONSIVE HEADER ===== */
+.svce-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  background: #ffffff;
+  padding: 16px 20px 20px;
+  border-bottom: 4px solid #FF9933;
 }
 
-/* right-aligned logo */
-.right-logo{
-  position:absolute;
-  top:0px;
-  right:330px;
-  height:150px;
+/* Common logo style */
+.logo {
+  max-height: 120px;
+  width: auto;
 }
 
-/* Mobile fix */
-@media(max-width:500px){
-  .right-logo{
-    height:50px;
-    top:5px;
-    right:10px;
+/* Center text */
+.header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.header-text p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* ===== MOBILE VIEW ===== */
+@media (max-width: 768px) {
+  .svce-header {
+    flex-direction: column;
+    text-align: center;
   }
-}
 
-/* left-aligned logo */
-.left-logo{
-  position:absolute;
-  top:0px;
-  left:150px;
-  height:120px;
-}
+  .logo {
+    max-height: 60px;
+  }
 
-/* Mobile fix */
-@media(max-width:500px){
-  .left-logo{
-    height:40px;
-    top:5px;
-    left:10px;
+  .header-text h1 {
+    font-size: 18px;
+  }
+
+  .header-text p {
+    font-size: 13px;
   }
 }
 
@@ -288,6 +303,7 @@ table tbody tr:hover {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

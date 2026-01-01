@@ -304,46 +304,23 @@ table tbody tr:hover {
   transform:scale(1.05);
 }
 
+.table-controls {
+  margin: 20px 0 10px;
+  display: flex;
+  justify-content: flex-end;
+}
 
+.table-controls input {
+  padding: 8px 12px;
+  width: 280px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.table-controls input:focus {
+  outline: none;
+  border-color: #FF9933;
+  box-shadow: 0 0 0 2px rgba(255,153,51,0.2);
+}
 

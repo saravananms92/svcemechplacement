@@ -56,10 +56,10 @@ function updateKPIs(data) {
     `Total Students\n${data.totalStudents || 0}`;
 
   document.getElementById('opted').innerText =
-    `Opted for Placement\n${data.optedStudents || 0}`;
+    `Students Opted for Placement\n${data.optedStudents || 0}`;
 
   document.getElementById('placed').innerText =
-    `Placed\n${data.placedCount || 0}`;
+    `Placed Students\n${data.placedCount || 0}`;
 
   const percent =
     data.optedStudents > 0
@@ -238,6 +238,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

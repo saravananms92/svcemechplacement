@@ -39,13 +39,13 @@
   position:absolute;
   top:30px;
   left:20px;
-  height:100px;
+  height:80px;
 }
 
 /* Mobile fix */
 @media(max-width:500px){
   .left-logo{
-    height:50px;
+    height:40px;
     top:10px;
     left:10px;
   }
@@ -206,6 +206,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

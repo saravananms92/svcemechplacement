@@ -17,17 +17,17 @@
   padding:24px 16px 20px;
 }
 
-/* left-aligned logo */
-.left-logo{
+/* right-aligned logo */
+.right-logo{
   position:absolute;
   top:30px;
-  left:20px;
+  right:20px;
   height:100px;
 }
 
 /* Mobile fix */
 @media(max-width:768px){
-  .left-logo{
+  .right-logo{
     height:50px;
     top:10px;
     right:10px;
@@ -189,6 +189,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

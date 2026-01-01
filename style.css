@@ -21,7 +21,7 @@
 .right-logo{
   position:absolute;
   top:0px;
-  right:300px;
+  right:330px;
   height:150px;
 }
 
@@ -276,6 +276,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

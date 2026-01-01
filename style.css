@@ -22,7 +22,7 @@
   position:absolute;
   top:5px;
   right:350px;
-  height:250px;
+  height:150px;
 }
 
 /* Mobile fix */
@@ -39,7 +39,7 @@
   position:absolute;
   top:5px;
   left:250px;
-  height:80px;
+  height:180px;
 }
 
 /* Mobile fix */
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

@@ -127,7 +127,7 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#0aa1d8', '#a0548a'];
+  const colors = ['#0aa1d8', '#9c312c'];
 
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
@@ -238,6 +238,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

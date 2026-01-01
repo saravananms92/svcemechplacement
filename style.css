@@ -1,6 +1,6 @@
 #update-timer {
   position: fixed;
-  top: 5px;
+  top: 30px;
   right: 15px;
   font-size: 8pt;
   background: rgba(255, 255, 255, 0.8);
@@ -91,7 +91,7 @@ h3 {
 /* ===== NAVBAR ===== */
 .navbar {
   position: sticky;
-  top: 35px;
+  top: 0px;
   z-index: 1000;
   background: #ffffff;
   border-bottom: 3px solid #FF9933;
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

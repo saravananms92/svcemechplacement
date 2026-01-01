@@ -168,7 +168,7 @@ section, h2 {
 .card {
   background: #00509e;
   color: white;
-  padding: 22px;
+  padding: 25px;
   text-align: center;
   font-weight: bold;
   border-radius: 8px;
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

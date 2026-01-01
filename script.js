@@ -208,11 +208,13 @@ function drawTopPackageChart(data) {
   });
 }
 
-<script>
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
-  const tbody = document.getElementById("studentTable"); // tbody element
+
+  const tbody = document.getElementById("studentTable"); // Correct reference
+  if (!tbody) return;
+
   const rows = tbody.getElementsByTagName("tr");
 
   for (let i = 0; i < rows.length; i++) {
@@ -220,7 +222,6 @@ function searchTable() {
     rows[i].style.display = rowText.includes(filter) ? "" : "none";
   }
 }
-</script>
 
 /************************************************
  * STUDENT TABLE
@@ -252,4 +253,5 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 

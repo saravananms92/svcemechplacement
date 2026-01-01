@@ -253,13 +253,3 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
 });
 
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 #update-timer {
   position: fixed;
   top: 50px;
-  right: 18px;
+  right: 20px;
   font-size: 8pt;
   background: rgba(255, 255, 255, 0.8);
   padding: 4px 8px;
@@ -280,6 +280,7 @@ table tbody tr:nth-child(odd) {
 .recruiters img:hover{
   transform:scale(1.05);
 }
+
 
 
 

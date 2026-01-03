@@ -8,6 +8,11 @@ const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
 /************************************************
+ * GLOBAL DATA
+ ************************************************/
+let dataGlobal = null;
+
+/************************************************
  * INIT
  ************************************************/
 function init() {
@@ -251,6 +256,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

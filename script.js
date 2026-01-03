@@ -48,6 +48,10 @@ function startCountdown() {
   }, 1000);
 }
 startCountdown();
+/************************************************
+ * GLOBAL DATA
+ ************************************************/
+let dataGlobal = null;
 
 /************************************************
  * INIT
@@ -293,6 +297,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

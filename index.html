@@ -13,23 +13,35 @@
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
   .then(res => res.text())
   .then(text => {
-    const json = JSON.parse(text.substring(47, text.length - 2));
+    try {
+      // Parse JSON safely
+      const json = JSON.parse(text.substring(47, text.length - 2));
 
-    let lastUpdated = "Not available";
+      // Default value
+      let lastUpdated = "Not available";
 
-    json.table.rows.forEach(row => {
-      if (row.c[0] && row.c[0].v === "LastUpdated") {
-        lastUpdated = new Date(row.c[1].v).toLocaleString("en-IN");
+      // Loop through all rows to find the key
+      if (json.table && json.table.rows) {
+        json.table.rows.forEach(row => {
+          if (row.c[0] && row.c[0].v === "LastUpdated" && row.c[1]) {
+            lastUpdated = new Date(row.c[1].v).toLocaleString("en-IN");
+          }
+        });
       }
-    });
 
-    document.getElementById("last-updated").innerText = lastUpdated;
+      // Display in HTML
+      document.getElementById("last-updated").innerText = lastUpdated;
+
+    } catch (err) {
+      console.error("JSON parse error:", err);
+      document.getElementById("last-updated").innerText = "Error parsing data";
+    }
   })
-  .catch(() => {
+  .catch(err => {
+    console.error("Fetch error:", err);
     document.getElementById("last-updated").innerText = "Error loading";
   });
 </script>
-
 
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
@@ -224,6 +236,7 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
 </footer>
 </body>
 </html>
+
 
 
 

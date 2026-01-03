@@ -15,27 +15,25 @@
   <script>
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDDNujXNwj4imFMuFS725YUf49WKiZ2EmrDc_G_7bup0cb9mcHJv57MD5VQzBWRjSPM0yK2f4zUpkx/pub?gid=627173377&single=true&output=csv";
 
-    // Helper: parse date safely
-    function parseDateSafe(str) {
-      // Remove quotes
-      str = str.replace(/^"|"$/g, "").trim();
+    // Convert Google Sheets serial number to JS Date
+    function serialToDate(serial) {
+      const utc_days = Math.floor(serial - 25569);
+      const utc_value = utc_days * 86400; // seconds
+      const date_info = new Date(utc_value * 1000);
 
-      // Try standard Date parsing
-      let d = new Date(str);
-      if (!isNaN(d)) return d;
+      // Time fraction
+      const fractional_day = serial - Math.floor(serial);
+      const total_seconds = Math.floor(86400 * fractional_day);
 
-      // Try DD/MM/YYYY or MM/DD/YYYY formats
-      const parts = str.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
-      if (parts) {
-        let day = parseInt(parts[1]);
-        let month = parseInt(parts[2]) - 1; // JS months 0-11
-        let year = parseInt(parts[3]);
-        let hour = parseInt(parts[4]);
-        let minute = parseInt(parts[5]);
-        return new Date(year, month, day, hour, minute);
-      }
+      const seconds = total_seconds % 60;
+      const minutes = Math.floor(total_seconds / 60) % 60;
+      const hours = Math.floor(total_seconds / 3600);
 
-      return null; // cannot parse
+      date_info.setHours(hours);
+      date_info.setMinutes(minutes);
+      date_info.setSeconds(seconds);
+
+      return date_info;
     }
 
     fetch(CSV_URL)
@@ -44,16 +42,25 @@
         const rows = csvText.split("\n").map(r => r.split(","));
         const header = rows[0];
 
-        // Find LastUpdated column
         const idx = header.indexOf("LastUpdated");
         let lastUpdatedText = "Not found";
 
         if (idx !== -1 && rows[1] && rows[1][idx]) {
-          const parsedDate = parseDateSafe(rows[1][idx]);
-          if (parsedDate) {
-            lastUpdatedText = parsedDate.toLocaleString("en-IN", { hour12: true });
+          let cell = rows[1][idx].trim();
+
+          let dateObj;
+          if (!isNaN(cell) && cell !== "") {
+            // Treat as serial number
+            dateObj = serialToDate(parseFloat(cell));
           } else {
-            lastUpdatedText = "Invalid date format";
+            // Try standard string parse
+            dateObj = new Date(cell);
+          }
+
+          if (!isNaN(dateObj)) {
+            lastUpdatedText = dateObj.toLocaleString("en-IN", { hour12: true });
+          } else {
+            lastUpdatedText = "Invalid date";
           }
         }
 
@@ -261,6 +268,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

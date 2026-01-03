@@ -9,38 +9,46 @@
 
 <body>
   <!-- Top-right update timer -->
- fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
-  .then(res => res.text())
-  .then(text => {
-    try {
-      // Parse JSON safely
-      const json = JSON.parse(text.substring(47, text.length - 2));
+ <div id="update-timer">
+    Last Updated: <span id="last-updated">Loading...</span>
+  </div>
 
-      // Default value
-      let lastUpdated = "Not available";
+  <script>
+    // Your Google Sheet JSON URL
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta";
 
-      // Loop through all rows to find the key
-      if (json.table && json.table.rows) {
-        json.table.rows.forEach(row => {
-          if (row.c[0] && row.c[0].v === "LastUpdated" && row.c[1]) {
-            lastUpdated = new Date(row.c[1].v).toLocaleString("en-IN");
+    fetch(SHEET_URL)
+      .then(res => res.text())
+      .then(text => {
+        try {
+          // Convert to JSON
+          const json = JSON.parse(text.substring(47, text.length - 2));
+
+          let lastUpdated = "Not available";
+
+          // Loop through all rows to find "LastUpdated"
+          if (json.table && json.table.rows) {
+            json.table.rows.forEach(row => {
+              if (row.c[0]?.v === "LastUpdated" && row.c[1]?.v) {
+                lastUpdated = new Date(row.c[1].v).toLocaleString("en-IN", {
+                  hour12: true
+                });
+              }
+            });
           }
-        });
-      }
 
-      // Display in HTML
-      document.getElementById("last-updated").innerText = lastUpdated;
+          document.getElementById("last-updated").innerText = lastUpdated;
 
-    } catch (err) {
-      console.error("JSON parse error:", err);
-      document.getElementById("last-updated").innerText = "Error parsing data";
-    }
-  })
-  .catch(err => {
-    console.error("Fetch error:", err);
-    document.getElementById("last-updated").innerText = "Error loading";
-  });
-
+        } catch (err) {
+          console.error("JSON parse error:", err);
+          document.getElementById("last-updated").innerText = "Error parsing data";
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        document.getElementById("last-updated").innerText = "Error loading";
+      });
+  
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -234,6 +242,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

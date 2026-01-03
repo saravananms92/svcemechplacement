@@ -282,4 +282,21 @@ table tbody tr:hover {
   .cards { grid-template-columns: 1fr; }
   .chart-box { width: 100%; height: 300px; }
 }
+/* Footer icon row */
+.icon-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* FORCE icons to be small */
+.icon-line img {
+  width: 16px;      /* FINAL DISPLAY SIZE */
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 

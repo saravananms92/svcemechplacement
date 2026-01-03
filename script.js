@@ -7,6 +7,36 @@ google.charts.setOnLoadCallback(init);
 const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
+function updateLastUpdated() {
+  fetch(DATA_URL)
+    .then(res => res.json())
+    .then(data => {
+      // Assuming your Apps Script returns something like:
+      // { Meta: { LastUpdated: "03/01/2026 20:18:26" }, ...otherSheets }
+
+      if (data && data.Meta && data.Meta.LastUpdated) {
+        const dateObj = new Date(data.Meta.LastUpdated);
+        const lastUpdatedText = !isNaN(dateObj)
+          ? dateObj.toLocaleString("en-IN", { hour12: true })
+          : data.Meta.LastUpdated;
+
+        document.getElementById("last-updated").innerText = lastUpdatedText;
+      } else {
+        document.getElementById("last-updated").innerText = "Not found";
+      }
+    })
+    .catch(err => {
+      console.error("Failed to fetch LastUpdated:", err);
+      document.getElementById("last-updated").innerText = "Error loading";
+    });
+}
+
+// Initial load
+updateLastUpdated();
+
+// Optional: auto-refresh every 60 seconds
+setInterval(updateLastUpdated, 60000);
+
 let dataGlobal = null;
 
 /************************************************
@@ -253,6 +283,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

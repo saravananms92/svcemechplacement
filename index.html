@@ -8,49 +8,64 @@
 </head>
 
 <body>
-  <!-- Top-right update timer -->
- <div id="update-timer">
+  <div id="update-timer">
     Last Updated: <span id="last-updated">Loading...</span>
   </div>
 
   <script>
-    // Your Google Sheet JSON URL
-    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDDNujXNwj4imFMuFS725YUf49WKiZ2EmrDc_G_7bup0cb9mcHJv57MD5VQzBWRjSPM0yK2f4zUpkx/pub?gid=627173377&single=true&output=csv
-";
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDDNujXNwj4imFMuFS725YUf49WKiZ2EmrDc_G_7bup0cb9mcHJv57MD5VQzBWRjSPM0yK2f4zUpkx/pub?gid=627173377&single=true&output=csv";
 
-    fetch(SHEET_URL)
+    // Helper: parse date safely
+    function parseDateSafe(str) {
+      // Remove quotes
+      str = str.replace(/^"|"$/g, "").trim();
+
+      // Try standard Date parsing
+      let d = new Date(str);
+      if (!isNaN(d)) return d;
+
+      // Try DD/MM/YYYY or MM/DD/YYYY formats
+      const parts = str.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
+      if (parts) {
+        let day = parseInt(parts[1]);
+        let month = parseInt(parts[2]) - 1; // JS months 0-11
+        let year = parseInt(parts[3]);
+        let hour = parseInt(parts[4]);
+        let minute = parseInt(parts[5]);
+        return new Date(year, month, day, hour, minute);
+      }
+
+      return null; // cannot parse
+    }
+
+    fetch(CSV_URL)
       .then(res => res.text())
-      .then(text => {
-        try {
-          // Convert to JSON
-          const json = JSON.parse(text.substring(47, text.length - 2));
+      .then(csvText => {
+        const rows = csvText.split("\n").map(r => r.split(","));
+        const header = rows[0];
 
-          let lastUpdated = "Not available";
+        // Find LastUpdated column
+        const idx = header.indexOf("LastUpdated");
+        let lastUpdatedText = "Not found";
 
-          // Loop through all rows to find "LastUpdated"
-          if (json.table && json.table.rows) {
-            json.table.rows.forEach(row => {
-              if (row.c[0]?.v === "LastUpdated" && row.c[1]?.v) {
-                lastUpdated = new Date(row.c[1].v).toLocaleString("en-IN", {
-                  hour12: true
-                });
-              }
-            });
+        if (idx !== -1 && rows[1] && rows[1][idx]) {
+          const parsedDate = parseDateSafe(rows[1][idx]);
+          if (parsedDate) {
+            lastUpdatedText = parsedDate.toLocaleString("en-IN", { hour12: true });
+          } else {
+            lastUpdatedText = "Invalid date format";
           }
-
-          document.getElementById("last-updated").innerText = lastUpdated;
-
-        } catch (err) {
-          console.error("JSON parse error:", err);
-          document.getElementById("last-updated").innerText = "Error parsing data";
         }
+
+        document.getElementById("last-updated").innerText = lastUpdatedText;
       })
       .catch(err => {
-        console.error("Fetch error:", err);
+        console.error("CSV fetch error:", err);
         document.getElementById("last-updated").innerText = "Error loading";
       });
   </script>
-  </body>
+
+</body>
 </html>
 
   <header class="svce-header">
@@ -246,6 +261,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

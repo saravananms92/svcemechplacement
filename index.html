@@ -9,9 +9,21 @@
 
 <body>
   <!-- Top-right update timer -->
-  <div id="update-timer">
-    Last Updated: <span id="last-updated">12/31/2025, 12:24:31 PM</span> | Next refresh in: <span id="countdown">60</span>s
-  </div>
+  <script>
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
+  .then(res => res.text())
+  .then(text => {
+    const json = JSON.parse(text.substring(47, text.length - 2));
+    const value = json.table.rows[1].c[1].v;
+
+    const date = new Date(value);
+    document.getElementById("last-updated").innerText =
+      date.toLocaleString("en-IN");
+  })
+  .catch(err => {
+    document.getElementById("last-updated").innerText = "Not available";
+  });
+</script>
 
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
@@ -173,7 +185,7 @@
         <strong>Phone</strong><br>
         General Enquiries:
         <a href="tel:04427152000">044-27152000</a><br>
-        College Hours: 08:00 AM – 03:30 PM
+        College Hours: 08:30 AM – 03:30 PM
       </p>
 
       <p>
@@ -206,6 +218,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

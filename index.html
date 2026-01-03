@@ -24,16 +24,9 @@
 <body>
   <!-- Top-right Last Updated -->
   <div id="update-timer">
-    Last Updated: <span id="last-updated">Loading...</span>
+    Last Updated: <span id="last-updated">Loading...</span> |
+    Next refresh in: <span id="countdown">60</span>s
   </div>
-
-  <script>
-    // Optional: call updateLastUpdated immediately if not in script.js
-    // If your script.js already calls it and sets interval, this can be omitted
-    if (typeof updateLastUpdated === 'function') {
-      updateLastUpdated();
-    }
-  </script>
 </body>
 
   <header class="svce-header">
@@ -229,6 +222,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

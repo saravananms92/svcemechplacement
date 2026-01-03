@@ -7,6 +7,37 @@
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
   
+  <style>
+    #update-timer {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 8px 12px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+  </style>
+
+<body>
+  <!-- Top-right Last Updated -->
+  <div id="update-timer">
+    Last Updated: <span id="last-updated">Loading...</span>
+  </div>
+
+  <script>
+    // Optional: call updateLastUpdated immediately if not in script.js
+    // If your script.js already calls it and sets interval, this can be omitted
+    if (typeof updateLastUpdated === 'function') {
+      updateLastUpdated();
+    }
+  </script>
+
+</body>
+</html>
+
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -200,6 +231,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

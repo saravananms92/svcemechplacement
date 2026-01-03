@@ -7,48 +7,6 @@ google.charts.setOnLoadCallback(init);
 const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
-************************************************
- * LAST UPDATED
- ************************************************/
-function updateLastUpdated() {
-  fetch(DATA_URL)
-    .then(res => res.json())
-    .then(data => {
-      if (data && data.Meta && data.Meta.LastUpdated) {
-        const dateObj = new Date(data.Meta.LastUpdated);
-        const lastUpdatedText = !isNaN(dateObj)
-          ? dateObj.toLocaleString("en-IN", { hour12: true })
-          : data.Meta.LastUpdated;
-
-        document.getElementById("last-updated").innerText = lastUpdatedText;
-      } else {
-        document.getElementById("last-updated").innerText = "Not found";
-      }
-    })
-    .catch(err => {
-      console.error("Failed to fetch LastUpdated:", err);
-      document.getElementById("last-updated").innerText = "Error loading";
-    });
-}
-
-// Initial load
-updateLastUpdated();
-
-// Countdown
-let countdown = 60; // seconds
-const countdownElem = document.getElementById('countdown');
-function startCountdown() {
-  setInterval(() => {
-    countdown--;
-    if (countdown <= 0) {
-      countdown = 60;
-      updateLastUpdated(); // refresh LastUpdated from DATA_URL
-    }
-    if (countdownElem) countdownElem.textContent = countdown;
-  }, 1000);
-}
-startCountdown();
-
 /************************************************
  * INIT
  ************************************************/
@@ -293,6 +251,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

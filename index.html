@@ -103,27 +103,7 @@
   <!-- Your external script for charts/data -->
   <script src="script.js"></script>
 
-  <!-- Countdown JavaScript -->
-  <script>
-    let countdown = 60; // seconds
-    const countdownElem = document.getElementById('countdown');
-    const lastUpdatedElem = document.getElementById('last-updated');
-
-    function updateTimer() {
-      countdownElem.textContent = countdown;
-      if (countdown <= 0) {
-        countdown = 60;
-        const now = new Date();
-        lastUpdatedElem.textContent = now.toLocaleString();
-      } else {
-        countdown--;
-      }
-    }
-
-    setInterval(updateTimer, 1000);
-  </script>
-
-  <footer class="site-footer">
+    <footer class="site-footer">
   <div class="footer-container">
 
     <!-- Contact -->
@@ -202,6 +182,7 @@
 </footer>
 </body>
 </html>
+
 
 
 

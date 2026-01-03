@@ -6,73 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-
-<body>
-
-<div id="update-timer">
-  Last Updated: <span id="last-updated">Loading...</span>
-</div>
-
-<script>
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDDNujXNwj4imFMuFS725YUf49WKiZ2EmrDc_G_7bup0cb9mcHJv57MD5VQzBWRjSPM0yK2f4zUpkx/pub?gid=627173377&single=true&output=csv";
-
-// Convert Google Sheets serial number to JS Date
-function serialToDate(serial) {
-  const utc_days = Math.floor(serial - 25569);
-  const utc_value = utc_days * 86400;
-  const date_info = new Date(utc_value * 1000);
-
-  const fractional_day = serial - Math.floor(serial);
-  const total_seconds = Math.floor(86400 * fractional_day);
-  const seconds = total_seconds % 60;
-  const minutes = Math.floor(total_seconds / 60) % 60;
-  const hours = Math.floor(total_seconds / 3600);
-
-  date_info.setHours(hours);
-  date_info.setMinutes(minutes);
-  date_info.setSeconds(seconds);
-
-  return date_info;
-}
-
-fetch(CSV_URL)
-  .then(res => res.text())
-  .then(csvText => {
-    const rows = csvText.split("\n").map(r => r.split(","));
-    let lastUpdatedText = "Not found";
-
-    // Search Column A for "LastUpdated"
-    for (let i = 1; i < rows.length; i++) {
-      const key = rows[i][0]?.trim();
-      const value = rows[i][1]?.trim();
-      if (key === "LastUpdated" && value) {
-        let dateObj;
-        if (!isNaN(value)) {
-          dateObj = serialToDate(parseFloat(value));
-        } else {
-          dateObj = new Date(value);
-        }
-
-        if (!isNaN(dateObj)) {
-          lastUpdatedText = dateObj.toLocaleString("en-IN", { hour12: true });
-        } else {
-          lastUpdatedText = "Invalid date";
-        }
-        break;
-      }
-    }
-
-    document.getElementById("last-updated").innerText = lastUpdatedText;
-  })
-  .catch(err => {
-    console.error("CSV fetch error:", err);
-    document.getElementById("last-updated").innerText = "Error loading";
-  });
-</script>
-
-</body>
-</html>
-
+  
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -266,6 +200,7 @@ fetch(CSV_URL)
 </footer>
 </body>
 </html>
+
 
 
 

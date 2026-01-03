@@ -9,8 +9,7 @@
 
 <body>
   <!-- Top-right update timer -->
-  <script>
-fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
+ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
   .then(res => res.text())
   .then(text => {
     try {
@@ -41,7 +40,6 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
     console.error("Fetch error:", err);
     document.getElementById("last-updated").innerText = "Error loading";
   });
-</script>
 
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
@@ -236,6 +234,7 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
 </footer>
 </body>
 </html>
+
 
 
 

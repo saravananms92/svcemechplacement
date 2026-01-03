@@ -10,7 +10,7 @@
 <body>
   <!-- Top-right update timer -->
   <script>
-fetch("https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec")
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?tqx=out:json&sheet=Meta")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substring(47, text.length - 2));
@@ -224,6 +224,7 @@ fetch("https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuR
 </footer>
 </body>
 </html>
+
 
 
 

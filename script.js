@@ -7,13 +7,13 @@ google.charts.setOnLoadCallback(init);
 const DATA_URL =
   'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
 
+************************************************
+ * LAST UPDATED
+ ************************************************/
 function updateLastUpdated() {
   fetch(DATA_URL)
     .then(res => res.json())
     .then(data => {
-      // Assuming your Apps Script returns something like:
-      // { Meta: { LastUpdated: "03/01/2026 20:18:26" }, ...otherSheets }
-
       if (data && data.Meta && data.Meta.LastUpdated) {
         const dateObj = new Date(data.Meta.LastUpdated);
         const lastUpdatedText = !isNaN(dateObj)
@@ -34,10 +34,20 @@ function updateLastUpdated() {
 // Initial load
 updateLastUpdated();
 
-// Optional: auto-refresh every 60 seconds
-setInterval(updateLastUpdated, 60000);
-
-let dataGlobal = null;
+// Countdown
+let countdown = 60; // seconds
+const countdownElem = document.getElementById('countdown');
+function startCountdown() {
+  setInterval(() => {
+    countdown--;
+    if (countdown <= 0) {
+      countdown = 60;
+      updateLastUpdated(); // refresh LastUpdated from DATA_URL
+    }
+    if (countdownElem) countdownElem.textContent = countdown;
+  }, 1000);
+}
+startCountdown();
 
 /************************************************
  * INIT
@@ -283,6 +293,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

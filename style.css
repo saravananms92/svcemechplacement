@@ -1,4 +1,28 @@
-/* ===== RESPONSIVE HEADER ===== */
+/* ===============================
+   GLOBAL RESET & BASE
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;                /* IMPORTANT: prevents grid breaking */
+  background: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Common Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===============================
+   RESPONSIVE HEADER
+================================ */
 .svce-header {
   display: flex;
   align-items: center;
@@ -30,7 +54,7 @@
   color: #6c757d;
 }
 
-/* MOBILE HEADER */
+/* Header Mobile */
 @media (max-width: 768px) {
   .svce-header {
     flex-direction: column;
@@ -50,22 +74,9 @@
   }
 }
 
-/* ===== GLOBAL BASE ===== */
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background: #f4f4f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* HEADINGS */
+/* ===============================
+   HEADINGS
+================================ */
 h1 {
   font-size: 1.8rem;
   margin: 25px 0 15px;
@@ -74,13 +85,15 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   margin: 20px 0 12px;
   text-align: center;
   color: #002244;
 }
 
-/* ===== NAVBAR ===== */
+/* ===============================
+   NAVBAR
+================================ */
 .navbar {
   position: sticky;
   top: 0;
@@ -123,7 +136,7 @@ h2 {
   color: #FF9933;
 }
 
-/* NAVBAR MOBILE */
+/* Navbar Mobile */
 @media (max-width: 768px) {
   .nav-container {
     flex-direction: column;
@@ -137,7 +150,9 @@ h2 {
   }
 }
 
-/* ===== DASHBOARD CARDS ===== */
+/* ===============================
+   DASHBOARD CARDS
+================================ */
 .cards {
   max-width: 1200px;
   margin: 30px auto;
@@ -154,7 +169,7 @@ h2 {
   text-align: center;
   font-weight: bold;
   border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
   transition: transform 0.25s ease;
 }
 
@@ -162,7 +177,9 @@ h2 {
   transform: scale(1.05);
 }
 
-/* ===== CHART BOXES ===== */
+/* ===============================
+   CHART BOXES
+================================ */
 .charts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -176,21 +193,23 @@ h2 {
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.12);
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Chart Responsive */
-@media screen and (max-width: 768px) {
+/* Charts Mobile */
+@media (max-width: 768px) {
   .chart-box {
     height: 300px;
   }
 }
 
-/* ===== TABLE STYLING ===== */
+/* ===============================
+   TABLE STYLING
+================================ */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -199,7 +218,6 @@ table {
   font-size: 14px;
 }
 
-/* Table Header */
 table thead th {
   background: #2c2c2c;
   color: #ffffff;
@@ -210,25 +228,23 @@ table thead th {
   letter-spacing: 0.6px;
 }
 
-/* Table Body */
 table tbody td {
   padding: 10px;
-  text-align: left;
   color: #2c2c2c;
   background: #fcf6c5;
 }
 
-/* Alternate rows */
 table tbody tr:nth-child(odd) {
   background: #fff3e0;
 }
 
-/* Hover effect */
 table tbody tr:hover {
   background: #ffe0b2;
 }
 
-/* ===== SEARCH BAR ===== */
+/* ===============================
+   SEARCH BAR
+================================ */
 .table-controls {
   margin: 20px 0 10px;
   display: flex;
@@ -249,7 +265,9 @@ table tbody tr:hover {
   box-shadow: 0 0 0 2px rgba(255,153,51,0.2);
 }
 
-/* ===== TOP RECRUITERS GRID ===== */
+/* ===============================
+   TOP RECRUITERS
+================================ */
 .recruiters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -262,7 +280,6 @@ table tbody tr:hover {
   width: 100%;
   max-height: 60px;
   object-fit: contain;
-  filter: none;
   background: #fff;
   padding: 8px;
   border-radius: 8px;
@@ -273,32 +290,25 @@ table tbody tr:hover {
   transform: scale(1.05);
 }
 
-/* ===== RESPONSIVE GLOBAL ===== */
-@media screen and (max-width: 768px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 0.8rem; }
-
-  .cards { grid-template-columns: 1fr; }
-  .chart-box { width: 100%; height: 300px; }
-}
-/* Footer Container */
+/* ===============================
+   FOOTER (SINGLE ROW GUARANTEED)
+================================ */
 .placement-footer {
   background: #f4f6f9;
-  padding: 40px 20px 10px;
+  padding: 40px 0 10px;
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
-/* Grid Layout */
 .footer-grid {
   display: grid;
-  max-width: 1200px;   /* optional – center content */
-  margin: auto;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* force 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);   /* ALWAYS single row */
   gap: 20px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 20px;
 }
 
-/* Common Box Style */
 .footer-box {
   padding: 20px;
   border-radius: 10px;
@@ -306,38 +316,17 @@ table tbody tr:hover {
   line-height: 1.6;
 }
 
-/* Individual Background Colors */
-.contact-box {
-  background: #e3f2fd;
-}
+.contact-box { background: #e3f2fd; }
+.location-box { background: #e8f5e9; }
+.reach-box { background: #fff3e0; }
 
-.location-box {
-  background: #e8f5e9;
-}
-
-.reach-box {
-  background: #fff3e0;
-}
-
-/* Headings */
 .footer-box h3 {
   margin-bottom: 12px;
   color: #0d47a1;
   font-size: 16px;
 }
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Icons */
+/* Footer Icons */
 .icon {
   width: 18px;
   height: 18px;
@@ -345,21 +334,7 @@ table tbody tr:hover {
   margin-right: 6px;
 }
 
-.passport-photo {
-  width: 80px;        /* table view */
-  height: 80px;
-  object-fit: cover;
-  border-radius: 75%; /* circle – optional */
-  border: 1px solid #ddd;
-}
-@media (max-width: 600px) {
-  .passport-photo {
-    width: 48px;
-    height: 48px;
-  }
-}
-
-/* Bottom Copyright */
+/* Footer Bottom */
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
@@ -369,6 +344,29 @@ table tbody tr:hover {
   padding-top: 10px;
 }
 
+/* ===============================
+   PASSPORT PHOTO
+================================ */
+.passport-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
 
+@media (max-width: 600px) {
+  .passport-photo {
+    width: 48px;
+    height: 48px;
+  }
+}
 
-
+/* ===============================
+   MOBILE FOOTER STACK (OPTIONAL)
+================================ */
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

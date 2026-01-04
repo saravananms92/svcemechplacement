@@ -292,8 +292,9 @@ table tbody tr:hover {
 /* Grid Layout */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* FORCE equal width */
   gap: 20px;
+  align-items: stretch; /* same height */
 }
 
 /* Common Box Style */
@@ -322,6 +323,17 @@ table tbody tr:hover {
   margin-bottom: 12px;
   color: #0d47a1;
   font-size: 16px;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Icons */
@@ -355,5 +367,6 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
+
 
 

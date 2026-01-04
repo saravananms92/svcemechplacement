@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Testimonials | Mechanical Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Testimonials CSS -->
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: "“";
+      font-size: 60px;
+      color: #2a5298;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      opacity: 0.15;
+    }
+
+    .testimonial-text {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 18px;
+      padding-left: 10px;
+    }
+
+    .student-info {
+      border-top: 1px solid #eee;
+      padding-top: 12px;
+      font-size: 14px;
+    }
+
+    .student-info b {
+      font-size: 15px;
+      color: #1e3c72;
+    }
+
+    .student-info span {
+      display: block;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .page-header h1 {
+        font-size: 24px;
+      }
+      .testimonial-text {
+        font-size: 14.5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Student Testimonials</h1>
+    <p>Department of Mechanical Engineering – Placement Success Stories</p>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testimonials-container">
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        Consistent guidance and support from the faculty of the Department of Mechanical Engineering,
+        along with their motivation and structured placement training, enabled me to successfully
+        secure my placement.
+      </p>
+      <div class="student-info">
+        <b>Pratul V. S.</b>
+        <span>Placed at Hyundai</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        I sincerely thank the Department of Mechanical Engineering for its excellent facilities,
+        hands-on training, and continuous support. The Semester in Industry Program at Sundaram
+        Fasteners provided valuable industrial exposure that helped me secure my placement at
+        Brakes India Private Limited.
+      </p>
+      <div class="student-info">
+        <b>Sanjay R</b>
+        <span>Placed at Brakes India Private Limited</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        The hands-on training and industry-oriented approach of the Mechanical Engineering
+        department played a key role in my placement success.
+      </p>
+      <div class="student-info">
+        <b>Anandha Ram S</b>
+        <span>Placed at Brakes India Private Limited</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        A strong foundation in core mechanical subjects, along with continuous guidance from faculty
+        advisors and the placement coordinator, played a crucial role in my placement at SPIC.
+        The structured training and constant encouragement from the Placement Cell and Department
+        helped me approach the process with confidence.
+      </p>
+      <div class="student-info">
+        <b>Adithya S</b>
+        <span>Placed at SPIC</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        The communication skills course in the sixth-semester curriculum, along with the core
+        knowledge imparted by the department faculty, was instrumental in thoroughly preparing me
+        for the placement process, enhancing both my confidence and performance.
+      </p>
+      <div class="student-info">
+        <b>Viswanathan G</b>
+        <span>Placed at INOX Air Products Pvt. Ltd.</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        I am grateful to the Department of Mechanical Engineering for providing a strong foundation
+        in core subjects and excellent training opportunities. The communication and aptitude
+        training, along with continuous guidance from the faculty and placement coordinator,
+        played a vital role in preparing me for the placement process. This support and structured
+        learning helped me confidently secure my placement at Mu Sigma.
+      </p>
+      <div class="student-info">
+        <b>Aravind K</b>
+        <span>Placed at Mu Sigma</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">
+        I am grateful to the Mechanical Engineering Department for their guidance, practical training,
+        and continuous support. The knowledge and industry-oriented preparation provided by the
+        department helped me secure my placement at Jones Lang LaSalle Incorporated.
+      </p>
+      <div class="student-info">
+        <b>Sri Varthini V M</b>
+        <span>Placed at Jones Lang LaSalle Incorporated</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer (reuse existing footer) -->
+</body>
+</html>

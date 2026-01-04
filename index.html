@@ -149,7 +149,7 @@
 
     <div class="testimonial-card">
       <img src="assets/students/anandharam.jpg" alt="Anandha Ram S">
-      <h4>Sanjay R</h4>
+      <h4>Anandha Ram S</h4>
       <p class="meta">Batch 2022–2026<br>Mechanical Engineering<br>Placed in Brakes India Pvt Ltd</p>
       <p class="content">
         The hands-on training and industry-oriented approach of the Mechanical Engineering department played a key role in my placement success.
@@ -158,7 +158,7 @@
 
     <div class="testimonial-card">
       <img src="assets/students/aravind.jpg" alt="Aravind K">
-      <h4>Aravinda Krishnan K</h4>
+      <h4>Aravind K</h4>
       <p class="meta">Batch 2022–2026<br>Mechanical Engineering & Automation<br>Placed in Mu Sigma</p>
       <p class="content">
         I am grateful to the Department of Mechanical Engineering for providing a strong foundation in core subjects and excellent training opportunities. The communication and aptitude training, along with continuous guidance from the faculty and placement coordinator, played a vital role in preparing me for the placement process. This support and structured learning helped me confidently secure my placement at Mu Sigma.
@@ -183,9 +183,23 @@
       </p>
     </div>
   </div>
+
+     <!-- Auto-scroll testimonials -->
+      const wrapper = document.querySelector('.testimonials-wrapper');
+
+    if (wrapper) {
+      setInterval(() => {
+        wrapper.scrollBy({ left: 300, behavior: 'smooth' });
+
+        if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth) {
+          wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+      }, 4000);
+    }
+     
 </section>
 
- <footer class="placement-footer">
+   <footer class="placement-footer">
   <div class="footer-grid">
 
     <!-- Contact -->
@@ -261,24 +275,10 @@
     © Designed & Maintained by the Department of Mechanical Engineering
     </div>
 </footer>
-  <!-- Auto-scroll testimonials -->
-  <script>
-    const wrapper = document.querySelector('.testimonials-wrapper');
-
-    if (wrapper) {
-      setInterval(() => {
-        wrapper.scrollBy({ left: 300, behavior: 'smooth' });
-
-        if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth) {
-          wrapper.scrollTo({ left: 0, behavior: 'smooth' });
-        }
-      }, 4000);
-    }
-  </script>
-
 </body>
 </html>
   
+
 
 
 

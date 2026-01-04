@@ -257,16 +257,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
 });
 
-<script>
-const wrapper = document.querySelector('.testimonials-wrapper');
 
-setInterval(() => {
-  wrapper.scrollBy({ left: 300, behavior: 'smooth' });
-  if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth) {
-    wrapper.scrollTo({ left: 0, behavior: 'smooth' });
-  }
-}, 4000);
-</script>
 
 
 

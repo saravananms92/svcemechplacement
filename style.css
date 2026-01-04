@@ -150,30 +150,76 @@ h2 {
 }
 
 /* =====================================================
-   DASHBOARD CARDS
+   DASHBOARD CARDS – LARGE, ATTRACTIVE, NO HTML CHANGE
 ===================================================== */
 .cards {
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 10px 16px;
+  max-width: 1400px;
+  margin: 20px auto 30px;
+  padding: 10px 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
 .card {
-  background: #00509e;
-  color: white;
-  padding: 36px;
+  background: linear-gradient(135deg, #00509e, #003f7f);
+  color: #ffffff;
+  padding: 40px 28px;
   text-align: center;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
-  transition: transform 0.25s ease;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 150px;
 }
 
+/* BIG number styling when JS updates text */
+.card span,
+.card strong {
+  font-size: 38px;
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+/* Decorative top strip */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: rgba(255,255,255,0.35);
+}
+
+/* Hover effect */
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    padding: 32px 22px;
+    font-size: 16px;
+  }
+
+  .card span,
+  .card strong {
+    font-size: 32px;
+  }
 }
 
 /* =====================================================
@@ -383,4 +429,5 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 

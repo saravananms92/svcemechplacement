@@ -317,10 +317,6 @@ table tbody tr:hover {
   background: #fff3e0;
 }
 
-.links-box {
-  background: #fce4ec;
-}
-
 /* Headings */
 .footer-box h3 {
   margin-bottom: 12px;
@@ -359,4 +355,5 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
+
 

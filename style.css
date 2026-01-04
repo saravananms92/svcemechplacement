@@ -330,8 +330,8 @@ table tbody tr:hover {
 
 /* Icons */
 .icon {
-  width: 18px;
-  height: 18px;
+  width: 8px;
+  height: 8px;
   vertical-align: middle;
   margin-right: 6px;
 }
@@ -365,5 +365,6 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
+
 
 

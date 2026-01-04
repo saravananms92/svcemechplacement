@@ -336,6 +336,14 @@ table tbody tr:hover {
   margin-right: 6px;
 }
 
+.passport-photo {
+  width: 60px;        /* table view */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%; /* circle – optional */
+  border: 1px solid #ddd;
+}
+
 /* Links */
 .footer-box a {
   color: #0d47a1;
@@ -365,6 +373,7 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
+
 
 
 

@@ -260,8 +260,7 @@ table {
   background: #ffffff;
   margin-top: 20px;
   font-size: 14px;
-  align-items: left;
-}
+  }
 
 thead th {
   background: #2c2c2c;
@@ -269,12 +268,13 @@ thead th {
   padding: 12px 10px;
   text-transform: uppercase;
   font-size: 13px;
-  align-items: left;
+  text-align: left;   /* ✅ correct property */
 }
 
 tbody td {
   padding: 10px;
   background: #fcf6c5;
+  text-align: left;   /* optional */
 }
 
 tbody tr:nth-child(odd) td {
@@ -431,6 +431,7 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 

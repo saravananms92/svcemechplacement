@@ -282,21 +282,88 @@ table tbody tr:hover {
   .cards { grid-template-columns: 1fr; }
   .chart-box { width: 100%; height: 300px; }
 }
-/* Footer icon row */
-.icon-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 12px;
-  line-height: 1.4;
+/* Footer Container */
+.placement-footer {
+  background: #f4f6f9;
+  padding: 40px 20px 10px;
+  font-family: Arial, sans-serif;
 }
 
-/* FORCE icons to be small */
-.icon-line img {
-  width: 16px;      /* FINAL DISPLAY SIZE */
-  height: 16px;
-  object-fit: contain;
-  flex-shrink: 0;
+/* Grid Layout */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Common Box Style */
+.footer-box {
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Individual Background Colors */
+.contact-box {
+  background: #e3f2fd;
+}
+
+.location-box {
+  background: #e8f5e9;
+}
+
+.reach-box {
+  background: #fff3e0;
+}
+
+.links-box {
+  background: #fce4ec;
+}
+
+/* Headings */
+.footer-box h3 {
+  margin-bottom: 12px;
+  color: #0d47a1;
+  font-size: 16px;
+}
+
+/* Icons */
+.icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* Links */
+.footer-box a {
+  color: #0d47a1;
+  text-decoration: none;
+}
+
+.footer-box a:hover {
+  text-decoration: underline;
+}
+
+/* Quick Links */
+.links-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.links-box li {
+  margin-bottom: 6px;
+}
+
+/* Bottom Copyright */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #555;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
 }
 
 

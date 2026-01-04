@@ -432,6 +432,13 @@ tbody tr:hover td {
   }
 }
 
+#sheetLastUpdated {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+  display: inline-block;
+}
+
 
 
 

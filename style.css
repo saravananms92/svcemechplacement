@@ -292,9 +292,10 @@ table tbody tr:hover {
 /* Grid Layout */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* FORCE equal width */
+  max-width: 1200px;   /* optional – center content */
+  margin: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* force 3 equal columns */
   gap: 20px;
-  align-items: stretch; /* same height */
 }
 
 /* Common Box Style */
@@ -367,6 +368,7 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
+
 
 
 

@@ -260,6 +260,7 @@ table {
   background: #ffffff;
   margin-top: 20px;
   font-size: 14px;
+   align-items: left;
 }
 
 thead th {
@@ -429,5 +430,6 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 

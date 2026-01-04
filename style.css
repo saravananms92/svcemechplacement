@@ -334,6 +334,71 @@ tbody tr:hover td {
   transform: scale(1.05);
 }
 
+.testimonials-section {
+  background: #f9fafc;
+  padding: 50px 20px;
+}
+
+.testimonials-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.testimonials-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.testimonial-card {
+  min-width: 280px;
+  max-width: 280px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  scroll-snap-align: start;
+}
+
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.testimonial-card h4 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.testimonial-card .meta {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.testimonial-card .content {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Hide scrollbar (optional) */
+.testimonials-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.testimonials-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+
 /* =====================================================
    FOOTER (FULL WIDTH – 4 COLUMNS)
 ===================================================== */
@@ -431,3 +496,4 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+

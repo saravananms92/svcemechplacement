@@ -257,8 +257,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
 });
 
-<script>
-  fetch("https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec")
+fetch("https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec")
     .then(response => response.json())
     .then(data => {
       document.getElementById("sheetLastUpdated").innerText =
@@ -268,7 +267,8 @@ window.addEventListener('resize', () => {
       document.getElementById("sheetLastUpdated").innerText =
         "Data Last Updated: Unable to fetch";
     });
-</script>
+
+
 
 
 

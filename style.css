@@ -350,16 +350,6 @@ table tbody tr:hover {
   }
 }
 
-/* Links */
-.footer-box a {
-  color: #0d47a1;
-  text-decoration: none;
-}
-
-.footer-box a:hover {
-  text-decoration: underline;
-}
-
 /* Bottom Copyright */
 .footer-bottom {
   text-align: center;
@@ -369,11 +359,4 @@ table tbody tr:hover {
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
-
-
-
-
-
-
-
 

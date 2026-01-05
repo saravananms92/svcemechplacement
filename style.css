@@ -154,7 +154,7 @@ h2 {
 ===================================================== */
 .cards {
   max-width: 1400px;
-  margin: 20px auto 30px;
+  margin: 5px auto 30px;
   padding: 10px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -656,3 +656,4 @@ tbody tr:hover td {
     height: 80px;
   }
 }
+

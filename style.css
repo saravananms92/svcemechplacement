@@ -489,6 +489,7 @@ tbody tr:hover td {
 /* Optional company emphasis */
 .testimonial-card .meta .programme::before {
   content: "🎓 ";
+}
 .testimonial-card .meta .placed::before {
   content: "✔ ";
 }
@@ -709,4 +710,5 @@ tbody tr:hover td {
     height: 95px;
   }
 }
+
 

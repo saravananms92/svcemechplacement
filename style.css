@@ -604,6 +604,22 @@ tbody tr:hover td {
 }
 
 /* =====================================================
+   FORMS – LAST UPDATED NOTE
+===================================================== */
+.forms-update-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 13px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.forms-update-note strong {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* =====================================================
    FOOTER GRID – FLEX HORIZONTAL LAYOUT
 ===================================================== */
 
@@ -726,5 +742,6 @@ tbody tr:hover td {
     height: 80px;
   }
 }
+
 
 

@@ -485,6 +485,8 @@ tbody tr:hover td {
   font-size: 13px;
   color: #475569;
   font-weight: 500;
+.testimonial-card .meta .placed::before {
+  content:"🎓";
 }
 
 /* Placed in – Highlight */
@@ -636,6 +638,7 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 

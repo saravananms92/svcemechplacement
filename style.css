@@ -448,14 +448,6 @@ tbody tr:hover td {
 }
 
 /* =====================================================
-   META INFO (BATCH / BRANCH / COMPANY)
-===================================================== */
-
-/* =====================================================
-   META HIGHLIGHTING
-===================================================== */
-
-/* =====================================================
    META INFO – PROFESSIONAL HIGHLIGHT
 ===================================================== */
 
@@ -485,8 +477,8 @@ tbody tr:hover td {
   font-size: 13px;
   color: #475569;
   font-weight: 500;
-.testimonial-card .meta .placed::before {
-  content:"🎓";
+.testimonial-card .meta .programme::before {
+  content: "🎓 ";
 }
 
 /* Placed in – Highlight */
@@ -638,6 +630,7 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 

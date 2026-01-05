@@ -534,100 +534,62 @@ tbody tr:hover td {
 }
 
 /* =====================================================
-   FOOTER – PROFESSIONAL INSTITUTIONAL STYLE
+   FOOTER BOXES (LIGHT CARD VERSION – FIXED)
 ===================================================== */
 
-.placement-footer {
-  background: linear-gradient(135deg, #0b1d3a, #13294b);
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
-  padding: 60px 20px 25px;
-  color: #e5e7eb;
-}
-
-/* =====================================================
-   FOOTER GRID
-===================================================== */
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1400px;
-  margin: auto;
-}
-
-/* =====================================================
-   FOOTER BOXES (CARDS)
-===================================================== */
-  .footer-box {
-  background: #f8fafc;   /* very light grey */
-  color: #0f172a;
+.footer-box {
   padding: 22px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  color: #0f172a;
 }
 
-/* Accent borders for visual separation */
+/* Card background colours */
 .contact-box { background: #e0f2fe; }
 .location-box { background: #ecfdf5; }
 .reach-box { background: #fff7ed; }
 .quick-links-box { background: #f5f3ff; }
 
-.contact-box {
-  border-top: 4px solid #38bdf8;
-}
-
-.location-box {
-  border-top: 4px solid #4ade80;
-}
-
-.reach-box {
-  border-top: 4px solid #fbbf24;
-}
+/* Accent borders */
+.contact-box { border-top: 4px solid #38bdf8; }
+.location-box { border-top: 4px solid #4ade80; }
+.reach-box { border-top: 4px solid #fbbf24; }
+.quick-links-box { border-top: 4px solid #a78bfa; }
 
 /* =====================================================
-   FOOTER HEADINGS
+   FOOTER TEXT & LINKS (FIXED FOR LIGHT CARDS)
 ===================================================== */
 
 .footer-box h3 {
   margin-bottom: 14px;
   font-size: 16px;
   font-weight: 600;
-  color: #161433;
-  letter-spacing: 0.4px;
+  color: #1e293b;
 }
 
-/* =====================================================
-   TEXT & LINKS
-===================================================== */
-
 .footer-box p {
-  color: #dbeafe;
+  color: #334155;
 }
 
 .footer-box strong {
-  color: #ffffff;
-  font-weight: 600;
+  color: #0f172a;
 }
 
 .footer-box a {
-  color: #bae6fd;
-  text-decoration: none;
+  color: #1d4ed8;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .footer-box a:hover {
-  color: #38bdf8;
+  color: #2563eb;
   text-decoration: underline;
 }
 
 /* =====================================================
-   ICONS
+   ICONS (FIXED – NO INVERT)
 ===================================================== */
 
 .icon {
@@ -635,90 +597,5 @@ tbody tr:hover td {
   height: 18px;
   vertical-align: middle;
   margin-right: 8px;
-  filter: brightness(0) invert(1);
+  filter: none;   /* IMPORTANT FIX */
 }
-
-/* =====================================================
-   PASSPORT PHOTO (RECTANGULAR, SMOOTH CORNERS)
-===================================================== */
-
-.passport-photo {
-  width: 90px;
-  height: 115px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid #38bdf8;
-  box-shadow: 0 8px 18px rgba(56, 189, 248, 0.4);
-  margin-bottom: 12px;
-  background: #ffffff;
-}
-
-/* =====================================================
-   QUICK LINKS
-===================================================== */
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: #e0f2fe;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #38bdf8;
-  padding-left: 6px;
-}
-
-/* =====================================================
-   FOOTER BOTTOM
-===================================================== */
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 35px;
-  font-size: 13px;
-  color: #3d0a0a;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  padding-top: 14px;
-}
-   .quick-links-box {
-  border-top: 4px solid #a78bfa;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .passport-photo {
-    width: 75px;
-    height: 95px;
-  }
-}
-
-
-
-
-
-
-

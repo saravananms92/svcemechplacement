@@ -451,12 +451,52 @@ tbody tr:hover td {
    META INFO (BATCH / BRANCH / COMPANY)
 ===================================================== */
 
+/* =====================================================
+   META HIGHLIGHTING
+===================================================== */
+
+/* =====================================================
+   META INFO – PROFESSIONAL HIGHLIGHT
+===================================================== */
+
 .testimonial-card .meta {
-  font-size: 13px;
-  color: #64748b;     /* Muted slate */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin-bottom: 14px;
-  line-height: 1.4;
-  font-style: italic;
+  text-align: center;
+}
+
+/* Batch badge */
+.testimonial-card .meta .batch {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Programme text */
+.testimonial-card .meta .programme {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Placed in – Highlight */
+.testimonial-card .meta .placed {
+  font-size: 13px;
+  font-weight: 600;
+  color: #15803d;
+}
+
+/* Optional company emphasis */
+.testimonial-card .meta .placed::before {
+  content: "✔ ";
 }
 
 /* =====================================================
@@ -596,6 +636,7 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 

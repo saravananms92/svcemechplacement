@@ -334,68 +334,137 @@ tbody tr:hover td {
   transform: scale(1.05);
 }
 
+/* =====================================================
+   TESTIMONIALS SECTION
+===================================================== */
+
 .testimonials-section {
-  background: #f9fafc;
-  padding: 50px 20px;
+  background: linear-gradient(135deg, #eef3f9, #f9fbff);
+  padding: 60px 20px;
 }
 
 .testimonials-section h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
+  margin-bottom: 35px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.5px;
 }
+
+/* =====================================================
+   TESTIMONIALS WRAPPER (HORIZONTAL SCROLL)
+===================================================== */
 
 .testimonials-wrapper {
   display: flex;
-  gap: 20px;
+  gap: 22px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
+
+/* Smooth scrolling */
+.testimonials-wrapper {
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   TESTIMONIAL CARD
+===================================================== */
 
 .testimonial-card {
   min-width: 280px;
   max-width: 280px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border-radius: 14px;
+  padding: 22px 20px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.08);
   scroll-snap-align: start;
+  transition: all 0.3s ease;
 }
+
+/* Hover effect */
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(30, 58, 138, 0.15);
+}
+
+/* =====================================================
+   STUDENT IMAGE
+===================================================== */
 
 .testimonial-card img {
   width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  border: 3px solid #e0e7ff;
 }
 
+/* =====================================================
+   STUDENT NAME
+===================================================== */
+
 .testimonial-card h4 {
-  margin: 8px 0 4px;
-  font-size: 16px;
+  margin: 10px 0 6px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e3a8a;     /* Professional blue */
+  letter-spacing: 0.3px;
 }
+
+/* =====================================================
+   META INFO (BATCH / BRANCH / COMPANY)
+===================================================== */
 
 .testimonial-card .meta {
   font-size: 13px;
-  color: #666;
-  margin-bottom: 10px;
+  color: #64748b;     /* Muted slate */
+  margin-bottom: 14px;
+  line-height: 1.4;
+  font-style: italic;
 }
+
+/* =====================================================
+   TESTIMONIAL CONTENT
+===================================================== */
 
 .testimonial-card .content {
   font-size: 14px;
-  color: #333;
-  line-height: 1.5;
+  color: #334155;
+  line-height: 1.65;
+  position: relative;
+  padding-top: 6px;
 }
 
-/* Hide scrollbar (optional) */
+/* Decorative quote */
+.testimonial-card .content::before {
+  content: "“";
+  font-size: 28px;
+  color: #c7d2fe;
+  position: absolute;
+  left: -6px;
+  top: -10px;
+}
+
+/* =====================================================
+   SCROLLBAR (SUBTLE)
+===================================================== */
+
 .testimonials-wrapper::-webkit-scrollbar {
   height: 6px;
 }
+
 .testimonials-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #c7d2fe;
   border-radius: 10px;
+}
+
+.testimonials-wrapper::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 
@@ -496,4 +565,5 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 

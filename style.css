@@ -562,15 +562,14 @@ tbody tr:hover td {
 /* =====================================================
    FOOTER BOXES (CARDS)
 ===================================================== */
-
-.footer-box {
-  background: rgba(255, 255, 255, 0.18); /* lighter */
+  .footer-box {
+  background: #f8fafc;   /* very light grey */
+  color: #0f172a;
   padding: 22px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(6px); /* modern glass effect */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* Accent borders for visual separation */
@@ -711,6 +710,7 @@ tbody tr:hover td {
     height: 95px;
   }
 }
+
 
 
 

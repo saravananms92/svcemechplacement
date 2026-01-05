@@ -564,12 +564,13 @@ tbody tr:hover td {
 ===================================================== */
 
 .footer-box {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.18); /* lighter */
   padding: 22px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px); /* modern glass effect */
 }
 
 /* Accent borders for visual separation */
@@ -710,5 +711,6 @@ tbody tr:hover td {
     height: 95px;
   }
 }
+
 
 

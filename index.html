@@ -394,60 +394,40 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </div>
 </footer>
 
+<div id="gallery" style="display:flex; flex-wrap: wrap; gap: 20px;"></div>
+
 <script>
-fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Gallery")
-  .then(res => res.text())
-  .then(text => {
-    const json = JSON.parse(text.substring(47).slice(0, -2));
-    let rows = json.table.rows;
+const sheetCSV = 'https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Gallery';
 
-    // 🔹 Limit to first 50 rows
-    rows = rows.slice(0, 50);
-
-    const container = document.getElementById("galleryContainer");
-    container.innerHTML = "";
-
+fetch(sheetCSV)
+  .then(response => response.text())
+  .then(data => {
+    const rows = data.split('\n').slice(1); // Skip header
+    let html = '';
     rows.forEach(row => {
-      let imageLink = row.c[0]?.v;
-      const description = row.c[1]?.v;
-
-      if (!imageLink || !description) return;
-
-      /* 🔑 Convert Google Drive links to direct image links */
-      if (imageLink.includes("drive.google.com")) {
-        const match = imageLink.match(/id=([^&]+)/) || imageLink.match(/\/d\/([^/]+)/);
-        if (match) {
-          imageLink = "https://drive.google.com/uc?id=" + match[1];
-        }
-      }
-
-      const card = document.createElement("div");
-      card.className = "gallery-card";
-
-      const img = document.createElement("img");
-      img.src = imageLink;
-      img.alt = "Placement Gallery";
-      img.loading = "lazy";
-
-      // fallback if image fails
-      img.onerror = () => {
-        img.src = "https://via.placeholder.com/300x200?text=Image+Unavailable";
-      };
-
-      const p = document.createElement("p");
-      p.innerText = description;
-
-      card.appendChild(img);
-      card.appendChild(p);
-      container.appendChild(card);
+      if(row.trim() === '') return; // Skip empty rows
+      const cols = row.split(',');
+      const fileId = cols[0].trim();
+      const description = cols[1] ? cols[1].trim() : '';
+      // Generate direct Drive link
+      const imgUrl = fileId.includes('drive.google.com') 
+                     ? fileId.replace('/view?usp=sharing','').replace('file/d/','uc?export=view&id=')
+                     : `https://drive.google.com/uc?export=view&id=${fileId}`;
+      html += `
+        <div class="card" style="width:200px; text-align:center;">
+          <img src="${imgUrl}" alt="${description}" style="width:100%; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.2)">
+          <p>${description}</p>
+        </div>
+      `;
     });
-  })
-  .catch(err => console.error("Gallery error:", err));
+    document.getElementById('gallery').innerHTML = html;
+  });
 </script>
-    
+
 </body>
 </html>
   
+
 
 
 

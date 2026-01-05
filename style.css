@@ -376,8 +376,8 @@ tbody tr:hover td {
 .testimonial-card {
   min-width: 280px;
   max-width: 280px;
-  background: linear-gradient(180deg, #ffffff, #f8fafc);
-  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  border-top: 4px solid #3b82f6;
   padding: 22px 20px;
   text-align: center;
   box-shadow: 0 8px 20px rgba(30, 58, 138, 0.08);
@@ -396,32 +396,42 @@ tbody tr:hover td {
 ===================================================== */
 
 .testimonial-card img {
-  width: 110px;
-  height: 110px;
+   width: 110px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 50%;        /* perfect circle */
-  margin-bottom: 14px;
-  border: 4px solid #e0e7ff;  /* refined border */
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12); /* soft glow effect */
-  transition: transform 0.3s ease;
+  border-radius: 14px;
+
+  /* Attractive color treatment */
+  border: 3px solid #3b82f6;          /* vibrant blue border */
+  background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+
+  box-shadow:
+    0 10px 22px rgba(59, 130, 246, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
 }
 
 /* Slight hover uplift for photos */
 .testimonial-card img:hover {
-  transform: scale(1.08);
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 14px 30px rgba(37, 99, 235, 0.35),
+    0 6px 10px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 768px) {
   .testimonial-card img {
     width: 95px;
-    height: 95px;
+    height: 120px;
   }
 }
 
 @media (max-width: 480px) {
   .testimonial-card img {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 110px;
   }
 }
 
@@ -586,6 +596,7 @@ tbody tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 

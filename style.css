@@ -534,16 +534,34 @@ tbody tr:hover td {
 }
 
 /* =====================================================
-   FOOTER BOXES (LIGHT CARD VERSION – FIXED)
+   FOOTER GRID – FLEX HORIZONTAL LAYOUT
 ===================================================== */
 
+.footer-grid {
+  display: flex;                 /* horizontal layout */
+  flex-wrap: wrap;               /* wrap on smaller screens */
+  gap: 24px;
+  max-width: 1400px;
+  margin: auto;
+  justify-content: space-between; /* evenly space cards */
+}
+
+/* Footer boxes (cards) – responsive widths */
 .footer-box {
+  flex: 1 1 23%;                 /* 4 cards per row approx */
+  min-width: 220px;              /* prevent shrinking too small */
   padding: 22px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
   color: #0f172a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* optional hover effect */
+}
+
+.footer-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.18);
 }
 
 /* Card background colours */
@@ -559,7 +577,7 @@ tbody tr:hover td {
 .quick-links-box { border-top: 4px solid #a78bfa; }
 
 /* =====================================================
-   FOOTER TEXT & LINKS (FIXED FOR LIGHT CARDS)
+   FOOTER TEXT & LINKS
 ===================================================== */
 
 .footer-box h3 {
@@ -589,7 +607,7 @@ tbody tr:hover td {
 }
 
 /* =====================================================
-   ICONS (FIXED – NO INVERT)
+   ICONS
 ===================================================== */
 
 .icon {
@@ -597,13 +615,13 @@ tbody tr:hover td {
   height: 18px;
   vertical-align: middle;
   margin-right: 8px;
-  filter: none;   /* IMPORTANT FIX */
+  filter: none;
 }
 
 /* Contact card photo */
 .passport-photo {
-  width: 75px;          /* smaller width */
-  height: 95px;         /* smaller height */
+  width: 75px;
+  height: 95px;
   object-fit: cover;
   border-radius: 12px;
   border: 2px solid #38bdf8;
@@ -611,6 +629,18 @@ tbody tr:hover td {
   margin-bottom: 12px;
   background: #ffffff;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  .footer-box { flex: 1 1 30%; } /* 3 cards per row */
+}
+
+@media (max-width: 900px) {
+  .footer-box { flex: 1 1 45%; } /* 2 cards per row */
+}
+
+@media (max-width: 600px) {
+  .footer-box { flex: 1 1 100%; } /* stack vertically on small screens */
 }
 
 @media (max-width: 768px) {

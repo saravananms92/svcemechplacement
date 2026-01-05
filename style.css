@@ -599,3 +599,14 @@ tbody tr:hover td {
   margin-right: 8px;
   filter: none;   /* IMPORTANT FIX */
 }
+
+.passport-photo {
+  width: 90px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 8px 18px rgba(56, 189, 248, 0.4);
+  margin-bottom: 12px;
+  background: #ffffff;
+}

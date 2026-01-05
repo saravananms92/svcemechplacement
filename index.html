@@ -399,7 +399,10 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substring(47).slice(0, -2));
-    const rows = json.table.rows;
+    let rows = json.table.rows;
+
+    // 🔹 Limit to first 50 rows
+    rows = rows.slice(0, 50);
 
     const container = document.getElementById("galleryContainer");
     container.innerHTML = "";
@@ -410,7 +413,7 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
 
       if (!imageLink || !description) return;
 
-      /* 🔑 FORCE-CONVERT GOOGLE DRIVE LINKS */
+      /* 🔑 Convert Google Drive links to direct image links */
       if (imageLink.includes("drive.google.com")) {
         const match = imageLink.match(/id=([^&]+)/) || imageLink.match(/\/d\/([^/]+)/);
         if (match) {
@@ -426,7 +429,7 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
       img.alt = "Placement Gallery";
       img.loading = "lazy";
 
-      /* 🔒 FALLBACK IF IMAGE FAILS */
+      // fallback if image fails
       img.onerror = () => {
         img.src = "https://via.placeholder.com/300x200?text=Image+Unavailable";
       };
@@ -445,6 +448,7 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
 </body>
 </html>
   
+
 
 
 

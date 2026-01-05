@@ -742,6 +742,14 @@ tbody tr:hover td {
     height: 80px;
   }
 }
+.footer-bottom p {
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+
 
 
 

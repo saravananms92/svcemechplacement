@@ -600,13 +600,29 @@ tbody tr:hover td {
   filter: none;   /* IMPORTANT FIX */
 }
 
+/* Contact card photo */
 .passport-photo {
-  width: 90px;
-  height: 115px;
+  width: 75px;          /* smaller width */
+  height: 95px;         /* smaller height */
   object-fit: cover;
   border-radius: 12px;
   border: 2px solid #38bdf8;
-  box-shadow: 0 8px 18px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 6px 14px rgba(56, 189, 248, 0.35);
   margin-bottom: 12px;
   background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .passport-photo {
+    width: 65px;
+    height: 85px;
+  }
+}
+
+@media (max-width: 480px) {
+  .passport-photo {
+    width: 60px;
+    height: 80px;
+  }
 }

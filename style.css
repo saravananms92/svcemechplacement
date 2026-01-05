@@ -681,7 +681,7 @@ tbody tr:hover td {
   text-align: center;
   margin-top: 35px;
   font-size: 13px;
-  color: #cbd5f5;
+  color: #3d0a0a;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   padding-top: 14px;
 }
@@ -710,6 +710,7 @@ tbody tr:hover td {
     height: 95px;
   }
 }
+
 
 
 

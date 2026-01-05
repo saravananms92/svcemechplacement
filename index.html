@@ -405,24 +405,47 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
     container.innerHTML = "";
 
     rows.forEach(row => {
-      const imageLink = row.c[0]?.v;
+      let imageLink = row.c[0]?.v;
       const description = row.c[1]?.v;
 
-      if (imageLink && description) {
-        container.innerHTML += `
-          <div class="gallery-card">
-            <img src="${imageLink}" alt="Placement Gallery">
-            <p>${description}</p>
-          </div>
-        `;
+      if (!imageLink || !description) return;
+
+      /* 🔑 FORCE-CONVERT GOOGLE DRIVE LINKS */
+      if (imageLink.includes("drive.google.com")) {
+        const match = imageLink.match(/id=([^&]+)/) || imageLink.match(/\/d\/([^/]+)/);
+        if (match) {
+          imageLink = "https://drive.google.com/uc?id=" + match[1];
+        }
       }
+
+      const card = document.createElement("div");
+      card.className = "gallery-card";
+
+      const img = document.createElement("img");
+      img.src = imageLink;
+      img.alt = "Placement Gallery";
+      img.loading = "lazy";
+
+      /* 🔒 FALLBACK IF IMAGE FAILS */
+      img.onerror = () => {
+        img.src = "https://via.placeholder.com/300x200?text=Image+Unavailable";
+      };
+
+      const p = document.createElement("p");
+      p.innerText = description;
+
+      card.appendChild(img);
+      card.appendChild(p);
+      container.appendChild(card);
     });
-  });
+  })
+  .catch(err => console.error("Gallery error:", err));
 </script>
     
 </body>
 </html>
   
+
 
 
 

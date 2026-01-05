@@ -229,6 +229,14 @@
    </script>   
 </section>
 
+<section class="gallery-section">
+  <h2 class="section-title">Gallery</h2>
+
+  <div id="galleryContainer" class="gallery-scroll">
+    <!-- Gallery cards will be injected here -->
+  </div>
+</section>
+    
  <section class="forms-section" id="Student Forms & Department Updates">
   <h2 id="Forms">Student Forms & Department Updates</h2>
   <div class="forms-grid">
@@ -304,7 +312,7 @@
         Sri Venkateswara College of Engineering<br>
         Post Bag No.1, Pennalur Village,<br>
         Chennai – Bengaluru Highways,<br>
-        Sriperumbudur Tk. – 602 117<br>
+        Sriperumbudur Tk. – 602 117,<br>
         Tamil Nadu, India<br><br>
 
         College Hours: 08:30 AM – 03:30 PM<br><br>
@@ -327,7 +335,7 @@
         Sri Venkateswara Educational and Health Trust<br>
         1/3A River View Road,<br>
         Sector 3, Kotturpuram,<br>
-        Chennai – 600085<br>
+        Chennai – 600085,<br>
         Tamil Nadu, India<br><br>
 
         Working Hours: 09:00 AM – 03:30 PM<br><br>
@@ -385,9 +393,37 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </script>
 </div>
 </footer>
+
+<script>
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Gallery")
+  .then(res => res.text())
+  .then(text => {
+    const json = JSON.parse(text.substring(47).slice(0, -2));
+    const rows = json.table.rows;
+
+    const container = document.getElementById("galleryContainer");
+    container.innerHTML = "";
+
+    rows.forEach(row => {
+      const imageLink = row.c[0]?.v;
+      const description = row.c[1]?.v;
+
+      if (imageLink && description) {
+        container.innerHTML += `
+          <div class="gallery-card">
+            <img src="${imageLink}" alt="Placement Gallery">
+            <p>${description}</p>
+          </div>
+        `;
+      }
+    });
+  });
+</script>
+    
 </body>
 </html>
   
+
 
 
 

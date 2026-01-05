@@ -573,6 +573,11 @@ tbody tr:hover td {
 }
 
 /* Accent borders for visual separation */
+.contact-box { background: #e0f2fe; }
+.location-box { background: #ecfdf5; }
+.reach-box { background: #fff7ed; }
+.quick-links-box { background: #f5f3ff; }
+
 .contact-box {
   border-top: 4px solid #38bdf8;
 }
@@ -710,6 +715,7 @@ tbody tr:hover td {
     height: 95px;
   }
 }
+
 
 
 

@@ -6,22 +6,21 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-  <body>
-  <header class="svce-header">
+<body>
+
+<header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
-  
   <div class="header-text">
     <h1>Sri Venkateswara College of Engineering</h1>
     <p>Department of Mechanical Engineering – Placement Live Update</p>
   </div>
-  
   <img src="assets/college-emblem.png" class="logo right-logo" alt="college-emblem">
 </header>
-      
-  
-  <h2 id="Overview">Batch 2022-2026 Placement Overview</h2>
-  <!-- KPI CARDS SECTION -->
-  <div class="kpi-grid">
+
+<h2 id="Overview">Batch 2022-2026 Placement Overview</h2>
+
+<!-- KPI CARDS SECTION -->
+<div class="kpi-grid">
   <div class="kpi-card" id="total">Total Students\n0</div>
   <div class="kpi-card" id="opted">Students Opted for Placement\n0</div>
   <div class="kpi-card" id="placed">Placed Students\n0</div>
@@ -33,64 +32,73 @@
 
 <p class="last-updated" id="lastUpdated">Data auto-synced from Google Sheet | Last updated: --</p>
 
-<script src="script.js"></script>
-
-  <nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-title">
-      SVCE – MECH Placements
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="#Overview">Overview</a></li>
-      <li><a href="#Charts">Analytics</a></li>
-      <li><a href="#Recruiters">Recruiters</a></li>
-      <li><a href="#Placed Students">Placed Students</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#Student Forms & Department Updates">Forms</a></li>
-      <li><a href="#Contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-   <!-- PLACEMENT ANALYTICS -->
-  <h2 id="Charts">Placement Analytics</h2>
-  <div class="charts">
-    <div id="statusChart" class="chart-box"></div>
-    <div id="companyChart" class="chart-box"></div>
-  </div>
-
-  <!-- PROGRAMME-WISE ANALYTICS -->
-  <h2>Programme-wise Analytics</h2>
-  <div class="charts">
-    <div id="programmeChart" class="chart-box"></div>
-    <div id="coreNonCoreChart" class="chart-box"></div>
-  </div>
-  
-  <div class="table-card">
-  <h2 id="Recruiters" class="section-title">Top Recruiters</h2>
-
-  <div class="recruiters">
-    <img src="assets/SPIC.png" alt="SPIC">
-    <img src="assets/SAINT GOBAIN.png" alt="Saint Gobain">
-    <img src="assets/ACCENTURE.png" alt="Accenture">
-    <img src="assets/BRAKES INDIA.png" alt="Brakes India">
-    <img src="assets/HYUNDAI.png" alt="Hyundai">
-    <img src="assets/INFOSYS.png" alt="Infosys">
-    <img src="assets/INOX AIR PRODUCTS.png" alt="INOX Air Products">
-    <img src="assets/technip.png" alt="techip">
-    <img src="assets/sanmar.png" alt="sanmar">
-    <img src="assets/bluestar.png" alt="bluestar">
-    <img src="assets/bgr.png" alt="bgr">
-    <img src="assets/facilio.png" alt="facilio">
-    <img src="assets/lti.png" alt="lti">
-    <img src="assets/kaar.png" alt="kaar">
-    <img src="assets/musigma1.png" alt="musigma1">
-    <img src="assets/mathcompany.png" alt="mathcompany">
-    <img src="assets/cognizant.png" alt="cognizant">
-    <img src="assets/aspire.png" alt="aspire">
-    </div>
+<!-- CHARTS -->
+<h2 id="Charts">Placement Analytics</h2>
+<div class="charts">
+  <div id="statusChart" class="chart-box"></div>
+  <div id="companyChart" class="chart-box"></div>
 </div>
+
+<h2>Programme-wise Analytics</h2>
+<div class="charts">
+  <div id="programmeChart" class="chart-box"></div>
+  <div id="coreNonCoreChart" class="chart-box"></div>
+</div>
+
+<h2>Top Five Highest Packages</h2>
+<div class="charts">
+  <div id="topPackageChart" class="chart-box"></div>
+</div>
+
+<!-- STUDENT SEARCH -->
+<div class="table-controls">
+  <input
+    type="text"
+    id="studentSearch"
+    placeholder="🔍 Search student name, company name, company type..."
+    onkeyup="searchTable()"
+  >
+</div>
+
+<!-- STUDENT TABLE -->
+<h2 id="Placed Students">Details of Placed Students</h2>
+<table id="studentTableMain">
+  <thead>
+    <tr>
+      <th>PROGRAMME</th>
+      <th>NAME OF THE STUDENT</th>
+      <th>COMPANY NAME</th>
+      <th>COMPANY TYPE</th>
+    </tr>
+  </thead>
+  <tbody id="studentTable"></tbody>
+</table>
+
+<!-- RECRUITERS -->
+<h2 id="Recruiters" class="section-title">Top Recruiters</h2>
+<div class="recruiters">
+  <img src="assets/SPIC.png" alt="SPIC">
+  <img src="assets/SAINT GOBAIN.png" alt="Saint Gobain">
+  <img src="assets/ACCENTURE.png" alt="Accenture">
+  <img src="assets/BRAKES INDIA.png" alt="Brakes India">
+  <img src="assets/HYUNDAI.png" alt="Hyundai">
+  <img src="assets/INFOSYS.png" alt="Infosys">
+  <img src="assets/INOX AIR PRODUCTS.png" alt="INOX Air Products">
+  <img src="assets/technip.png" alt="technip">
+  <img src="assets/sanmar.png" alt="sanmar">
+  <img src="assets/bluestar.png" alt="bluestar">
+  <img src="assets/bgr.png" alt="bgr">
+  <img src="assets/facilio.png" alt="facilio">
+  <img src="assets/lti.png" alt="lti">
+  <img src="assets/kaar.png" alt="kaar">
+  <img src="assets/musigma1.png" alt="musigma1">
+  <img src="assets/mathcompany.png" alt="mathcompany">
+  <img src="assets/cognizant.png" alt="cognizant">
+  <img src="assets/aspire.png" alt="aspire">
+</div>
+
+<!-- EXTERNAL SCRIPT -->
+<script src="script.js"></script>
 
   <!-- TOP PACKAGES -->
   <h2>Top Five Highest Packages</h2>
@@ -458,6 +466,7 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </body>
 </html>
   
+
 
 
 

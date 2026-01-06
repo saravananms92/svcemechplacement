@@ -55,46 +55,32 @@ async function fetchAndDrawCharts() {
  * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
-  if (!data || !data.studentKPIs || !data.companyKPIs) return;
-
-  const s = data.studentKPIs;
-  const c = data.companyKPIs;
-
-  // Student KPIs
   document.getElementById('total').innerText =
-    `Total Students\n${s.totalStudents || 0}`;
+    `Total Students\n${data.totalStudents || 0}`;
 
   document.getElementById('opted').innerText =
-    `Students Opted for Placement\n${s.studentsOpted || 0}`;
+    `Students Opted for Placement\n${data.optedStudents || 0}`;
 
   document.getElementById('placed').innerText =
-    `Placed Students\n${s.placedCount || 0}`;
+    `Placed Students\n${data.placedCount || 0}`;
+
+  const percent =
+    data.optedStudents > 0
+      ? ((data.placedCount / data.optedStudents) * 100).toFixed(1)
+      : 0;
 
   document.getElementById('percentage').innerText =
-    `Placement %\n${s.placementPercent || 0}%`;
-
-  // Company KPIs
-  document.getElementById('totalCompanies').innerText =
-    `Total Companies\n${c.totalCompanies || 0}`;
-
-  document.getElementById('coreCompanies').innerText =
-    `Core Companies\n${c.coreCompanies || 0}`;
-
-  document.getElementById('otherCompanies').innerText =
-    `Other Companies\n${c.otherCompanies || 0}`;
+    `Placement %\n${percent}%`;
 }
 
 /************************************************
  * PLACEMENT STATUS PIE
  ************************************************/
 function drawPlacementStatusChart(data) {
-  const opted = data.studentKPIs.studentsOpted || 0;
-  const placed = data.studentKPIs.placedCount || 0;
-
   const rows = [
     ['Status', 'Count'],
-    ['Placed', placed],
-    ['Not Placed', opted - placed]
+    ['Placed', data.placedCount || 0],
+    ['Not Placed', (data.optedStudents || 0) - (data.placedCount || 0)]
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -115,7 +101,7 @@ function drawCompanyChart(data) {
   const map = {};
 
   (data.placedStudents || []).forEach(s => {
-    const type = s.companyType || 'Other';
+    const type = s.type || 'Unknown';
     map[type] = (map[type] || 0) + 1;
   });
 
@@ -163,7 +149,7 @@ function drawProgrammeChart(data) {
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-    vAxis: { title: 'Placed Students', minValue: 0 },
+        vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
   });
 }
@@ -225,14 +211,11 @@ function drawTopPackageChart(data) {
   });
 }
 
-/************************************************
- * SEARCH TABLE
- ************************************************/
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
 
-  const tbody = document.getElementById("studentTable"); 
+  const tbody = document.getElementById("studentTable"); // Correct reference
   if (!tbody) return;
 
   const rows = tbody.getElementsByTagName("tr");
@@ -253,10 +236,10 @@ function populateStudentTable(data) {
   (data.placedStudents || []).forEach(s => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${s["PROGRAMME NAME"] || s.programme}</td>
-      <td>${s["STUDENT NAME"] || s.name}</td>
-      <td>${s["COMPANY NAME"] || s.company}</td>
-      <td>${s.companyType || s.type}</td>
+      <td>${s.programme}</td>
+      <td>${s.name}</td>
+      <td>${s.company}</td>
+      <td>${s.type}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -273,3 +256,4 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+

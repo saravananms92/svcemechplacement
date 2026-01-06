@@ -798,6 +798,41 @@ tbody tr:hover td {
   line-height: 1.6;
   margin: 6px 0;
 }
+<style>
+.slider {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.slide {
+  width: 260px;
+  text-align: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.slide p {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+</style>
+.slider {
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-1200px); }
+}
+
 
 
 

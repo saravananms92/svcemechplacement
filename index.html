@@ -228,14 +228,31 @@
     }
    </script>   
 </section>
+    
+<h2 id="Gallery" class="section-title">Gallery</h2>
+<div class="slider" id="Gallery"></div>
+<script>
+fetch("gallery.json")
+  .then(response => response.json())
+  .then(data => {
+    const slider = document.getElementById("Gallery");
 
-<section class="gallery-section">
-  <h2 class="section-title">Gallery</h2>
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "slide";
 
-  <div id="galleryContainer" class="gallery-scroll">
-    <!-- Gallery cards will be injected here -->
-  </div>
-</section>
+      const img = document.createElement("img");
+      img.src = "assets/students/" + item.image;
+
+      const caption = document.createElement("p");
+      caption.textContent = item.description;
+
+      card.appendChild(img);
+      card.appendChild(caption);
+      slider.appendChild(card);
+    });
+  });
+</script>
     
  <section class="forms-section" id="Student Forms & Department Updates">
   <h2 id="Forms">Student Forms & Department Updates</h2>
@@ -445,6 +462,7 @@ fetch(sheetCSV)
 </body>
 </html>
   
+
 
 
 

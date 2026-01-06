@@ -426,27 +426,13 @@ fetch("gallery.json")
   <p>Disclaimer<br>
       This dashboard is a department-level placement tracking and analytics portal maintained by the Mechanical Engineering Department for internal monitoring, student guidance and continuous improvement.
 Official consolidated placement statistics are published by the Institute Placement Cell.
-    </p>
-<!-- Footer / notes -->
-<div id="lastUpdated" class="update-note">
-  Data auto-synced from Google Sheet
-</div>
+  </p>
 
-<!-- ✅ PASTE SCRIPT HERE -->
-<script>
-fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_CKZTKQnrvRUiBK8orgx3XvGkKLe16tL_p0cA/exec?action=lastUpdated")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("lastUpdated").innerText =
-      "Data auto-synced from Google Sheet | Last updated: " + data.lastUpdated;
-  })
-  .catch(() => {
-    document.getElementById("lastUpdated").innerText =
-      "Data auto-synced from Google Sheet";
-  });
+
 </script>
 </div>
 </footer>
 </body>
 </html>
   
+

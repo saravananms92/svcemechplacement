@@ -247,7 +247,7 @@ fetch("gallery.json")
         slide.className = "slide";
 
         const img = document.createElement("img");
-        img.src = "assets/Gallery/" + item.image;
+        img.src = item.image;   // ✅ FIX HERE
 
         const caption = document.createElement("p");
         caption.textContent = item.description;
@@ -258,12 +258,10 @@ fetch("gallery.json")
       });
     }
 
-    // Create slides twice for infinite scroll
     createSlides();
-    createSlides();
+    createSlides(); // infinite scroll
   });
 </script>
-
     
  <section class="forms-section" id="Student Forms & Department Updates">
   <h2 id="Forms">Student Forms & Department Updates</h2>
@@ -283,7 +281,7 @@ fetch("gallery.json")
    
     <!-- Recruitment Feedback -->
     <div class="form-card">
-      <h3>📋 Recruitment Feedback Form</h3>
+      <h3>📋 Recruitment Feedback Frm</h3>
       <p>
         Capture students’ interview experience, preparedness, rounds, strengths,
         gaps, and curriculum relevance after recruitment.
@@ -424,6 +422,7 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </body>
 </html>
   
+
 
 
 

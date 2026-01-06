@@ -54,44 +54,37 @@ async function fetchAndDrawCharts() {
 /************************************************
  * KPI CARDS
  ************************************************/
+/************************************************
+ * UPDATE KPI CARDS
+ ************************************************/
 function updateKPIs(data) {
-  // Extract student and company KPIs
-  const skpi = data.studentKPIs || {};
-  const ckpi = data.companyKPIs || {};
+  if (!data || !data.studentKPIs || !data.companyKPIs) return;
 
-  // STUDENT KPIs
-  const totalStudents = skpi.totalStudents || 0;
-  const optedStudents = skpi.optedStudents || totalStudents; // fallback if not provided
-  const placedCount = skpi.placedCount || 0;
-  const placementPercent = optedStudents > 0 
-    ? ((placedCount / optedStudents) * 100).toFixed(1)
-    : 0;
+  const s = data.studentKPIs;
+  const c = data.companyKPIs;
 
+  // Student KPIs
   document.getElementById('total').innerText =
-    `Total Students\n${totalStudents}`;
+    `Total Students\n${s.totalStudents || 0}`;
 
   document.getElementById('opted').innerText =
-    `Students Opted for Placement\n${optedStudents}`;
+    `Students Opted for Placement\n${s.optedStudents || 0}`;
 
   document.getElementById('placed').innerText =
-    `Placed Students\n${placedCount}`;
+    `Placed Students\n${s.placedCount || 0}`;
 
   document.getElementById('percentage').innerText =
-    `Placement %\n${placementPercent}%`;
+    `Placement %\n${s.placementPercent || 0}%`;
 
-  // COMPANY KPIs
-  const totalCompanies = ckpi.totalCompanies || 0;
-  const coreCompanies = ckpi.coreCompanies || 0;
-  const otherCompanies = ckpi.otherCompanies || (totalCompanies - coreCompanies);
-
+  // Company KPIs
   document.getElementById('totalCompanies').innerText =
-    `Total Companies\n${totalCompanies}`;
+    `Total Companies\n${c.totalCompanies || 0}`;
 
   document.getElementById('coreCompanies').innerText =
-    `Core Companies\n${coreCompanies}`;
+    `Core Companies\n${c.coreCompanies || 0}`;
 
   document.getElementById('otherCompanies').innerText =
-    `Other Companies\n${otherCompanies}`;
+    `Other Companies\n${c.otherCompanies || 0}`;
 }
 
 /************************************************
@@ -277,6 +270,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

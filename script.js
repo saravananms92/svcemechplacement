@@ -55,32 +55,43 @@ async function fetchAndDrawCharts() {
  * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
-  // ---------- STUDENT KPIs ----------
-  const s = data.studentKPIs || {};
+  // Extract student and company KPIs
+  const skpi = data.studentKPIs || {};
+  const ckpi = data.companyKPIs || {};
+
+  // STUDENT KPIs
+  const totalStudents = skpi.totalStudents || 0;
+  const optedStudents = skpi.optedStudents || totalStudents; // fallback if not provided
+  const placedCount = skpi.placedCount || 0;
+  const placementPercent = optedStudents > 0 
+    ? ((placedCount / optedStudents) * 100).toFixed(1)
+    : 0;
+
   document.getElementById('total').innerText =
-    `Total Students\n${s.totalStudents || 0}`;
+    `Total Students\n${totalStudents}`;
+
   document.getElementById('opted').innerText =
-    `Students Opted for Placement\n${s.optedStudents || 0}`;
+    `Students Opted for Placement\n${optedStudents}`;
+
   document.getElementById('placed').innerText =
-    `Placed Students\n${s.placedCount || 0}`;
+    `Placed Students\n${placedCount}`;
+
   document.getElementById('percentage').innerText =
-    `Placement %\n${s.placementPercent || 0}%`;
+    `Placement %\n${placementPercent}%`;
 
-  // ---------- COMPANY KPIs ----------
-  const c = data.companyKPIs || {};
+  // COMPANY KPIs
+  const totalCompanies = ckpi.totalCompanies || 0;
+  const coreCompanies = ckpi.coreCompanies || 0;
+  const otherCompanies = ckpi.otherCompanies || (totalCompanies - coreCompanies);
+
   document.getElementById('totalCompanies').innerText =
-    `Total Companies\n${c.totalCompanies || 0}`;
-  document.getElementById('coreCompanies').innerText =
-    `Core Companies\n${c.coreCompanies || 0}`;
-  document.getElementById('otherCompanies').innerText =
-    `Other Companies\n${c.otherCompanies || 0}`;
+    `Total Companies\n${totalCompanies}`;
 
-  // ---------- LAST UPDATED ----------
-  const lastUpdatedEl = document.getElementById('lastUpdated');
-  if (lastUpdatedEl) {
-    lastUpdatedEl.innerHTML =
-      `Data auto-synced from Google Sheet | Last updated: <strong>${data.lastUpdated || ''}</strong>`;
-  }
+  document.getElementById('coreCompanies').innerText =
+    `Core Companies\n${coreCompanies}`;
+
+  document.getElementById('otherCompanies').innerText =
+    `Other Companies\n${otherCompanies}`;
 }
 
 /************************************************
@@ -266,6 +277,7 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 
 
 

@@ -237,26 +237,33 @@
  
 <script>
 fetch("gallery.json")
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
-    const slider = document.getElementById("Gallery");
+    const track = document.getElementById("gallerySlider");
 
-    data.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "slide";
+    function createSlides() {
+      data.forEach(item => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
 
-      const img = document.createElement("img");
-      img.src = "assets/Gallery/" + item.image;
+        const img = document.createElement("img");
+        img.src = "assets/Gallery/" + item.image;
 
-      const caption = document.createElement("p");
-      caption.textContent = item.description;
+        const caption = document.createElement("p");
+        caption.textContent = item.description;
 
-      card.appendChild(img);
-      card.appendChild(caption);
-      slider.appendChild(card);
-    });
+        slide.appendChild(img);
+        slide.appendChild(caption);
+        track.appendChild(slide);
+      });
+    }
+
+    // Create slides twice for infinite scroll
+    createSlides();
+    createSlides();
   });
 </script>
+
     
  <section class="forms-section" id="Student Forms & Department Updates">
   <h2 id="Forms">Student Forms & Department Updates</h2>
@@ -417,6 +424,7 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </body>
 </html>
   
+
 
 
 

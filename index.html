@@ -228,9 +228,13 @@
     }
    </script>   
 </section>
-    
-<h2 id="Gallery" class="section-title">Gallery</h2>
-<div class="slider" id="Gallery"></div>
+
+<h2 class="section-title">Gallery</h2>
+
+<div class="gallery-wrapper">
+  <div class="slider-track" id="gallerySlider"></div>
+</div>
+ 
 <script>
 fetch("gallery.json")
   .then(response => response.json())
@@ -413,6 +417,7 @@ fetch("https://script.google.com/macros/s/AKfycbw3PPnTlXM4TitDEwTbk7DS8X-bfNqhf_
 </body>
 </html>
   
+
 
 
 

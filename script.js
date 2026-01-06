@@ -25,6 +25,7 @@ function init() {
 async function fetchAndDrawCharts() {
   try {
     console.log('Fetching data...');
+
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
@@ -51,7 +52,7 @@ async function fetchAndDrawCharts() {
 }
 
 /************************************************
- * UPDATE KPI CARDS
+ * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
   if (!data || !data.studentKPIs || !data.companyKPIs) return;
@@ -60,45 +61,40 @@ function updateKPIs(data) {
   const c = data.companyKPIs;
 
   // Student KPIs
-  const totalStudents = s.totalStudents || 0;
-  const notApplicable = s.notapplicable || 0;
-  const optedStudents = totalStudents - notApplicable;
-  const placedStudents = s.placedCount || 0;
-  const placementPercent = optedStudents > 0 ? ((placedStudents / optedStudents) * 100).toFixed(1) : 0;
-
   document.getElementById('total').innerText =
-    `Total Students\n${totalStudents}`;
+    `Total Students\n${s.totalStudents || 0}`;
+
   document.getElementById('opted').innerText =
-    `Students Opted for Placement\n${optedStudents}`;
+    `Students Opted for Placement\n${s.studentsOpted || 0}`;
+
   document.getElementById('placed').innerText =
-    `Placed Students\n${placedStudents}`;
+    `Placed Students\n${s.placedCount || 0}`;
+
   document.getElementById('percentage').innerText =
-    `Placement %\n${placementPercent}%`;
+    `Placement %\n${s.placementPercent || 0}%`;
 
   // Company KPIs
   document.getElementById('totalCompanies').innerText =
     `Total Companies\n${c.totalCompanies || 0}`;
+
   document.getElementById('coreCompanies').innerText =
     `Core Companies\n${c.coreCompanies || 0}`;
+
   document.getElementById('otherCompanies').innerText =
     `Other Companies\n${c.otherCompanies || 0}`;
-
-  // Last Updated
-  if (data.lastUpdated) {
-    document.getElementById('lastUpdated').innerText =
-      `Data auto-synced from Google Sheet | Last updated: ${data.lastUpdated}`;
-  }
 }
 
 /************************************************
  * PLACEMENT STATUS PIE
  ************************************************/
 function drawPlacementStatusChart(data) {
-  const opted = data.studentKPIs.totalStudents - (data.studentKPIs.notapplicable || 0);
+  const opted = data.studentKPIs.studentsOpted || 0;
+  const placed = data.studentKPIs.placedCount || 0;
+
   const rows = [
     ['Status', 'Count'],
-    ['Placed', data.studentKPIs.placedCount || 0],
-    ['Not Placed', opted - (data.studentKPIs.placedCount || 0)]
+    ['Placed', placed],
+    ['Not Placed', opted - placed]
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -117,6 +113,7 @@ function drawPlacementStatusChart(data) {
  ************************************************/
 function drawCompanyChart(data) {
   const map = {};
+
   (data.placedStudents || []).forEach(s => {
     const type = s.companyType || 'Other';
     map[type] = (map[type] || 0) + 1;
@@ -141,20 +138,28 @@ function drawCompanyChart(data) {
  ************************************************/
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
+
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
     container.innerHTML = '<b>No Programme data available</b>';
     return;
   }
 
   const colors = ['#0aa1d8', '#9c312c'];
+
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
   let i = 0;
+
   for (let p in data.programmeCount) {
-    rows.push([p, Number(data.programmeCount[p]) || 0, colors[i % colors.length]]);
+    rows.push([
+      p,
+      Number(data.programmeCount[p]) || 0,
+      colors[i % colors.length]
+    ]);
     i++;
   }
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
@@ -196,18 +201,21 @@ function drawCoreNonCoreChart(data) {
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
+
   if (!data.topPackages || data.topPackages.length === 0) {
     container.innerHTML = '<b>No package data available</b>';
     return;
   }
 
   const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
+
   const rows = [['Student','Package (LPA)',{ role: 'annotation' },{ role: 'style' }]];
   data.topPackages.forEach((s, i) => {
     rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
     height: 450,
     chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
@@ -218,15 +226,17 @@ function drawTopPackageChart(data) {
 }
 
 /************************************************
- * STUDENT TABLE SEARCH
+ * SEARCH TABLE
  ************************************************/
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
-  const tbody = document.getElementById("studentTable");
+
+  const tbody = document.getElementById("studentTable"); 
   if (!tbody) return;
 
   const rows = tbody.getElementsByTagName("tr");
+
   for (let i = 0; i < rows.length; i++) {
     const rowText = rows[i].innerText.toLowerCase();
     rows[i].style.display = rowText.includes(filter) ? "" : "none";
@@ -234,7 +244,7 @@ function searchTable() {
 }
 
 /************************************************
- * STUDENT TABLE POPULATE
+ * STUDENT TABLE
  ************************************************/
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
@@ -243,10 +253,10 @@ function populateStudentTable(data) {
   (data.placedStudents || []).forEach(s => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${s["PROGRAMME NAME"] || ''}</td>
-      <td>${s["STUDENT NAME"] || ''}</td>
-      <td>${s["COMPANY NAME"] || ''}</td>
-      <td>${s.companyType || ''}</td>
+      <td>${s["PROGRAMME NAME"] || s.programme}</td>
+      <td>${s["STUDENT NAME"] || s.name}</td>
+      <td>${s["COMPANY NAME"] || s.company}</td>
+      <td>${s.companyType || s.type}</td>
     `;
     tbody.appendChild(tr);
   });

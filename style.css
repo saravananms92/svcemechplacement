@@ -193,7 +193,7 @@ h2 {
 .card span {
   display: block;
   margin-top: 12px;
-  font-size: 48px;            /* 👈 KPI number size */
+  font-size: 60px;            /* 👈 KPI number size */
   font-weight: 800;
   letter-spacing: 1px;
 }
@@ -979,6 +979,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

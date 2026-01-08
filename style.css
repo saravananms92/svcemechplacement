@@ -152,42 +152,53 @@ h2 {
 /* =====================================================
    KPI DASHBOARD – STUDENT PLACEMENT CARDS
 ===================================================== */
+/* =====================================================
+   KPI CARDS CONTAINER
+===================================================== */
 .cards {
   max-width: 1400px;
-  margin: 5px auto 10px;
+  margin: 5px auto 20px;
   padding: 10px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
 
+/* =====================================================
+   KPI CARD – FINAL PROFESSIONAL STYLE
+===================================================== */
 .card {
   background: linear-gradient(135deg, #00509e, #003f7f);
   color: #ffffff;
-  padding: 40px 28px;
+  padding: 36px 26px;
   text-align: center;
   border-radius: 14px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-weight: 700;
-  font-size: 18px;
+
+  /* LABEL TEXT */
+  font-size: 16px;            /* 👈 KPI label size */
+  font-weight: 600;
+  letter-spacing: 0.4px;
   line-height: 1.4;
-  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 150px;
+  position: relative;
 }
 
-/* Big number when JS injects <span> or <strong> */
-.card span,
-.card strong {
-  font-size: 40px;
-  font-weight: 800;
+.card strong,
+.card span {
+  display: block;
   margin-top: 12px;
+  font-size: 36px;            /* 👈 KPI number size */
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
-/* Decorative strip */
+/* Decorative top strip */
 .card::before {
   content: "";
   position: absolute;
@@ -202,6 +213,21 @@ h2 {
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 36px rgba(0,0,0,0.25);
+}
+
+/* =====================================================
+   KPI CARDS – MOBILE OPTIMIZATION
+===================================================== */
+@media (max-width: 768px) {
+  .card {
+    font-size: 15px;
+    padding: 30px 22px;
+  }
+
+  .card strong,
+  .card span {
+    font-size: 32px;
+  }
 }
 
 /* =====================================================
@@ -953,6 +979,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

@@ -29,51 +29,35 @@
 
 <!-- KPI CARDS : COMPANIES -->
 <h2>Company Statistics</h2>
-
-<div class="cards company-cards" id="dashboardContent" style="display:none;">
-  <div class="card company total-company">
-    Total Companies
-    <span id="totalCompanies">--</span>
-  </div>
-
-  <div class="card company core-company">
-    Core Companies
-    <span id="coreCompanies">--</span>
-  </div>
-
-  <div class="card company noncore-company">
-    Non-Core Companies
-    <span id="nonCoreCompanies">--</span>
-  </div>
+<div class="company-stats">
+  <p>Total Companies Visited: <span id="totalCompanies">--</span></p>
+  <p>Core Companies: <span id="coreCompanies">--</span></p>
+  <p>Non-Core Companies: <span id="nonCoreCompanies">--</span></p>
 </div>
-
-<!-- Loader -->
-<div id="loader" class="loader"></div>
-
-    <script>
+<script>
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&tqx=out:json")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substr(47).slice(0, -2));
     const rows = json.table.rows;
 
-    // Company stats
     document.getElementById("totalCompanies").innerText = rows[4].c[2].v;
     document.getElementById("coreCompanies").innerText  = rows[5].c[2].v;
     document.getElementById("nonCoreCompanies").innerText = rows[6].c[2].v;
 
-    // Last updated
     document.getElementById("lastUpdated").innerHTML =
-      `Data auto-synced from Google Sheet | Last updated:
-       <span>${rows[0].c[26].v}</span>`;
+      `Data auto-synced from Google Sheet | Last updated: ${rows[0].c[26].v}`;
 
-    // Loader handling
+    // ✅ Hide loader, show content
     document.getElementById("loader").style.display = "none";
-    document.getElementById("dashboardContent").style.display = "grid";
+    document.getElementById("dashboardContent").style.display = "block";
   })
-  .catch(err => {
-    console.error(err);
+  .catch(error => {
     document.getElementById("loader").style.display = "none";
+    document.getElementById("dashboardContent").innerHTML =
+      "<p style='color:red;text-align:center;'>Failed to load data</p>";
+    document.getElementById("dashboardContent").style.display = "block";
+    console.error(error);
   });
 </script>
 
@@ -492,6 +476,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

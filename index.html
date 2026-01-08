@@ -46,6 +46,16 @@
     <div class="card-title">Count of Non-Core Companies</div>
     <span id="nonCoreCompanies">--</span>
   </div>
+
+  <div class="card company highest-package">
+    <div class="card-title">Highest Package (LPA)</div>
+    <span id="highestPackage">--</span>
+  </div>
+  
+  <div class="card company average-package">
+    <div class="card-title">Average Package (LPA)</div>
+    <span id="averagePackage">--</span>
+  </div>
 </div>
 
    <script>
@@ -56,14 +66,18 @@
     const rows = json.table.rows;
 
     // Check if data exists
-    if(rows && rows.length >= 3){
+    if(rows && rows.length >= 5){
       document.getElementById("totalCompanies").innerText = rows[0].c[0]?.v ?? "0";
       document.getElementById("coreCompanies").innerText  = rows[1].c[0]?.v ?? "0";
-      document.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";
+      document.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";t.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";
+      document.getElementById("highestPackage").innerText = rows[3].c[0]?.v ?? "0";
+      document.getElementById("averagePackage").innerText = rows[4].c[0]?.v ?? "0";
     } else {
       document.getElementById("totalCompanies").innerText = "0";
       document.getElementById("coreCompanies").innerText = "0";
       document.getElementById("nonCoreCompanies").innerText = "0";
+      document.getElementById("highestPackage").innerText = "0";
+      document.getElementById("averagePackage").innerText = "0";
       console.warn("Company stats range empty or not found");
     }
   })
@@ -485,6 +499,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

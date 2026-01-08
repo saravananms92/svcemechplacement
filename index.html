@@ -59,30 +59,41 @@
 </div>
 
    <script>
-   fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substr(47).slice(0, -2));
     const rows = json.table.rows;
 
-    // Check if data exists
-    if(rows && rows.length >= 5){
-      document.getElementById("totalCompanies").innerText = rows[0].c[0]?.v ?? "0";
-      document.getElementById("coreCompanies").innerText  = rows[1].c[0]?.v ?? "0";
-      document.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";t.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";
-      document.getElementById("highestPackage").innerText = rows[3].c[0]?.v ?? "0";
-      document.getElementById("averagePackage").innerText = rows[4].c[0]?.v ?? "0";
+    if (rows && rows.length >= 5) {
+      document.getElementById("totalCompanies").innerText     = rows[0].c[0]?.v ?? "0";
+      document.getElementById("coreCompanies").innerText      = rows[1].c[0]?.v ?? "0";
+      document.getElementById("nonCoreCompanies").innerText   = rows[2].c[0]?.v ?? "0";
+      document.getElementById("highestPackage").innerText     = rows[3].c[0]?.v ?? "0";
+      document.getElementById("averagePackage").innerText     = rows[4].c[0]?.v ?? "0";
     } else {
-      document.getElementById("totalCompanies").innerText = "0";
-      document.getElementById("coreCompanies").innerText = "0";
-      document.getElementById("nonCoreCompanies").innerText = "0";
-      document.getElementById("highestPackage").innerText = "0";
-      document.getElementById("averagePackage").innerText = "0";
-      console.warn("Company stats range empty or not found");
+      setDefaultCompanyStats();
+      console.warn("Company stats range empty or insufficient data");
+    }
+
+    // ✅ Hide loader AFTER data loads
+    if (typeof chartsLoaded === "function") {
+      chartsLoaded();
     }
   })
-  .catch(err => console.error("Company stats fetch error:", err));
-  </script>
+  .catch(err => {
+    console.error("Company stats fetch error:", err);
+    setDefaultCompanyStats();
+  });
+
+function setDefaultCompanyStats() {
+  document.getElementById("totalCompanies").innerText = "0";
+  document.getElementById("coreCompanies").innerText = "0";
+  document.getElementById("nonCoreCompanies").innerText = "0";
+  document.getElementById("highestPackage").innerText = "0";
+  document.getElementById("averagePackage").innerText = "0";
+}
+   </script>
     
   <nav class="navbar">
   <div class="nav-container">
@@ -91,7 +102,7 @@
     </div>
 
     <ul class="nav-links">
-      <li><a href="#Overview">Overview</a></li>
+     <li><a href="#Overview">Overview</a></li>
       <li><a href="#Charts">Analytics</a></li>
       <li><a href="#Recruiters">Recruiters</a></li>
       <li><a href="#Placed Students">Placed Students</a></li>
@@ -499,6 +510,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

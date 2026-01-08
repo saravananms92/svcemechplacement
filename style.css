@@ -860,14 +860,15 @@ tbody tr:hover td {
   }
 }
 #lastUpdated {
-  color: #555;
+  color: #5c5a5a;
   font-size: 14px;
 }
 
 .disclaimer {
-  color: red;
+  color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

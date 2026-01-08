@@ -277,23 +277,6 @@ h2 {
     font-size: 32px;
   }
 }
-/* =====================================================
-   LOADER
-===================================================== */
-
-.loader {
-  width: 45px;
-  height: 45px;
-  border: 5px solid #ddd;
-  border-top: 5px solid #4387fd;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 30px auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 /* =====================================================
    RESPONSIVE TUNING
@@ -974,6 +957,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

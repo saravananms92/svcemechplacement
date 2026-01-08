@@ -27,8 +27,7 @@
     <div class="card" id="percentage">Placement %</div>
     </div>
 
-<!-- KPI CARDS : COMPANIES -->
-<!-- COMPANY STATISTICS -->
+<!-- KPI CARDS : COMPANIES STATISTICS>
 <h2>Company Statistics</h2>
 
 <div class="cards company-cards" id="companyDashboard">
@@ -52,7 +51,7 @@
 
 <!-- Loader (optional if fetching dynamically) -->
 <div id="loader" class="loader"></div>
-
+<script>
 // Fetch C5:C7
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
   .then(res => res.text())
@@ -490,6 +489,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

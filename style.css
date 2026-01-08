@@ -859,6 +859,16 @@ tbody tr:hover td {
     font-size: 16px;
   }
 }
+#lastUpdated {
+  color: #555;
+  font-size: 14px;
+}
+
+.disclaimer {
+  color: red;
+  font-size: 14px;
+}
+
 
 
 

@@ -212,7 +212,7 @@ h2 {
    COMPANY KPI CARDS
 ===================================================== */
 .company-cards {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 10px auto 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -957,6 +957,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

@@ -152,7 +152,6 @@ h2 {
 /* =====================================================
    KPI DASHBOARD – STUDENT PLACEMENT CARDS
 ===================================================== */
-
 .cards {
   max-width: 1400px;
   margin: 5px auto 10px;
@@ -171,7 +170,7 @@ h2 {
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 18px;
   line-height: 1.4;
   position: relative;
   display: flex;
@@ -183,7 +182,7 @@ h2 {
 /* Big number when JS injects <span> or <strong> */
 .card span,
 .card strong {
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 800;
   margin-top: 12px;
 }
@@ -207,9 +206,6 @@ h2 {
 
 /* =====================================================
    COMPANY STATISTICS – TEXT KPI STYLE
-===================================================== */
-/* =====================================================
-   COMPANY KPI CARDS
 ===================================================== */
 .company-cards {
   max-width: 1200px;
@@ -957,6 +953,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

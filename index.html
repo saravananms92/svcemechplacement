@@ -41,9 +41,9 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
     const json = JSON.parse(text.substr(47).slice(0, -2));
     const rows = json.table.rows;
 
-    document.getElementById("totalCompanies").innerText = rows[4].c[2].v;
-    document.getElementById("coreCompanies").innerText  = rows[5].c[2].v;
-    document.getElementById("nonCoreCompanies").innerText = rows[6].c[2].v;
+    document.getElementById("totalCompanies").innerText = rows[0].c[2].v;
+    document.getElementById("coreCompanies").innerText  = rows[1].c[2].v;
+    document.getElementById("nonCoreCompanies").innerText = rows[2].c[2].v;
 
     document.getElementById("lastUpdated").innerHTML =
       `Data auto-synced from Google Sheet | Last updated: ${rows[0].c[26].v}`;
@@ -476,6 +476,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

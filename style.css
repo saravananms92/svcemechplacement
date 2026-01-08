@@ -159,7 +159,7 @@ h2 {
   padding: 10px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
+  gap: 20px;
 }
 
 .card {
@@ -170,8 +170,8 @@ h2 {
   border-radius: 14px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 36px;
   line-height: 1.4;
   position: relative;
   display: flex;
@@ -957,6 +957,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

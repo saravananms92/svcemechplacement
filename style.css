@@ -155,7 +155,7 @@ h2 {
 
 .cards {
   max-width: 1400px;
-  margin: 5px auto 30px;
+  margin: 5px auto 10px;
   padding: 10px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -213,7 +213,7 @@ h2 {
 ===================================================== */
 .company-cards {
   max-width: 1200px;
-  margin: 10px auto 40px;
+  margin: 10px auto 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
@@ -957,6 +957,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

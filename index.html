@@ -100,6 +100,21 @@ function setDefaultCompanyStats() {
     📢 View Placement Circulars
   </a>
 </div>
+
+<button id="openInstructions" class="instruction-btn">
+  📌 Placement Drive – Instructions
+</button>
+
+<!-- Modal -->
+<div id="instructionModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe id="instructionFrame"></iframe>
+  </div>
+</div>
+
+<script src="modal.js"></script>
+
     
   <nav class="navbar">
   <div class="nav-container">
@@ -517,6 +532,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

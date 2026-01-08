@@ -156,7 +156,7 @@ h2 {
    KPI CARDS CONTAINER
 ===================================================== */
 .cards {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 5px auto 10px;
   padding: 10px 20px;
   display: grid;
@@ -979,6 +979,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

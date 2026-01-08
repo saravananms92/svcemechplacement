@@ -49,7 +49,8 @@
 </div>
 
  // Fetch C5:C7
-fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
+  <script>
+   fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substr(47).slice(0, -2));
@@ -68,7 +69,8 @@ fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3
     }
   })
   .catch(err => console.error("Company stats fetch error:", err));
-
+  </script>
+    
   <nav class="navbar">
   <div class="nav-container">
     <div class="nav-title">
@@ -484,6 +486,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

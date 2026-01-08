@@ -48,7 +48,27 @@
   </div>
 </div>
 
- 
+ // Fetch C5:C7
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
+  .then(res => res.text())
+  .then(text => {
+    const json = JSON.parse(text.substr(47).slice(0, -2));
+    const rows = json.table.rows;
+
+    // Check if data exists
+    if(rows && rows.length >= 3){
+      document.getElementById("totalCompanies").innerText = rows[0].c[0]?.v ?? "0";
+      document.getElementById("coreCompanies").innerText  = rows[1].c[0]?.v ?? "0";
+      document.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";
+    } else {
+      document.getElementById("totalCompanies").innerText = "0";
+      document.getElementById("coreCompanies").innerText = "0";
+      document.getElementById("nonCoreCompanies").innerText = "0";
+      console.warn("Company stats range empty or not found");
+    }
+  })
+  .catch(err => console.error("Company stats fetch error:", err));
+
   <nav class="navbar">
   <div class="nav-container">
     <div class="nav-title">
@@ -464,6 +484,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

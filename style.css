@@ -157,7 +157,7 @@ h2 {
 ===================================================== */
 .cards {
   max-width: 1400px;
-  margin: 5px auto 20px;
+  margin: 5px auto 10px;
   padding: 10px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -177,7 +177,7 @@ h2 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   /* LABEL TEXT */
-  font-size: 16px;            /* 👈 KPI label size */
+  font-size: 24px;            /* 👈 KPI label size */
   font-weight: 600;
   letter-spacing: 0.4px;
   line-height: 1.4;
@@ -193,7 +193,7 @@ h2 {
 .card span {
   display: block;
   margin-top: 12px;
-  font-size: 36px;            /* 👈 KPI number size */
+  font-size: 48px;            /* 👈 KPI number size */
   font-weight: 800;
   letter-spacing: 1px;
 }
@@ -979,6 +979,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

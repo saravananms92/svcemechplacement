@@ -864,10 +864,12 @@ tbody tr:hover td {
   font-size: 14px;
 }
 
-.disclaimer {
+.footer-bottom .disclaimer {
   color: #fc0303;
   font-size: 14px;
 }
+
+
 
 
 

@@ -35,27 +35,26 @@
   <p>Non-Core Companies: <span id="nonCoreCompanies">--</span></p>
 </div>
 <script>
-fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&tqx=out:json")
+// Fetch C5:C7
+fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C7&tqx=out:json")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substr(47).slice(0, -2));
     const rows = json.table.rows;
 
-    document.getElementById("totalCompanies").innerText = rows[0].c[0].v;
-    document.getElementById("coreCompanies").innerText  = rows[1].c[0].v;
-    document.getElementById("nonCoreCompanies").innerText = rows[2].c[0].v;
-
-    // ✅ Hide loader, show content
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("dashboardContent").style.display = "block";
+    // Check if data exists
+    if(rows && rows.length >= 3){
+      document.getElementById("totalCompanies").innerText = rows[0].c[0]?.v ?? "0";
+      document.getElementById("coreCompanies").innerText  = rows[1].c[0]?.v ?? "0";
+      document.getElementById("nonCoreCompanies").innerText = rows[2].c[0]?.v ?? "0";
+    } else {
+      document.getElementById("totalCompanies").innerText = "0";
+      document.getElementById("coreCompanies").innerText = "0";
+      document.getElementById("nonCoreCompanies").innerText = "0";
+      console.warn("Company stats range empty or not found");
+    }
   })
-  .catch(error => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("dashboardContent").innerHTML =
-      "<p style='color:red;text-align:center;'>Failed to load data</p>";
-    document.getElementById("dashboardContent").style.display = "block";
-    console.error(error);
-  });
+  .catch(err => console.error("Company stats fetch error:", err));
 </script>
 
   <nav class="navbar">
@@ -473,6 +472,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

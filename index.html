@@ -28,23 +28,26 @@
     </div>
 
 <!-- KPI CARDS : COMPANIES -->
+<!-- COMPANY STATISTICS -->
 <h2>Company Statistics</h2>
 
-<div class="cards company-cards">
+<div class="cards company-cards" id="companyDashboard">
+  
   <div class="card company total-company">
-    Total Companies
+    <div class="card-title">Total Companies Visited</div>
     <span id="totalCompanies">--</span>
   </div>
 
   <div class="card company core-company">
-    Core Companies
+    <div class="card-title">Core Companies</div>
     <span id="coreCompanies">--</span>
   </div>
 
   <div class="card company noncore-company">
-    Non-Core Companies
+    <div class="card-title">Non-Core Companies</div>
     <span id="nonCoreCompanies">--</span>
   </div>
+
 </div>
 
 <!-- Loader (optional if fetching dynamically) -->
@@ -487,6 +490,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

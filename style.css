@@ -277,6 +277,14 @@ h2 {
   background: linear-gradient(135deg, #dc3545, #ff6b6b);
 }
 
+.highest-package {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+.average-package {
+  background: linear-gradient(135deg, #6f42c1, #9a7fd1);
+}
+
 /* Hover effect */
 .company-cards .card:hover {
   transform: translateY(-6px);
@@ -979,6 +987,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

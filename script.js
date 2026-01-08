@@ -59,7 +59,7 @@ function updateKPIs(data) {
     `Total Students\n${data.totalStudents || 0}`;
 
   document.getElementById('opted').innerText =
-    `Students Opted for Placement\n${data.optedStudents || 0}`;
+    `Opted for Placement\n${data.optedStudents || 0}`;
 
   document.getElementById('placed').innerText =
     `Placed Students\n${data.placedCount || 0}`;
@@ -256,4 +256,5 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
 });
+
 

@@ -133,7 +133,7 @@ function setDefaultCompanyStats() {
     <div id="programmeChart" class="chart-box"></div>
     <div id="coreNonCoreChart" class="chart-box"></div>
   </div>
-    <button onclick="downloadChart('coreNonCoreChart','Programme-wise Analytics.jpg')">
+    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Analytics.jpg')">
   ⬇️
   </button>
     
@@ -167,7 +167,7 @@ function setDefaultCompanyStats() {
   <div id="companyStudentsChart" style="flex:3;"></div>
   <div id="companyLegend" style="flex:1;"></div>
 </div>
-<button onclick="downloadChart('companyStudentsChart','Company-wise Placement Analytics.jpg')">
+<button class="download-btn" onclick="downloadChart('companyStudentsChart','Company-wise Placement Analytics.jpg')">
   ⬇️
 </button>
 
@@ -177,7 +177,7 @@ function setDefaultCompanyStats() {
   <div class="charts">
     <div id="topPackageChart" class="chart-box"></div>
     </div>
-    <button onclick="downloadChart('topPackageChart','Top Five Highest Packages.jpg')">
+    <button class="download-btn" onclick="downloadChart('topPackageChart','Top Five Highest Packages.jpg')">
   ⬇️
   </button>
 
@@ -557,6 +557,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

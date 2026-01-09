@@ -41,7 +41,7 @@ async function fetchAndDrawCharts() {
     drawCoreNonCoreChart(data);
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
-    drawpopulateStudentTable(data);
+    populateStudentTable(data);
     
   } catch (err) {
     console.error('FETCH ERROR:', err);
@@ -209,6 +209,7 @@ function drawCompanyVsStudentsChart(data) {
     if (company && !isNaN(count)) {
       rows.push([company, count, count.toString()]);
     }
+    console.log("Company_Filter sample row:", data.Company_Filter[0]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -309,10 +310,4 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
-
-
-
-
-
-
 

@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+<!-- Loading Overlay -->
+<div id="loading">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Loading data and charts… Please wait.</p>
+  </div>
+</div>
+  
   <body>
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
@@ -18,7 +26,6 @@
   <img src="assets/college-emblem.png" class="logo right-logo" alt="college-emblem">
 </header>
 
-    
   <nav class="navbar">
   <div class="nav-container">
     <div class="nav-title">
@@ -36,20 +43,6 @@
     </ul>
   </div>
 </nav>
-
-<!-- Loading Overlay -->
-<div id="loading">
-  <div class="loader-box">
-    <div class="spinner"></div>
-    <p>Loading data and charts… Please wait.</p>
-  </div>
-</div>
-
-    <script>
-  window.onload = function () {
-    document.getElementById("loading").style.display = "none";
-  };
-    </script>
 
   <!-- KPI CARDS -->
   <h2 id="Overview">Placement Overview</h2>
@@ -568,9 +561,16 @@ fetch("gallery.json")
 </script>
 </div>
 </footer>
+
+    <script>
+  window.onload = function () {
+    document.getElementById("loading").style.display = "none";
+  };
+    </script>
 </body>
 </html>
   
+
 
 
 

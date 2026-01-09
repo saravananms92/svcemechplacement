@@ -148,6 +148,7 @@ function drawPlacementStatusChart(data) {
     ['Placed', data.placedCount || 0],
     ['Not Placed', (data.optedStudents || 0) - (data.placedCount || 0)]
   ];
+google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -173,6 +174,8 @@ function drawCompanyChart(data) {
 
   const rows = [['Company Type', 'Count']];
   Object.keys(map).forEach(k => rows.push([k, map[k]]));
+
+  google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -209,6 +212,7 @@ function drawProgrammeChart(data) {
     ]);
     i++;
   }
+google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -235,6 +239,7 @@ function drawCoreNonCoreChart(data) {
       data.coreNonCoreCount[p].NonCore
     ]);
   });
+google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -289,6 +294,7 @@ function drawCompanyVsStudentsChart(data) {
       `color: ${colors[i % colors.length]}`
     ]);
   });
+google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -352,6 +358,7 @@ function drawTopPackageChart(data) {
   data.topPackages.forEach((s, i) => {
     rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
   });
+google.visualization.events.addListener(chart, "ready", chartFinished);
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -409,6 +416,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

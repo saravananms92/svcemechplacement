@@ -1,3 +1,13 @@
+let chartsToLoad = 6;   // ← change this number if you have more charts
+
+function chartFinished() {
+  chartsToLoad--;
+
+  if (chartsToLoad === 0) {
+    document.getElementById("loader").style.display = "none";
+  }
+}
+
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -399,6 +409,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

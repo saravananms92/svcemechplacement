@@ -51,6 +51,44 @@ async function fetchAndDrawCharts() {
     );
   }
 }
+/*********downloadChart*****/
+function downloadChart(chartDivId, filename) {
+  const chartDiv = document.getElementById(chartDivId);
+  if (!chartDiv) {
+    alert('Chart not found');
+    return;
+  }
+
+  // Google Chart creates an <svg> → wrapped in <div>
+  const svg = chartDiv.getElementsByTagName('svg')[0];
+  if (!svg) {
+    alert('Chart SVG not ready');
+    return;
+  }
+
+  // Convert SVG → Canvas → JPEG
+  const svgData = new XMLSerializer().serializeToString(svg);
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const img = new Image();
+  img.onload = function () {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+
+    const jpegUrl = canvas.toDataURL('image/jpeg', 0.95);
+
+    const a = document.createElement('a');
+    a.href = jpegUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+}
 
 /************************************************
  * KPI CARDS
@@ -344,6 +382,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

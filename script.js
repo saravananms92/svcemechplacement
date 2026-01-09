@@ -198,12 +198,13 @@ function drawCompanyVsStudentsChart(data) {
   }
 
   // 🔹 Sort: Highest → Lowest
-  const sortedData = data.Company_Filter
-    .map(row => ({
-      company: row['Company Name'],
-      count: Number(row['Total students placed']) || 0
-    }))
-    .sort((a, b) => b.count - a.count);
+ const sortedData = data.Company_Filter
+  .map(row => ({
+    company: row['Company Name'],
+    count: Number(row['Total students placed']) || 0
+  }))
+  .filter(item => item.count > 0)   // 🚫 remove zero placements
+  .sort((a, b) => b.count - a.count);
 
   const colors = [
     '#0d6efd','#198754','#dc3545','#fd7e14',
@@ -343,6 +344,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

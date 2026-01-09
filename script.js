@@ -181,6 +181,58 @@ function drawCoreNonCoreChart(data) {
     bar: { groupWidth: '55%' }
   });
 }
+/************************************************
+ * COMPANY vs TOTAL STUDENTS PLACED
+ * Source: Company_Filter
+ * Column B → Company Name
+ * Column E → Total students placed
+ ************************************************/
+function drawCompanyVsStudentsChart(data) {
+  const container = document.getElementById('companyStudentsChart');
+  if (!container) return;
+
+  if (!data.companyFilter || data.companyFilter.length === 0) {
+    container.innerHTML = '<b>No company placement data available</b>';
+    return;
+  }
+
+  const rows = [
+    ['Company Name', 'Total Students Placed', { role: 'annotation' }]
+  ];
+
+  data.companyFilter.forEach(row => {
+    const company = row['Company Name'];                 // Column B
+    const count = Number(row['Total students placed']);  // Column E
+
+    if (company && !isNaN(count)) {
+      rows.push([company, count, count.toString()]);
+    }
+  });
+
+  const table = google.visualization.arrayToDataTable(rows);
+
+  const options = {
+    title: 'Company-wise Student Placements',
+    height: 420,
+    chartArea: { left: 80, top: 60, width: '70%', height: '60%' },
+    vAxis: {
+      title: 'Total Students Placed',
+      minValue: 0,
+      format: '0'
+    },
+    hAxis: {
+      title: 'Company Name',
+      slantedText: true,
+      slantedTextAngle: 45
+    },
+    legend: { position: 'none' },
+    annotations: { alwaysOutside: true },
+    colors: ['#0b5ed7']
+  };
+
+  new google.visualization.ColumnChart(container).draw(table, options);
+}
+
 
 /************************************************
  * TOP 5 HIGHEST PACKAGES
@@ -250,11 +302,12 @@ function populateStudentTable(data) {
  ************************************************/
 window.addEventListener('resize', () => {
   if (!dataGlobal) return;
-
   drawProgrammeChart(dataGlobal);
   drawTopPackageChart(dataGlobal);
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
+  drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 

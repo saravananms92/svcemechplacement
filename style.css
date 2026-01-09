@@ -151,32 +151,35 @@ h2 {
   background: #1565c0;
 }
 
-/* Instruction card styled like circular card */
-.instruction-card {
+/* Instruction button styled like Placement Circular card */
+.instruction-btn {
+  display: block;
   background: #ffffff;
   border-radius: 10px;
   padding: 16px;
+  margin: 25px auto;
+  max-width: 360px;
+
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: none;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e88e5;
+  text-align: left;
   cursor: pointer;
+
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.instruction-card:hover {
+.instruction-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-.instruction-card h4 {
-  margin-bottom: 8px;
-  color: #1e88e5;
-}
-
-.instruction-card p {
-  font-size: 14px;
-  color: #555;
-}
-
-.instruction-card span {
+/* Optional subtitle effect (matches circular feel) */
+.instruction-btn::after {
+  content: "View Instructions";
   display: inline-block;
   margin-top: 10px;
   padding: 6px 12px;
@@ -185,6 +188,7 @@ h2 {
   border-radius: 5px;
   font-size: 13px;
 }
+
 .modal {
   display: none;
   position: fixed;
@@ -1093,6 +1097,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

@@ -192,7 +192,8 @@ function drawCompanyVsStudentsChart(data) {
   const container = document.getElementById('companyStudentsChart');
   if (!container) return;
 
-  if (!data.companyFilter || data.companyFilter.length === 0) {
+  if (!data.Company_Filter || data.Company_Filter.length === 0)
+ {
     container.innerHTML = '<b>No company placement data available</b>';
     return;
   }
@@ -201,7 +202,7 @@ function drawCompanyVsStudentsChart(data) {
     ['Company Name', 'Total Students Placed', { role: 'annotation' }]
   ];
 
-  data.companyFilter.forEach(row => {
+  data.Company_Filter.forEach(row => {
     const company = row['Company Name'];                 // Column B
     const count = Number(row['Total students placed']);  // Column E
 
@@ -308,6 +309,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

@@ -164,6 +164,10 @@ function setDefaultCompanyStats() {
   <div id="companyStudentsChart" style="flex:3;"></div>
   <div id="companyLegend" style="flex:1;"></div>
 </div>
+<button onclick="downloadChart('companyStudentsChart','company_placements.jpg')">
+  ⬇ Download Company Chart (JPEG)
+</button>
+
     
   <!-- TOP PACKAGES -->
   <h2>Top Five Highest Packages</h2>
@@ -547,6 +551,7 @@ fetch("gallery.json")
 </body>
 </html>
   
+
 
 
 

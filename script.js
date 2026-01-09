@@ -51,6 +51,23 @@ async function fetchAndDrawCharts() {
     );
   }
 }
+
+function hideLoading() {
+  document.getElementById("loaderOverlay").style.display = "none";
+}
+
+// Example fetch (replace with your code)
+fetch("your-data-url.json")
+  .then(res => res.json())
+  .then(data => {
+    createCharts(data); // your chart function
+    hideLoading();      // hide only after charts ready
+  })
+  .catch(err => {
+    console.error(err);
+    hideLoading(); // hide anyway on error
+  });
+
 /*********downloadChart*****/
 function downloadChart(chartDivId, filename) {
   const chartDiv = document.getElementById(chartDivId);
@@ -382,6 +399,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

@@ -1,22 +1,16 @@
-const modal = document.getElementById("instructionModal");
-const btn = document.getElementById("openInstructions");
-const closeBtn = document.querySelector(".close");
-const frame = document.getElementById("instructionFrame");
-
-btn.onclick = () => {
-  frame.src = "instructions.html";
-  modal.style.display = "block";
+document.getElementById("openInstructions").onclick = () => {
+  document.getElementById("instructionFrame").src = "instructions.html";
+  document.getElementById("instructionModal").style.display = "block";
 };
 
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-  frame.src = "";
+document.querySelector(".close").onclick = () => {
+  document.getElementById("instructionModal").style.display = "none";
+  document.getElementById("instructionFrame").src = "";
 };
 
 window.onclick = (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-    frame.src = "";
+  if (e.target.id === "instructionModal") {
+    document.getElementById("instructionModal").style.display = "none";
+    document.getElementById("instructionFrame").src = "";
   }
 };
-

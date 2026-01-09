@@ -799,7 +799,7 @@ tbody tr:hover td {
 ===================================================== */
 
 .forms-section {
-  padding: 60px 20px;
+  padding: 20px 20px;
   background: linear-gradient(135deg, #f8fafc, #eef3f9);
 }
 
@@ -869,7 +869,7 @@ tbody tr:hover td {
 ===================================================== */
 .forms-update-note {
   text-align: center;
-  margin-top: 28px;
+  margin-top: 20px;
   font-size: 13px;
   color: #64748b;
   font-style: italic;
@@ -897,7 +897,7 @@ tbody tr:hover td {
 .footer-box {
   flex: 1 1 23%;                 /* 4 cards per row approx */
   min-width: 220px;              /* prevent shrinking too small */
-  padding: 22px;
+  padding: 20px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
@@ -1069,4 +1069,3 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
-

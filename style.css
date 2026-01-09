@@ -151,46 +151,8 @@ h2 {
   background: #1565c0;
 }
 
-/* Instruction button styled like Placement Circular card */
 /* Instruction Card – same style as Placement Circulars */
-.instruction-card {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 360px;
-  margin: 25px auto;
-}
-
-.instruction-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
-
-.instruction-card h4 {
-  margin-bottom: 8px;
-  color: #1e88e5;
-  font-size: 16px;
-}
-
-.instruction-card p {
-  font-size: 14px;
-  color: #555;
-}
-
-.instruction-card span {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 6px 12px;
-  background: #1e88e5;
-  color: #fff;
-  border-radius: 5px;
-  font-size: 13px;
-}
-
-/* Modal (unchanged – working) */
+/* Modal*/
 .modal {
   display: none;
   position: fixed;
@@ -1123,6 +1085,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

@@ -41,6 +41,7 @@ async function fetchAndDrawCharts() {
     drawCoreNonCoreChart(data);
     drawTopPackageChart(data);
     populateStudentTable(data);
+    drawCompanyVsStudentsChart(data);
 
   } catch (err) {
     console.error('FETCH ERROR:', err);
@@ -233,7 +234,6 @@ function drawCompanyVsStudentsChart(data) {
   new google.visualization.ColumnChart(container).draw(table, options);
 }
 
-
 /************************************************
  * TOP 5 HIGHEST PACKAGES
  ************************************************/
@@ -308,6 +308,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

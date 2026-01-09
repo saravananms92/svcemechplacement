@@ -192,48 +192,41 @@ function drawCompanyVsStudentsChart(data) {
   const container = document.getElementById('companyStudentsChart');
   if (!container) return;
 
-  if (!data.Company_Filter || data.Company_Filter.length === 0)
- {
+  if (!data.Company_Filter || data.Company_Filter.length === 0) {
     container.innerHTML = '<b>No company placement data available</b>';
     return;
   }
+
+  console.log("Company_Filter sample row:", data.Company_Filter[0]);
 
   const rows = [
     ['Company Name', 'Total Students Placed', { role: 'annotation' }]
   ];
 
   data.Company_Filter.forEach(row => {
-  const company = row['Company Name'];
-  const count = Number(row['Total students placed']);
+    const company =
+      row['Company Name'] ||
+      row['Company'];
 
-    if (company && !isNaN(count)) {
+    const count =
+      Number(row['Total students placed']) ||
+      Number(row['Total Students']);
+
+    if (company && count > 0) {
       rows.push([company, count, count.toString()]);
     }
-    console.log("Company_Filter sample row:", data.Company_Filter[0]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  const options = {
+  new google.visualization.ColumnChart(container).draw(table, {
     title: 'Company-wise Student Placements',
     height: 420,
     chartArea: { left: 80, top: 60, width: '70%', height: '60%' },
-    vAxis: {
-      title: 'Total Students Placed',
-      minValue: 0,
-      format: '0'
-    },
-    hAxis: {
-      title: 'Company Name',
-      slantedText: true,
-      slantedTextAngle: 45
-    },
-    legend: { position: 'none' },
-    annotations: { alwaysOutside: true },
-    colors: ['#0b5ed7']
-  };
-
-  new google.visualization.ColumnChart(container).draw(table, options);
+    vAxis: { title: 'Total Students Placed', minValue: 0 },
+    hAxis: { slantedText: true, slantedTextAngle: 45 },
+    legend: { position: 'none' }
+  });
 }
 
 /************************************************
@@ -257,7 +250,7 @@ function drawTopPackageChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.ColumnChart(container).draw(table, {
-    height: 450,
+    height: 400,
     chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
@@ -310,5 +303,6 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 

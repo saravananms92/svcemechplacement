@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,15 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+<!-- Loading Overlay -->
+<div id="loading">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Loading data and charts… Please wait.</p>
+  </div>
+</div>
   
   <body>
-
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -554,23 +561,12 @@ fetch("gallery.json")
   </p>
 </script>
 </div>
-  </footer>
+</footer>
+
+    <script>
+  window.onload = function () {
+    document.getElementById("loading").style.display = "none";
+  };
+    </script>
 </body>
 </html>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

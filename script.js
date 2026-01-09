@@ -203,8 +203,8 @@ function drawCompanyVsStudentsChart(data) {
   ];
 
   data.Company_Filter.forEach(row => {
-    const company = row['Company Name'];                 // Column B
-    const count = Number(row['Total students placed']);  // Column E
+  const company = row['Company Name'];
+  const count = Number(row['Total students placed']);
 
     if (company && !isNaN(count)) {
       rows.push([company, count, count.toString()]);
@@ -310,4 +310,5 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 

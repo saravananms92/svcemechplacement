@@ -39,10 +39,10 @@ async function fetchAndDrawCharts() {
     drawCompanyChart(data);
     drawProgrammeChart(data);
     drawCoreNonCoreChart(data);
+    drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
     populateStudentTable(data);
-    drawCompanyVsStudentsChart(data);
-
+    
   } catch (err) {
     console.error('FETCH ERROR:', err);
     document.body.insertAdjacentHTML(
@@ -308,6 +308,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

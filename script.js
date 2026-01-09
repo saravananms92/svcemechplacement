@@ -197,37 +197,77 @@ function drawCompanyVsStudentsChart(data) {
     return;
   }
 
-  console.log("Company_Filter sample row:", data.Company_Filter[0]);
+  // 🔹 Sort: Highest → Lowest
+  const sortedData = data.Company_Filter
+    .map(row => ({
+      company: row['Company Name'],
+      count: Number(row['Total students placed']) || 0
+    }))
+    .sort((a, b) => b.count - a.count);
 
-  const rows = [
-    ['Company Name', 'Total Students Placed', { role: 'annotation' }]
+  const colors = [
+    '#0d6efd','#198754','#dc3545','#fd7e14',
+    '#6f42c1','#20c997','#0dcaf0',
+    '#6610f2','#adb5bd','#212529'
   ];
 
-  data.Company_Filter.forEach(row => {
-    const company =
-      row['Company Name'] ||
-      row['Company'];
+  const rows = [
+    ['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]
+  ];
 
-    const count =
-      Number(row['Total students placed']) ||
-      Number(row['Total Students']);
-
-    if (company && count > 0) {
-      rows.push([company, count, count.toString()]);
-    }
+  sortedData.forEach((item, i) => {
+    rows.push([
+      item.company,
+      item.count,
+      item.count.toString(),
+      `color: ${colors[i % colors.length]}`
+    ]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  new google.visualization.ColumnChart(container).draw(table, {
+  const options = {
     title: 'Company-wise Student Placements',
-    height: 420,
-    chartArea: { left: 80, top: 60, width: '70%', height: '60%' },
-    vAxis: { title: 'Total Students Placed', minValue: 0 },
-    hAxis: { slantedText: true, slantedTextAngle: 45 },
-    legend: { position: 'none' }
+    height: 450,
+    chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
+    vAxis: {
+      title: 'Total Students Placed',
+      minValue: 0
+    },
+    hAxis: {
+      title: 'Company Name',
+      slantedText: true,
+      slantedTextAngle: 45
+    },
+    legend: { position: 'none' }, // handled separately
+    annotations: { alwaysOutside: true }
+  };
+
+  new google.visualization.ColumnChart(container).draw(table, options);
+
+  // 🔹 Draw custom legend
+  drawCompanyLegend(sortedData, colors);
+}
+function drawCompanyLegend(data, colors) {
+  const legendContainer = document.getElementById('companyLegend');
+  if (!legendContainer) return;
+
+  legendContainer.innerHTML = '<b>Companies</b><br>';
+
+  data.forEach((item, i) => {
+    const color = colors[i % colors.length];
+    legendContainer.innerHTML += `
+      <div style="display:flex;align-items:center;margin-bottom:6px">
+        <span style="width:14px;height:14px;
+                     background:${color};
+                     display:inline-block;
+                     margin-right:8px"></span>
+        <span style="font-size:13px">${item.company}</span>
+      </div>
+    `;
   });
 }
+
 
 /************************************************
  * TOP 5 HIGHEST PACKAGES
@@ -303,6 +343,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

@@ -595,6 +595,21 @@ tbody tr:hover td {
   color: #333;
 }
 
+/****charts download button*****/
+.download-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #0d6efd;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.download-btn:hover {
+  text-decoration: underline;
+}
+
 /* =====================================================
    TESTIMONIALS SECTION
 ===================================================== */
@@ -1069,3 +1084,4 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+

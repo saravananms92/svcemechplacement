@@ -41,7 +41,7 @@ async function fetchAndDrawCharts() {
     drawCoreNonCoreChart(data);
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
-    populateStudentTable(data);
+    drawpopulateStudentTable(data);
     
   } catch (err) {
     console.error('FETCH ERROR:', err);
@@ -309,6 +309,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

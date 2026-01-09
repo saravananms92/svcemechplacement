@@ -246,3 +246,4 @@ window.addEventListener('resize', () => {
   drawCompanyVsStudentsChart(dataGlobal);
   drawTopPackageChart(dataGlobal);
 });
+

@@ -125,6 +125,13 @@ h2 {
   text-align: center;
   color: #002244;
 }
+
+h3 {
+  font-size: 0.8rem;
+  margin: 20px 0 12px;
+  text-align: center;
+  color: #002244;
+}
 /***********************Circular***********/
 .circular-btn-container {
   text-align: center;
@@ -465,7 +472,7 @@ h2 {
     font-size: 16px;
   }
 
-  .company-stats span {
+   .company-stats span {
     font-size: 22px;
   }
 }
@@ -1120,5 +1127,6 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 

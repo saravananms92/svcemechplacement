@@ -189,7 +189,42 @@ function setDefaultCompanyStats() {
   ⬇️
   </button>
 
-  <div class="table-controls">
+      <!-- TABLE -->
+<h2 id="Placed Students">Details of Placed Students</h2>
+
+<h3>Student Report (Access given only to Admins)</h3>
+<input type="text" id="regNo" placeholder="Enter Register Number">
+<button onclick="downloadReport()">Download Report</button>
+
+<script>
+function downloadReport() {
+  const regInput = document.getElementById("regNo");
+  const reg = regInput.value.trim();
+  if (!reg) {
+    alert("Enter Register Number");
+    return;
+  }
+
+  const pw = prompt("Enter Admin Password:");
+  if (pw !== "1234") {
+    alert("Access denied");
+    return;
+  }
+
+  alert("Close the tab after the file download.");
+
+  const url =
+    "https://script.google.com/macros/s/AKfycbx2PWHsy8Zh_aD9d-67n_0q7xpnF-MznuFB4otxb85DkRTufgAKGKgLTiI2TqGbi4BIvg/exec"
+    + "?reg=" + encodeURIComponent(reg)
+    + "&key=1234";
+
+  window.open(url, "_blank");
+
+  regInput.value = "";
+}
+</script>
+   
+<div class="table-controls">
   <input
     type="text"
     id="studentSearch"
@@ -197,9 +232,7 @@ function setDefaultCompanyStats() {
     onkeyup="searchTable()"
   >
 </div>
-
-    <!-- TABLE -->
-<h2 id="Placed Students">Details of Placed Students</h2>
+    
 <table id="studentTableMain">
   <thead>
     <tr>
@@ -570,4 +603,5 @@ fetch("gallery.json")
     </script>
 </body>
 </html>
+
 

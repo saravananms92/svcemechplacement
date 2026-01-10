@@ -191,9 +191,9 @@ function setDefaultCompanyStats() {
 <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
 <h3>Student Report (Access given only to Admins)</h3>
-<input type="text" id="regNo" placeholder="Enter Register Number">
-<button onclick="downloadReport()">Download Report</button>
-
+<h3><input type="text" id="regNo" placeholder="Enter Register Number"></h3>
+<h3><button onclick="downloadReport()">Download Report</button></h3>
+    
 <script>
 function downloadReport() {
   const regInput = document.getElementById("regNo");
@@ -600,6 +600,7 @@ fetch("gallery.json")
     </script>
 </body>
 </html>
+
 
 
 

@@ -152,7 +152,7 @@ h3 {
 .circular-btn:hover {
   background: linear-gradient(135deg, #1565c0, #1e88e5);
 }
-.circulars-container {
+.circular-container {
   max-width: 900px;
   margin: 20px auto;
   display: grid;
@@ -160,6 +160,11 @@ h3 {
   gap: 20px;
   padding: 10px;
   justify-items: center; /* ⭐ KEY LINE: centers cards */
+}
+.circular-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 30px;
 }
 
 .circular-card {
@@ -1130,6 +1135,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

@@ -159,6 +159,7 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   padding: 10px;
+  justify-items: center; /* ⭐ KEY LINE: centers cards */
 }
 
 .circular-card {
@@ -166,6 +167,8 @@ h3 {
   border-radius: 10px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 320px;
 }
 
 .circular-card h4 {
@@ -1127,6 +1130,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

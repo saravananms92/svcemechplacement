@@ -245,9 +245,12 @@ function drawCompanyVsStudentsChart(data) {
   .sort((a, b) => b.count - a.count);
 
   const colors = [
-    '#0d6efd','#198754','#dc3545','#fd7e14',
-    '#6f42c1','#20c997','#0dcaf0',
-    '#6610f2','#adb5bd','#212529'
+  '#0d6efd','#198754','#dc3545','#fd7e14','#6f42c1',
+  '#20c997','#0dcaf0','#6610f2','#adb5bd','#212529',
+  '#0b5ed7','#157347','#bb2d3b','#e8590c','#5c2d91',
+  '#74c0fc','#63e6be','#ffd43b','#ffa8a8','#d0bfff',
+  '#2fb344','#fab005','#f03e3e','#1098ad','#7950f2',
+  '#f8f9fa','#e9ecef','#dee2e6','#ced4da','#495057'
   ];
 
   const rows = [
@@ -382,6 +385,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

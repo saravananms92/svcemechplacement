@@ -38,5 +38,36 @@
   </div>
 </nav>
   
-  
-<h2 style="text-align:center;">📄 Official Placement Circulars</h2>
+ <h2 class="section-title">Gallery</h2>
+
+<div class="gallery-wrapper">
+  <div class="slider-track" id="gallerySlider"></div>
+</div>
+ 
+<script>
+fetch("gallery.json")
+  .then(res => res.json())
+  .then(data => {
+    const track = document.getElementById("gallerySlider");
+
+    function createSlides() {
+      data.forEach(item => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
+
+        const img = document.createElement("img");
+        img.src = item.image;   // ✅ FIX HERE
+
+        const caption = document.createElement("p");
+        caption.textContent = item.description;
+
+        slide.appendChild(img);
+        slide.appendChild(caption);
+        track.appendChild(slide);
+      });
+    }
+
+    createSlides();
+    createSlides(); // infinite scroll
+  });
+</script>

@@ -4,12 +4,10 @@
 google.charts.load('current', { packages: ['corechart'] });
 google.charts.setOnLoadCallback(init);
 
-const DATA_URL =
-  'https://script.google.com/macros/s/AKfycbwEHSGUSxq1FIKD2nby0kPBWxJ2u12yuRrVYPxW5O-CaTJ51KSVu2wx4UHh6rS5tUEn/exec';
-
 /************************************************
- * GLOBAL DATA
+ * GLOBAL VARIABLES
  ************************************************/
+const DATA_URL = 'https://script.google.com/macros/s/AKfycbxpK-mCvnnjvKx7kYT8wGWaPyqOx_ky2SvHunhLzD5gbzv6fGy3QsZUmB6HdpvvN4LH/exec'; // <-- Replace with your deployed web app URL
 let dataGlobal = null;
 
 /************************************************
@@ -20,13 +18,13 @@ function init() {
 }
 
 /************************************************
- * FETCH CONTROLLER
+ * FETCH DATA AND DRAW ALL CHARTS
  ************************************************/
 async function fetchAndDrawCharts() {
   try {
-    console.log('Fetching data...');
+    console.log('Fetching placement data...');
 
-    const response = await fetch(DATA_URL);
+    const response = await fetch(DATA_URL, { mode: 'cors' });
     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
     const data = await response.json();
@@ -42,7 +40,7 @@ async function fetchAndDrawCharts() {
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
     populateStudentTable(data);
-    
+
   } catch (err) {
     console.error('FETCH ERROR:', err);
     document.body.insertAdjacentHTML(
@@ -51,44 +49,6 @@ async function fetchAndDrawCharts() {
     );
   }
 }
-/*********downloadChart*****/
-function downloadChart(chartDivId, filename) {
-  const chartDiv = document.getElementById(chartDivId);
-  if (!chartDiv) {
-    alert('Chart not found');
-    return;
-  }
-
-  // Google Chart creates an <svg> → wrapped in <div>
-  const svg = chartDiv.getElementsByTagName('svg')[0];
-  if (!svg) {
-    alert('Chart SVG not ready');
-    return;
-  }
-
-  // Convert SVG → Canvas → JPEG
-  const svgData = new XMLSerializer().serializeToString(svg);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  const img = new Image();
-  img.onload = function () {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-
-    const jpegUrl = canvas.toDataURL('image/jpeg', 0.95);
-
-    const a = document.createElement('a');
-    a.href = jpegUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
-  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
-}
 
 /************************************************
  * KPI CARDS
@@ -96,27 +56,23 @@ function downloadChart(chartDivId, filename) {
 function updateKPIs(data) {
   document.getElementById('total').innerText =
     `Total Students\n${data.totalStudents || 0}`;
-
   document.getElementById('opted').innerText =
     `Opted for Placement\n${data.optedStudents || 0}`;
-
   document.getElementById('eligible').innerText =
     `Eligible Students\n${data.eligibleStudents || 0}`;
-
-    document.getElementById('placed').innerText =
+  document.getElementById('placed').innerText =
     `Placed Students\n${data.placedCount || 0}`;
 
   const percent =
     data.optedStudents > 0
       ? ((data.placedCount / data.optedStudents) * 100).toFixed(1)
       : 0;
-
   document.getElementById('percentage').innerText =
     `Placement %\n${percent}%`;
 }
 
 /************************************************
- * PLACEMENT STATUS PIE
+ * PLACEMENT STATUS PIE CHART
  ************************************************/
 function drawPlacementStatusChart(data) {
   const rows = [
@@ -137,7 +93,7 @@ function drawPlacementStatusChart(data) {
 }
 
 /************************************************
- * COMPANY TYPE PIE
+ * COMPANY TYPE PIE CHART
  ************************************************/
 function drawCompanyChart(data) {
   const map = {};
@@ -162,36 +118,29 @@ function drawCompanyChart(data) {
 }
 
 /************************************************
- * PROGRAMME-WISE PLACEMENT (VERTICAL)
+ * PROGRAMME-WISE PLACEMENT (VERTICAL BAR)
  ************************************************/
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
-
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
     container.innerHTML = '<b>No Programme data available</b>';
     return;
   }
 
   const colors = ['#0aa1d8', '#9c312c'];
-
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
-  let i = 0;
 
-  for (let p in data.programmeCount) {
-    rows.push([
-      p,
-      Number(data.programmeCount[p]) || 0,
-      colors[i % colors.length]
-    ]);
+  let i = 0;
+  for (const p in data.programmeCount) {
+    rows.push([p, Number(data.programmeCount[p]) || 0, colors[i % colors.length]]);
     i++;
   }
 
   const table = google.visualization.arrayToDataTable(rows);
-
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-        vAxis: { title: 'Placed Students', minValue: 0 },
+    vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
   });
 }
@@ -205,11 +154,7 @@ function drawCoreNonCoreChart(data) {
 
   const rows = [['Programme', 'Core', 'Non-Core']];
   Object.keys(data.coreNonCoreCount).forEach(p => {
-    rows.push([
-      p,
-      data.coreNonCoreCount[p].Core,
-      data.coreNonCoreCount[p].NonCore
-    ]);
+    rows.push([p, data.coreNonCoreCount[p].Core, data.coreNonCoreCount[p].NonCore]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -223,11 +168,9 @@ function drawCoreNonCoreChart(data) {
     bar: { groupWidth: '55%' }
   });
 }
+
 /************************************************
- * COMPANY vs TOTAL STUDENTS PLACED
- * Source: Company_Filter
- * Column B → Company Name
- * Column E → Total students placed
+ * COMPANY vs STUDENTS PLACED
  ************************************************/
 function drawCompanyVsStudentsChart(data) {
   const container = document.getElementById('companyStudentsChart');
@@ -238,35 +181,22 @@ function drawCompanyVsStudentsChart(data) {
     return;
   }
 
-  // 🔹 Sort: Highest → Lowest
- const sortedData = data.Company_Filter
-  .map(row => ({
-    company: row['Company Name'],
-    count: Number(row['Total students placed']) || 0
-  }))
-  .filter(item => item.count > 0)   // 🚫 remove zero placements
-  .sort((a, b) => b.count - a.count);
+  const sortedData = data.Company_Filter
+    .map(row => ({
+      company: row['Company Name'],
+      count: Number(row['Total students placed']) || 0
+    }))
+    .filter(item => item.count > 0)
+    .sort((a, b) => b.count - a.count);
 
   const colors = [
-  '#0d6efd','#198754','#dc3545','#fd7e14','#6f42c1',
-  '#20c997','#0dcaf0','#6610f2','#adb5bd','#212529',
-  '#0b5ed7','#157347','#bb2d3b','#e8590c','#5c2d91',
-  '#74c0fc','#63e6be','#ffd43b','#ffa8a8','#d0bfff',
-  '#2fb344','#fab005','#f03e3e','#1098ad','#7950f2',
-  '#f8f9fa','#e9ecef','#dee2e6','#ced4da','#495057'
+    '#0d6efd','#198754','#dc3545','#fd7e14','#6f42c1',
+    '#20c997','#0dcaf0','#6610f2','#adb5bd','#212529'
   ];
 
-  const rows = [
-    ['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]
-  ];
-
+  const rows = [['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]];
   sortedData.forEach((item, i) => {
-    rows.push([
-      item.company,
-      item.count,
-      item.count.toString(),
-      `color: ${colors[i % colors.length]}`
-    ]);
+    rows.push([item.company, item.count, item.count.toString(), `color: ${colors[i % colors.length]}`]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -275,59 +205,47 @@ function drawCompanyVsStudentsChart(data) {
     title: 'Company-wise Student Placements',
     height: 450,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
-    vAxis: {
-      title: 'Total Students Placed',
-      minValue: 0
-    },
-    hAxis: {
-      title: 'Company Name',
-      slantedText: true,
-      slantedTextAngle: 45
-    },
-    legend: { position: 'none' }, // handled separately
+    vAxis: { title: 'Total Students Placed', minValue: 0 },
+    hAxis: { title: 'Company Name', slantedText: true, slantedTextAngle: 45 },
+    legend: { position: 'none' },
     annotations: { alwaysOutside: true }
   };
 
   new google.visualization.ColumnChart(container).draw(table, options);
-
-  // 🔹 Draw custom legend
   drawCompanyLegend(sortedData, colors);
 }
+
+/************************************************
+ * COMPANY LEGEND
+ ************************************************/
 function drawCompanyLegend(data, colors) {
   const legendContainer = document.getElementById('companyLegend');
   if (!legendContainer) return;
 
   legendContainer.innerHTML = '<b>Companies</b><br>';
-
   data.forEach((item, i) => {
     const color = colors[i % colors.length];
     legendContainer.innerHTML += `
       <div style="display:flex;align-items:center;margin-bottom:6px">
-        <span style="width:14px;height:14px;
-                     background:${color};
-                     display:inline-block;
-                     margin-right:8px"></span>
+        <span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:8px"></span>
         <span style="font-size:13px">${item.company}</span>
       </div>
     `;
   });
 }
 
-
 /************************************************
  * TOP 5 HIGHEST PACKAGES
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
-
   if (!data.topPackages || data.topPackages.length === 0) {
     container.innerHTML = '<b>No package data available</b>';
     return;
   }
 
   const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
-
-  const rows = [['Student','Package (LPA)',{ role: 'annotation' },{ role: 'style' }]];
+  const rows = [['Student','Package',{ role: 'annotation' },{ role: 'style' }]];
   data.topPackages.forEach((s, i) => {
     rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
   });
@@ -343,19 +261,19 @@ function drawTopPackageChart(data) {
   });
 }
 
+/************************************************
+ * SEARCH STUDENTS
+ ************************************************/
 function searchTable() {
   const input = document.getElementById("studentSearch");
   const filter = input.value.toLowerCase();
-
-  const tbody = document.getElementById("studentTable"); // Correct reference
+  const tbody = document.getElementById("studentTable");
   if (!tbody) return;
 
-  const rows = tbody.getElementsByTagName("tr");
-
-  for (let i = 0; i < rows.length; i++) {
-    const rowText = rows[i].innerText.toLowerCase();
-    rows[i].style.display = rowText.includes(filter) ? "" : "none";
-  }
+  Array.from(tbody.getElementsByTagName("tr")).forEach(row => {
+    const rowText = row.innerText.toLowerCase();
+    row.style.display = rowText.includes(filter) ? "" : "none";
+  });
 }
 
 /************************************************
@@ -363,8 +281,9 @@ function searchTable() {
  ************************************************/
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
-  tbody.innerHTML = '';
+  if (!tbody) return;
 
+  tbody.innerHTML = '';
   (data.placedStudents || []).forEach(s => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -378,7 +297,7 @@ function populateStudentTable(data) {
 }
 
 /************************************************
- * RESPONSIVE REDRAW
+ * RESPONSIVE REDRAW ON WINDOW RESIZE
  ************************************************/
 window.addEventListener('resize', () => {
   if (!dataGlobal) return;
@@ -388,10 +307,3 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
-
-
-
-
-
-
-

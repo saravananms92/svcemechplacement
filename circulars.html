@@ -2,101 +2,208 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SVCE MECH Placement Overview</title>
+  <title>SVCE MECH | Placement Circulars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main Styles -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google Charts (if needed later) -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <style>
+    /* ==============================
+       CIRCULAR PAGE STYLES
+       ============================== */
+
+    h2 {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+
+    .circular-container {
+      max-width: 950px;
+      margin: 20px auto 40px;
+      padding: 0 15px;
+    }
+
+    .circular-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      background: #f9fbff;
+      border-left: 6px solid #0d6efd;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .company-list {
+      flex: 1;
+    }
+
+    .company-list p {
+      margin: 4px 0;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .circular-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 130px;
+    }
+
+    .circular-actions a {
+      text-decoration: none;
+      padding: 7px 12px;
+      background: #0d6efd;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 13px;
+      text-align: center;
+      transition: background 0.2s ease;
+    }
+
+    .circular-actions a:hover {
+      background: #084298;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .circular-row {
+        flex-direction: column;
+      }
+
+      .circular-actions {
+        flex-direction: row;
+      }
+    }
+  </style>
 </head>
 
-  <body>
+<body>
+
+  <!-- HEADER -->
   <header class="svce-header">
-  <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
-  
-  <div class="header-text">
-    <h1>Department of Mechanical Engineering</h1>
-    <p>Live Placement Dashboard for SVCE Mechanical Engineering batch 2022–26 - Analytics, Recruiters, and Placement Success Statistics</p>
-  </div>
-  
-  <img src="assets/college-emblem.png" class="logo right-logo" alt="college-emblem">
-</header>
+    <img src="assets/college-text-logo.png" class="logo left-logo" alt="College Logo">
 
+    <div class="header-text">
+      <h1>Department of Mechanical Engineering</h1>
+      <p>
+        Live Placement Dashboard for SVCE Mechanical Engineering Batch 2022–2026
+      </p>
+    </div>
+
+    <img src="assets/college-emblem.png" class="logo right-logo" alt="College Emblem">
+  </header>
+
+  <!-- NAVIGATION -->
   <nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-title">
-      BATCH 2022-2026
+    <div class="nav-container">
+      <div class="nav-title">BATCH 2022–2026</div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="companies.html">Companies</a></li>
+        <li><a href="circulars.html" class="active">Circulars</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="forms.html">Forms</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- TITLE -->
+  <h2>📄 Official Placement Circulars</h2>
+
+  <!-- CIRCULAR LIST -->
+  <div class="circular-container">
+
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Modulus Housing Pvt. Ltd.</p>
+        <p>Newgen Software Technologies Pvt. Ltd.</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/newgen.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/newgen.pdf" target="_blank">Download PDF</a>
+      </div>
     </div>
 
-    <ul class="nav-links">
-     <li><a href="index.html">Dashboard</a></li>
-      <li><a href="analytics.html">Analytics</a></li>
-      <li><a href="students.html">Students</a></li>
-      <li><a href="companies.html">Companies</a></li>
-      <li><a href="testimonials.html">Testimonials</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="forms.html">Forms</a></li>
-     <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-  
-<h2 style="text-align:center;">📄 Official Placement Circulars</h2>
-
-<div class="circular-container">
-  
-  <div class="company-list">
-    <p>Modulus Housing Pvt. Ltd.</p>
-    <p>Newgen Software Technologies Pvt. Ltd.</p>
-  </div>
-  <a href="assets/circulars/newgen.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/newgen.pdf" target="_blank" class="view-pdf">Download PDF</a>
-  
-<div class="company-list">
-    <p>Sundram Fasteners Ltd.</p>
-  </div>
-  <a href="assets/circulars/sfl.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/sfl.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-  <div class="company-list">
-    <p>Infosys Pvt. Ltd.</p>
-    <p>Southern Petrochemicals Industries Corporation Ltd</p>
-  </div>
-  <a href="assets/circulars/spic.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/spic.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-<div class="company-list">
-    <p>Ninjacart</p>
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Sundram Fasteners Ltd.</p>
       </div>
-  <a href="assets/circulars/ninja.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/ninja.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-<div class="company-list">
-    <p>Zepto Pvt. Ltd.</p>
-    <p>Hyundai Motor India</p>
-    <p>Titan Engineering and Automation Pvt. Ltd.</p>
+      <div class="circular-actions">
+        <a href="assets/circulars/sfl.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/sfl.pdf" target="_blank">Download PDF</a>
       </div>
-  <a href="assets/circulars/hyundai.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/hyundai.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-  <div class="company-list">
-    <p>Acceture Pvt. Ltd.</p>
-    <p>Prospira India Automotive Products Pvt. Ltd.</p>
-    <p>Hibiz Consulting Private Limited</p>
-      </div>
-  <a href="assets/circulars/prospira.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/prospira.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-<div class="company-list">
-    <p>Modulus Housing Pvt. Ltd.</p>
-      </div>
-  <a href="assets/circulars/modulus.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/modulus.pdf" target="_blank" class="view-pdf">Download PDF</a>
-
-   <div class="company-list">
-    <p>Foodhub Software Solutions Private Limited</p>
-    <p>Newgen Software Technologies Pvt. Ltd.</p>
     </div>
-  <a href="assets/circulars/foodhub.jpg" target="_blank" class="view-pdf">View Image</a>
-  <a href="assets/circulars/foodhub.pdf" target="_blank" class="view-pdf">Download PDF</a>
 
-</div>  
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Infosys Pvt. Ltd.</p>
+        <p>Southern Petrochemicals Industries Corporation Ltd.</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/spic.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/spic.pdf" target="_blank">Download PDF</a>
+      </div>
+    </div>
+
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Ninjacart</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/ninja.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/ninja.pdf" target="_blank">Download PDF</a>
+      </div>
+    </div>
+
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Zepto Pvt. Ltd.</p>
+        <p>Hyundai Motor India</p>
+        <p>Titan Engineering and Automation Pvt. Ltd.</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/hyundai.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/hyundai.pdf" target="_blank">Download PDF</a>
+      </div>
+    </div>
+
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Accenture Pvt. Ltd.</p>
+        <p>Prospira India Automotive Products Pvt. Ltd.</p>
+        <p>Hibiz Consulting Private Limited</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/prospira.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/prospira.pdf" target="_blank">Download PDF</a>
+      </div>
+    </div>
+
+    <div class="circular-row">
+      <div class="company-list">
+        <p>Foodhub Software Solutions Private Limited</p>
+        <p>Newgen Software Technologies Pvt. Ltd.</p>
+      </div>
+      <div class="circular-actions">
+        <a href="assets/circulars/foodhub.jpg" target="_blank">View Image</a>
+        <a href="assets/circulars/foodhub.pdf" target="_blank">Download PDF</a>
+      </div>
+    </div>
+
+  </div>
+
 </body>
 </html>

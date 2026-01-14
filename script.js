@@ -61,7 +61,7 @@ function updateKPIs(data) {
   document.getElementById('eligible').innerText =
     `Eligible Students\n${data.eligibleStudents || 0}`;
   document.getElementById('placed').innerText =
-    `Placed Students\n${data.placedCount || 0}`;
+    `Placed Students\n${data.eligibleStudents || 0}`;
 
   const percent =
     data.optedStudents > 0
@@ -307,3 +307,4 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+

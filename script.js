@@ -100,6 +100,9 @@ function updateKPIs(data) {
   document.getElementById('opted').innerText =
     `Opted for Placement\n${data.optedStudents || 0}`;
 
+  document.getElementById('eligible').innerText =
+    `Eligible Students\n${data.eligibleStudents || 0}`;
+
   document.getElementById('placed').innerText =
     `Placed Students\n${data.placedCount || 0}`;
 
@@ -385,6 +388,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

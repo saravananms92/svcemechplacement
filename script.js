@@ -61,11 +61,11 @@ function updateKPIs(data) {
   document.getElementById('eligible').innerText =
     `Eligible Students\n${data.eligibleStudents || 0}`;
   document.getElementById('placed').innerText =
-    `Placed Students\n${data.eligibleStudents || 0}`;
+    `Placed Students\n${data.placedCount || 0}`;
 
   const percent =
     data.optedStudents > 0
-      ? ((data.placedCount / data.optedStudents) * 100).toFixed(1)
+      ? ((data.placedCount / data.eligibleStudents) * 100).toFixed(1)
       : 0;
   document.getElementById('percentage').innerText =
     `Placement %\n${percent}%`;
@@ -307,4 +307,5 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 

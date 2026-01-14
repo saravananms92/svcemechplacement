@@ -103,7 +103,7 @@ function updateKPIs(data) {
   document.getElementById('eligible').innerText =
     `Eligible Students\n${data.eligibleStudents || 0}`;
 
-  document.getElementById('placed').innerText =
+    document.getElementById('placed').innerText =
     `Placed Students\n${data.placedCount || 0}`;
 
   const percent =

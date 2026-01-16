@@ -6,9 +6,18 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #f4f4f9;
-  color: #333;
+  background: #F5F7FA;
+  color: #263238;
   line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #0D47A1, #1976D2);
+  color: white;
+}
+
+section {
+  background: white;
 }
 
 /* Common Container */
@@ -774,6 +783,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

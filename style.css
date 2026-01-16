@@ -611,6 +611,12 @@ tbody tr:hover td {background: #ffe0b2;}
 /* ====================   STUDENT FORMS SECTION ================= */
 .forms-section {  padding: 20px 20px;  background: linear-gradient(135deg, #f8fafc, #eef3f9);}
 
+.forms-section h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 26px;  font-weight: 600;
+  color: #1e293b;
+}
 .forms-section h2 {
   text-align: left;
   margin-bottom: 30px;
@@ -742,6 +748,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

@@ -105,9 +105,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.circular-btn:hover {
-  background: linear-gradient(135deg, #1565c0, #1e88e5);
-}
+.circular-btn:hover {background: linear-gradient(135deg, #1565c0, #1e88e5);}
 
 /* Circular row layout */
 .circular-container {
@@ -123,12 +121,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 }
 
 /* Company names stacked vertically */
-.company-list p {
-  margin: 0;
-  font-size: 15px;
-  color: #1e88e5;
-  font-weight: 500;
-}
+.company-list p {  margin: 0;  font-size: 15px;  color: #1e88e5;  font-weight: 500;}
 
 /* Space between company lines */
 .company-list p + p { margin-top: 4px;}
@@ -155,11 +148,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   padding: 10px;
   justify-items: center; /* ⭐ KEY LINE: centers cards */
 }
-.circular-btn-container {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0 30px;
-}
+.circular-btn-container {  display: flex;  justify-content: center;  margin: 40px 0 30px;}
 
 .circular-card {
   background: #ffffff;
@@ -215,6 +204,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   font-size: 22px;
   cursor: pointer;
 }
+
 /* =============   NAVBAR ============= */
 .navbar {
   position: sticky;
@@ -292,10 +282,8 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 .card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 6px;
-  width: 100%;
+  top: 0; left: 0;
+  height: 6px; width: 100%;
   background: rgba(255,255,255,0.35);
 }
 
@@ -309,11 +297,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
    KPI CARDS – MOBILE OPTIMIZATION
 ===================================================== */
 @media (max-width: 768px) {
-  .card {
-    font-size: 15px;
-    padding: 30px 22px;
-  }
-
+  .card {font-size: 15px;    padding: 30px 22px;  }
   .card strong,
   .card span {font-size: 32px;  }
 }
@@ -352,85 +336,35 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 }
 
 /* Individual card gradients */
-.total-company {
-  background: linear-gradient(135deg, #4387fd, #6aa6ff);
-}
-
-.core-company {
-  background: linear-gradient(135deg, #198754, #42c98d);
-}
-
-.noncore-company {
-  background: linear-gradient(135deg, #dc3545, #ff6b6b);
-}
-
-.highest-package {
-  background: linear-gradient(135deg, #ff9800, #ffb74d);
-}
-
-.average-package {
-  background: linear-gradient(135deg, #6f42c1, #9a7fd1);
-}
+.total-company {background: linear-gradient(135deg, #4387fd, #6aa6ff);}
+.core-company {  background: linear-gradient(135deg, #198754, #42c98d);}
+.noncore-company {  background: linear-gradient(135deg, #dc3545, #ff6b6b);}
+.highest-package {  background: linear-gradient(135deg, #ff9800, #ffb74d);}
+.average-package {  background: linear-gradient(135deg, #6f42c1, #9a7fd1);}
 
 /* Hover effect */
-.company-cards .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.25);
-}
+.company-cards .card:hover {  transform: translateY(-6px);  box-shadow: 0 16px 36px rgba(0,0,0,0.25);}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .company-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .company-cards .card {
-    padding: 28px 18px;
-    font-size: 16px;
-  }
-
-  .company-cards .card span {
-    font-size: 32px;
-  }
+  .company-cards {grid-template-columns: 1fr; gap: 20px;}
+  .company-cards .card {padding: 28px 18px; font-size: 16px;}
+  .company-cards .card span {font-size: 32px;}
 }
 
-/* =====================================================
-   RESPONSIVE TUNING
-===================================================== */
+/* =========   RESPONSIVE TUNING  ============ */
 
 @media (max-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .card {
-    padding: 32px 22px;
-    font-size: 16px;
-  }
-
+  .cards {grid-template-columns: 1fr; gap: 20px;}
+  .card {padding: 32px 22px; font-size: 16px;}
   .card span,
-  .card strong {
-    font-size: 32px;
-  }
-
-  .company-stats {
-    padding: 18px 20px;
-  }
-
-  .company-stats p {
-    font-size: 16px;
-  }
-
-   .company-stats span {
-    font-size: 22px;
-  }
+  .card strong {font-size: 32px;}
+  .company-stats {padding: 18px 20px;}
+  .company-stats p {font-size: 16px;}
+   .company-stats span {font-size: 22px;}
 }
 
-/* =====================================================
-   CHARTS
-===================================================== */
+/* ==============   CHARTS ======================== */
 .charts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -450,16 +384,9 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 768px) {.chart-box {height: 300px;}}
 
-@media (max-width: 768px) {
-  .chart-box {
-    height: 300px;
-  }
-}
-
-/* =====================================================
-   TABLE
-===================================================== */
+/* ============   TABLE  ================= */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -469,31 +396,18 @@ table {
   }
 
 thead th {
-  background: #2c2c2c;
-  color: #ffffff;
+  background: #2c2c2c; color: #ffffff;
   padding: 12px 10px;
   text-transform: uppercase;
   font-size: 13px;
   text-align: left;   /* ✅ correct property */
 }
 
-tbody td {
-  padding: 10px;
-  background: #fcf6c5;
-  text-align: left;   /* optional */
-}
+tbody td {padding: 10px; background: #fcf6c5; text-align: left;}
+tbody tr:nth-child(odd) td {background: #fff3e0;}
+tbody tr:hover td {background: #ffe0b2;}
 
-tbody tr:nth-child(odd) td {
-  background: #fff3e0;
-}
-
-tbody tr:hover td {
-  background: #ffe0b2;
-}
-
-/* =====================================================
-   SEARCH BAR
-===================================================== */
+/* =============   SEARCH BAR ===================== */
 .table-controls {
   margin: 20px auto 10px;
   max-width: 1200px;
@@ -510,13 +424,10 @@ tbody tr:hover td {
 
 .table-controls input:focus {
   outline: none;
-  border-color: #FF9933;
-  box-shadow: 0 0 0 2px rgba(255,153,51,0.2);
+  border-color: #FF9933; box-shadow: 0 0 0 2px rgba(255,153,51,0.2);
 }
 
-/* =====================================================
-   TOP RECRUITERS
-===================================================== */
+/* ===========  TOP RECRUITERS ================ */
 .recruiters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -527,8 +438,7 @@ tbody tr:hover td {
 }
 
 .recruiters img {
-  width: 100%;
-  max-height: 60px;
+  width: 100%; max-height: 60px;
   object-fit: contain;
   background: #fff;
   padding: 8px;
@@ -536,20 +446,9 @@ tbody tr:hover td {
   transition: transform 0.3s ease;
 }
 
-.recruiters img:hover {
-  transform: scale(1.05);
-}
-
-.gallery-section {
-  margin: 30px 0;
-}
-
-.section-title {
-  margin-bottom: 12px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
+.recruiters img:hover {transform: scale(1.05);}
+.gallery-section {margin: 30px 0;}
+.section-title {margin-bottom: 12px;  font-size: 20px;  font-weight: 600;}
 .gallery-scroll {
   display: flex;
   gap: 16px;
@@ -558,14 +457,8 @@ tbody tr:hover td {
   scroll-snap-type: x mandatory;
 }
 
-.gallery-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-.gallery-scroll::-webkit-scrollbar-thumb {
-  background: #bbb;
-  border-radius: 4px;
-}
-
+.gallery-scroll::-webkit-scrollbar {  height: 6px;}
+.gallery-scroll::-webkit-scrollbar-thumb {  background: #bbb;  border-radius: 4px;}
 .gallery-card {
   min-width: 260px;
   max-width: 260px;
@@ -576,18 +469,8 @@ tbody tr:hover td {
   overflow: hidden;
 }
 
-.gallery-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.gallery-card p {
-  padding: 10px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #333;
-}
+.gallery-card img {  width: 100%;  height: 180px;  object-fit: cover;}
+.gallery-card p {  padding: 10px;  font-size: 13px;  line-height: 1.5;  color: #333;}
 
 /****charts download button*****/
 .download-btn {
@@ -599,19 +482,10 @@ tbody tr:hover td {
   cursor: pointer;
   font-size: 14px;
 }
+.download-btn:hover {  text-decoration: underline;}
 
-.download-btn:hover {
-  text-decoration: underline;
-}
-
-/* =====================================================
-   TESTIMONIALS SECTION
-===================================================== */
-
-.testimonials-section {
-  background: linear-gradient(135deg, #eef3f9, #f9fbff);
-  padding: 20px 20px;
-}
+/* ==============   TESTIMONIALS SECTION ================== */
+.testimonials-section {background: linear-gradient(135deg, #eef3f9, #f9fbff);  padding: 20px 20px;}
 
 .testimonials-section h2 {
   text-align: center;
@@ -622,10 +496,7 @@ tbody tr:hover td {
   letter-spacing: 0.5px;
 }
 
-/* =====================================================
-   TESTIMONIALS WRAPPER (HORIZONTAL SCROLL)
-===================================================== */
-
+/* ===================   TESTIMONIALS WRAPPER (HORIZONTAL SCROLL) ===================== */
 .testimonials-wrapper {
   display: flex;
   gap: 22px;
@@ -635,13 +506,9 @@ tbody tr:hover td {
 }
 
 /* Smooth scrolling */
-.testimonials-wrapper {
-  scroll-behavior: smooth;
-}
+.testimonials-wrapper {scroll-behavior: smooth;}
 
-/* =====================================================
-   TESTIMONIAL CARD
-===================================================== */
+/* ==============   TESTIMONIAL CARD ==================== */
 
 .testimonial-card {
   min-width: 280px;
@@ -656,29 +523,16 @@ tbody tr:hover td {
 }
 
 /* Hover effect */
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(30, 58, 138, 0.15);
-}
+.testimonial-card:hover {  transform: translateY(-6px);  box-shadow: 0 14px 30px rgba(30, 58, 138, 0.15);}
 
-/* =====================================================
-   STUDENT IMAGE
-===================================================== */
+/* ===============  STUDENT IMAGE ==================== */
 
 .testimonial-card img {
-   width: 110px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 14px;
-
-  /* Attractive color treatment */
+  width: 110px; height: 140px;
+  object-fit: cover; border-radius: 14px;
   border: 3px solid #3b82f6;          /* vibrant blue border */
   background: linear-gradient(135deg, #e0f2fe, #f8fafc);
-
-  box-shadow:
-    0 10px 22px rgba(59, 130, 246, 0.25),
-    0 2px 6px rgba(0, 0, 0, 0.08);
-
+  box-shadow: 0 10px 22px rgba(59, 130, 246, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
   transition: all 0.3s ease;
 }
@@ -686,29 +540,13 @@ tbody tr:hover td {
 /* Slight hover uplift for photos */
 .testimonial-card img:hover {
   transform: translateY(-4px) scale(1.04);
-  box-shadow:
-    0 14px 30px rgba(37, 99, 235, 0.35),
-    0 6px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35), 0 6px 10px rgba(0, 0, 0, 0.12);
 }
 
-@media (max-width: 768px) {
-  .testimonial-card img {
-    width: 95px;
-    height: 120px;
-  }
-}
+@media (max-width: 768px) {  .testimonial-card img {width: 95px;    height: 120px;  }}
+@media (max-width: 480px) {  .testimonial-card img {width: 85px;    height: 110px;  }}
 
-@media (max-width: 480px) {
-  .testimonial-card img {
-    width: 85px;
-    height: 110px;
-  }
-}
-
-/* =====================================================
-   STUDENT NAME
-===================================================== */
-
+/* =============   STUDENT NAME ================== */
 .testimonial-card h4 {
   margin: 10px 0 6px;
   font-size: 17px;
@@ -717,10 +555,7 @@ tbody tr:hover td {
   letter-spacing: 0.3px;
 }
 
-/* =====================================================
-   META INFO – PROFESSIONAL HIGHLIGHT
-===================================================== */
-
+/* ===================   META INFO – PROFESSIONAL HIGHLIGHT ====================== */
 .testimonial-card .meta {
   display: flex;
   flex-direction: column;
@@ -732,10 +567,8 @@ tbody tr:hover td {
 /* Batch badge */
 .testimonial-card .meta .batch {
   display: inline-block;
-  background: #e0f2fe;
-  color: #0369a1;
-  font-size: 12px;
-  font-weight: 600;
+  background: #e0f2fe; color: #0369a1;
+  font-size: 12px; font-weight: 600;
   padding: 3px 10px;
   border-radius: 20px;
   width: fit-content;
@@ -743,30 +576,16 @@ tbody tr:hover td {
 }
 
 /* Programme text */
-.testimonial-card .meta .programme {
-  font-size: 13px;
-  color: #475569;
-  font-weight: 500;
-}
+.testimonial-card .meta .programme {font-size: 13px;  color: #475569;  font-weight: 500;}
 
 /* Placed in – Highlight */
-.testimonial-card .meta .placed {
-  font-size: 13px;
-  font-weight: 600;
-  color: #15803d;
-}
+.testimonial-card .meta .placed {  font-size: 13px;  font-weight: 600;  color: #15803d;}
 
 /* Optional company emphasis */
-.testimonial-card .meta .programme::before {
-  content: "🎓 ";
-}
-.testimonial-card .meta .placed::before {
-  content: "✔ ";
-}
+.testimonial-card .meta .programme::before {  content: "🎓 ";}
+.testimonial-card .meta .placed::before {  content: "✔ ";}
 
-/* =====================================================
-   TESTIMONIAL CONTENT
-===================================================== */
+/* ================   TESTIMONIAL CONTENT ======================= */
 
 .testimonial-card .content {
   font-size: 14px;
@@ -782,41 +601,21 @@ tbody tr:hover td {
   font-size: 28px;
   color: #c7d2fe;
   position: absolute;
-  left: -6px;
-  top: -10px;
+  left: -6px;  top: -10px;
 }
 
-/* =====================================================
-   SCROLLBAR (SUBTLE)
-===================================================== */
+/* ==============   SCROLLBAR (SUBTLE) ==================== */
+.testimonials-wrapper::-webkit-scrollbar {  height: 6px;}
+.testimonials-wrapper::-webkit-scrollbar-thumb {  background: #c7d2fe;  border-radius: 10px;}
+.testimonials-wrapper::-webkit-scrollbar-track {  background: transparent;}
 
-.testimonials-wrapper::-webkit-scrollbar {
-  height: 6px;
-}
-
-.testimonials-wrapper::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
-  border-radius: 10px;
-}
-
-.testimonials-wrapper::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* =====================================================
-   STUDENT FORMS SECTION
-===================================================== */
-
-.forms-section {
-  padding: 20px 20px;
-  background: linear-gradient(135deg, #f8fafc, #eef3f9);
-}
+/* ====================   STUDENT FORMS SECTION ================= */
+.forms-section {  padding: 20px 20px;  background: linear-gradient(135deg, #f8fafc, #eef3f9);}
 
 .forms-section h2 {
   text-align: left;
   margin-bottom: 35px;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 26px;  font-weight: 600;
   color: #1e293b;
 }
 
@@ -839,23 +638,9 @@ tbody tr:hover td {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.18);
-}
-
-.form-card h3 {
-  margin-bottom: 12px;
-  font-size: 17px;
-  color: #1e3a8a;
-}
-
-.form-card p {
-  font-size: 14px;
-  color: #475569;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
+.form-card:hover {  transform: translateY(-6px);  box-shadow: 0 16px 32px rgba(0,0,0,0.18);}
+.form-card h3 {  margin-bottom: 12px;  font-size: 17px;  color: #1e3a8a;}
+.form-card p {  font-size: 14px;  color: #475569;  line-height: 1.6;  margin-bottom: 18px;}
 
 /* Button */
 .form-btn {
@@ -869,37 +654,24 @@ tbody tr:hover td {
   transition: background 0.3s ease;
 }
 
-.form-btn:hover {
-  background: #1d4ed8;
-}
+.form-btn:hover {  background: #1d4ed8;}
 
-/* =====================================================
-   FORMS – LAST UPDATED NOTE
-===================================================== */
+/* ==============   FORMS – LAST UPDATED NOTE ================== */
 .forms-update-note {
   text-align: center;
   margin-top: 20px;
-  font-size: 13px;
-  color: #64748b;
-  font-style: italic;
+  font-size: 13px;  color: #64748b;  font-style: italic;
 }
 
-.forms-update-note strong {
-  color: #334155;
-  font-weight: 600;
-}
+.forms-update-note strong {  color: #334155;  font-weight: 600;}
 
-/* =====================================================
-   FOOTER GRID – FLEX HORIZONTAL LAYOUT
-===================================================== */
-
+/* ============= FOOTER GRID – FLEX HORIZONTAL LAYOUT =================== */
 .footer-grid {
   display: flex;                 /* horizontal layout */
   flex-wrap: wrap;               /* wrap on smaller screens */
   gap: 24px;
   max-width: 1400px;
-  margin: auto;
-  justify-content: space-between; /* evenly space cards */
+  margin: auto; justify-content: space-between; /* evenly space cards */
 }
 
 /* Footer boxes (cards) – responsive widths */
@@ -911,14 +683,10 @@ tbody tr:hover td {
   font-size: 14px;
   line-height: 1.7;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
-  color: #0f172a;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* optional hover effect */
+  color: #0f172a; transition: transform 0.3s ease, box-shadow 0.3s ease; /* optional hover effect */
 }
 
-.footer-box:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.18);
-}
+.footer-box:hover {  transform: translateY(-4px);  box-shadow: 0 14px 28px rgba(0,0,0,0.18);}
 
 /* Card background colours */
 .contact-box { background: #e0f2fe; }
@@ -932,17 +700,8 @@ tbody tr:hover td {
 .reach-box { border-top: 4px solid #fbbf24; }
 .quick-links-box { border-top: 4px solid #a78bfa; }
 
-/* =====================================================
-   FOOTER TEXT & LINKS
-===================================================== */
-
-.footer-box h3 {
-  margin-bottom: 14px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #1e293b;
-}
-
+/* ====================   FOOTER TEXT & LINKS ================ */
+.footer-box h3 {margin-bottom: 14px;  font-size: 20px;  font-weight: 600;  color: #1e293b;}
 .footer-box p {color: #334155;}
 .footer-box strong {color: #0f172a;}
 .footer-box a {color: #1d4ed8; font-weight: 500; text-decoration: none;}
@@ -953,15 +712,11 @@ tbody tr:hover td {
 
 /* Contact card photo */
 .passport-photo {
-  width: 75px;
-  height: 95px;
+  width: 75px;  height: 95px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid #38bdf8;
+  border-radius: 12px; border: 2px solid #38bdf8;
   box-shadow: 0 6px 14px rgba(56, 189, 248, 0.35);
-  margin-bottom: 12px;
-  background: #ffffff;
-  transition: all 0.3s ease;
+  margin-bottom: 12px; background: #ffffff; transition: all 0.3s ease;
 }
 
 @media (max-width: 1200px) {.footer-box { flex: 1 1 30%; }                    /* 3 cards per row */}
@@ -970,38 +725,12 @@ tbody tr:hover td {
 @media (max-width: 768px) {.passport-photo {width: 65px; height: 85px;}}
 @media (max-width: 480px) {.passport-photo {width: 60px; height: 80px;}}
 
-.footer-bottom p {
-  text-align: center;
-  font-size: 13px;
-  color: #555;
-  line-height: 1.6;
-  margin: 6px 0;
-}
-.gallery-wrapper {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-.slider-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: scroll 35s linear infinite;
-}
-.slider-track:hover {
-  animation-play-state: paused;
-}
-.slide {
-  flex: 0 0 auto;
-  width: 520px;          /* ⬅️ Increased from 300px */
-  text-align: center;
-}
-.slide img {
-  width: 100%;
-  height: 360px;         /* ⬅️ Increased from 200px */
-  object-fit: cover;     /* Keep cover for professional look */
-  border-radius: 16px;
-}
+.footer-bottom p {  text-align: center;  font-size: 13px;  color: #555;  line-height: 1.6;  margin: 6px 0;}
+.gallery-wrapper {  overflow: hidden;  width: 100%;  position: relative;}
+.slider-track {  display: flex;  gap: 20px;  width: max-content;  animation: scroll 35s linear infinite;}
+.slider-track:hover {  animation-play-state: paused;}
+.slide {  flex: 0 0 auto;  width: 520px;   text-align: center;}
+.slide img {  width: 100%;  height: 360px; object-fit: cover;  border-radius: 16px;}
 .slide p {margin-top: 8px; font-size: 14px;  font-weight: 500;  color: #333;}
 
 /* 🔁 Smooth infinite scroll */
@@ -1013,8 +742,6 @@ tbody tr:hover td {
   .slide {width: 96vw;}
   .slide img {height: 420px;}
   .slide p {font-size: 16px;}
-}
+  }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
-
-

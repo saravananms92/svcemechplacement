@@ -57,12 +57,19 @@ function updateKPIs(data) {
   document.getElementById('total').innerText =
     `Total Students\n${data.totalStudents || 0}`;
   document.getElementById('opted').innerText =
-    `Opted for Placement\n${data.optedStudents || 0}`;
+    `Opted Placement\n${data.optedStudents || 0}`;
   document.getElementById('eligible').innerText =
     `Eligible Students\n${data.eligibleStudents || 0}`;
   document.getElementById('placed').innerText =
     `Placed Students\n${data.placedCount || 0}`;
 
+function updateKPIs(data) {
+  document.querySelector('#total strong').innerText = data.totalStudents || 0;
+  document.querySelector('#opted strong').innerText = data.optedStudents || 0;
+  document.querySelector('#eligible strong').innerText = data.eligibleStudents || 0;
+  document.querySelector('#placed strong').innerText = data.placedCount || 0;
+  document.querySelector('#percentage strong').innerText = percent + "%";
+}
   const percent =
     data.optedStudents > 0
       ? ((data.placedCount / data.eligibleStudents) * 100).toFixed(1)
@@ -353,6 +360,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

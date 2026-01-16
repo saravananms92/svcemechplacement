@@ -293,7 +293,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 
 /* label */
 .card .label {
-  font-size: 15px;
+  font-size: 28px;
   opacity: 0.9;
   letter-spacing: 0.4px;
 }
@@ -770,6 +770,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

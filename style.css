@@ -6,7 +6,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #F5F7FA;
+  background: #EFF5FB;
   color: #263238;
   line-height: 1.6;
 }
@@ -783,6 +783,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

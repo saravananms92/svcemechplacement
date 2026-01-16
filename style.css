@@ -254,7 +254,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   border-radius: 16px;
   box-shadow: 0 12px 26px rgba(0,0,0,0.22);
   transition: all 0.35s ease;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
   display: flex;
@@ -297,7 +297,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 
 /* label */
 .card .label {
-  font-size: 28px;
+  font-size: 18px;
   opacity: 0.9;
   letter-spacing: 0.4px;
 }
@@ -305,7 +305,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 /* number */
 .card strong {
   margin-top: 6px;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 800;
   letter-spacing: 1px;
 }
@@ -774,6 +774,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

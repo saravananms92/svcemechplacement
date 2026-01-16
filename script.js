@@ -308,6 +308,53 @@ window.addEventListener('resize', () => {
   drawCompanyVsStudentsChart(dataGlobal);
 });
 
+/*****""*******""*****Download chart***"”********"""""*****/
+function downloadChart(chartId, filename) {
+  const chartDiv = document.getElementById(chartId);
+
+  if (!chartDiv) {
+    alert("Chart not found!");
+    return;
+  }
+
+  const svg = chartDiv.getElementsByTagName("svg")[0];
+
+  if (!svg) {
+    alert("Chart not ready yet!");
+    return;
+  }
+
+  const serializer = new XMLSerializer();
+  const svgStr = serializer.serializeToString(svg);
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const img = new Image();
+  const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(svgBlob);
+
+  img.onload = function () {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+
+    URL.revokeObjectURL(url);
+
+    const imgURI = canvas.toDataURL("image/jpeg");
+
+    const a = document.createElement("a");
+    a.download = filename;
+    a.href = imgURI;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  img.src = url;
+}
+
+
 
 
 

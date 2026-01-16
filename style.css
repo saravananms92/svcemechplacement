@@ -128,15 +128,7 @@ h2 {
   letter-spacing: 0.4px;
   position: relative;
 }
-h2::after {
-  content: "";
-  width: 70px;
-  height: 4px;
-  background: linear-gradient(90deg, #1e88e5, #42a5f5);
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 3px;
-}
+
 @media (max-width: 768px) {
   h2 {
     font-size: 1.3rem;
@@ -1193,6 +1185,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

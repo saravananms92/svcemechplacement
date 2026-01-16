@@ -315,15 +315,6 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 }
 
 /* =====================================================
-   KPI CARDS – MOBILE OPTIMIZATION
-===================================================== */
-@media (max-width: 768px) {
-  .card {font-size: 15px;    padding: 30px 22px;  }
-  .card strong,
-  .card span {font-size: 32px;  }
-}
-
-/* =====================================================
    COMPANY STATISTICS – TEXT KPI STYLE
 ===================================================== */
 .company-cards {
@@ -770,6 +761,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

@@ -447,7 +447,7 @@ tbody tr:hover td {background: #ffe0b2;}
 
 .recruiters img:hover {transform: scale(1.05);}
 .gallery-section {margin: 30px 0;}
-.section-title {margin-bottom: 12px;  font-size: 20px;  font-weight: 600;}
+.section-title {margin-bottom: 12px;  font-size: 26px;  font-weight: 600;}
 .gallery-scroll {
   display: flex;
   gap: 16px;
@@ -748,6 +748,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

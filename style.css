@@ -613,7 +613,7 @@ tbody tr:hover td {background: #ffe0b2;}
 
 .forms-section h2 {
   text-align: left;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   font-size: 26px;  font-weight: 600;
   color: #1e293b;
 }
@@ -668,16 +668,16 @@ tbody tr:hover td {background: #ffe0b2;}
 .footer-grid {
   display: flex;                 /* horizontal layout */
   flex-wrap: wrap;               /* wrap on smaller screens */
-  gap: 40px;
+  gap: 30px;
   max-width: 1200px;
   margin: auto; justify-content: space-between; /* evenly space cards */
 }
 
 /* Footer boxes (cards) – responsive widths */
 .footer-box {
-  flex: 1 1 30%;                 /* 3 cards per row approx */
+  flex: 1 1 25%;                 /* 3 cards per row approx */
   min-width: 220px;              /* prevent shrinking too small */
-  padding: 40px;
+  padding: 10px;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.7;
@@ -742,6 +742,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

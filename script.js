@@ -16,13 +16,6 @@ let dataGlobal = null;
 function init() {
   fetchAndDrawCharts();
 }
-/**************Global Chart Theme******************/
-const CHART_THEME = {
-  titleTextStyle: { color: '#0d47a1', fontSize: 16, bold: true },
-  legend: { textStyle: { color: '#333', fontSize: 12 } },
-  backgroundColor: 'transparent',
-  tooltip: { textStyle: { fontSize: 12 } }
-};
 
 /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
@@ -93,11 +86,9 @@ function drawPlacementStatusChart(data) {
   new google.visualization.PieChart(
     document.getElementById('statusChart')
   ).draw(table, {
-  title: 'Placement Status',
-  pieHole: 0.45,
-  chartArea: { width: '80%', height: '80%' },
-  colors: ['#1e88e5', '#e53935'],
-  ...CHART_THEME
+    title: 'Placement Status',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
   });
 }
 
@@ -119,12 +110,10 @@ function drawCompanyChart(data) {
 
   new google.visualization.PieChart(
     document.getElementById('companyChart')
-  ).draw(table,{
-  title: 'Company Type Distribution',
-  pieHole: 0.45,
-  chartArea: { width: '80%', height: '80%' },
-  colors: ['#2e7d32', '#1e88e5', '#ff9800', '#6f42c1'],
-  ...CHART_THEME
+  ).draw(table, {
+    title: 'Company Type Distribution',
+    pieHole: 0.4,
+    chartArea: { width: '75%', height: '75%' }
   });
 }
 
@@ -137,7 +126,8 @@ function drawProgrammeChart(data) {
     container.innerHTML = '<b>No Programme data available</b>';
     return;
   }
-  const colors = ['#1e88e5', '#2e7d32', '#ff9800', '#6f42c1', '#e53935'];
+
+  const colors = ['#0aa1d8', '#9c312c'];
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
 
   let i = 0;
@@ -148,13 +138,10 @@ function drawProgrammeChart(data) {
 
   const table = google.visualization.arrayToDataTable(rows);
   new google.visualization.ColumnChart(container).draw(table, {
-  height: 420,
-  chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-  vAxis: { title: 'Placed Students', minValue: 0, textStyle:{color:'#333'}, titleTextStyle:{color:'#0d47a1'} },
-  legend: { position: 'none' },
-  bar: { groupWidth: '55%' },
-  ...CHART_THEME
-  }
+    height: 400,
+    chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
+    vAxis: { title: 'Placed Students', minValue: 0 },
+    legend: { position: 'none' }
   });
 }
 
@@ -176,9 +163,7 @@ function drawCoreNonCoreChart(data) {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
-    colors: ['#2e7d32', '#e53935'],
-    ...CHART_THEME
-
+    colors: ['#c1ca51', '#c55885'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
@@ -203,11 +188,11 @@ function drawCompanyVsStudentsChart(data) {
     }))
     .filter(item => item.count > 0)
     .sort((a, b) => b.count - a.count);
-  
-const colors = [
-  '#1e88e5','#2e7d32','#ff9800','#6f42c1','#e53935',
-  '#26c6da','#ab47bc','#ffa726','#66bb6a','#42a5f5'
-];
+
+  const colors = [
+    '#0d6efd','#198754','#dc3545','#fd7e14','#6f42c1',
+    '#20c997','#0dcaf0','#6610f2','#adb5bd','#212529'
+  ];
 
   const rows = [['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]];
   sortedData.forEach((item, i) => {
@@ -224,7 +209,6 @@ const colors = [
     hAxis: { title: 'Company Name', slantedText: true, slantedTextAngle: 45 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
-    ...CHART_THEME
   };
 
   new google.visualization.ColumnChart(container).draw(table, options);
@@ -259,7 +243,8 @@ function drawTopPackageChart(data) {
     container.innerHTML = '<b>No package data available</b>';
     return;
   }
-  const colors = ['#ff9800','#1e88e5','#2e7d32','#6f42c1','#e53935'];
+
+  const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
   const rows = [['Student','Package',{ role: 'annotation' },{ role: 'style' }]];
   data.topPackages.forEach((s, i) => {
     rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
@@ -268,13 +253,11 @@ function drawTopPackageChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   new google.visualization.ColumnChart(container).draw(table, {
-  height: 420,
-  chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
-  vAxis: { title: 'Package (LPA)', minValue: 0, titleTextStyle:{color:'#0d47a1'} },
-  legend: { position: 'none' },
-  annotations: { alwaysOutside: true },
-  ...CHART_THEME
-  } 
+    height: 400,
+    chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
+    vAxis: { title: 'Package (LPA)', minValue: 0 },
+    legend: { position: 'none' },
+    annotations: { alwaysOutside: true }
   });
 }
 
@@ -324,3 +307,4 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+

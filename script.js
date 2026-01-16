@@ -7,7 +7,7 @@ google.charts.setOnLoadCallback(init);
 /************************************************
  * GLOBAL VARIABLES
  ************************************************/
-const DATA_URL = 'https://script.google.com/macros/s/AKfycbxpK-mCvnnjvKx7kYT8wGWaPyqOx_ky2SvHunhLzD5gbzv6fGy3QsZUmB6HdpvvN4LH/exec'; // <-- Replace with your deployed web app URL
+const DATA_URL = 'https://script.google.com/macros/s/AKfycbxpK-mCvnnjvKx7kYT8wGWaPyqOx_ky2SvHunhLzD5gbzv6fGy3QsZUmB6HdpvvN4LH/exec';
 let dataGlobal = null;
 
 /************************************************
@@ -51,31 +51,25 @@ async function fetchAndDrawCharts() {
 }
 
 /************************************************
- * KPI CARDS
+ * KPI CARDS (FIXED & STABLE)
  ************************************************/
 function updateKPIs(data) {
-  document.getElementById('total').innerText =
-    `Total Students\n${data.totalStudents || 0}`;
-  document.getElementById('opted').innerText =
-    `Opted Placement\n${data.optedStudents || 0}`;
-  document.getElementById('eligible').innerText =
-    `Eligible Students\n${data.eligibleStudents || 0}`;
-  document.getElementById('placed').innerText =
-    `Placed Students\n${data.placedCount || 0}`;
 
-function updateKPIs(data) {
-  document.querySelector('#total strong').innerText = data.totalStudents || 0;
-  document.querySelector('#opted strong').innerText = data.optedStudents || 0;
-  document.querySelector('#eligible strong').innerText = data.eligibleStudents || 0;
-  document.querySelector('#placed strong').innerText = data.placedCount || 0;
-  document.querySelector('#percentage strong').innerText = percent + "%";
-}
   const percent =
-    data.optedStudents > 0
+    data.eligibleStudents > 0
       ? ((data.placedCount / data.eligibleStudents) * 100).toFixed(1)
       : 0;
-  document.getElementById('percentage').innerText =
-    `Placement %\n${percent}%`;
+
+  const set = (id, value) => {
+    const el = document.querySelector(`#${id} strong`);
+    if (el) el.innerText = value;
+  };
+
+  set("total", data.totalStudents || 0);
+  set("opted", data.optedStudents || 0);
+  set("eligible", data.eligibleStudents || 0);
+  set("placed", data.placedCount || 0);
+  set("percentage", percent + "%");
 }
 
 /************************************************
@@ -125,7 +119,7 @@ function drawCompanyChart(data) {
 }
 
 /************************************************
- * PROGRAMME-WISE PLACEMENT (VERTICAL BAR)
+ * PROGRAMME-WISE PLACEMENT
  ************************************************/
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
@@ -153,7 +147,7 @@ function drawProgrammeChart(data) {
 }
 
 /************************************************
- * CORE vs NON-CORE (GROUPED BAR)
+ * CORE vs NON-CORE
  ************************************************/
 function drawCoreNonCoreChart(data) {
   const el = document.getElementById('coreNonCoreChart');
@@ -177,7 +171,7 @@ function drawCoreNonCoreChart(data) {
 }
 
 /************************************************
- * COMPANY vs STUDENTS PLACED
+ * COMPANY vs STUDENTS
  ************************************************/
 function drawCompanyVsStudentsChart(data) {
   const container = document.getElementById('companyStudentsChart');
@@ -208,17 +202,15 @@ function drawCompanyVsStudentsChart(data) {
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  const options = {
+  new google.visualization.ColumnChart(container).draw(table, {
     title: 'Company-wise Student Placements',
     height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
     vAxis: { title: 'Total Students Placed', minValue: 0 },
-    hAxis: { title: 'Company Name', slantedText: true, slantedTextAngle: 45 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
-  };
+  });
 
-  new google.visualization.ColumnChart(container).draw(table, options);
   drawCompanyLegend(sortedData, colors);
 }
 
@@ -242,7 +234,7 @@ function drawCompanyLegend(data, colors) {
 }
 
 /************************************************
- * TOP 5 HIGHEST PACKAGES
+ * TOP 5 PACKAGES
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
@@ -269,7 +261,7 @@ function drawTopPackageChart(data) {
 }
 
 /************************************************
- * SEARCH STUDENTS
+ * SEARCH
  ************************************************/
 function searchTable() {
   const input = document.getElementById("studentSearch");
@@ -278,13 +270,12 @@ function searchTable() {
   if (!tbody) return;
 
   Array.from(tbody.getElementsByTagName("tr")).forEach(row => {
-    const rowText = row.innerText.toLowerCase();
-    row.style.display = rowText.includes(filter) ? "" : "none";
+    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
   });
 }
 
 /************************************************
- * STUDENT TABLE
+ * TABLE
  ************************************************/
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
@@ -304,7 +295,7 @@ function populateStudentTable(data) {
 }
 
 /************************************************
- * RESPONSIVE REDRAW ON WINDOW RESIZE
+ * RESIZE REDRAW
  ************************************************/
 window.addEventListener('resize', () => {
   if (!dataGlobal) return;
@@ -315,29 +306,23 @@ window.addEventListener('resize', () => {
   drawCompanyVsStudentsChart(dataGlobal);
 });
 
-/*****""*******""*****Download chart***"”********"""""*****/
+/************************************************
+ * DOWNLOAD CHART
+ ************************************************/
 function downloadChart(chartId, filename) {
   const chartDiv = document.getElementById(chartId);
-
-  if (!chartDiv) {
-    alert("Chart not found!");
-    return;
-  }
+  if (!chartDiv) return alert("Chart not found!");
 
   const svg = chartDiv.getElementsByTagName("svg")[0];
-
-  if (!svg) {
-    alert("Chart not ready yet!");
-    return;
-  }
+  if (!svg) return alert("Chart not ready yet!");
 
   const serializer = new XMLSerializer();
   const svgStr = serializer.serializeToString(svg);
 
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-
   const img = new Image();
+
   const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
   const url = URL.createObjectURL(svgBlob);
 
@@ -345,11 +330,9 @@ function downloadChart(chartId, filename) {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
-
     URL.revokeObjectURL(url);
 
     const imgURI = canvas.toDataURL("image/jpeg");
-
     const a = document.createElement("a");
     a.download = filename;
     a.href = imgURI;
@@ -360,13 +343,3 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
-
-
-
-
-
-
-
-
-
-

@@ -142,16 +142,8 @@ function drawProgrammeChart(data) {
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
-    options: {
-    scales: {
-    y: {
-      beginAtZero: true,
-      ticks: {
-        stepSize: 1,      // 👈 move only in whole numbers
-        precision: 0,     // 👈 no decimals
-        callback: function(value) {
-        return Math.round(value); // 👈 ensure integers
-        }}}}}
+    minValue: 0,
+    format: '0'   // 👈 whole numbers only
   });
 }
 
@@ -317,5 +309,6 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 

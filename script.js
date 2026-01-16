@@ -69,9 +69,6 @@ function updateKPIs(data) {
   document.querySelector('#eligible strong').innerText = data.eligibleStudents || 0;
   document.querySelector('#placed strong').innerText = data.placedCount || 0;
   document.querySelector('#percentage strong').innerText = percent + "%";
-  document.querySelector('.cards')?.classList.add('loaded');
-  document.querySelector('.company-cards')?.classList.add('loaded');
-
 }
   const percent =
     data.optedStudents > 0
@@ -363,6 +360,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

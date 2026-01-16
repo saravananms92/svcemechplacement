@@ -269,17 +269,6 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   max-height: 120px;      /* ✅ prevents resize jump */
 }
 
-.card strong,
-.card span {
-  line-height: 1;
-}
-
-.cards.loaded,
-.company-cards.loaded {
-  opacity: 1;
-  transform: scale(1);
-}
-
 /* ================================
    KPI CARD COLORS
 ================================ */
@@ -785,6 +774,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

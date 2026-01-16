@@ -141,7 +141,7 @@ function drawProgrammeChart(data) {
     height: 400,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'Placed Students', minValue: 0 },
-    legend: { position: 'none' }
+    legend: { position: 'none' }, 
     minValue: 0,
     format: '0'   // 👈 whole numbers only
   });
@@ -309,6 +309,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

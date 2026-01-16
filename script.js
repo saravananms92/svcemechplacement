@@ -177,10 +177,9 @@ function drawCoreNonCoreChart(data) {
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
     colors: ['#2e7d32', '#e53935'],
-    ...CHART_THEME
-
     legend: { position: 'bottom' },
-    bar: { groupWidth: '55%' }
+    bar: { groupWidth: '55%' }, 
+    ...CHART_THEME
   });
 }
 
@@ -223,7 +222,7 @@ const colors = [
     vAxis: { title: 'Total Students Placed', minValue: 0 },
     hAxis: { title: 'Company Name', slantedText: true, slantedTextAngle: 45 },
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true }
+    annotations: { alwaysOutside: true }, 
     ...CHART_THEME
   };
 
@@ -324,6 +323,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

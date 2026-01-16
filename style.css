@@ -668,8 +668,8 @@ tbody tr:hover td {background: #ffe0b2;}
 .footer-grid {
   display: flex;                 /* horizontal layout */
   flex-wrap: wrap;               /* wrap on smaller screens */
-  gap: 24px;
-  max-width: 1400px;
+  gap: 40px;
+  max-width: 1200px;
   margin: auto; justify-content: space-between; /* evenly space cards */
 }
 
@@ -744,5 +744,6 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 

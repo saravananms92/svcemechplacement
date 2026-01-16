@@ -138,7 +138,7 @@ function drawProgrammeChart(data) {
 
   const table = google.visualization.arrayToDataTable(rows);
   new google.visualization.ColumnChart(container).draw(table, {
-    height: 400,
+    height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
     legend: { position: 'none' }
@@ -203,7 +203,7 @@ function drawCompanyVsStudentsChart(data) {
 
   const options = {
     title: 'Company-wise Student Placements',
-    height: 450,
+    height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
     vAxis: { title: 'Total Students Placed', minValue: 0 },
     hAxis: { title: 'Company Name', slantedText: true, slantedTextAngle: 45 },
@@ -307,6 +307,7 @@ window.addEventListener('resize', () => {
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
 });
+
 
 
 

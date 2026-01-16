@@ -58,8 +58,7 @@ body {
 .logo {max-height: 120px; width: auto;}
 .header-text {flex: 1; text-align: center;}
 .header-text h1 {margin: 0; font-size: 24px;}
-.header-text p {margin-top: 4px;  font-size: 14px;  color: #6c757d; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;}
-
+.header-text p {  margin-top: 4px;  font-size: 14px;  color: #6c757d;  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;}
 
 /* Header Mobile */
 @media (max-width: 768px) {
@@ -745,3 +744,4 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+

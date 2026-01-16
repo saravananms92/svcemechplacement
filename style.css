@@ -204,7 +204,7 @@ h3 {
 .circular-btn-container {
   display: flex;
   justify-content: center;
-  margin: 10px 0 30px;
+  margin: 40px 0 30px;
 }
 
 .circular-card {
@@ -1175,6 +1175,7 @@ tbody tr:hover td {
   color: #fc0303;
   font-size: 14px;
 }
+
 
 
 

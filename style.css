@@ -547,7 +547,7 @@ tbody tr:hover td {background: #ffe0b2;}
 .testimonial-card {
   min-width: 280px;
   max-width: 280px;
-  background: linear-gradient(180deg, #e0f2fe, #f8fafc );
+  background: linear-gradient(135deg, #e0f2fe, #f8fafc );
   border-top: 4px solid #3b82f6;
   padding: 22px 20px;
   text-align: center;
@@ -783,6 +783,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

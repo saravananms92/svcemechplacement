@@ -79,7 +79,7 @@ function drawPlacementStatusChart(data) {
   const rows = [
     ['Status', 'Count'],
     ['Placed', data.placedCount || 0],
-    ['Not Placed', (data.optedStudents || 0) - (data.placedCount || 0)]
+    ['Not Placed', (data.eligibleStudents || 0) - (data.placedCount || 0)]
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -343,3 +343,4 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+

@@ -495,19 +495,21 @@ tbody tr:hover td {background: #ffe0b2;}
 .gallery-scroll::-webkit-scrollbar {  height: 6px;}
 .gallery-scroll::-webkit-scrollbar-thumb {  background: #bbb;  border-radius: 4px;}
 .gallery-card {
-  min-width: 260px;
+ min-width: 260px;
   max-width: 260px;
-  height: 200px;                 /* 👈 control image height */
+  height: 200px;            /* fixed height for full-view effect */
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
   scroll-snap-align: start;
   overflow: hidden;
+  flex: 0 0 auto;           /* prevents flex auto-resize */
 }
 
 .gallery-card img {  width: 100%;
-  height: 100%;                 /* 👈 fill the card */
-  object-fit: cover;           /* 👈 keeps ratio + fills */
+  height: 100%;
+  object-fit: cover;        /* fills container, keeps aspect */
+  object-position: center;  /* centers the crop */
   display: block;}
 .gallery-card p {  padding: 10px;  font-size: 13px;  line-height: 1.5;  color: #333;}
 
@@ -788,6 +790,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

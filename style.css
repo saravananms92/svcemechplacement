@@ -198,7 +198,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   background: #fff;
   width: 80%; max-width: 700px;
   height: 70%;
-  margin: 90px auto;
+  margin: 150px auto;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -210,6 +210,9 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   position: absolute; right: 15px; top: 10px;
   font-size: 22px;
   cursor: pointer;
+}
+.modal {
+  z-index: 9999;   /* 👈 higher than header */
 }
 
 @media (max-width: 768px) {
@@ -827,6 +830,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

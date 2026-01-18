@@ -21,7 +21,7 @@ section {
 }
 
 /* Common Container */
-.container {width: 90%; max-width: 1200px; margin: auto;}
+.container {width: 90%; max-width: 1200px; padding: 0 3vw; margin: auto;}
 
 /* Full-screen loading overlay */
 #loading {
@@ -820,6 +820,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

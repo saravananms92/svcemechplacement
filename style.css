@@ -488,6 +488,7 @@ tbody tr:hover td {background: #ffe0b2;}
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 10px;
+  justify-content: center;
   scroll-snap-type: x mandatory;
 }
 
@@ -503,7 +504,7 @@ tbody tr:hover td {background: #ffe0b2;}
   overflow: hidden;
 }
 
-.gallery-card img {  width: 100%;  height: 180px;  object-fit: cover;}
+.gallery-card img {  width: 100%;  height: auto;  object-fit: cover;}
 .gallery-card p {  padding: 10px;  font-size: 13px;  line-height: 1.5;  color: #333;}
 
 /****charts download button*****/
@@ -783,4 +784,5 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 

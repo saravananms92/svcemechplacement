@@ -748,7 +748,7 @@ tbody tr:hover td {background: #ffe0b2;}
   flex-wrap: wrap;               /* wrap on smaller screens */
   gap: 30px;
   max-width: 1200px;
-  margin: auto; justify-content: space-between; /* evenly space cards */
+  margin: 20px 20px; justify-content: space-between; /* evenly space cards */
 }
 
 /* Footer boxes (cards) – responsive widths */
@@ -820,6 +820,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

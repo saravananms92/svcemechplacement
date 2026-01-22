@@ -289,6 +289,7 @@ function populateStudentTable(data) {
       <td>${s.name}</td>
       <td>${s.company}</td>
       <td>${s.type}</td>
+      <td>${s.package}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -343,4 +344,5 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 

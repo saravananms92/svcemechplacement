@@ -279,21 +279,21 @@ function searchTable() {
  ************************************************/
 
 function populateStudentTable(data) {
-  const tbody = document.getElementById('studentTable');
-  if (!tbody) return;
+  const tbody = document.getElementById('studentTable');
+  if (!tbody) return;
 
-  tbody.innerHTML = '';
-  (data.placedStudents || []).forEach(s => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${s.programme}</td>
-      <td>${s.name}</td>
-      <td>${s.company}</td>
-      <td>${s.type}</td>
-      <td>${s.package}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+  tbody.innerHTML = '';
+  (data.placedStudents || []).forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${s.programme}</td>
+      <td>${s.name}</td>
+      <td>${s.company}</td>
+      <td>${s.type}</td>
+      <td>${s.package}</td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 /************************************************
  * RESIZE REDRAW
@@ -344,6 +344,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

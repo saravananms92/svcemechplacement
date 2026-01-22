@@ -334,7 +334,7 @@ function downloadChart(chartId, filename) {
     URL.revokeObjectURL(url);
 
     const imgURI = canvas.toDataURL("image/jpeg");
-    const a = document.createElement("a");
+    cont a = document.createElement("a");
     a.download = filename;
     a.href = imgURI;
     document.body.appendChild(a);
@@ -344,6 +344,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -282,21 +282,21 @@ function populateStudentTable(data) {
   if (!tbody) return;
 
   tbody.innerHTML = '';
-  (data.placedStudents || []).forEach(s => {
+
+  (data.placedStudents || []).forEach((s, i) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${i + 1}</td>
-      <td>${s.registerNo}</td>
-      <td>${s.programme}</td>
-      <td>${s.name}</td>
-      <td>${s.company}</td>
-      <td>${s.type}</td>
-      <td>${s.package}</td>
+      <td>${s.registerNo || ''}</td>
+      <td>${s.programme || ''}</td>
+      <td>${s.name || ''}</td>
+      <td>${s.company || ''}</td>
+      <td>${s.type || ''}</td>
+      <td>${s.package || ''}</td>
     `;
     tbody.appendChild(tr);
   });
 }
-
 /************************************************
  * RESIZE REDRAW
  ************************************************/
@@ -346,5 +346,6 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 

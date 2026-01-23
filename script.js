@@ -1,3 +1,37 @@
+
+let isAdmin = false;
+
+function adminLogin() {
+  const pw = prompt("Enter Admin Password:");
+  if (pw !== "1234") {
+    alert("Wrong password");
+    return;
+  }
+
+  sessionStorage.setItem("isAdmin", "true");
+  isAdmin = true;
+  applyAdminView();
+  alert("Admin access granted");
+}
+
+function adminLogout() {
+  sessionStorage.removeItem("isAdmin");
+  isAdmin = false;
+  applyAdminView();
+  alert("Logged out");
+}
+
+function applyAdminView() {
+  const show = sessionStorage.getItem("isAdmin") === "true";
+
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = show ? "" : "none";
+  });
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) logoutBtn.style.display = show ? "inline-block" : "none";
+}
+
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -14,10 +48,12 @@ let dataGlobal = null;
  * INIT
  ************************************************/
 function init() {
-  fetchAndDrawCharts();
+  if (sessionStorage.getItem("isAdmin") === "true") {
+  isAdmin = true;
+  applyAdminView();
 }
 
-/************************************************
+  /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
  ************************************************/
 async function fetchAndDrawCharts() {
@@ -290,11 +326,7 @@ function populateStudentTable(data) {
   tbody.innerHTML = '';
 
   (data.placedStudents || []).forEach((s, i) => {
-
-    const linkHTML = s.offerLetterUrl
-      ? `<a href="${s.offerLetterUrl}" target="_blank">View PDF</a>`
-      : 'N/A';
-
+   
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${i + 1}</td>
@@ -304,10 +336,16 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      <td>${linkHTML}</td>
+      <td class="admin-only">
+        ${s.offerLetterUrl 
+        ? `<a href="${s.offerLetterUrl}" target="_blank">View</a>` 
+        : "-"}
+      </td>
     `;
     tbody.appendChild(tr);
   });
+  // ✅ FIX
+ applyAdminView();
 }
 
 /************************************************
@@ -359,4 +397,15 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
+
+
+
+
+
+
+
+
+
+
 

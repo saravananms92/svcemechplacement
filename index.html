@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-  
 <body>
+
 <!-- Loading Overlay -->
 <div id="loading">
   <div class="loader-box">
@@ -15,282 +15,105 @@
     <p>Loading data and charts… Please wait.</p>
   </div>
 </div>
-    
-  <header class="svce-header">
+
+<!-- HEADER -->
+<header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
-  
   <div class="header-text">
     <h1>Department of Mechanical Engineering</h1>
     <p>Live Placement Dashboard of Batch 2022–26<br> 
       Circulars | Analytics | Recruiters | Success Statistics | Forms | Contact</p>
   </div>
-  
   <img src="assets/college-emblem.png" class="logo right-logo" alt="college-emblem">
 </header>
 
-  <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
   <div class="nav-container">
-    <div class="nav-title">
-      BATCH 2022-2026
-    </div>
-
+    <div class="nav-title">BATCH 2022-2026</div>
     <ul class="nav-links">
-  <li><a href="#Overview">Overview</a></li>
-  <li><a href="circulars.html">Circulars</a></li>
-  <li><a href="recruiters.html">Recruiters</a></li>
-  <li><a href="#Charts">Analytics</a></li>
-  <li><a href="#Placed Students">Placed Students</a></li>
-  <li><a href="#testimonials">Testimonials</a></li>
-  <li><a href="forms.html">Forms</a></li>
-  <li><a href="#Contact">Contact</a></li>
-</ul>
-</div>
+      <li><a href="#Overview">Overview</a></li>
+      <li><a href="circulars.html">Circulars</a></li>
+      <li><a href="recruiters.html">Recruiters</a></li>
+      <li><a href="#Charts">Analytics</a></li>
+      <li><a href="#Placed Students">Placed Students</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="#Contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-  <!-- KPI CARDS -->
+<!-- KPI CARDS -->
 <h2 id="Overview">Placement Overview</h2>
-
 <div class="cards">
-  <div class="card" id="total">
-    <span class="label">Total Students</span>
-    <strong>0</strong>
-  </div>
-
-  <div class="card" id="opted">
-    <span class="label">Opted Placement</span>
-    <strong>0</strong>
-  </div>
-
-  <div class="card" id="eligible">
-    <span class="label">Eligible Students</span>
-    <strong>0</strong>
-  </div>
-
-  <div class="card" id="placed">
-    <span class="label">Students Placed</span>
-    <strong>0</strong>
-  </div>
-
-  <div class="card" id="percentage">
-    <span class="label">Placement %</span>
-    <strong>0%</strong>
-  </div>
+  <div class="card" id="total"><span class="label">Total Students</span><strong>0</strong></div>
+  <div class="card" id="opted"><span class="label">Opted Placement</span><strong>0</strong></div>
+  <div class="card" id="eligible"><span class="label">Eligible Students</span><strong>0</strong></div>
+  <div class="card" id="placed"><span class="label">Students Placed</span><strong>0</strong></div>
+  <div class="card" id="percentage"><span class="label">Placement %</span><strong>0%</strong></div>
 </div>
 
-    <!-- COMPANY STATISTICS -->
+<!-- COMPANY STATS -->
 <h2>Company Statistics</h2>
-
 <div class="cards company-cards" id="companyDashboard">
-  
-  <div class="card company total-company">
-    <div class="card-title">Total Companies</div>
-    <span id="totalCompanies">--</span>
-  </div>
-
-  <div class="card company core-company">
-    <div class="card-title">Core Companies</div>
-    <span id="coreCompanies">--</span>
-  </div>
-
-  <div class="card company noncore-company">
-    <div class="card-title">Non-Core Companies</div>
-    <span id="nonCoreCompanies">--</span>
-  </div>
-
-  <div class="card company highest-package">
-    <div class="card-title">Highest Package</div>
-    <span id="highestPackage">--</span>LPA
-  </div>
-  
-  <div class="card company average-package">
-    <div class="card-title">Average Package</div>
-    <span id="averagePackage">--</span>LPA
-  </div>
+  <div class="card company total-company"><div class="card-title">Total Companies</div><span id="totalCompanies">--</span></div>
+  <div class="card company core-company"><div class="card-title">Core Companies</div><span id="coreCompanies">--</span></div>
+  <div class="card company noncore-company"><div class="card-title">Non-Core Companies</div><span id="nonCoreCompanies">--</span></div>
+  <div class="card company highest-package"><div class="card-title">Highest Package</div><span id="highestPackage">--</span>LPA</div>
+  <div class="card company average-package"><div class="card-title">Average Package</div><span id="averagePackage">--</span>LPA</div>
 </div>
 
-    <script>
-function chartsLoaded() {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "none";
-}
-</script>
+<!-- Circular Buttons -->
+<div class="circular-btn-container">
+  <a href="circulars.html" class="circular-btn" id="circulars">📢 View Placement Circulars</a>
+  <a href="recruiters.html" class="circular-btn" id="recruiters">🏭 View our Top Recruiters</a>
+  <a href="forms.html" class="circular-btn" id="forms">📃 Click to View Forms</a>
+</div>
 
-   <script>
-fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
-  .then(res => res.text())
-  .then(text => {
-    const json = JSON.parse(text.substr(47).slice(0, -2));
-    const rows = json.table.rows;
+<!-- PLACEMENT ANALYTICS -->
+<h2 id="Charts">Placement Analytics</h2>
+<div class="charts">
+  <div id="statusChart" class="chart-box"></div>
+  <div id="companyChart" class="chart-box"></div>
+</div>
 
-    if (rows && rows.length >= 5) {
-      document.getElementById("totalCompanies").innerText     = rows[0].c[0]?.v ?? "0";
-      document.getElementById("coreCompanies").innerText      = rows[1].c[0]?.v ?? "0";
-      document.getElementById("nonCoreCompanies").innerText   = rows[2].c[0]?.v ?? "0";
-      document.getElementById("highestPackage").innerText     = rows[3].c[0]?.v ?? "0";
-      document.getElementById("averagePackage").innerText     = rows[4].c[0]?.v ?? "0";
-    } else {
-      setDefaultCompanyStats();
-      console.warn("Company stats range empty or insufficient data");
-    }
+<h2>Programme-wise Analytics</h2>
+<div class="charts">
+  <div id="programmeChart" class="chart-box"></div>
+  <div id="coreNonCoreChart" class="chart-box"></div>
+</div>
+<button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Analytics.jpg')">⬇️</button>
 
-    // ✅ Hide loader AFTER data loads
-    if (typeof chartsLoaded === "function") {
-      chartsLoaded();
-    }
-  })
-  .catch(err => {
-    console.error("Company stats fetch error:", err);
-    setDefaultCompanyStats();
-  });
-
-function setDefaultCompanyStats() {
-  document.getElementById("totalCompanies").innerText = "0";
-  document.getElementById("coreCompanies").innerText = "0";
-  document.getElementById("nonCoreCompanies").innerText = "0";
-  document.getElementById("highestPackage").innerText = "0";
-  document.getElementById("averagePackage").innerText = "0";
-}
-   </script>
-
-    <div class="circular-btn-container">
-  <a href="circulars.html" class="circular-btn" id="circulars">
-  📢 View Placement Circulars
-  </a>
-  <a href="recruiters.html" class="circular-btn" id="recruiters">
-  🏭 View our Top Recruiters
-  </a>
-  <a href="forms.html" class="circular-btn" id="forms">
-  📃 Click to View Forms
-  </a> 
-  </div>
-    
-   <!-- PLACEMENT ANALYTICS -->
-  <h2 id="Charts">Placement Analytics</h2>
-  <div class="charts">
-    <div id="statusChart" class="chart-box"></div>
-    <div id="companyChart" class="chart-box"></div>
-  </div>
-    
-  <!-- PROGRAMME-WISE ANALYTICS -->
-  <h2>Programme-wise Analytics</h2>
-  <div class="charts">
-    <div id="programmeChart" class="chart-box"></div>
-    <div id="coreNonCoreChart" class="chart-box"></div>
-  </div>
-    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Analytics.jpg')">
-  ⬇️
-  </button>
-    
-  <h2>Company-wise Placement Analytics</h2>   
+<h2>Company-wise Placement Analytics</h2>
 <div style="display:flex; gap:20px;">
   <div id="companyStudentsChart" style="flex:3;"></div>
   <div id="companyLegend" style="flex:1;"></div>
 </div>
-<button class="download-btn" onclick="downloadChart('companyStudentsChart','Company-wise Placement Analytics.jpg')">
-  ⬇️
-</button>
+<button class="download-btn" onclick="downloadChart('companyStudentsChart','Company-wise Placement Analytics.jpg')">⬇️</button>
 
-      <!-- TOP PACKAGES -->
-  <h2>Top Five Highest Packages</h2>
-  <div class="charts">
-    <div id="topPackageChart" class="chart-box"></div>
-    </div>
-    <button class="download-btn" onclick="downloadChart('topPackageChart','Top Five Highest Packages.jpg')">
-  ⬇️
-  </button>
+<h2>Top Five Highest Packages</h2>
+<div class="charts">
+  <div id="topPackageChart" class="chart-box"></div>
+</div>
+<button class="download-btn" onclick="downloadChart('topPackageChart','Top Five Highest Packages.jpg')">⬇️</button>
 
- <h3>
-  <button onclick="adminLogin()">🔐 Admin Login</button>
-  <button onclick="adminLogout()" style="display:none" id="logoutBtn">🚪 Logout</button>
+<!-- ADMIN LOGIN -->
+<h3>
+  <button id="loginBtn" onclick="adminLogin()">🔐 Admin Login</button>
+  <button id="logoutBtn" onclick="adminLogout()" style="display:none">🚪 Logout</button>
 </h3>
 
-<script>
-let isAdmin = false;
-
-function adminLogin() {
-  const pw = prompt("Enter Admin Password:");
-  if (pw !== "1234") {
-    alert("Access denied");
-    return;
-  }
-
-  sessionStorage.setItem("isAdmin", "true");
-  isAdmin = true;
-  applyAdminView();
-  alert("Admin mode enabled");
-}
-
-function adminLogout() {
-  sessionStorage.removeItem("isAdmin");
-  isAdmin = false;
-  applyAdminView();
-  alert("Logged out");
-}
-
-function applyAdminView() {
-  const show = sessionStorage.getItem("isAdmin") === "true";
-
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = show ? "" : "none";
-  });
-
-  const logoutBtn = document.getElementById("logoutBtn");
-  if (logoutBtn) logoutBtn.style.display = show ? "inline-block" : "none";
-}
-
-window.addEventListener("load", () => {
-  applyAdminView();
-});
-</script>
-
-<!-- TABLE -->
+<!-- STUDENT REPORT DOWNLOAD -->
 <h2 id="Placed Students">Details of Placed Students</h2>
 <h3>Student Report (Access given only to Admins)</h3>
-
 <h3>
   <input type="text" id="regNo" placeholder="Enter Register Number">
   <button onclick="downloadReport()">Download Report</button>
 </h3>
 
-<script>
-function downloadReport() {
-  const regInput = document.getElementById("regNo");
-  const reg = regInput.value.trim();
-  if (!reg) {
-    alert("Enter Register Number");
-    return;
-  }
-
-  const pw = prompt("Enter Admin Password:");
-  if (pw !== "1234") {
-    alert("Access denied");
-    return;
-  }
-
-  // enable admin view
-  sessionStorage.setItem("isAdmin", "true");
-  isAdmin = true;
-  applyAdminView();
-
-  alert("Close the newly opened tab after download initiation.");
-
-  const url =
-    "https://script.google.com/macros/s/AKfycbx2PWHsy8Zh_aD9d-67n_0q7xpnF-MznuFB4otxb85DkRTufgAKGKgLTiI2TqGbi4BIvg/exec"
-    + "?reg=" + encodeURIComponent(reg)
-    + "&key=1234";
-
-  window.open(url, "_blank");
-  regInput.value = "";
-}
-</script>
-
 <div class="table-controls">
-  <input
-    type="text"
-    id="studentSearch"
-    placeholder="🔍 Search student name, company name, company type..."
-    onkeyup="searchTable()"
-  >
+  <input type="text" id="studentSearch" placeholder="🔍 Search student name, company name, company type..." onkeyup="searchTable()">
 </div>
 
 <table id="studentTableMain">
@@ -308,6 +131,42 @@ function downloadReport() {
   </thead>
   <tbody id="studentTable"></tbody>
 </table>
+
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="testimonials-section">
+  <h2>🎓 Student Testimonials</h2>
+  <h4>What Our Students Say</h4>
+  <p class="content">Hear directly from our Mechanical Engineering students who secured placements through rigorous training, faculty mentorship, and systematic placement support.</p>
+  <div class="testimonials-wrapper">
+    <!-- Student cards go here (same as your original HTML) -->
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<h2 class="section-title">Gallery</h2>
+<div class="gallery-wrapper">
+  <div class="slider-track" id="gallerySlider"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="placement-footer">
+  <div class="footer-grid">
+    <!-- Contact, Location, Reach Us boxes same as original HTML -->
+  </div>
+  <div class="footer-bottom">
+    <p id="lastUpdated"></p>
+    <p class="footer-credit">© Designed & Maintained by the Department of Mechanical Engineering</p>
+    <p class="disclaimer">... (your disclaimer text) ...</p>
+  </div>
+</footer>
+
+<!-- EXTERNAL SCRIPT -->
+<script src="script.js"></script>
+
+<!-- Inline scripts removed: loader, admin duplicate, fetch etc. handled in script.js -->
+
+</body>
+</html>
 
   <!-- Your external script for charts/data -->
   <script src="script.js"></script>
@@ -595,12 +454,4 @@ fetch("gallery.json")
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 

@@ -1,6 +1,3 @@
-.admin-only {
-  display: none;
-}
 let isAdmin = false;
 
 function enableAdminView() {
@@ -366,6 +363,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

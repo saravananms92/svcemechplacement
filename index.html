@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+  
+  <body>
 <!-- Loading Overlay -->
 <div id="loading">
   <div class="loader-box">
@@ -13,8 +15,7 @@
     <p>Loading data and charts… Please wait.</p>
   </div>
 </div>
-  
-  <body>
+    
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -106,6 +107,13 @@
     <span id="averagePackage">--</span>LPA
   </div>
 </div>
+
+    <script>
+function chartsLoaded() {
+  const loader = document.getElementById("loading");
+  if (loader) loader.style.display = "none";
+}
+</script>
 
    <script>
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
@@ -538,7 +546,23 @@ fetch("gallery.json")
   };
     </script>
 </body>
+  <script>
+let isAdmin = false;
+
+function chartsLoaded() {
+  const loader = document.getElementById("loading");
+  if (loader) loader.style.display = "none";
+}
+
+function enableAdminView() {
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "";
+  });
+}
+</script>
+
 </html>
+
 
 
 

@@ -199,6 +199,58 @@ function setDefaultCompanyStats() {
   ⬇️
   </button>
 
+ <h3>
+  <button onclick="adminLogin()">🔐 Admin Login</button>
+  <button onclick="adminLogout()" style="display:none" id="logoutBtn">🚪 Logout</button>
+</h3>
+
+<script>
+let isAdmin = false;
+
+function adminLogin() {
+  const pw = prompt("Enter Admin Password:");
+  if (pw !== "1234") {
+    alert("Access denied");
+    return;
+  }
+
+  isAdmin = true;
+  sessionStorage.setItem("isAdmin", "true");
+  enableAdminView();
+  alert("Admin mode enabled");
+}
+
+function adminLogout() {
+  isAdmin = false;
+  sessionStorage.removeItem("isAdmin");
+  disableAdminView();
+  document.getElementById("logoutBtn").style.display = "none";
+  alert("Logged out");
+}
+
+function enableAdminView() {
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "";
+  });
+  document.getElementById("logoutBtn").style.display = "inline-block";
+}
+
+function disableAdminView() {
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "none";
+  });
+}
+
+window.addEventListener("load", () => {
+  if (sessionStorage.getItem("isAdmin") === "true") {
+    isAdmin = true;
+    enableAdminView();
+  } else {
+    disableAdminView();
+  }
+});
+</script>
+
 <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
 <h3>Student Report (Access given only to Admins)</h3>
@@ -546,22 +598,8 @@ fetch("gallery.json")
   };
     </script>
 </body>
-  <script>
-let isAdmin = false;
-
-function chartsLoaded() {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "none";
-}
-
-function enableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
-  });
-}
-</script>
-
 </html>
+
 
 
 

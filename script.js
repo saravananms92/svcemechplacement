@@ -291,10 +291,6 @@ function populateStudentTable(data) {
 
   (data.placedStudents || []).forEach((s, i) => {
 
-    const linkHTML = s.offerLetterUrl
-      ? `<a href="${s.offerLetterUrl}" target="_blank">View PDF</a>`
-      : 'N/A';
-
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${i + 1}</td>
@@ -304,8 +300,7 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      <td>${linkHTML}</td>
-    `;
+      `;
     tbody.appendChild(tr);
   });
 }
@@ -359,4 +354,5 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 

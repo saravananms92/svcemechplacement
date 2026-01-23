@@ -1,13 +1,4 @@
 
-
-let isAdmin = false;
-
-function enableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
-  });
-}
-
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -300,7 +291,11 @@ function populateStudentTable(data) {
   tbody.innerHTML = '';
 
   (data.placedStudents || []).forEach((s, i) => {
-   
+
+    const linkHTML = s.offerLetterUrl
+      ? `<a href="${s.offerLetterUrl}" target="_blank">View PDF</a>`
+      : 'N/A';
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${i + 1}</td>
@@ -310,7 +305,7 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      ${isAdmin ? `<td class="admin-only"><a href="${s.offerLetterUrl}" target="_blank">View</a></td>` : ``}
+      <td>${linkHTML}</td>
     `;
     tbody.appendChild(tr);
   });

@@ -308,7 +308,11 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      ${isAdmin ? `<td class="admin-only"><a href="${s.offerLetterUrl}" target="_blank">View</a></td>` : ``}
+      <td class="admin-only">
+        ${s.offerLetterUrl 
+        ? `<a href="${s.offerLetterUrl}" target="_blank">View</a>` 
+        : "-"}
+      </td>
     `;
     tbody.appendChild(tr);
   });
@@ -363,6 +367,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

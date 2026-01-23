@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-  
-  <body>
 <!-- Loading Overlay -->
 <div id="loading">
   <div class="loader-box">
@@ -15,7 +14,8 @@
     <p>Loading data and charts… Please wait.</p>
   </div>
 </div>
-    
+  
+  <body>
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -108,13 +108,6 @@
   </div>
 </div>
 
-    <script>
-function chartsLoaded() {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "none";
-}
-</script>
-
    <script>
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
   .then(res => res.text())
@@ -199,58 +192,6 @@ function setDefaultCompanyStats() {
   ⬇️
   </button>
 
- <h3>
-  <button onclick="adminLogin()">🔐 Admin Login</button>
-  <button onclick="adminLogout()" style="display:none" id="logoutBtn">🚪 Logout</button>
-</h3>
-
-<script>
-let isAdmin = false;
-
-function adminLogin() {
-  const pw = prompt("Enter Admin Password:");
-  if (pw !== "1234") {
-    alert("Access denied");
-    return;
-  }
-
-  isAdmin = true;
-  sessionStorage.setItem("isAdmin", "true");
-  enableAdminView();
-  alert("Admin mode enabled");
-}
-
-function adminLogout() {
-  isAdmin = false;
-  sessionStorage.removeItem("isAdmin");
-  disableAdminView();
-  document.getElementById("logoutBtn").style.display = "none";
-  alert("Logged out");
-}
-
-function enableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
-  });
-  document.getElementById("logoutBtn").style.display = "inline-block";
-}
-
-function disableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "none";
-  });
-}
-
-window.addEventListener("load", () => {
-  if (sessionStorage.getItem("isAdmin") === "true") {
-    isAdmin = true;
-    enableAdminView();
-  } else {
-    disableAdminView();
-  }
-});
-</script>
-
 <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
 <h3>Student Report (Access given only to Admins)</h3>
@@ -272,10 +213,6 @@ function downloadReport() {
     return;
   }
 
-  // ✅ Enable Admin Mode
-  isAdmin = true;
-  enableAdminView();
-  
   alert("close the newly opened tab after download initiation.");
 
   const url =
@@ -301,13 +238,13 @@ function downloadReport() {
   <thead>
     <tr>
       <th>Sl.No</th>
-      <th>PROGRAMME NAME</th>
+      <th>PROGRAMME</th>
       <th>REGISTER NUMBER</th>
       <th>NAME OF THE STUDENT</th>
       <th>COMPANY NAME</th>
       <th>COMPANY TYPE</th>
-      <th>PACKAGE (LPA)</th>
-      <th class="admin-only">OFFER LETTER</th>
+      <th>PACKAGE(LPA)</th>
+      <th>OFFER LETTER</th>
     </tr>
   </thead>
   <tbody id="studentTable"></tbody>
@@ -599,8 +536,6 @@ fetch("gallery.json")
     </script>
 </body>
 </html>
-
-
 
 
 

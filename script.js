@@ -2,34 +2,33 @@ let isAdmin = false;
 
 function adminLogin() {
   const pw = prompt("Enter Admin Password:");
-  if (pw === "1234") {
-    isAdmin = true;
-    sessionStorage.setItem("isAdmin", "true");
-    enableAdminView();
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-    alert("Admin access granted");
-  } else {
+  if (pw !== "1234") {
     alert("Wrong password");
+    return;
   }
+
+  sessionStorage.setItem("isAdmin", "true");
+  isAdmin = true;
+  applyAdminView();
+  alert("Admin access granted");
 }
 
 function adminLogout() {
-  isAdmin = false;
   sessionStorage.removeItem("isAdmin");
-
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "none";
-  });
-
-  document.getElementById("loginBtn").style.display = "inline-block";
-  document.getElementById("logoutBtn").style.display = "none";
+  isAdmin = false;
+  applyAdminView();
+  alert("Logged out");
 }
 
-function enableAdminView() {
+function applyAdminView() {
+  const show = sessionStorage.getItem("isAdmin") === "true";
+
   document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
+    el.style.display = show ? "" : "none";
   });
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) logoutBtn.style.display = show ? "inline-block" : "none";
 }
 
 /************************************************
@@ -49,15 +48,11 @@ let dataGlobal = null;
  ************************************************/
 function init() {
   if (sessionStorage.getItem("isAdmin") === "true") {
-    isAdmin = true;
-    enableAdminView();
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-  }
-
-  fetchAndDrawCharts();
+  isAdmin = true;
+  applyAdminView();
 }
-/************************************************
+
+  /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
  ************************************************/
 async function fetchAndDrawCharts() {
@@ -349,7 +344,7 @@ function populateStudentTable(data) {
     tbody.appendChild(tr);
   });
   // ✅ FIX
-  if (isAdmin) enableAdminView();
+ applyAdminView();
 }
 
 /************************************************
@@ -401,6 +396,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

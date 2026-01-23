@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-  
-  <body>
 <!-- Loading Overlay -->
 <div id="loading">
   <div class="loader-box">
@@ -16,7 +14,8 @@
     <p>Loading data and charts… Please wait.</p>
   </div>
 </div>
-    
+  
+  <body>
   <header class="svce-header">
   <img src="assets/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
   
@@ -108,13 +107,6 @@
     <span id="averagePackage">--</span>LPA
   </div>
 </div>
-
-    <script>
-function chartsLoaded() {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "none";
-}
-</script>
 
    <script>
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
@@ -221,10 +213,6 @@ function downloadReport() {
     return;
   }
 
-  // ✅ Enable Admin Mode
-  isAdmin = true;
-  enableAdminView();
-  
   alert("close the newly opened tab after download initiation.");
 
   const url =
@@ -250,13 +238,13 @@ function downloadReport() {
   <thead>
     <tr>
       <th>Sl.No</th>
-      <th>PROGRAMME NAME</th>
+      <th>PROGRAMME</th>
       <th>REGISTER NUMBER</th>
       <th>NAME OF THE STUDENT</th>
       <th>COMPANY NAME</th>
       <th>COMPANY TYPE</th>
-      <th>PACKAGE (LPA)</th>
-      <th class="admin-only">OFFER LETTER</th>
+      <th>PACKAGE(LPA)</th>
+      <th>OFFER LETTER</th>
     </tr>
   </thead>
   <tbody id="studentTable"></tbody>
@@ -547,20 +535,9 @@ fetch("gallery.json")
   };
     </script>
 </body>
-  <script>
-let isAdmin = false;
-
-function chartsLoaded() {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "none";
-}
-
-function enableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
-  });
-}
-</script>
-
 </html>
+
+
+
+
 

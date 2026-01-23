@@ -1,4 +1,3 @@
-
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -360,3 +359,4 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+

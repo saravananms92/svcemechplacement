@@ -1,38 +1,3 @@
-
-let isAdmin = false;
-
-function adminLogin() {
-  const pw = prompt("Enter Admin Password:");
-  if (pw === "1234") {
-    isAdmin = true;
-    sessionStorage.setItem("isAdmin", "true");
-    enableAdminView();
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-    alert("Admin access granted");
-  } else {
-    alert("Wrong password");
-  }
-}
-
-function adminLogout() {
-  isAdmin = false;
-  sessionStorage.removeItem("isAdmin");
-
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "none";
-  });
-
-  document.getElementById("loginBtn").style.display = "inline-block";
-  document.getElementById("logoutBtn").style.display = "none";
-}
-
-function enableAdminView() {
-  document.querySelectorAll(".admin-only").forEach(el => {
-    el.style.display = "";
-  });
-}
-
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -49,15 +14,9 @@ let dataGlobal = null;
  * INIT
  ************************************************/
 function init() {
-  if (sessionStorage.getItem("isAdmin") === "true") {
-    isAdmin = true;
-    enableAdminView();
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-  }
-
   fetchAndDrawCharts();
 }
+
 /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
  ************************************************/
@@ -331,7 +290,11 @@ function populateStudentTable(data) {
   tbody.innerHTML = '';
 
   (data.placedStudents || []).forEach((s, i) => {
-   
+
+    const linkHTML = s.offerLetterUrl
+      ? `<a href="${s.offerLetterUrl}" target="_blank">View PDF</a>`
+      : 'N/A';
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${i + 1}</td>
@@ -341,16 +304,10 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      <td class="admin-only">
-        ${s.offerLetterUrl 
-        ? `<a href="${s.offerLetterUrl}" target="_blank">View</a>` 
-        : "-"}
-      </td>
+      <td>${linkHTML}</td>
     `;
     tbody.appendChild(tr);
   });
-  // ✅ FIX
-  if (isAdmin) enableAdminView();
 }
 
 /************************************************
@@ -402,14 +359,4 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
-
-
-
-
-
-
-
-
-
-
 

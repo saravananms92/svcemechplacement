@@ -212,6 +212,10 @@ function downloadReport() {
     return;
   }
 
+  // ✅ Enable Admin Mode
+  isAdmin = true;
+  enableAdminView();
+  
   alert("close the newly opened tab after download initiation.");
 
   const url =
@@ -237,13 +241,13 @@ function downloadReport() {
   <thead>
     <tr>
       <th>Sl.No</th>
-      <th>PROGRAMME</th>
+      <th>PROGRAMME NAME</th>
       <th>REGISTER NUMBER</th>
       <th>NAME OF THE STUDENT</th>
       <th>COMPANY NAME</th>
       <th>COMPANY TYPE</th>
-      <th>PACKAGE(LPA)</th>
-      <th>OFFER LETTER</th>
+      <th>PACKAGE (LPA)</th>
+      <th class="admin-only">OFFER LETTER</th>
     </tr>
   </thead>
   <tbody id="studentTable"></tbody>
@@ -535,6 +539,7 @@ fetch("gallery.json")
     </script>
 </body>
 </html>
+
 
 
 

@@ -1,5 +1,31 @@
 let isAdmin = false;
 
+function adminLogin() {
+  const pw = prompt("Enter Admin Password:");
+  if (pw === "1234") {
+    isAdmin = true;
+    sessionStorage.setItem("isAdmin", "true");
+    enableAdminView();
+    document.getElementById("loginBtn").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "inline-block";
+    alert("Admin access granted");
+  } else {
+    alert("Wrong password");
+  }
+}
+
+function adminLogout() {
+  isAdmin = false;
+  sessionStorage.removeItem("isAdmin");
+
+  document.querySelectorAll(".admin-only").forEach(el => {
+    el.style.display = "none";
+  });
+
+  document.getElementById("loginBtn").style.display = "inline-block";
+  document.getElementById("logoutBtn").style.display = "none";
+}
+
 function enableAdminView() {
   document.querySelectorAll(".admin-only").forEach(el => {
     el.style.display = "";
@@ -22,9 +48,15 @@ let dataGlobal = null;
  * INIT
  ************************************************/
 function init() {
+  if (sessionStorage.getItem("isAdmin") === "true") {
+    isAdmin = true;
+    enableAdminView();
+    document.getElementById("loginBtn").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "inline-block";
+  }
+
   fetchAndDrawCharts();
 }
-
 /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
  ************************************************/
@@ -316,6 +348,8 @@ function populateStudentTable(data) {
     `;
     tbody.appendChild(tr);
   });
+  // ✅ FIX
+  if (isAdmin) enableAdminView();
 }
 
 /************************************************
@@ -367,6 +401,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

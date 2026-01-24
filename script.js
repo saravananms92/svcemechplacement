@@ -4,7 +4,9 @@ const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
  * GOOGLE CHARTS LOADER
  ************************************************/
 google.charts.load('current', { packages: ['corechart'] });
-google.charts.setOnLoadCallback(init);
+google.charts.setOnLoadCallback(() => {
+  document.addEventListener("DOMContentLoaded", init);
+});
 
 /************************************************
  * GLOBAL VARIABLES
@@ -13,51 +15,67 @@ const DATA_URL = 'https://script.google.com/macros/s/AKfycbxpK-mCvnnjvKx7kYT8wGW
 let dataGlobal = null;
 
 /************************************************
- * INIT + FETCH DATA SAFELY
+ * INIT
  ************************************************/
 function init() {
-  document.addEventListener('DOMContentLoaded', async () => {
-    // Ensure isAdmin is defined
-    const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
-
-    // Hide admin-only columns initially
-    document.querySelectorAll(".admin
+  console.log("INIT STARTED");
+  loadPlacementData();
+}
 
 /************************************************
- * FETCH DATA AND DRAW ALL CHARTS
+ * FETCH + RENDER PIPELINE
  ************************************************/
-async function fetchAndDrawCharts() {
+async function loadPlacementData() {
   try {
-    console.log('Fetching placement data...');
+    console.log("Fetching placement data...");
 
-    const response = await fetch(DATA_URL, { mode: 'cors' });
-    if (!response.ok) throw new Error('HTTP error ' + response.status);
+    const response = await fetch(DATA_URL);
+    if (!response.ok) throw new Error("HTTP " + response.status);
 
     const data = await response.json();
-    console.log('DATA RECEIVED:', data);
+    console.log("DATA RECEIVED:", data);
+
+    if (data.error) throw new Error(data.message || "Server Error");
 
     dataGlobal = data;
 
-    updateKPIs(data);
-    drawPlacementStatusChart(data);
-    drawCompanyChart(data);
-    drawProgrammeChart(data);
-    drawCoreNonCoreChart(data);
-    drawCompanyVsStudentsChart(data);
-    drawTopPackageChart(data);
-    populateStudentTable(data);
+    renderAll(data);
+    applyAdminView();
 
   } catch (err) {
-    console.error('FETCH ERROR:', err);
+    console.error("FETCH ERROR:", err);
     document.body.insertAdjacentHTML(
-      'afterbegin',
+      "afterbegin",
       "<p style='color:red;text-align:center'>⚠ Failed to load placement data</p>"
     );
   }
 }
 
 /************************************************
- * KPI CARDS (FIXED & STABLE)
+ * RENDER ALL
+ ************************************************/
+function renderAll(data) {
+  updateKPIs(data);
+  drawPlacementStatusChart(data);
+  drawCompanyChart(data);
+  drawProgrammeChart(data);
+  drawCoreNonCoreChart(data);
+  drawCompanyVsStudentsChart(data);
+  drawTopPackageChart(data);
+  populateStudentTable(data);
+}
+
+/************************************************
+ * ADMIN VIEW
+ ************************************************/
+function applyAdminView() {
+  document.querySelectorAll(".adminOnly").forEach(el => {
+    el.style.display = isAdmin ? "" : "none";
+  });
+}
+
+/************************************************
+ * KPI CARDS
  ************************************************/
 function updateKPIs(data) {
 
@@ -79,7 +97,7 @@ function updateKPIs(data) {
 }
 
 /************************************************
- * PLACEMENT STATUS PIE CHART
+ * PLACEMENT STATUS PIE
  ************************************************/
 function drawPlacementStatusChart(data) {
   const rows = [
@@ -100,7 +118,7 @@ function drawPlacementStatusChart(data) {
 }
 
 /************************************************
- * COMPANY TYPE PIE CHART
+ * COMPANY TYPE
  ************************************************/
 function drawCompanyChart(data) {
   const map = {};
@@ -125,7 +143,7 @@ function drawCompanyChart(data) {
 }
 
 /************************************************
- * PROGRAMME-WISE PLACEMENT
+ * PROGRAMME WISE
  ************************************************/
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
@@ -134,26 +152,23 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#0aa1d8', '#9c312c'];
-  const rows = [['Programme', 'Placed Students', { role: 'style' }]];
-
-  let i = 0;
+  const rows = [['Programme', 'Placed Students']];
   for (const p in data.programmeCount) {
-    rows.push([p, Number(data.programmeCount[p]) || 0, colors[i % colors.length]]);
-    i++;
+    rows.push([p, Number(data.programmeCount[p]) || 0]);
   }
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
-    vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
+    vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' }
   });
 }
 
 /************************************************
- * CORE vs NON-CORE
+ * CORE vs NON CORE
  ************************************************/
 function drawCoreNonCoreChart(data) {
   const el = document.getElementById('coreNonCoreChart');
@@ -170,7 +185,6 @@ function drawCoreNonCoreChart(data) {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
-    colors: ['#c1ca51', '#c55885'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
@@ -196,21 +210,8 @@ function drawCompanyVsStudentsChart(data) {
     .filter(item => item.count > 0)
     .sort((a, b) => b.count - a.count);
 
-  const colors = [
-  "#0d6efd", "#198754", "#dc3545", "#fd7e14", "#6f42c1",
-  "#20c997", "#0dcaf0", "#6610f2", "#adb5bd", "#212529",
-
-  "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-  "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
-
-  "#393b79", "#637939", "#8c6d31", "#843c39", "#7b4173",
-  "#3182bd", "#31a354", "#756bb1", "#636363", "#e6550d"
-];
-
-  const rows = [['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]];
-  sortedData.forEach((item, i) => {
-    rows.push([item.company, item.count, item.count.toString(), `color: ${colors[i % colors.length]}`]);
-  });
+  const rows = [['Company', 'Students Placed']];
+  sortedData.forEach(item => rows.push([item.company, item.count]));
 
   const table = google.visualization.arrayToDataTable(rows);
 
@@ -219,34 +220,12 @@ function drawCompanyVsStudentsChart(data) {
     height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
     vAxis: { title: 'Total Students Placed', minValue: 0 },
-    legend: { position: 'none' },
-    annotations: { alwaysOutside: true }
-  });
-
-  drawCompanyLegend(sortedData, colors);
-}
-
-/************************************************
- * COMPANY LEGEND
- ************************************************/
-function drawCompanyLegend(data, colors) {
-  const legendContainer = document.getElementById('companyLegend');
-  if (!legendContainer) return;
-
-  legendContainer.innerHTML = '<b>Companies</b><br>';
-  data.forEach((item, i) => {
-    const color = colors[i % colors.length];
-    legendContainer.innerHTML += `
-      <div style="display:flex;align-items:center;margin-bottom:6px">
-        <span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:8px"></span>
-        <span style="font-size:13px">${item.company}</span>
-      </div>
-    `;
+    legend: { position: 'none' }
   });
 }
 
 /************************************************
- * TOP 5 PACKAGES
+ * TOP PACKAGES
  ************************************************/
 function drawTopPackageChart(data) {
   const container = document.getElementById('topPackageChart');
@@ -255,10 +234,9 @@ function drawTopPackageChart(data) {
     return;
   }
 
-  const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
-  const rows = [['Student','Package',{ role: 'annotation' },{ role: 'style' }]];
-  data.topPackages.forEach((s, i) => {
-    rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
+  const rows = [['Student','Package']];
+  data.topPackages.forEach(s => {
+    rows.push([s.name, Number(s.package) || 0]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -267,22 +245,7 @@ function drawTopPackageChart(data) {
     height: 400,
     chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
-    legend: { position: 'none' },
-    annotations: { alwaysOutside: true }
-  });
-}
-
-/************************************************
- * SEARCH
- ************************************************/
-function searchTable() {
-  const input = document.getElementById("studentSearch");
-  const filter = input.value.toLowerCase();
-  const tbody = document.getElementById("studentTable");
-  if (!tbody) return;
-
-  Array.from(tbody.getElementsByTagName("tr")).forEach(row => {
-    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+    legend: { position: 'none' }
   });
 }
 
@@ -307,64 +270,31 @@ function populateStudentTable(data) {
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
       <td class="adminOnly">${offerLink ? `<a href="${offerLink}" target="_blank">View</a>` : "-"}</td>
-      `;
+    `;
     tbody.appendChild(tr);
+  });
+
+  applyAdminView();
+}
+
+/************************************************
+ * SEARCH
+ ************************************************/
+function searchTable() {
+  const input = document.getElementById("studentSearch");
+  const filter = input.value.toLowerCase();
+  const tbody = document.getElementById("studentTable");
+  if (!tbody) return;
+
+  Array.from(tbody.getElementsByTagName("tr")).forEach(row => {
+    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
   });
 }
 
 /************************************************
- * RESIZE REDRAW
+ * RESIZE
  ************************************************/
 window.addEventListener('resize', () => {
   if (!dataGlobal) return;
-  drawProgrammeChart(dataGlobal);
-  drawTopPackageChart(dataGlobal);
-  drawPlacementStatusChart(dataGlobal);
-  drawCompanyChart(dataGlobal);
-  drawCompanyVsStudentsChart(dataGlobal);
+  renderAll(dataGlobal);
 });
-
-/************************************************
- * DOWNLOAD CHART
- ************************************************/
-function downloadChart(chartId, filename) {
-  const chartDiv = document.getElementById(chartId);
-  if (!chartDiv) return alert("Chart not found!");
-
-  const svg = chartDiv.getElementsByTagName("svg")[0];
-  if (!svg) return alert("Chart not ready yet!");
-
-  const serializer = new XMLSerializer();
-  const svgStr = serializer.serializeToString(svg);
-
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-  const img = new Image();
-
-  const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
-  const url = URL.createObjectURL(svgBlob);
-
-  img.onload = function () {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    URL.revokeObjectURL(url);
-
-    const imgURI = canvas.toDataURL("image/jpeg");
-    const a = document.createElement("a");
-    a.download = filename;
-    a.href = imgURI;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
-  img.src = url;
-}
-
-
-
-
-
-
-

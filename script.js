@@ -13,11 +13,15 @@ const DATA_URL = 'https://script.google.com/macros/s/AKfycbxpK-mCvnnjvKx7kYT8wGW
 let dataGlobal = null;
 
 /************************************************
- * INIT
+ * INIT + FETCH DATA SAFELY
  ************************************************/
 function init() {
-  fetchAndDrawCharts();
-}
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Ensure isAdmin is defined
+    const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
+
+    // Hide admin-only columns initially
+    document.querySelectorAll(".admin
 
 /************************************************
  * FETCH DATA AND DRAW ALL CHARTS
@@ -357,6 +361,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

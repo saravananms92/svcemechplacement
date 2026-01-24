@@ -199,7 +199,7 @@ function setDefaultCompanyStats() {
 <h2 id="Placed Students">Details of Placed Students</h2>
     
 <div id="adminOnly" style="display:none;">
-  <h3>Student Report (Access given only to Admins)</h3>
+  <h3>Student Report</h3>
   <h3>
     <input type="text" id="regNo" placeholder="Enter Register Number">
     <button onclick="downloadReport()">Download Report</button>
@@ -545,7 +545,7 @@ fetch("gallery.json")
 function openAdminLogin() {
   const pw = prompt("Enter Admin Password:");
 
-  if (pw === "svce@123") {
+  if (pw === "1234") {
     sessionStorage.setItem("admin", "true");
     applyAdminUI();
     alert("Admin Login Successful");
@@ -571,6 +571,7 @@ window.addEventListener("load", applyAdminUI);
 
 </body>
 </html>
+
 
 
 

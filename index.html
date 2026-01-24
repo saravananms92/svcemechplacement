@@ -32,9 +32,12 @@
   <div class="nav-container">
     <div class="nav-title">
       BATCH 2022-2026
-    </div>
+  </div>
 
-    <ul class="nav-links">
+<button id="adminLoginBtn" class="admin-btn" onclick="openAdminLogin()">Admin Login</button>
+<button id="logoutBtn" class="admin-btn" onclick="logout()" style="display:none;">Logout</button>
+
+  <ul class="nav-links">
   <li><a href="#Overview">Overview</a></li>
   <li><a href="circulars.html">Circulars</a></li>
   <li><a href="recruiters.html">Recruiters</a></li>
@@ -194,22 +197,27 @@ function setDefaultCompanyStats() {
 
 <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
-<h3>Student Report (Access given only to Admins)</h3>
-<h3><input type="text" id="regNo" placeholder="Enter Register Number">
-<button onclick="downloadReport()">Download Report</button></h3>
+    
+<div id="adminOnly" style="display:none;">
+  <h3>Student Report (Access given only to Admins)</h3>
+  <h3>
+    <input type="text" id="regNo" placeholder="Enter Register Number">
+    <button onclick="downloadReport()">Download Report</button>
+  </h3>
+</div>
     
 <script>
 function downloadReport() {
-  const regInput = document.getElementById("regNo");
-  const reg = regInput.value.trim();
-  if (!reg) {
-    alert("Enter Register Number");
+  if (!sessionStorage.getItem("admin")) {
+    alert("Admin login required");
     return;
   }
 
-  const pw = prompt("Enter Admin Password:");
-  if (pw !== "1234") {
-    alert("Access denied");
+  const regInput = document.getElementById("regNo");
+  const reg = regInput.value.trim();
+
+  if (!reg) {
+    alert("Enter Register Number");
     return;
   }
 
@@ -532,7 +540,37 @@ fetch("gallery.json")
   window.onload = function () {
     document.getElementById("loading").style.display = "none";
   };
-    </script>
+</script>
+
+<script>
+function openAdminLogin() {
+  const pw = prompt("Enter Admin Password:");
+
+  if (pw === "svce@123") {
+    sessionStorage.setItem("admin", "true");
+    applyAdminUI();
+    alert("Admin Login Successful");
+  } else {
+    alert("Invalid Password");
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem("admin");
+  applyAdminUI();
+}
+
+function applyAdminUI() {
+  const isAdmin = sessionStorage.getItem("admin");
+
+  document.getElementById("adminOnly").style.display = isAdmin ? "block" : "none";
+  document.getElementById("adminLoginBtn").style.display = isAdmin ? "none" : "inline-block";
+  document.getElementById("logoutBtn").style.display = isAdmin ? "inline-block" : "none";
+}
+window.addEventListener("load", applyAdminUI);
+</script>
+
 </body>
 </html>
+
 

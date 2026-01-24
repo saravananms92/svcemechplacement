@@ -298,3 +298,4 @@ window.addEventListener('resize', () => {
   if (!dataGlobal) return;
   renderAll(dataGlobal);
 });
+

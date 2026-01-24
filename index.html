@@ -34,11 +34,10 @@
       BATCH 2022-2026
   </div>
 
-  <ul class="nav-links">
+<button id="adminLoginBtn" class="admin-btn" onclick="openAdminLogin()">Admin Login</button>
+<button id="logoutBtn" class="admin-btn" onclick="logout()" style="display:none;">Logout</button>
 
-  <!-- Admin Controls -->
-  <li><a href="javascript:void(0)" id="adminLoginBtn" onclick="openAdminLogin()">Admin Login</a></li>
-  <li><a href="javascript:void(0)" id="logoutBtn" onclick="logout()" style="display:none;">Logout</a></li>
+  <ul class="nav-links">
   <li><a href="#Overview">Overview</a></li>
   <li><a href="circulars.html">Circulars</a></li>
   <li><a href="recruiters.html">Recruiters</a></li>
@@ -253,7 +252,6 @@ function downloadReport() {
       <th>COMPANY NAME</th>
       <th>COMPANY TYPE</th>
       <th>PACKAGE (LPA)</th>
-      <th class="adminOnly">Offer Letter</th>
       </tr>
   </thead>
   <tbody id="studentTable"></tbody>
@@ -573,8 +571,6 @@ window.addEventListener("load", applyAdminUI);
 
 </body>
 </html>
-
-
 
 
 

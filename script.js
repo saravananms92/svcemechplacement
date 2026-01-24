@@ -1,4 +1,3 @@
-
 document.querySelectorAll(".adminOnly").forEach(el=>{
   el.style.display = isAdmin ? "block":"none";
 });
@@ -295,8 +294,8 @@ function populateStudentTable(data) {
   tbody.innerHTML = '';
 
   (data.placedStudents || []).forEach((s, i) => {
+
     const tr = document.createElement('tr');
-    const offerLink = s.offerLetterUrl || '';
     tr.innerHTML = `
       <td>${i + 1}</td>
       <td>${s.programme || ''}</td>
@@ -305,7 +304,6 @@ function populateStudentTable(data) {
       <td>${s.company || ''}</td>
       <td>${s.type || ''}</td>
       <td>${s.package || ''}</td>
-      <td class="adminOnly">${offerLink ? `<a href="${offerLink}" target="_blank">View</a>` : "-"}</td>
       `;
     tbody.appendChild(tr);
   });
@@ -360,8 +358,3 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
-
-
-
-
-

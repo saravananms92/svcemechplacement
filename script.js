@@ -1,6 +1,4 @@
-document.querySelectorAll(".adminOnly").forEach(el=>{
-  el.style.display = isAdmin ? "block":"none";
-});
+const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
 
 /************************************************
  * GOOGLE CHARTS LOADER
@@ -359,6 +357,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

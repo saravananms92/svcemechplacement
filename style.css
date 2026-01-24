@@ -317,6 +317,7 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
 }
 
 /* ========== MOBILE ========== */
+
 @media (max-width: 768px) {
   .nav-container {
     flex-direction: column;
@@ -325,22 +326,27 @@ h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #00224
   }
 
   .nav-links {
-    flex-wrap: wrap;
-    gap: 10px;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 6px 10px;
   }
 
   .nav-title {
     font-size: 18px;
   }
-}
-
-/* ===========   KPI DASHBOARD – STUDENT PLACEMENT CARDS ====================== */
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 18px;
-  margin: 20px 0;
 }
 
 /* ================================
@@ -911,6 +917,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

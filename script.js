@@ -1,3 +1,7 @@
+document.querySelectorAll(".adminOnly").forEach(el=>{
+  el.style.display = isAdmin ? "block":"none";
+});
+
 /************************************************
  * GOOGLE CHARTS LOADER
  ************************************************/
@@ -354,5 +358,6 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 

@@ -295,7 +295,7 @@ function populateStudentTable(data) {
 
   (data.placedStudents || []).forEach((s, i) => {
     const tr = document.createElement('tr');
-    const offerLink = s.offerLetter || '';
+    const offerLink = s.offerLetterUrl || '';
     tr.innerHTML = `
       <td>${i + 1}</td>
       <td>${s.programme || ''}</td>
@@ -359,6 +359,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

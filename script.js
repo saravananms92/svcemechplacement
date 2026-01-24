@@ -358,3 +358,5 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
+

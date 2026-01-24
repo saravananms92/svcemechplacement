@@ -39,7 +39,6 @@
   <!-- Admin Controls -->
   <li><a href="javascript:void(0)" id="adminLoginBtn" onclick="openAdminLogin()">Admin Login</a></li>
   <li><a href="javascript:void(0)" id="logoutBtn" onclick="logout()" style="display:none;">Logout</a></li>
-  
   <li><a href="#Overview">Overview</a></li>
   <li><a href="circulars.html">Circulars</a></li>
   <li><a href="recruiters.html">Recruiters</a></li>
@@ -254,6 +253,7 @@ function downloadReport() {
       <th>COMPANY NAME</th>
       <th>COMPANY TYPE</th>
       <th>PACKAGE (LPA)</th>
+      <th class="adminOnly">Offer Letter</th>
       </tr>
   </thead>
   <tbody id="studentTable"></tbody>
@@ -573,6 +573,7 @@ window.addEventListener("load", applyAdminUI);
 
 </body>
 </html>
+
 
 
 

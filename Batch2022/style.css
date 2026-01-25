@@ -579,6 +579,16 @@ tbody tr:hover td {background: #ffe0b2;}
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+
+.count-box{
+  padding:8px 14px;
+  background:#f3f6fb;
+  border-left:4px solid #2b6cff;
+  width:fit-content;
+  margin-bottom:10px;
+  font-weight:600;
+}
+
 /* ===========  TOP RECRUITERS ================ */
 .recruiters {
   display: grid;
@@ -938,6 +948,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

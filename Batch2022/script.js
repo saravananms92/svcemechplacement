@@ -480,6 +480,24 @@ document.querySelectorAll("#studentTable tr").forEach(row => {
 
     row.style.display = show ? "" : "none";
   });
+  updateRowCount();
+}
+
+function updateRowCount() {
+  const table = document.getElementById("studentTableMain");
+  const tbody = table.getElementsByTagName("tbody")[0];
+  const rows = tbody.getElementsByTagName("tr");
+
+  let count = 0;
+
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].style.display !== "none") {
+      count++;
+    }
+  }
+
+  document.getElementById("rowCount").innerText =
+    "Showing " + count + " Students";
 }
 
 /************************************************
@@ -531,6 +549,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

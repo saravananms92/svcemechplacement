@@ -562,6 +562,17 @@ tbody tr:hover td {background: #ffe0b2;}
   border-color: #FF9933; box-shadow: 0 0 0 2px rgba(255,153,51,0.2);
 }
 
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.filters select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 /* ===========  TOP RECRUITERS ================ */
 .recruiters {
   display: grid;
@@ -921,4 +932,5 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 

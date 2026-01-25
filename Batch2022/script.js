@@ -391,6 +391,8 @@ function populateStudentTable(data) {
   // Apply admin toggle immediately
   const isAdmin = sessionStorage.getItem("admin") === "true";
   toggleAdminView(isAdmin);
+
+updateRowCount();
 }
 
 // ───────── Populate Programme Filter ─────────//
@@ -480,9 +482,6 @@ function applyFilters() {
 
     row.style.display = show ? "" : "none";
   });
-
-  // ✅ update count after filtering
-  updateRowCount();
 }
 
 function updateRowCount() {
@@ -508,21 +507,6 @@ function updateRowCount() {
       "Showing " + visibleCount + " of " + rows.length + " Students";
   }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const table = document.getElementById("studentTableMain");
-  if (!table) return;
-
-  const tbody = table.querySelector("tbody");
-  if (!tbody) return;
-
-  // 👀 Watch for row changes
-  const observer = new MutationObserver(function () {
-    updateRowCount();
-  });
-
-  observer.observe(tbody, { childList: true, subtree: true });
-});
 
 /************************************************
  * WINDOW RESIZE REDRAW
@@ -573,6 +557,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

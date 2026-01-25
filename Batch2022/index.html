@@ -243,9 +243,33 @@ function downloadReport() {
   <input
     type="text"
     id="studentSearch"
-    placeholder="🔍 Search student name, company name, company type..."
-    onkeyup="searchTable()"
-  >
+    placeholder="Search...">
+</div>
+
+<div class="filters">
+  <select id="filterProgramme">
+    <option value="">All Programmes</option>
+  </select>
+  
+  <select id="filterCompany">
+    <option value="">All Companies</option>
+  </select>
+
+  <select id="filterType">
+    <option value="">All Types</option>
+    <option value="Core">Core</option>
+    <option value="IT Services">IT Services</option>
+    <option value="Software">Software</option>
+    <option value="Analytics">Analytics</option>
+  </select>
+
+  <select id="filterPackage">
+    <option value="">All Packages</option>
+    <option value="0-3">Below 3 LPA</option>
+    <option value="3-5">3 - 5 LPA</option>
+    <option value="5-10">5 - 10 LPA</option>
+    <option value="10+">Above 10 LPA</option>
+  </select>
 </div>
     
 <table id="studentTableMain">
@@ -551,6 +575,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

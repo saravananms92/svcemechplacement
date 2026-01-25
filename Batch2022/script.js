@@ -502,15 +502,26 @@ function updateRowCount() {
     }
   });
 
-  document.getElementById("rowCount").innerText =
-    "Showing " + visibleCount + " of " + rows.length + " Students";
+  const rowCountBox = document.getElementById("rowCount");
+  if (rowCountBox) {
+    rowCountBox.innerText =
+      "Showing " + visibleCount + " of " + rows.length + " Students";
+  }
 }
 
-// ✅ wait until table rows are really available
-window.addEventListener("load", function () {
-  setTimeout(function () {
+document.addEventListener("DOMContentLoaded", function () {
+  const table = document.getElementById("studentTableMain");
+  if (!table) return;
+
+  const tbody = table.querySelector("tbody");
+  if (!tbody) return;
+
+  // 👀 Watch for row changes
+  const observer = new MutationObserver(function () {
     updateRowCount();
-  }, 600); // small delay for dynamic content
+  });
+
+  observer.observe(tbody, { childList: true, subtree: true });
 });
 
 /************************************************
@@ -562,6 +573,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

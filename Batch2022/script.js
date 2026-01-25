@@ -454,7 +454,7 @@ function applyFilters() {
   const type = filterType.value.toLowerCase();
   const pack = filterPackage.value;
 
-document.querySelectorAll("#studentTable tr").forEach(row => {
+  document.querySelectorAll("#studentTable tr").forEach(row => {
     const text = row.innerText.toLowerCase();
     const rowProgramme = (row.dataset.programme || "").toLowerCase();
     const rowCompany = (row.dataset.company || "").toLowerCase();
@@ -465,7 +465,7 @@ document.querySelectorAll("#studentTable tr").forEach(row => {
 
     // ✅ SEARCH
     if (searchValue && !text.includes(searchValue)) show = false;
-    
+
     // ✅ FILTERS
     if (programme && rowProgramme !== programme) show = false;
     if (company && rowCompany !== company) show = false;
@@ -480,25 +480,34 @@ document.querySelectorAll("#studentTable tr").forEach(row => {
 
     row.style.display = show ? "" : "none";
   });
+
+  // ✅ update count after filtering
   updateRowCount();
 }
+
 
 function updateRowCount() {
   const table = document.getElementById("studentTableMain");
   const tbody = table.getElementsByTagName("tbody")[0];
   const rows = tbody.getElementsByTagName("tr");
 
-  let count = 0;
+  let visibleCount = 0;
 
   for (let i = 0; i < rows.length; i++) {
     if (rows[i].style.display !== "none") {
-      count++;
+      visibleCount++;
     }
   }
 
   document.getElementById("rowCount").innerText =
-    "Showing " + count + " Students";
+    "Showing " + visibleCount + " of " + rows.length + " Students";
 }
+
+
+// ✅ run once when page loads
+window.addEventListener("load", function () {
+  updateRowCount();
+});
 
 /************************************************
  * WINDOW RESIZE REDRAW
@@ -549,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

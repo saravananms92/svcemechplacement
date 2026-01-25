@@ -100,6 +100,8 @@ async function fetchAndDrawCharts() {
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
     populateStudentTable(data);
+    populateProgrammeFilter();
+    populateCompanyFilter();
 
     // Apply admin UI based on session
     applyAdminUI();
@@ -305,8 +307,10 @@ function searchTable() {
   if (!tbody) return;
 
   Array.from(tbody.getElementsByTagName("tr")).forEach(row => {
-    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(filter) ? "" : "none";
   });
+  applyFilters();
 }
 
 /************************************************
@@ -338,7 +342,7 @@ function getPhotoUrl(photo) {
   return photo;
 }
 
-// ───────── Populate Placed Students Table ─────────
+// ───────── Populate Placed Students Table ─────────//
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
   if (!tbody) return;
@@ -354,9 +358,14 @@ function populateStudentTable(data) {
 
     // Photo URL — use direct link from JSON
     const photoUrl = getPhotoUrl(s.photo);
-    
+
     // Create table row
     const tr = document.createElement('tr');
+    tr.dataset.programme = (s.programme || '').trim();
+    tr.dataset.company = (s.company || '').trim();
+    tr.dataset.type = (s.type || '').trim();
+    tr.dataset.package = s.package || 0;
+    
     tr.innerHTML = `
       <td>${i + 1}</td>
       <td>${s.programme || ''}</td>
@@ -382,6 +391,95 @@ function populateStudentTable(data) {
   // Apply admin toggle immediately
   const isAdmin = sessionStorage.getItem("admin") === "true";
   toggleAdminView(isAdmin);
+}
+
+// ───────── Populate Programme Filter ─────────//
+function populateProgrammeFilter() {
+  const progSet = new Set();
+
+  document.querySelectorAll("#studentTable tr").forEach(row => {
+    if (row.dataset.programme) progSet.add(row.dataset.programme);
+  });
+
+  const select = document.getElementById("filterProgramme");
+  if (!select) return;
+
+  select.innerHTML = `<option value="">All Programmes</option>`;
+
+  progSet.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p;
+    opt.textContent = p;
+    select.appendChild(opt);
+  });
+}
+
+// ───────── Populate Company Filter ─────────//
+function populateCompanyFilter() {
+  const companySet = new Set();
+  document.querySelectorAll("#studentTable tr").forEach(row => {
+    if (row.dataset.company) companySet.add(row.dataset.company);
+  });
+
+  const select = document.getElementById("filterCompany");
+  if (!select) return;
+
+  select.innerHTML = `<option value="">All Companies</option>`;
+
+  companySet.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    select.appendChild(opt);
+  });
+}
+
+// ───────── Attach Filter Events + Search Events ─────────//
+document.addEventListener("DOMContentLoaded", () => {
+// Filters
+document.querySelectorAll("#filterProgramme, #filterCompany, #filterType, #filterPackage")
+  .forEach(el => el.addEventListener("change", applyFilters));
+// Search
+  const searchInput = document.getElementById("studentSearch");
+  if (searchInput) {
+    searchInput.addEventListener("input", searchTable);
+  }
+});
+
+// ───────── Apply Filters ─────────
+function applyFilters() {
+  const searchValue = (document.getElementById("studentSearch")?.value || "").toLowerCase();
+  const programme = filterProgramme.value.toLowerCase();
+  const company = filterCompany.value.toLowerCase();
+  const type = filterType.value.toLowerCase();
+  const pack = filterPackage.value;
+
+document.querySelectorAll("#studentTable tr").forEach(row => {
+    const text = row.innerText.toLowerCase();
+    const rowProgramme = (row.dataset.programme || "").toLowerCase();
+    const rowCompany = (row.dataset.company || "").toLowerCase();
+    const rowType = (row.dataset.type || "").toLowerCase();
+    const rowPack = parseFloat(row.dataset.package || 0);
+
+    let show = true;
+
+    // ✅ SEARCH
+    if (searchValue && !text.includes(searchValue)) show = false;
+    
+    // ✅ FILTERS
+    if (programme && rowProgramme !== programme) show = false;
+    if (company && rowCompany !== company) show = false;
+    if (type && rowType !== type) show = false;
+
+    if (pack) {
+      if (pack === "0-3" && rowPack > 3) show = false;
+      if (pack === "3-5" && (rowPack < 3 || rowPack > 5)) show = false;
+      if (pack === "5-10" && (rowPack < 5 || rowPack > 10)) show = false;
+      if (pack === "10+" && rowPack < 10) show = false;
+    }
+
+    row.style.display = show ? "" : "none";
+  });
 }
 
 /************************************************
@@ -433,5 +531,6 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 

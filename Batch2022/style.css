@@ -586,6 +586,7 @@ tbody tr:hover td {background: #ffe0b2;}
   border-left:4px solid #2b6cff;
   width:fit-content;
   margin-bottom:10px;
+  margin-left: auto;
   font-weight:600;
 }
 
@@ -948,6 +949,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

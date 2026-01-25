@@ -485,28 +485,32 @@ function applyFilters() {
   updateRowCount();
 }
 
-
 function updateRowCount() {
   const table = document.getElementById("studentTableMain");
-  const tbody = table.getElementsByTagName("tbody")[0];
-  const rows = tbody.getElementsByTagName("tr");
+  if (!table) return;
+
+  const tbody = table.querySelector("tbody");
+  if (!tbody) return;
+
+  const rows = tbody.querySelectorAll("tr");
 
   let visibleCount = 0;
 
-  for (let i = 0; i < rows.length; i++) {
-    if (rows[i].style.display !== "none") {
+  rows.forEach(row => {
+    if (row.style.display !== "none") {
       visibleCount++;
     }
-  }
+  });
 
   document.getElementById("rowCount").innerText =
     "Showing " + visibleCount + " of " + rows.length + " Students";
 }
 
-
-// ✅ run once when page loads
+// ✅ wait until table rows are really available
 window.addEventListener("load", function () {
-  updateRowCount();
+  setTimeout(function () {
+    updateRowCount();
+  }, 600); // small delay for dynamic content
 });
 
 /************************************************
@@ -558,6 +562,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

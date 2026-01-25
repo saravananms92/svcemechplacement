@@ -11,7 +11,31 @@
  </head>
 
   <body>
-  
+    
+  .btn-heading {
+  display: inline-block;        /* Makes it behave like a button */
+  background-color: #007bff;     /* Button color */
+  color: white;                  /* Text color */
+  padding: 10px 20px;            /* Space around text */
+  border-radius: 5px;            /* Rounded corners */
+  text-align: center;
+  font-size: 22px;               /* Adjust size */
+  cursor: pointer;               /* Pointer on hover */
+  text-transform: uppercase;     /* All caps */
+  margin: 10px 0;                /* Optional spacing */
+  }
+
+  .btn-heading:hover {
+  background-color: #0056b3;     /* Darker on hover */
+  color: #fff;
+  transition: background-color 0.3s ease;
+  }
+
+  .btn-heading {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Soft shadow */
+  border: 2px solid #0056b3;
+  }
+
   <!-- HEADER -->
   <header class="svce-header">
   <img src="assets/logos/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
@@ -43,7 +67,7 @@
   </div>
     
    <div class="table-card">
-   <h2 class="section-title">CORE RECRUITERS</h2>
+   <h2 class="btn-heading">CORE RECRUITERS</h2>
     <div class="recruiters">   
     <img src="assets/logos/SPIC.png" alt="SPIC">
     <img src="assets/logos/conserve.png" alt="CONSERVE">

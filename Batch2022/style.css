@@ -108,14 +108,14 @@ section {
 /* ==========HEADINGS =========== */
 h1 {
   font-size: 1.8rem;
-  margin: 25px 0 15px;
+  margin: 20px 0 10px;
   text-align: center;
   color: #003366;
 }
 
 h2 {
   font-size: 1.5rem;
-  margin: 40px 0 10px;
+  margin: 20px 0 10px;
   text-align: center;
   color: #0d47a1;
   font-weight: 700;
@@ -124,10 +124,10 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  h2 {font-size: 1.3rem; margin: 35px 0 20px;}
+  h2 {font-size: 1.3rem; margin: 15px 0 10px;}
 }
 
-h3 {  font-size: 0.8rem;  margin: 20px 0 12px;  text-align: left;  color: #002244;}
+h3 {  font-size: 0.8rem;  margin: 10px 0 10px;  text-align: left;  color: #002244;}
 
 /***********************Circular***********/
 .circular-btn {
@@ -949,6 +949,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

@@ -482,7 +482,8 @@ function applyFilters() {
 
     row.style.display = show ? "" : "none";
   });
-}
+    updateRowCount();
+                    }
 
 function updateRowCount() {
   const table = document.getElementById("studentTableMain");
@@ -557,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

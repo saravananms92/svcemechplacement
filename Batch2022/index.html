@@ -105,17 +105,17 @@
   </div>
 
   <div class="card company highest-package">
-    <div class="card-title">Highest Package</div>
-    <span id="highestPackage">--</span>LPA
+    <div class="card-title">Highest Package (LPA)</div>
+    <span id="highestPackage">--</span>
   </div>
   
   <div class="card company average-package">
-    <div class="card-title">Average Package</div>
-    <span id="averagePackage">--</span>LPA
+    <div class="card-title">Average Package (LPA)</div>
+    <span id="averagePackage">--</span>
   </div>
 </div>
 
-   <script>
+<script>
 fetch("https://docs.google.com/spreadsheets/d/1iqJvfbitWYRXY4TtO8sNcpoksD4kMD_T3TC6DOI9TPo/gviz/tq?sheet=Dashboard&range=C5:C9&tqx=out:json")
   .then(res => res.text())
   .then(text => {
@@ -577,6 +577,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

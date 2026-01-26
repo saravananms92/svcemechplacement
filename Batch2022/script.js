@@ -200,7 +200,8 @@ function drawProgrammeChart(data) {
       width: '85%',
       height: '75%'
     },
-    vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
+    vAxis: { title: 'Placed Students', minValue: 0, format: '0', min: 0,
+        max: maxVal + 2 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: 'out' }
@@ -229,7 +230,8 @@ function drawCoreNonCoreChart(data) {
       width: '85%',
       height: '75%'
     },
-    vAxis: { title: 'No. of Students', minValue: 0, format: '0' },
+    vAxis: { title: 'No. of Students', minValue: 0, format: '0', min: 0,
+        max: maxVal + 2 },
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
@@ -275,7 +277,8 @@ function drawCompanyVsStudentsChart(data) {
     title: 'No. of Students',
     minValue: 0,
     format: '0',
-    viewWindow: { min: 0 }
+    viewWindow: { min: 0 }, 
+    max: maxVal + 2
     }, 
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
@@ -317,7 +320,8 @@ function drawTopPackageChart(data) {
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
-    vAxis: { title: 'Package (LPA)', minValue: 0 },
+    vAxis: { title: 'Package (LPA)', minValue: 0, min: 0,
+        max: maxVal + 2 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
@@ -369,6 +373,8 @@ function drawPackageDistribution(data) {
       minValue: 0,
       format: '0',
       viewWindow: { min: 0 },
+      min: 0,
+      max: maxVal + 2
       gridlines: { count: -1 }
     },
     hAxis: { title: "Package Range" },
@@ -652,6 +658,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -164,51 +164,68 @@ function setDefaultCompanyStats() {
   </div>
     
    <!-- PLACEMENT ANALYTICS -->
-  <h2 id="Charts">Placement Analytics</h2>
-  <div class="charts">
+<h2 id="Charts">Placement Analytics</h2>
+
+<div class="charts">
+
+  <div class="chart-wrapper">
+    <button class="download-btn" onclick="downloadChart('statusChart','Placement_Analytics.png')">⬇️</button>
     <div id="statusChart" class="chart-box"></div>
-    </div>
-    <button class="download-btn" onclick="downloadChart('statusChart','Placement Analytics.jpg')">
-  ⬇️
-  </button>
+  </div>
+
+  <div class="chart-wrapper">
+    <button class="download-btn" onclick="downloadChart('companyChart','Company_Type_Analytics.png')">⬇️</button>
     <div id="companyChart" class="chart-box"></div>
   </div>
-    <button class="download-btn" onclick="downloadChart('companyChart','Company Type Analytics.jpg')">
-  ⬇️
-  </button>
-  </div>
-    
-  <!-- PROGRAMME-WISE ANALYTICS -->
-  <h2>Programme-wise Analytics</h2>
-  <div class="charts">
+
+</div>
+
+<!-- PROGRAMME-WISE ANALYTICS -->
+<h2>Programme-wise Analytics</h2>
+
+<div class="charts">
+
+  <div class="chart-wrapper">
+    <button class="download-btn" onclick="downloadChart('programmeChart','Programme_Wise_Placed_Analytics.png')">⬇️</button>
     <div id="programmeChart" class="chart-box"></div>
-    </div>
-    <button class="download-btn" onclick="downloadChart('programmeChart','Programme-wise Placed Analytics.jpg')">
-  ⬇️
-  </button>
+  </div>
+
+  <div class="chart-wrapper">
+    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme_Wise_Company_Analytics.png')">⬇️</button>
     <div id="coreNonCoreChart" class="chart-box"></div>
   </div>
-    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Company Analytics.jpg')">
-  ⬇️
-  </button>
-    
-  <h2>Company-wise Placement Analytics</h2>   
-<div style="display:flex; gap:20px;">
-  <div id="companyStudentsChart" style="flex:3;"></div>
-  <div id="companyLegend" style="flex:1;"></div>
-</div>
-<button class="download-btn" onclick="downloadChart('companyStudentsChart','Company-wise Placement Analytics.jpg')">
-  ⬇️
-</button>
 
-      <!-- TOP PACKAGES -->
-  <h2>Top Five Highest Packages</h2>
-  <div class="charts">
-    <div id="topPackageChart" class="chart-box"></div>
+</div>
+
+<!-- COMPANY-WISE PLACEMENT ANALYTICS -->
+<h2>Company-wise Placement Analytics</h2>
+
+<div class="charts">
+
+  <div class="chart-wrapper wide">
+    <button class="download-btn" onclick="downloadChart('companyStudentsChart','Company_Wise_Placement_Analytics.png')">⬇️</button>
+
+    <div style="display:flex; gap:20px;">
+      <div id="companyStudentsChart" style="flex:3;"></div>
+      <div id="companyLegend" style="flex:1;"></div>
     </div>
-    <button class="download-btn" onclick="downloadChart('topPackageChart','Top Five Highest Packages.jpg')">
-  ⬇️
-  </button>
+
+  </div>
+
+</div>
+
+<!-- TOP PACKAGES -->
+<h2>Top Five Highest Packages</h2>
+
+<div class="charts">
+
+  <div class="chart-wrapper">
+    <button class="download-btn" onclick="downloadChart('topPackageChart','Top_Five_Highest_Packages.png')">⬇️</button>
+    <div id="topPackageChart" class="chart-box"></div>
+  </div>
+
+</div>
+
 
 <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
@@ -588,6 +605,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

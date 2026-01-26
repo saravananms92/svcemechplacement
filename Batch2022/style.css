@@ -457,7 +457,7 @@ h3 {  font-size: 0.8rem;  margin: 10px 0 10px;  text-align: left;  color: #00224
 .total-company {background: linear-gradient(135deg, #1e88e5, #64b5f6);}
 .core-company {background: linear-gradient(135deg, #2e7d32, #66bb6a);}
 .noncore-company {background: linear-gradient(135deg, #e53935, #ff8a80);}
-.highest-package {background: linear-gradient(135deg, #ff9800, #ffd54f);}
+.highest-package {background: linear-gradient(135deg, #004d40, #26a69a);}
 .average-package {background: linear-gradient(135deg, #5e35b1, #b39ddb);}
 
 /* Hover effect */
@@ -962,6 +962,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

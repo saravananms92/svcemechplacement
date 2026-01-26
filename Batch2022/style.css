@@ -524,6 +524,7 @@ table {
   background: #ffffff;
   margin-top: 20px;
   font-size: 14px;
+  border: 1px solid #ddd;
   }
 
 thead th {
@@ -535,9 +536,10 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 10;
+  border: 1px solid #444;
 }
 
-tbody td {padding: 10px; background: #fcf6c5; text-align: left;}
+tbody td {padding: 10px; background: #fcf6c5; text-align: left;border: 1px solid #ddd;}
 tbody tr:nth-child(odd) td {background: #fff3e0;}
 tbody tr:hover td {background: #ffe0b2;}
 
@@ -949,6 +951,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

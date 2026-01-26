@@ -267,8 +267,8 @@ function drawCompanyLegend(data, colors) {
     const color = colors[i % colors.length];
     legendContainer.innerHTML += `
       <div style="display:flex;align-items:center;margin-bottom:6px">
-        <span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:8px"></span>
-        <span style="font-size:13px">${item.company}</span>
+        <span style="width:14px;height:16px;background:${color};display:inline-block;margin-right:8px"></span>
+        <span style="font-size:10px">${item.company}</span>
       </div>
     `;
   });
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

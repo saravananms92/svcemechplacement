@@ -522,13 +522,13 @@ window.addEventListener('resize', () => {
 });
 
 /************************************************
- * DOWNLOAD CHART FUNCTION
+ * HIGH QUALITY DOWNLOAD CHART FUNCTION
  ************************************************/
 function downloadChart(chartId, filename) {
   const chartDiv = document.getElementById(chartId);
   if (!chartDiv) return alert("Chart not found!");
 
-  const svg = chartDiv.getElementsByTagName("svg")[0];
+  const svg = chartDiv.querySelector("svg");
   if (!svg) return alert("Chart not ready yet!");
 
   const serializer = new XMLSerializer();
@@ -536,18 +536,32 @@ function downloadChart(chartId, filename) {
 
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  const img = new Image();
 
+  const img = new Image();
   const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
   const url = URL.createObjectURL(svgBlob);
 
+  // 👉 Improve quality
+  const scale = window.devicePixelRatio || 2;
+
+  const width = svg.clientWidth;
+  const height = svg.clientHeight;
+
+  canvas.width = width * scale;
+  canvas.height = height * scale;
+
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+
+  ctx.scale(scale, scale);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+
   img.onload = function () {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, width, height);
     URL.revokeObjectURL(url);
 
-    const imgURI = canvas.toDataURL("image/jpeg");
+    const imgURI = canvas.toDataURL("image/png"); // PNG = better quality
     const a = document.createElement("a");
     a.download = filename;
     a.href = imgURI;
@@ -558,6 +572,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -353,7 +353,7 @@ function populateStudentTable(data) {
     
     // Offer letter HTML
     const offerLink = s.offerLetterUrl
-      ? `<a href="${s.offerLetterUrl}" target="_blank">View</a>`
+      ? `<a href="${s.offerLetterUrl}" target="_blank" class="btn-view">View</a>`
       : 'N/A';
 
     // Photo URL — use direct link from JSON
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

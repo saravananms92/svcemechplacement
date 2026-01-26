@@ -172,6 +172,7 @@ function drawCompanyChart(data) {
   });
 }
 
+
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
@@ -189,11 +190,18 @@ function drawProgrammeChart(data) {
   }
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
-    height: 420,
-    chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
+    height: '100%',
+    chartArea: {
+      left: 70,
+      top: 40,
+      width: '85%',
+      height: '75%'
+    },
     vAxis: { title: 'Placed Students', minValue: 0 },
-    legend: { position: 'none' }
+    legend: { position: 'none' },
+    animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
 
@@ -207,13 +215,20 @@ function drawCoreNonCoreChart(data) {
   });
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(el).draw(table, {
-    height: 420,
-    chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
+    height: '100%',
+    chartArea: {
+      left: 70,
+      top: 40,
+      width: '85%',
+      height: '75%'
+    },
     vAxis: { title: 'No. of Students', minValue: 0 },
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
-    bar: { groupWidth: '55%' }
+    bar: { groupWidth: '55%' },
+    animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
 
@@ -572,6 +587,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

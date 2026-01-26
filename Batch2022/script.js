@@ -179,7 +179,7 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#0aa1d8', '#9c312c'];
+  const colors = ['#7b1fa2', '#9c312c'];
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
 
   let i = 0;
@@ -211,7 +211,7 @@ function drawCoreNonCoreChart(data) {
     height: 420,
     chartArea: { left: 80, top: 60, width: '65%', height: '60%' },
     vAxis: { title: 'No. of Students', minValue: 0 },
-    colors: ['#c1ca51', '#c55885'],
+    colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' }
   });
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -197,7 +197,7 @@ function drawProgrammeChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: '100%',
-    chartArea: { left: 70, top: 40, width: '85%', height: '70%' },
+    chartArea: { left: 70, top: 30, width: '85%', height: '70%' },
     vAxis: {
       title: 'Placed Students',
       format: '0',
@@ -328,7 +328,7 @@ function drawTopPackageChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
-    chartArea: { left: 60, top: 40, width: '60%', height: '75%' },
+    chartArea: { left: 60, top: 20, width: '60%', height: '75%' },
     vAxis: {
       title: 'Package (LPA)',
       viewWindow: { min: 0, max: maxVal + 1 }
@@ -667,6 +667,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

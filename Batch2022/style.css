@@ -543,6 +543,10 @@ tbody td {padding: 10px; background: #fcf6c5; text-align: left;border: 1px solid
 tbody tr:nth-child(odd) td {background: #fff3e0;}
 tbody tr:hover td {background: #ffe0b2;}
 
+.center {
+  text-align: center !important;
+}
+
 .btn-view {
   display: inline-block;
   padding: 6px 14px;
@@ -965,6 +969,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

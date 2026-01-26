@@ -331,7 +331,7 @@ function drawTopPackageChart(data) {
     chartArea: { left: 60, top: 20, width: '60%', height: '75%' },
     vAxis: {
       title: 'Package (LPA)',
-      viewWindow: { min: 0, max: maxVal + 1 }
+      viewWindow: { min: 0, max: maxVal + 2 }
     },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
@@ -667,6 +667,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

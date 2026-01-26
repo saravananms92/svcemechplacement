@@ -179,7 +179,7 @@ function drawProgrammeChart(data) {
     return;
   }
 
-  const colors = ['#7b1fa2', '#9c312c'];
+  const colors = ['#20c997', '#0dcaf0'];
   const rows = [['Programme', 'Placed Students', { role: 'style' }]];
 
   let i = 0;
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

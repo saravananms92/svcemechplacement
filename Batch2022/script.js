@@ -374,7 +374,7 @@ function drawPackageDistribution(data) {
       format: '0',
       viewWindow: { min: 0 },
       min: 0,
-      max: maxVal + 2
+      max: maxVal + 2,
       gridlines: { count: -1 }
     },
     hAxis: { title: "Package Range" },
@@ -658,6 +658,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

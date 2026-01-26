@@ -502,7 +502,7 @@ h3 {  font-size: 0.8rem;  margin: 10px 0 10px;  text-align: left;  color: #00224
 
 /* ============   TABLE  ================= */
 .table-container {
-  max-height: 450px;
+  max-height: 470px;
   overflow-y: auto;
 }
 
@@ -958,6 +958,7 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 #lastUpdated {color: #5c5a5a; font-size: 14px;}
 .footer-bottom .disclaimer {color: #fc0303; font-size: 14px;}
+
 
 
 

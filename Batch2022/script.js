@@ -99,6 +99,7 @@ async function fetchAndDrawCharts() {
     drawCoreNonCoreChart(data);
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
+    drawPackageDistribution(data);
     populateStudentTable(data);
     populateProgrammeFilter();
     populateCompanyFilter();
@@ -265,7 +266,12 @@ function drawCompanyVsStudentsChart(data) {
     title: 'Company-wise Student Placements',
     height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
-    vAxis: { title: 'Total Students Placed', minValue: 0 },
+    vAxis: {
+    title: 'No. of Students',
+    minValue: 0,
+    format: '0',
+    viewWindow: { min: 0 }
+    }, 
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
   });
@@ -309,6 +315,59 @@ function drawTopPackageChart(data) {
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
+  });
+}
+
+function drawPackageDistribution(data) {
+  const el = document.getElementById("packageDistChart");
+  if (!el || !data.placedStudents || data.placedStudents.length === 0) {
+    if (el) el.innerHTML = "<b>No package data available</b>";
+    return;
+  }
+
+  let ranges = {
+    "< 3 LPA": 0,
+    "3 - 5 LPA": 0,
+    "5 - 8 LPA": 0,
+    "8 - 10 LPA": 0,
+    "> 10 LPA": 0
+  };
+
+  data.placedStudents.forEach(s => {
+    let pkg = parseFloat(s.package || 0);
+
+    if (pkg > 0 && pkg < 3) ranges["< 3 LPA"]++;
+    else if (pkg >= 3 && pkg < 5) ranges["3 - 5 LPA"]++;
+    else if (pkg >= 5 && pkg < 8) ranges["5 - 8 LPA"]++;
+    else if (pkg >= 8 && pkg <= 10) ranges["8 - 10 LPA"]++;
+    else if (pkg > 10) ranges["> 10 LPA"]++;
+  });
+
+  const rows = [
+    ["Package Range", "Students", { role: "style" }],
+    ["< 3 LPA", ranges["< 3 LPA"], "#c8e6c9"],
+    ["3 - 5 LPA", ranges["3 - 5 LPA"], "#81c784"],
+    ["5 - 8 LPA", ranges["5 - 8 LPA"], "#4caf50"],
+    ["8 - 10 LPA", ranges["8 - 10 LPA"], "#2e7d32"],
+    ["> 10 LPA", ranges["> 10 LPA"], "#1b5e20"]
+  ];
+
+  const table = google.visualization.arrayToDataTable(rows);
+  
+  new google.visualization.ColumnChart(el).draw(table, {
+    height: 420,
+    bar: { groupWidth: "55%" },
+    legend: { position: "none" },
+    chartArea: { left: 70, top: 60, width: "70%", height: "65%" },
+    vAxis: {
+    title: "No. of Students",
+    minValue: 0,
+    format: '0',
+    viewWindow: { min: 0 },
+    gridlines: { count: -1 }
+    }, 
+    hAxis: { title: "Package Range" },
+    animation: { startup: true, duration: 800, easing: "out" }
   });
 }
 
@@ -587,6 +646,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

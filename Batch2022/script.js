@@ -196,13 +196,13 @@ function drawProgrammeChart(data) {
     height: '100%',
     chartArea: {
       left: 70,
-      top: 40,
+      top: 80,
       width: '85%',
       height: '75%'
     },
     vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true },
+    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -225,7 +225,7 @@ function drawCoreNonCoreChart(data) {
     height: '100%',
     chartArea: {
       left: 70,
-      top: 40,
+      top: 80,
       width: '85%',
       height: '75%'
     },
@@ -233,7 +233,7 @@ function drawCoreNonCoreChart(data) {
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
-    annotations: { alwaysOutside: true },
+    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -278,7 +278,7 @@ function drawCompanyVsStudentsChart(data) {
     viewWindow: { min: 0 }
     }, 
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true }
+    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
 
   drawCompanyLegend(sortedData, colors);
@@ -319,7 +319,7 @@ function drawTopPackageChart(data) {
     chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true }
+    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
 }
 
@@ -363,7 +363,7 @@ function drawPackageDistribution(data) {
     height: 420,
     bar: { groupWidth: "55%" },
     legend: { position: "none" },
-    chartArea: { left: 70, top: 60, width: "70%", height: "65%" },
+    chartArea: { left: 70, top: 80, width: "70%", height: "65%" },
     vAxis: {
       title: "No. of Students",
       minValue: 0,
@@ -372,7 +372,7 @@ function drawPackageDistribution(data) {
       gridlines: { count: -1 }
     },
     hAxis: { title: "Package Range" },
-    annotations: { alwaysOutside: true },
+    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: "out" }
   });
 }
@@ -652,6 +652,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

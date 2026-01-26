@@ -197,7 +197,7 @@ function drawProgrammeChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: '100%',
-    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
+    chartArea: { left: 70, top: 40, width: '85%', height: '70%' },
     vAxis: {
       title: 'Placed Students',
       format: '0',
@@ -228,7 +228,7 @@ function drawCoreNonCoreChart(data) {
 
   new google.visualization.ColumnChart(el).draw(table, {
     height: '100%',
-    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
+    chartArea: { left: 70, top: 40, width: '85%', height: '70%' },
     vAxis: {
       title: 'No. of Students',
       format: '0',
@@ -273,16 +273,16 @@ function drawCompanyVsStudentsChart(data) {
   });
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
     title: 'Company-wise Student Placements',
     height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
     vAxis: {
-    title: 'No. of Students',
-    minValue: 0,
-    format: '0',
-    viewWindow: { min: 0 }
-    }, 
+      title: 'No. of Students',
+      format: '0',
+      viewWindow: { min: 0, max: maxVal + 1 }
+    },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
@@ -328,7 +328,7 @@ function drawTopPackageChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
-    chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
+    chartArea: { left: 60, top: 40, width: '60%', height: '75%' },
     vAxis: {
       title: 'Package (LPA)',
       viewWindow: { min: 0, max: maxVal + 1 }
@@ -667,5 +667,6 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 

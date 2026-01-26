@@ -138,7 +138,7 @@ function updateKPIs(data) {
 }
 
 /************************************************
- * CHART FUNCTIONS (FIXED & SAFE)
+ * CHART FUNCTIONS
  ************************************************/
 function drawPlacementStatusChart(data) {
   const rows = [
@@ -184,11 +184,8 @@ function drawProgrammeChart(data) {
   const rows = [['Programme', 'Placed Students', { role: 'annotation' }, { role: 'style' }]];
 
   let i = 0;
-  let maxVal = 0;
-
   for (const p in data.programmeCount) {
     let val = Number(data.programmeCount[p]) || 0;
-    maxVal = Math.max(maxVal, val);
     rows.push([p, val, val.toString(), colors[i % colors.length]]);
     i++;
   }
@@ -197,12 +194,13 @@ function drawProgrammeChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: '100%',
-    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
-    vAxis: {
-      title: 'Placed Students',
-      format: '0',
-      viewWindow: { min: 0, max: maxVal + 2 }
+    chartArea: {
+      left: 70,
+      top: 80,
+      width: '85%',
+      height: '75%'
     },
+    vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: 'out' }
@@ -215,12 +213,9 @@ function drawCoreNonCoreChart(data) {
 
   const rows = [['Programme', 'Core', { role: 'annotation' }, 'Non-Core', { role: 'annotation' }]];
 
-  let maxVal = 0;
-
   Object.keys(data.coreNonCoreCount).forEach(p => {
     let c = Number(data.coreNonCoreCount[p].Core) || 0;
     let n = Number(data.coreNonCoreCount[p].NonCore) || 0;
-    maxVal = Math.max(maxVal, c, n);
     rows.push([p, c, c.toString(), n, n.toString()]);
   });
 
@@ -228,12 +223,13 @@ function drawCoreNonCoreChart(data) {
 
   new google.visualization.ColumnChart(el).draw(table, {
     height: '100%',
-    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
-    vAxis: {
-      title: 'No. of Students',
-      format: '0',
-      viewWindow: { min: 0, max: maxVal + 2 }
+    chartArea: {
+      left: 70,
+      top: 80,
+      width: '85%',
+      height: '75%'
     },
+    vAxis: { title: 'No. of Students', minValue: 0, format: '0' },
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
@@ -256,11 +252,13 @@ function drawCompanyVsStudentsChart(data) {
     .filter(item => item.count > 0)
     .sort((a, b) => b.count - a.count);
 
-  let maxVal = Math.max(...sortedData.map(d => d.count));
-
   const colors = [
     "#0d6efd", "#198754", "#dc3545", "#fd7e14", "#6f42c1",
-    "#20c997", "#0dcaf0", "#6610f2", "#adb5bd", "#212529"
+    "#20c997", "#0dcaf0", "#6610f2", "#adb5bd", "#212529",
+    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
+    "#393b79", "#637939", "#8c6d31", "#843c39", "#7b4173",
+    "#3182bd", "#31a354", "#756bb1", "#636363", "#e6550d"
   ];
 
   const rows = [['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]];
@@ -269,21 +267,37 @@ function drawCompanyVsStudentsChart(data) {
   });
 
   const table = google.visualization.arrayToDataTable(rows);
-
   new google.visualization.ColumnChart(container).draw(table, {
     title: 'Company-wise Student Placements',
     height: 500,
     chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
     vAxis: {
-      title: 'No. of Students',
-      format: '0',
-      viewWindow: { min: 0, max: maxVal + 2 }
-    },
+    title: 'No. of Students',
+    minValue: 0,
+    format: '0',
+    viewWindow: { min: 0 }
+    }, 
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
 
   drawCompanyLegend(sortedData, colors);
+}
+
+function drawCompanyLegend(data, colors) {
+  const legendContainer = document.getElementById('companyLegend');
+  if (!legendContainer) return;
+
+  legendContainer.innerHTML = '<b>Companies</b><br>';
+  data.forEach((item, i) => {
+    const color = colors[i % colors.length];
+    legendContainer.innerHTML += `
+      <div style="display:flex;align-items:center;margin-bottom:6px">
+        <span style="width:14px;height:16px;background:${color};display:inline-block;margin-right:8px"></span>
+        <span style="font-size:10px">${item.company}</span>
+      </div>
+    `;
+  });
 }
 
 function drawTopPackageChart(data) {
@@ -295,24 +309,15 @@ function drawTopPackageChart(data) {
 
   const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
   const rows = [['Student','Package',{ role: 'annotation' },{ role: 'style' }]];
-
-  let maxVal = 0;
-
   data.topPackages.forEach((s, i) => {
-    let v = Number(s.package) || 0;
-    maxVal = Math.max(maxVal, v);
-    rows.push([s.name, v, v + ' LPA', colors[i]]);
+    rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
-
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
-    vAxis: {
-      title: 'Package (LPA)',
-      viewWindow: { min: 0, max: maxVal + 1 }
-    },
+    vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
@@ -343,8 +348,6 @@ function drawPackageDistribution(data) {
     else if (pkg > 10) ranges["> 10 LPA"]++;
   });
 
-  let maxVal = Math.max(...Object.values(ranges));
-
   const rows = [
     ["Package Range", "Students", { role: "annotation" }, { role: "style" }],
     ["< 3 LPA", ranges["< 3 LPA"], ranges["< 3 LPA"].toString(), "#c8e6c9"],
@@ -363,8 +366,9 @@ function drawPackageDistribution(data) {
     chartArea: { left: 70, top: 80, width: "70%", height: "65%" },
     vAxis: {
       title: "No. of Students",
+      minValue: 0,
       format: '0',
-      viewWindow: { min: 0, max: maxVal + 2 },
+      viewWindow: { min: 0 },
       gridlines: { count: -1 }
     },
     hAxis: { title: "Package Range" },
@@ -648,27 +652,4 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

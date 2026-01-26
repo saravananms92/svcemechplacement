@@ -290,7 +290,7 @@ function drawTopPackageChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
-    chartArea: { left: 60, top: 60, width: '60%', height: '70%' },
+    chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
     vAxis: { title: 'Package (LPA)', minValue: 0 },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true }
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

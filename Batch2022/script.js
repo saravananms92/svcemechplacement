@@ -367,7 +367,7 @@ function populateStudentTable(data) {
     tr.dataset.package = s.package || 0;
     
     tr.innerHTML = `
-      <td>${i + 1}</td>
+      <td class="center">${i + 1}</td>
       <td>${s.programme || ''}</td>
       <td style="text-align:center">
         <img 
@@ -378,11 +378,11 @@ function populateStudentTable(data) {
           onerror="this.src='https://via.placeholder.com/60x80?text=No+Photo';"
         >
       </td>
-      <td>${s.registerNo || ''}</td>
+      <td class="center">${s.registerNo || ''}</td>
       <td>${s.name || ''}</td>
       <td>${s.company || ''}</td>
-      <td>${s.type || ''}</td>
-      <td>${s.package || ''}</td>
+      <td class="center">${s.type || ''}</td>
+      <td class="center">${s.package || ''}</td>
       <td class="adminCol">${offerLink}</td>
     `;
     tbody.appendChild(tr);
@@ -558,6 +558,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

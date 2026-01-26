@@ -184,8 +184,11 @@ function drawProgrammeChart(data) {
   const rows = [['Programme', 'Placed Students', { role: 'annotation' }, { role: 'style' }]];
 
   let i = 0;
+  let maxVal = 0;
+
   for (const p in data.programmeCount) {
     let val = Number(data.programmeCount[p]) || 0;
+    maxVal = Math.max(maxVal, val);
     rows.push([p, val, val.toString(), colors[i % colors.length]]);
     i++;
   }
@@ -194,13 +197,12 @@ function drawProgrammeChart(data) {
 
   new google.visualization.ColumnChart(container).draw(table, {
     height: '100%',
-    chartArea: {
-      left: 70,
-      top: 80,
-      width: '85%',
-      height: '75%'
+    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
+    vAxis: {
+      title: 'Placed Students',
+      format: '0',
+      viewWindow: { min: 0, max: maxVal + 2 }
     },
-    vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
     animation: { startup: true, duration: 800, easing: 'out' }
@@ -213,9 +215,12 @@ function drawCoreNonCoreChart(data) {
 
   const rows = [['Programme', 'Core', { role: 'annotation' }, 'Non-Core', { role: 'annotation' }]];
 
+  let maxVal = 0;
+
   Object.keys(data.coreNonCoreCount).forEach(p => {
     let c = Number(data.coreNonCoreCount[p].Core) || 0;
     let n = Number(data.coreNonCoreCount[p].NonCore) || 0;
+    maxVal = Math.max(maxVal, c, n);
     rows.push([p, c, c.toString(), n, n.toString()]);
   });
 
@@ -223,13 +228,12 @@ function drawCoreNonCoreChart(data) {
 
   new google.visualization.ColumnChart(el).draw(table, {
     height: '100%',
-    chartArea: {
-      left: 70,
-      top: 80,
-      width: '85%',
-      height: '75%'
+    chartArea: { left: 70, top: 80, width: '85%', height: '70%' },
+    vAxis: {
+      title: 'No. of Students',
+      format: '0',
+      viewWindow: { min: 0, max: maxVal + 2 }
     },
-    vAxis: { title: 'No. of Students', minValue: 0, format: '0' },
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
@@ -251,6 +255,8 @@ function drawCompanyVsStudentsChart(data) {
     .map(row => ({ company: row['Company Name'], count: Number(row['Total students placed']) || 0 }))
     .filter(item => item.count > 0)
     .sort((a, b) => b.count - a.count);
+
+  let maxVal = Math.max(...sortedData.map(d => d.count));
 
   const colors = [
     "#0d6efd", "#198754", "#dc3545", "#fd7e14", "#6f42c1",
@@ -309,15 +315,24 @@ function drawTopPackageChart(data) {
 
   const colors = ['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e'];
   const rows = [['Student','Package',{ role: 'annotation' },{ role: 'style' }]];
+
+  let maxVal = 0;
+
   data.topPackages.forEach((s, i) => {
-    rows.push([s.name, Number(s.package) || 0, s.package + ' LPA', colors[i]]);
+    let v = Number(s.package) || 0;
+    maxVal = Math.max(maxVal, v);
+    rows.push([s.name, v, v + ' LPA', colors[i]]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
+
   new google.visualization.ColumnChart(container).draw(table, {
     height: 400,
     chartArea: { left: 60, top: 60, width: '60%', height: '75%' },
-    vAxis: { title: 'Package (LPA)', minValue: 0 },
+    vAxis: {
+      title: 'Package (LPA)',
+      viewWindow: { min: 0, max: maxVal + 1 }
+    },
     legend: { position: 'none' },
     annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
   });
@@ -652,4 +667,5 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 

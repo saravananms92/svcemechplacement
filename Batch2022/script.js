@@ -173,7 +173,6 @@ function drawCompanyChart(data) {
   });
 }
 
-
 function drawProgrammeChart(data) {
   const container = document.getElementById('programmeChart');
   if (!data.programmeCount || Object.keys(data.programmeCount).length === 0) {
@@ -182,11 +181,12 @@ function drawProgrammeChart(data) {
   }
 
   const colors = ['#20c997', '#0dcaf0'];
-  const rows = [['Programme', 'Placed Students', { role: 'style' }]];
+  const rows = [['Programme', 'Placed Students', { role: 'annotation' }, { role: 'style' }]];
 
   let i = 0;
   for (const p in data.programmeCount) {
-    rows.push([p, Number(data.programmeCount[p]) || 0, colors[i % colors.length]]);
+    let val = Number(data.programmeCount[p]) || 0;
+    rows.push([p, val, val.toString(), colors[i % colors.length]]);
     i++;
   }
 
@@ -200,9 +200,9 @@ function drawProgrammeChart(data) {
       width: '85%',
       height: '75%'
     },
-    vAxis: { title: 'Placed Students', minValue: 0 },
+    vAxis: { title: 'Placed Students', minValue: 0, format: '0' },
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true }, 
+    annotations: { alwaysOutside: true },
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -211,9 +211,12 @@ function drawCoreNonCoreChart(data) {
   const el = document.getElementById('coreNonCoreChart');
   if (!el || !data.coreNonCoreCount) return;
 
-  const rows = [['Programme', 'Core', 'Non-Core']];
+  const rows = [['Programme', 'Core', { role: 'annotation' }, 'Non-Core', { role: 'annotation' }]];
+
   Object.keys(data.coreNonCoreCount).forEach(p => {
-    rows.push([p, data.coreNonCoreCount[p].Core, data.coreNonCoreCount[p].NonCore]);
+    let c = Number(data.coreNonCoreCount[p].Core) || 0;
+    let n = Number(data.coreNonCoreCount[p].NonCore) || 0;
+    rows.push([p, c, c.toString(), n, n.toString()]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -226,11 +229,11 @@ function drawCoreNonCoreChart(data) {
       width: '85%',
       height: '75%'
     },
-    vAxis: { title: 'No. of Students', minValue: 0 },
+    vAxis: { title: 'No. of Students', minValue: 0, format: '0' },
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
-    annotations: { alwaysOutside: true }, 
+    annotations: { alwaysOutside: true },
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -346,12 +349,12 @@ function drawPackageDistribution(data) {
   });
 
   const rows = [
-    ["Package Range", "Students", { role: "style" }],
-    ["< 3 LPA", ranges["< 3 LPA"], "#c8e6c9"],
-    ["3 - 5 LPA", ranges["3 - 5 LPA"], "#81c784"],
-    ["5 - 8 LPA", ranges["5 - 8 LPA"], "#4caf50"],
-    ["8 - 10 LPA", ranges["8 - 10 LPA"], "#2e7d32"],
-    ["> 10 LPA", ranges["> 10 LPA"], "#1b5e20"]
+    ["Package Range", "Students", { role: "annotation" }, { role: "style" }],
+    ["< 3 LPA", ranges["< 3 LPA"], ranges["< 3 LPA"].toString(), "#c8e6c9"],
+    ["3 - 5 LPA", ranges["3 - 5 LPA"], ranges["3 - 5 LPA"].toString(), "#81c784"],
+    ["5 - 8 LPA", ranges["5 - 8 LPA"], ranges["5 - 8 LPA"].toString(), "#4caf50"],
+    ["8 - 10 LPA", ranges["8 - 10 LPA"], ranges["8 - 10 LPA"].toString(), "#2e7d32"],
+    ["> 10 LPA", ranges["> 10 LPA"], ranges["> 10 LPA"].toString(), "#1b5e20"]
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
@@ -362,14 +365,14 @@ function drawPackageDistribution(data) {
     legend: { position: "none" },
     chartArea: { left: 70, top: 60, width: "70%", height: "65%" },
     vAxis: {
-    title: "No. of Students",
-    minValue: 0,
-    format: '0',
-    viewWindow: { min: 0 },
-    gridlines: { count: -1 }
-    }, 
+      title: "No. of Students",
+      minValue: 0,
+      format: '0',
+      viewWindow: { min: 0 },
+      gridlines: { count: -1 }
+    },
     hAxis: { title: "Package Range" },
-    annotations: { alwaysOutside: true }, 
+    annotations: { alwaysOutside: true },
     animation: { startup: true, duration: 800, easing: "out" }
   });
 }
@@ -649,6 +652,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

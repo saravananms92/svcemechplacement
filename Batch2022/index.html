@@ -167,16 +167,28 @@ function setDefaultCompanyStats() {
   <h2 id="Charts">Placement Analytics</h2>
   <div class="charts">
     <div id="statusChart" class="chart-box"></div>
+    </div>
+    <button class="download-btn" onclick="downloadChart('statusChart','Placement Analytics.jpg')">
+  ⬇️
+  </button>
     <div id="companyChart" class="chart-box"></div>
+  </div>
+    <button class="download-btn" onclick="downloadChart('companyChart','Company Type Analytics.jpg')">
+  ⬇️
+  </button>
   </div>
     
   <!-- PROGRAMME-WISE ANALYTICS -->
   <h2>Programme-wise Analytics</h2>
   <div class="charts">
     <div id="programmeChart" class="chart-box"></div>
+    </div>
+    <button class="download-btn" onclick="downloadChart('programmeChart','Programme-wise Placed Analytics.jpg')">
+  ⬇️
+  </button>
     <div id="coreNonCoreChart" class="chart-box"></div>
   </div>
-    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Analytics.jpg')">
+    <button class="download-btn" onclick="downloadChart('coreNonCoreChart','Programme-wise Company Analytics.jpg')">
   ⬇️
   </button>
     
@@ -576,6 +588,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

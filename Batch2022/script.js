@@ -202,6 +202,7 @@ function drawProgrammeChart(data) {
     },
     vAxis: { title: 'Placed Students', minValue: 0 },
     legend: { position: 'none' },
+    annotations: { alwaysOutside: true }, 
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -229,6 +230,7 @@ function drawCoreNonCoreChart(data) {
     colors: ['#1e88e5', '#fb8c00'],
     legend: { position: 'bottom' },
     bar: { groupWidth: '55%' },
+    annotations: { alwaysOutside: true }, 
     animation: { startup: true, duration: 800, easing: 'out' }
   });
 }
@@ -367,6 +369,7 @@ function drawPackageDistribution(data) {
     gridlines: { count: -1 }
     }, 
     hAxis: { title: "Package Range" },
+    annotations: { alwaysOutside: true }, 
     animation: { startup: true, duration: 800, easing: "out" }
   });
 }
@@ -646,6 +649,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

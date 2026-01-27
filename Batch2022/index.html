@@ -589,33 +589,18 @@ fetch("gallery.json")
   </a>
  </p>
 </div>
-</footer>
-
-    <script>
-  window.onload = function () {
-    document.getElementById("loading").style.display = "none";
-  };
+  </footer> 
+<script>
+  function chartsLoaded() {
+    const loader = document.getElementById("loading");
+    if (loader) {
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 300);
+    }
+  }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

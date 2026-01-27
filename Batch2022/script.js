@@ -320,25 +320,30 @@ function drawCompanyVsStudentsChart(data) {
   const table = google.visualization.arrayToDataTable(rows);
 
   const options = {
-    title: 'Company-wise Student Placements',
-    height: 500,
-    chartArea: { left: 90, top: 60, width: '85%', height: '65%' },
-    vAxis: {
-      title: 'No. of Students',
-      format: '0',
-      viewWindow: { min: 0, max: maxVal + 1 },
-      gridlines: { count: maxVal + 2 }
-    },
-    hAxis: {
-      textPosition: 'none'
-    },
-    legend: { position: 'none' },
-    bar: { groupWidth: "65%" },
-    annotations: {
-      alwaysOutside: true,
-      textStyle: { fontSize: 12, bold: true }
-    }
-  };
+  title: 'Company-wise Student Placements',
+  height: 480,
+  chartArea: {
+    left: 90,
+    top: 60,
+    width: '88%',
+    height: '78%'   // 🔥 Increased from 65% → 78%
+  },
+  vAxis: {
+    title: 'No. of Students',
+    format: '0',
+    viewWindow: { min: 0, max: maxVal + 1 },
+    gridlines: { count: maxVal + 2 }
+  },
+  hAxis: {
+    textPosition: 'none'
+  },
+  legend: { position: 'none' },
+  bar: { groupWidth: "65%" },
+  annotations: {
+    alwaysOutside: true,
+    textStyle: { fontSize: 12, bold: true }
+  }
+};
 
   const chart = new google.visualization.ColumnChart(container);
   chart.draw(table, options);
@@ -753,6 +758,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

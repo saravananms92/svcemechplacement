@@ -102,26 +102,29 @@ async function fetchAndDrawCharts() {
   try {
     console.log('Fetching placement data...');
 
-let cachedData = sessionStorage.getItem('placementData');
-if (cachedData) {
-  dataGlobal = JSON.parse(cachedData);
-  drawAllCharts(dataGlobal);
-} else {
-  const response = await fetch(DATA_URL);
-  const data = await response.json();
-  sessionStorage.setItem('placementData', JSON.stringify(data));
-  dataGlobal = data;
-  drawAllCharts(dataGlobal);
-}
-    
-    if (!response.ok) throw new Error('HTTP error ' + response.status);
+    let data;
 
-    const data = await response.json();
-    console.log('DATA RECEIVED:', data);
+    const cachedData = sessionStorage.getItem('placementData');
+
+    if (cachedData) {
+      data = JSON.parse(cachedData);
+      console.log("Loaded from cache");
+    } else {
+      const response = await fetch(DATA_URL);
+      if (!response.ok) throw new Error('HTTP error ' + response.status);
+
+      data = await response.json();
+      sessionStorage.setItem('placementData', JSON.stringify(data));
+      console.log("Loaded from API");
+    }
 
     dataGlobal = data;
+    console.log('DATA RECEIVED:', data);
 
+    // ✅ KPI
     updateKPIs(data);
+
+    // ✅ Charts
     drawPlacementStatusChart(data);
     drawCompanyChart(data);
     drawProgrammeChart(data);
@@ -129,14 +132,16 @@ if (cachedData) {
     drawCompanyVsStudentsChart(data);
     drawTopPackageChart(data);
     drawPackageDistribution(data);
+
+    // ✅ TABLE
     populateStudentTable(data);
     populateProgrammeFilter();
     populateCompanyFilter();
 
-    // Apply admin UI based on session
+    // ✅ Admin UI
     applyAdminUI();
 
-    // ✅ HIDE LOADER AFTER ALL CHARTS + TABLE LOAD
+    // ✅ Hide loader
     const loader = document.getElementById("loading");
     if (loader) loader.style.display = "none";
 
@@ -695,6 +700,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

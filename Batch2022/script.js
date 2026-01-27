@@ -83,6 +83,16 @@ let dataGlobal = null;
  ************************************************/
 function init() {
   fetchAndDrawCharts();
+  const charts = document.querySelectorAll('.chart-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        drawChartById(entry.target.id);
+      }
+    });
+  }, {threshold:0.1});
+
+  charts.forEach(c => observer.observe(c));
 }
 
 /************************************************
@@ -92,7 +102,18 @@ async function fetchAndDrawCharts() {
   try {
     console.log('Fetching placement data...');
 
-    const response = await fetch(DATA_URL, { cache: "no-store" });
+let cachedData = sessionStorage.getItem('placementData');
+if (cachedData) {
+  dataGlobal = JSON.parse(cachedData);
+  drawAllCharts(dataGlobal);
+} else {
+  const response = await fetch(DATA_URL);
+  const data = await response.json();
+  sessionStorage.setItem('placementData', JSON.stringify(data));
+  dataGlobal = data;
+  drawAllCharts(dataGlobal);
+}
+    
     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
     const data = await response.json();
@@ -450,56 +471,43 @@ function getPhotoUrl(photo) {
 }
 
 // ───────── Populate Placed Students Table ─────────//
+
 function populateStudentTable(data) {
   const tbody = document.getElementById('studentTable');
   if (!tbody) return;
-
   tbody.innerHTML = '';
 
+  const fragment = document.createDocumentFragment();
+
   (data.placedStudents || []).forEach((s, i) => {
-    
-    // Offer letter HTML
-    const offerLink = s.offerLetterUrl
-      ? `<a href="${s.offerLetterUrl}" target="_blank" class="btn-view">View</a>`
-      : 'N/A';
-
-    // Photo URL — use direct link from JSON
-    const photoUrl = getPhotoUrl(s.photo);
-
-    // Create table row
     const tr = document.createElement('tr');
     tr.dataset.programme = (s.programme || '').trim();
     tr.dataset.company = (s.company || '').trim();
     tr.dataset.type = (s.type || '').trim();
     tr.dataset.package = s.package || 0;
-    
+
+    const photoUrl = getPhotoUrl(s.photo);
+    const offerLink = s.offerLetterUrl
+      ? `<a href="${s.offerLetterUrl}" target="_blank" class="btn-view">View</a>`
+      : 'N/A';
+
     tr.innerHTML = `
-      <td class="center">${i + 1}</td>
-      <td>${s.programme || ''}</td>
-      <td style="text-align:center">
-        <img 
-          src="${photoUrl}" 
-          alt="${s.name || ""}" 
-          loading="lazy" 
-          class="stud-photo"
-          onerror="this.src='https://via.placeholder.com/60x80?text=No+Photo';"
-        >
-      </td>
-      <td class="center">${s.registerNo || ''}</td>
-      <td>${s.name || ''}</td>
-      <td>${s.company || ''}</td>
-      <td class="center">${s.type || ''}</td>
-      <td class="center">${s.package || ''}</td>
+      <td class="center">${i+1}</td>
+      <td>${s.programme||''}</td>
+      <td style="text-align:center"><img src="${photoUrl}" alt="${s.name||''}" loading="lazy" class="stud-photo"></td>
+      <td class="center">${s.registerNo||''}</td>
+      <td>${s.name||''}</td>
+      <td>${s.company||''}</td>
+      <td class="center">${s.type||''}</td>
+      <td class="center">${s.package||''}</td>
       <td class="adminCol">${offerLink}</td>
     `;
-    tbody.appendChild(tr);
+    fragment.appendChild(tr);
   });
 
-  // Apply admin toggle immediately
-  const isAdmin = sessionStorage.getItem("admin") === "true";
-  toggleAdminView(isAdmin);
-
-updateRowCount();
+  tbody.appendChild(fragment);
+  toggleAdminView(sessionStorage.getItem("admin")==="true");
+  updateRowCount();
 }
 
 // ───────── Populate Programme Filter ─────────//
@@ -687,6 +695,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -191,37 +191,7 @@ function setDefaultCompanyStats() {
   </div>
 </div>
 
-<!-- COMPANY-WISE PLACEMENT ANALYTICS -->
-<h2>Company-wise Placement Analytics</h2>
-<div class="charts">
-  <div class="chart-wrapper wide">
-    <button class="download-btn" onclick="downloadChart('companyStudentsChart','Company_Wise_Placement_Analytics.png')">⬇️</button>
-    <div style="display:flex; gap:20px;">
-      <div id="companyStudentsChart" style="flex:3;"></div>
-      <div id="companyLegend" style="flex:1;"></div>
-    </div>
-  </div>
-</div>
-
-<h2>Top Packages Overview</h2>
-
-<div class="charts">
-
-  <div class="chart-wrapper">
-    <button class="download-btn"
-      onclick="downloadChart('topPackageChart','Top_Five_Highest_Packages.png')">⬇️</button>
-    <div id="topPackageChart" class="chart-box"></div>
-  </div>
-
-  <div class="chart-wrapper">
-    <button class="download-btn"
-      onclick="downloadChart('packageDistChart','Package_Distribution.png')">⬇️</button>
-    <div id="packageDistChart" class="chart-box"></div>
-  </div>
-
-</div>
-
-<!-- TABLE -->
+  <!-- TABLE -->
 <h2 id="Placed Students">Details of Placed Students</h2>
     
 <div id="adminOnly" class="adminOnly" style="display:none;">
@@ -316,6 +286,36 @@ function downloadReport() {
 
   <!-- Your external script for charts/data -->
   <script src="script.js"></script>
+
+<!-- COMPANY-WISE PLACEMENT ANALYTICS -->
+<h2>Company-wise Placement Analytics</h2>
+<div class="charts">
+  <div class="chart-wrapper wide">
+    <button class="download-btn" onclick="downloadChart('companyStudentsChart','Company_Wise_Placement_Analytics.png')">⬇️</button>
+    <div style="display:flex; gap:20px;">
+      <div id="companyStudentsChart" style="flex:3;"></div>
+      <div id="companyLegend" style="flex:1;"></div>
+    </div>
+  </div>
+</div>
+
+<h2>Top Packages Overview</h2>
+
+<div class="charts">
+
+  <div class="chart-wrapper">
+    <button class="download-btn"
+      onclick="downloadChart('topPackageChart','Top_Five_Highest_Packages.png')">⬇️</button>
+    <div id="topPackageChart" class="chart-box"></div>
+  </div>
+
+  <div class="chart-wrapper">
+    <button class="download-btn"
+      onclick="downloadChart('packageDistChart','Package_Distribution.png')">⬇️</button>
+    <div id="packageDistChart" class="chart-box"></div>
+  </div>
+
+</div>
 
    <section id="testimonials" class="testimonials-section">
   <h2>🎓Student Testimonials</h2>
@@ -608,6 +608,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

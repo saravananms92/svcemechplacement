@@ -120,6 +120,8 @@ async function fetchAndDrawCharts() {
     );
   }
 }
+const loader = document.getElementById("loading");
+if (loader) loader.style.display = "none";
 
 /************************************************
  * KPI CARDS
@@ -610,22 +612,25 @@ function updateRowCount() {
 }
 
 /************************************************
- * WINDOW RESIZE REDRAW
+ * WINDOW RESIZE REDRAW (OPTIMIZED)
  ************************************************/
+let resizeTimer;
+
 window.addEventListener('resize', () => {
   if (!dataGlobal) return;
-  drawProgrammeChart(dataGlobal);
-  drawTopPackageChart(dataGlobal);
-  drawPlacementStatusChart(dataGlobal);
-  drawCompanyChart(dataGlobal);
-  drawCompanyVsStudentsChart(dataGlobal);
-  drawTopPackageChart(data);
-  drawPackageDistribution(data);
 
-if (typeof chartsLoaded === "function") {
-  chartsLoaded();
-}
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    drawProgrammeChart(dataGlobal);
+    drawCoreNonCoreChart(dataGlobal);
+    drawPlacementStatusChart(dataGlobal);
+    drawCompanyChart(dataGlobal);
+    drawCompanyVsStudentsChart(dataGlobal);
+    drawTopPackageChart(dataGlobal);
+    drawPackageDistribution(dataGlobal);
+  }, 300);
 });
+
 /************************************************
  * HIGH QUALITY DOWNLOAD CHART FUNCTION
  ************************************************/
@@ -677,6 +682,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

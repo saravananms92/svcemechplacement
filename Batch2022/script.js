@@ -51,8 +51,11 @@ function applyAdminUI() {
     el.style.display = isAdmin ? "block" : "none";
   });
 
-  document.getElementById("adminLoginBtn").style.display = isAdmin ? "none" : "inline-block";
-  document.getElementById("logoutBtn").style.display = isAdmin ? "inline-block" : "none";
+const loginBtn = document.getElementById("adminLoginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (loginBtn) loginBtn.style.display = isAdmin ? "none" : "inline-block";
+if (logoutBtn) logoutBtn.style.display = isAdmin ? "inline-block" : "none";
 
   toggleAdminView(isAdmin);
 }
@@ -89,7 +92,7 @@ async function fetchAndDrawCharts() {
   try {
     console.log('Fetching placement data...');
 
-    const response = await fetch(DATA_URL, { mode: 'cors' });
+    const response = await fetch(DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
     const data = await response.json();
@@ -112,6 +115,10 @@ async function fetchAndDrawCharts() {
     // Apply admin UI based on session
     applyAdminUI();
 
+    // ✅ HIDE LOADER AFTER ALL CHARTS + TABLE LOAD
+    const loader = document.getElementById("loading");
+    if (loader) loader.style.display = "none";
+
   } catch (err) {
     console.error('FETCH ERROR:', err);
     document.body.insertAdjacentHTML(
@@ -120,8 +127,6 @@ async function fetchAndDrawCharts() {
     );
   }
 }
-const loader = document.getElementById("loading");
-if (loader) loader.style.display = "none";
 
 /************************************************
  * KPI CARDS
@@ -682,6 +687,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

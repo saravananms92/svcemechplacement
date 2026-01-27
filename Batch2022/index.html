@@ -447,7 +447,13 @@ function downloadReport() {
    </script>   
    </section>
 
-    <script>
+  
+<h2 class="section-title">Gallery</h2>
+
+<div class="gallery-wrapper">
+  <div class="slider-track" id="gallerySlider"></div>
+</div>
+<script>
 fetch("gallery.json")
   .then(res => res.json())
   .then(data => {
@@ -619,6 +625,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

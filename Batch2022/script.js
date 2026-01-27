@@ -290,7 +290,10 @@ function drawCompanyVsStudentsChart(data) {
   }
 
   const sortedData = data.Company_Filter
-    .map(row => ({ company: row['Company Name'], count: Number(row['Total students placed']) || 0 }))
+    .map(row => ({
+      company: row['Company Name'],
+      count: Number(row['Total students placed']) || 0
+    }))
     .filter(item => item.count > 0)
     .sort((a, b) => b.count - a.count);
 
@@ -300,47 +303,97 @@ function drawCompanyVsStudentsChart(data) {
     "#0d6efd", "#198754", "#dc3545", "#fd7e14", "#6f42c1",
     "#20c997", "#0dcaf0", "#6610f2", "#adb5bd", "#212529",
     "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
-    "#393b79", "#637939", "#8c6d31", "#843c39", "#7b4173",
-    "#3182bd", "#31a354", "#756bb1", "#636363", "#e6550d"
+    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
   ];
 
   const rows = [['Company', 'Students Placed', { role: 'annotation' }, { role: 'style' }]];
+
   sortedData.forEach((item, i) => {
-    rows.push([item.company, item.count, item.count.toString(), `color: ${colors[i % colors.length]}`]);
+    rows.push([
+      item.company,
+      item.count,
+      item.count.toString(),
+      `color: ${colors[i % colors.length]}`
+    ]);
   });
 
   const table = google.visualization.arrayToDataTable(rows);
 
-  new google.visualization.ColumnChart(container).draw(table, {
+  const options = {
     title: 'Company-wise Student Placements',
     height: 500,
-    chartArea: { left: 120, top: 60, width: '80%', height: '65%' },
+    chartArea: { left: 90, top: 60, width: '85%', height: '65%' },
     vAxis: {
       title: 'No. of Students',
       format: '0',
-      viewWindow: { min: 0, max: maxVal + 1 }
+      viewWindow: { min: 0, max: maxVal + 1 },
+      gridlines: { count: maxVal + 2 }
+    },
+    hAxis: {
+      textPosition: 'none'
     },
     legend: { position: 'none' },
-    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } }
-  });
+    bar: { groupWidth: "65%" },
+    annotations: {
+      alwaysOutside: true,
+      textStyle: { fontSize: 12, bold: true }
+    }
+  };
+
+  const chart = new google.visualization.ColumnChart(container);
+  chart.draw(table, options);
 
   drawCompanyLegend(sortedData, colors);
+}
+
+
+function drawCompanyLegend(data, colors) {
+  const legendContainer = document.getElementById('companyLegend');
+  if (!legendContainer) return;
+
+  legendContainer.innerHTML = `
+    <div class="legend-title">Companies</div>
+    <div class="legend-grid"></div>
+  `;
+
+  const grid = legendContainer.querySelector(".legend-grid");
+
+  data.forEach((item, i) => {
+    const color = colors[i % colors.length];
+
+    const div = document.createElement("div");
+    div.className = "legend-item";
+    div.innerHTML = `
+      <span class="legend-color" style="background:${color}"></span>
+      <span class="legend-text" title="${item.company}">${item.company}</span>
+    `;
+
+    grid.appendChild(div);
+  });
 }
 
 function drawCompanyLegend(data, colors) {
   const legendContainer = document.getElementById('companyLegend');
   if (!legendContainer) return;
 
-  legendContainer.innerHTML = '<b>Companies</b><br>';
+  legendContainer.innerHTML = `
+    <div class="legend-title">Companies</div>
+    <div class="legend-grid"></div>
+  `;
+
+  const grid = legendContainer.querySelector(".legend-grid");
+
   data.forEach((item, i) => {
     const color = colors[i % colors.length];
-    legendContainer.innerHTML += `
-      <div style="display:flex;align-items:center;margin-bottom:6px">
-        <span style="width:14px;height:16px;background:${color};display:inline-block;margin-right:8px"></span>
-        <span style="font-size:12px">${item.company}</span>
-      </div>
+
+    const div = document.createElement("div");
+    div.className = "legend-item";
+    div.innerHTML = `
+      <span class="legend-color" style="background:${color}"></span>
+      <span class="legend-text" title="${item.company}">${item.company}</span>
     `;
+
+    grid.appendChild(div);
   });
 }
 
@@ -700,6 +753,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

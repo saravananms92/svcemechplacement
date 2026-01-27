@@ -599,15 +599,15 @@ fetch("gallery.json")
     loader.style.transition = "opacity .3s ease";
     loader.style.opacity = "0";
 
-    setTimeout(() => {
-      loader.style.display = "none";
-    }, 3000);
+    loader.addEventListener("transitionend", () => {
+        loader.style.display = "none";
+    }, { once: true });
   };
   </script>
 
-
 </body>
 </html>
+
 
 
 

@@ -326,7 +326,7 @@ function drawCompanyVsStudentsChart(data) {
     left: 90,
     top: 60,
     width: '88%',
-    height: '78%'   // 🔥 Increased from 65% → 78%
+    height: '85%'   // 🔥 Increased from 65% → 85%
   },
   vAxis: {
     title: 'No. of Students',
@@ -758,6 +758,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

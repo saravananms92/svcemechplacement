@@ -289,7 +289,7 @@ function drawCompanyVsStudentsChart(data) {
   new google.visualization.ColumnChart(container).draw(table, {
     title: 'Company-wise Student Placements',
     height: 500,
-    chartArea: { left: 80, top: 60, width: '60%', height: '65%' },
+    chartArea: { left: 120, top: 60, width: '80%', height: '65%' },
     vAxis: {
       title: 'No. of Students',
       format: '0',
@@ -312,7 +312,7 @@ function drawCompanyLegend(data, colors) {
     legendContainer.innerHTML += `
       <div style="display:flex;align-items:center;margin-bottom:6px">
         <span style="width:14px;height:16px;background:${color};display:inline-block;margin-right:8px"></span>
-        <span style="font-size:10px">${item.company}</span>
+        <span style="font-size:12px">${item.company}</span>
       </div>
     `;
   });
@@ -687,6 +687,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

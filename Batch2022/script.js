@@ -614,7 +614,13 @@ window.addEventListener('resize', () => {
   drawPlacementStatusChart(dataGlobal);
   drawCompanyChart(dataGlobal);
   drawCompanyVsStudentsChart(dataGlobal);
+  drawTopPackageChart(data);
+  drawPackageDistribution(data);
 });
+
+if (typeof chartsLoaded === "function") {
+  chartsLoaded();
+}
 
 /************************************************
  * HIGH QUALITY DOWNLOAD CHART FUNCTION
@@ -667,6 +673,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

@@ -447,13 +447,7 @@ function downloadReport() {
    </script>   
    </section>
 
-<h2 class="section-title">Gallery</h2>
-
-<div class="gallery-wrapper">
-  <div class="slider-track" id="gallerySlider"></div>
-</div>
- 
-<script>
+    <script>
 fetch("gallery.json")
   .then(res => res.json())
   .then(data => {
@@ -465,7 +459,8 @@ fetch("gallery.json")
         slide.className = "slide";
 
         const img = document.createElement("img");
-        img.src = item.image;   // ✅ FIX HERE
+        img.src = item.image;
+        img.loading = "lazy";
 
         const caption = document.createElement("p");
         caption.textContent = item.description;
@@ -478,9 +473,26 @@ fetch("gallery.json")
 
     createSlides();
     createSlides(); // infinite scroll
+
+    // ✅ AUTO SCROLL
+    let pos = 0;
+    const speed = 0.4;
+
+    function scrollGallery() {
+      pos -= speed;
+
+      if (Math.abs(pos) >= track.scrollWidth / 2) {
+        pos = 0;
+      }
+
+      track.style.transform = `translateX(${pos}px)`;
+      requestAnimationFrame(scrollGallery);
+    }
+
+    scrollGallery();
   });
 </script>
-    
+
   <footer class="placement-footer">
   <div class="footer-grid">
 
@@ -607,6 +619,7 @@ fetch("gallery.json")
 
 </body>
 </html>
+
 
 
 

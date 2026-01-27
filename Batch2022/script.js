@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("loading");
+  if (loader) loader.style.display = "flex";
+});
+
 function switchBatch(folder) {
   if (!folder) return;
   window.location.href = "../" + folder + "/";
@@ -673,6 +678,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

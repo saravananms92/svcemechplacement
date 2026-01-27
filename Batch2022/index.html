@@ -590,17 +590,24 @@ fetch("gallery.json")
  </p>
 </div>
   </footer> 
-<script>
-  function chartsLoaded() {
+
+  <script>
+  window.chartsLoaded = function () {
     const loader = document.getElementById("loading");
-    if (loader) {
-      loader.style.opacity = "0";
-      setTimeout(() => loader.style.display = "none", 300);
-    }
-  }
-</script>
+    if (!loader) return;
+
+    loader.style.transition = "opacity .3s ease";
+    loader.style.opacity = "0";
+
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 700);
+  };
+  </script>
+
 
 </body>
 </html>
+
 
 

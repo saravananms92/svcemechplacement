@@ -522,7 +522,7 @@ h3 {  font-size: 0.8rem;  margin: 10px 0 10px;  text-align: left;  color: #00224
 
 /* Download Button - Icon Only */
 .download-btn {
-  position: absolute;
+  position: relative;
   top: 10px;
   right: 10px;
   background: transparent;     /* remove circle */
@@ -1111,5 +1111,6 @@ tbody tr:hover td {background: #ffe0b2;}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 

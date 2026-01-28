@@ -194,3 +194,101 @@ h4 {  font-size: 1.5rem;  margin: 10px 0 10px;  text-align: center;  color: #000
 .justify-text{
   text-align: justify
 }
+
+/* ================= UX PAGE STYLE ================= */
+
+.ux-container {
+  background: linear-gradient(#ffffff, #f5f8ff);
+  border-radius: 18px;
+  padding: 45px 50px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+/* Main Title */
+.main-title {
+  text-align: center;
+  font-size: 1.9rem;
+  color: #0d47a1;
+  margin-bottom: 18px;
+}
+
+/* Section Headings */
+.section-title {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  color: #0b3c78;
+  font-size: 1.45rem;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 65px;
+  height: 4px;
+  background: #1e88e5;
+  margin: 8px auto 0;
+  border-radius: 4px;
+}
+
+/* Text */
+.ux-container p {
+  font-size: 15.5px;
+  color: #374151;
+  line-height: 1.75;
+}
+
+/* Lists */
+.list-style {
+  margin: 14px 0 22px 26px;
+}
+
+.list-style li {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* Programs */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 14px;
+  margin: 22px 0 35px;
+}
+
+.program-card {
+  background: linear-gradient(135deg,#1e88e5,#0d47a1);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(13,71,161,.3);
+  transition: all .25s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(13,71,161,.4);
+}
+
+/* Info Cards */
+.info-card {
+  background: #f4f8ff;
+  border-left: 6px solid #1e88e5;
+  padding: 20px 24px;
+  border-radius: 14px;
+  margin: 26px 0;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .ux-container {
+    padding: 28px 22px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+}

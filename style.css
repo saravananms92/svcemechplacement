@@ -101,9 +101,11 @@ section {
 }
 
 .about-container h3 {
-  color: #FFFFFF;
+  color: #0D47A1;
   margin-top: 25px;
-}
+  text-align: center;
+  font-weight: 700;
+  }
 
 .about-container p {
   line-height: 1.7;

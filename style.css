@@ -1,0 +1,72 @@
+/* ======== GLOBAL RESET & BASE ================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #EFF5FB;
+  color: #263238;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #0D47A1, #1976D2);
+  color: white;
+}
+
+section {
+  background: white;
+}
+
+/* Common Container */
+.container {width: 90%; max-width: 1200px; padding: 0 3vw; margin: auto;}
+
+/* ============ HEADER ================== */
+.svce-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  padding: 10px 20px 12px;
+  border-bottom: 4px solid #FF9933;
+}
+
+.logo {max-height: 120px; width: auto;}
+.header-text {flex: 1; text-align: center;}
+.header-text h1 {margin: 0; font-size: 24px;}
+.header-text p {  margin-top: 4px;  font-size: 14px;  color: #6c757d;  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;}
+
+/* Header Mobile */
+@media (max-width: 768px) {
+  .svce-header {flex-direction: column;}
+  .logo {max-height: 60px;}
+  .header-text h1 {font-size: 18px;}
+  .header-text p {font-size: 13px;}
+}
+
+/* ==========HEADINGS =========== */
+h1 {
+  font-size: 1.8rem;
+  margin: 12px 0 6px;
+  text-align: center;
+  color: #003366;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 12px 0 6px;
+  text-align: center;
+  color: #0d47a1;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  h2 {font-size: 1.3rem; margin: 12px 0 6px;}
+}
+
+h3 {  font-size: 0.8rem;  margin: 10px 0 10px;  text-align: left;  color: #002244;}

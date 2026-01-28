@@ -1,13 +1,15 @@
 /* ================= Batch Switcher UX ================= */
-
 .batch-bar {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
   background: linear-gradient(135deg,#ff9800,#ff5722);
-  padding: 16px 10px;
-  border-radius: 22px;
+  padding: 8px 14px;
+  border-radius: 26px;
   box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  margin: 24px auto 0;      /* centers + moves down */
+  justify-content: center; /* centers content */
+  width: fit-content;
 }
 
 .batch-label {

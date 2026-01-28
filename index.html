@@ -21,8 +21,22 @@
   
 <h2>Placement Dashboard</h2>
 
-<select onchange="location = this.value;">
+<style>
+.select-btn {
+  width: 260px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(135deg,#2563eb,#1e40af);
+  color: white;
+  cursor: pointer;
+}
+</style>
+
+<select class="select-btn" onchange="location=this.value;">
   <option>Select Batch</option>
   <option value="Batch2022/">Batch 2022-2026</option>
   <option value="Batch2023/">Batch 2023-2027</option>
 </select>
+</html>

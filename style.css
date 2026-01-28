@@ -122,8 +122,9 @@ section {
 
 .about-container h2 {
   text-align: center;
-  color: #FFFFFF;
+  color: #0d47a1;   /* Dark Blue */
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .about-container h3 {

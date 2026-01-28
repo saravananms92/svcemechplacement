@@ -285,6 +285,7 @@ h4 {  font-size: 1.5rem;  margin: 10px 0 10px;  text-align: center;  color: #000
   grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
   gap: 14px;
   margin: 22px 0 35px;
+  align-items: center;
 }
 
 .program-card {

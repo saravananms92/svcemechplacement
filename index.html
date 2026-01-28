@@ -22,21 +22,39 @@
 <h2>Placement Dashboard</h2>
 
 <style>
-.select-btn {
+.center-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.select-box {
   width: 260px;
-  padding: 12px;
+  padding: 12px 15px;
   font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  background: linear-gradient(135deg,#2563eb,#1e40af);
-  color: white;
+  border-radius: 8px;
+  border: 2px solid #4f46e5;
+  background: #fff;
+  color: #333;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.select-box:hover {
+  border-color: #1d4ed8;
+}
+
+.select-box:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(79,70,229,0.5);
 }
 </style>
 
-<select class="select-btn" onchange="location=this.value;">
-  <option>Select Batch</option>
-  <option value="Batch2022/">Batch 2022-2026</option>
-  <option value="Batch2023/">Batch 2023-2027</option>
-</select>
+<div class="center-box">
+  <select class="select-box" onchange="location = this.value;">
+    <option>Select Batch</option>
+    <option value="Batch2022/">Batch 2022-2026</option>
+    <option value="Batch2023/">Batch 2023-2027</option>
+  </select>
+</div>
 </html>

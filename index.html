@@ -1,60 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>SVCE MECH Placement Overview</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-</head>
-
-<header class="svce-header">
-  <img src="Batch2022/assets/logos/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
-  
-  <div class="header-text">
-    <h1>Department of Mechanical Engineering</h1>
-    <p>Live Placement Dashboard<br> 
-      Circulars | Analytics | Recruiters | Success Statistics | Forms | Contact</p>
-  </div>
-  
-  <img src="Batch2022/assets/logos/college-emblem.png" class="logo right-logo" alt="college-emblem">
-</header>
-  
-<h2>Placement Dashboard</h2>
-
-<style>
-.center-box {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.select-box {
-  width: 260px;
-  padding: 12px 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 2px solid #4f46e5;
-  background: #fff;
-  color: #333;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.select-box:hover {
-  border-color: #1d4ed8;
-}
-
-.select-box:focus {
-  outline: none;
-  box-shadow: 0 0 6px rgba(79,70,229,0.5);
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 <div class="center-box">
-  <select class="select-box" onchange="location = this.value;">
-    <option>Select Batch</option>
-    <option value="Batch2022/">Batch 2022-2026</option>
-    <option value="Batch2023/">Batch 2023-2027</option>
+  <select class="select-box" onchange="if(this.value) window.location.href=this.value;">
+    <option value="">Select Batch</option>
+    <option value="Batch2022/index.html">Batch 2022-2026</option>
+    <option value="Batch2023/index.html">Batch 2023-2027</option>
   </select>
 </div>
-</html>
+
+<div class="about-container">
+
+  <h2>About the Department</h2>
+
+  <p>The department of Mechanical Engineering started its successful journey in the year 1985.</p>
+
+  <p>More than sixty percentage of the faculty members are doctorates and the department has the privilege of housing research cells, namely.</p>
+
+  <ul>
+    <li>Fibre Reinforced Plastics (FRP) Cell</li>
+    <li>Engine Testing and Bio – Fuel Research Cell</li>
+    <li>Tribology Research Cell</li>
+    <li>Welding Research Cell</li>
+  </ul>
+
+  <p>These research cells are used extensively for research and consultancy projects.</p>
+
+  <p>The B.E. Mechanical Engineering program offered by the department is continuously accredited by National Board of Accreditation (NBA) since 1998.</p>
+
+  <h3>Vision of SVCE</h3>
+  <p>To be a leader in Higher Technical Education and Research by providing the state of the art facilities to transform the learners into global contributors and achievers.</p>
+
+  <h3>Vision of the Department</h3>
+  <p>To be a renowned department offering Programs in the field of Mechanical Engineering that imparts competent technical knowledge, skill, research, innovation and leadership to transform learners into global contributors.</p>
+
+  <h3>Mission of SVCE</h3>
+  <p>To develop SVCE as a "CENTRE OF EXCELLENCE" offering Engineering Education to men and women at undergraduate and postgraduate degree levels, bringing out their total personality, emphasizing ethical values and preparing them to meet the growing challenges of the industry and diverse societal needs of our nation.</p>
+
+  <h3>Mission of the Department</h3>
+  <ul>
+    <li>To provide quality education encompassing recent technological developments, ethical values and environmental issues in Engineering.</li>
+    <li>To offer need based training to the students in tools relevant to mechanical engineering.</li>
+    <li>To continuously upgrade the research facilities and laboratories.</li>
+    <li>To provide a conducive environment leading to continuous learning.</li>
+    <li>To offer technical assistance to the industrial and societal needs.</li>
+  </ul>
+
+  <h3>Programme Educational Objectives (PEOs) - UG</h3>
+  <ul>
+    <li>The graduates will possess technical knowledge, skill and ethical values.</li>
+    <li>The graduates will acquire higher education and emerge successful.</li>
+    <li>The graduates will venture into entrepreneurship and become job creators.</li>
+  </ul>
+
+</div>

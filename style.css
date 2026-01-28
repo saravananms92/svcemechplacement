@@ -282,19 +282,23 @@ h4 {  font-size: 1.5rem;  margin: 10px 0 10px;  text-align: center;  color: #000
 /* Programs */
 .programs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+  gap: 18px;
+  justify-content: center;   /* centers the whole grid */
   margin: 22px 0 35px;
-  align-items: center;
 }
 
 .program-card {
   background: linear-gradient(135deg,#1e88e5,#0d47a1);
   color: #fff;
-  padding: 14px 18px;
-  border-radius: 12px;
+  padding: 18px 16px;
+  border-radius: 14px;
   text-align: center;
   font-weight: 600;
+  min-height: 70px;         /* equal height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 6px 14px rgba(13,71,161,.3);
   transition: all .25s ease;
 }

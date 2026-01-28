@@ -30,24 +30,6 @@
   
 <link rel="stylesheet" href="style.css">
 
-<nav class="navbar">
-  <div class="nav-container">
-  <div class="nav-title">
-  <select id="batchSwitcher" onchange="switchBatch(this.value)" class="batch-switcher">
-  <option value="">Switch Batch</option>
-  <option value="Batch2022">Batch 2022–26</option>
-  <option value="Batch2023">Batch 2023–27</option>
-  </select>
-    
-  </div>
-
-  <ul class="nav-links">
-  <li><a href="#" id="adminLoginBtn" onclick="openAdminLogin()">Admin Login</a></li>
-  <li><a href="#" id="logoutBtn" onclick="logout()" style="display:none;">Logout</a></li>
- </ul>
-</div>
-</nav>
-  
   <div class="center-box">
   <select class="select-box" onchange="if(this.value) window.location.href=this.value;">
     <option value="">Select Batch</option>

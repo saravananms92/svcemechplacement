@@ -1,16 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "flex";
-});
-
-
 function switchBatch(value) {
   if (!value) return;
 
+  const base = "/svcemechplacement/";
+
   if (value === "home") {
-    window.location.href = "index.html";
+    window.location.href = base + "index.html";
   } else {
-    window.location.href = value + "/index.html";
+    window.location.href = base + value + "/index.html";
   }
 }
 

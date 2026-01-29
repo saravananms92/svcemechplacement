@@ -9,11 +9,13 @@ function setCurrentBatch() {
   const select = document.getElementById("batchSwitcher");
   if (!select) return;
 
-  if (path.includes("batch2022")) {
+  if (path.includes("/batch2022/")) {
     select.value = "Batch2022";
-  } else if (path.includes("batch2023")) {
+  } 
+  else if (path.includes("/batch2023/")) {
     select.value = "Batch2023";
-  } else {
+  } 
+  else {
     select.value = "home";
   }
 }
@@ -22,14 +24,14 @@ function switchBatch(value) {
   if (!value) return;
 
   if (value === "home") {
-    window.location.href = "../index.html"; 
-  } else {
-    window.location.href = value + "/index.html";
+    window.location.href = "/index.html";
+  } 
+  else {
+    window.location.href = "/" + value + "/index.html";
   }
 }
 
-// call on load
-window.onload = setCurrentBatch;
+document.addEventListener("DOMContentLoaded", setCurrentBatch);
 </script>
 
 /************************************************

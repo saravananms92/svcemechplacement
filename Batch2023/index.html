@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SVCE MECH Placement Overview</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+  
+<body>
+<!-- Loading Overlay -->
+<div id="loading">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Loading data and charts… Please wait.</p>
+  </div>
+</div>
+    
+  <header class="svce-header">
+  <img src="assets/logos/college-text-logo.png" class="logo left-logo" alt="college-text-logo">
+  
+  <div class="header-text">
+    <h1>Department of Mechanical Engineering</h1>
+    <p>Live Placement Dashboard of Batch 2023–27<br> 
+      Circulars | Analytics | Recruiters | Success Statistics | Forms | Contact</p>
+  </div>
+  
+  <img src="assets/logos/college-emblem.png" class="logo right-logo" alt="college-emblem">
+</header>
 
+  <nav class="navbar">
+  <div class="nav-container">
+  <div class="nav-title">
+  <select id="batchSwitcher" onchange="switchBatch(this.value)" class="batch-switcher">
+  <option value="">Switch Batch</option>
+  <option value="Batch2022">Batch 2022–26</option>
+  <option value="Batch2023">Batch 2023–27</option>
+  </select>
+    
+  </div>
+
+  <ul class="nav-links">
+  <li><a href="#" id="adminLoginBtn" onclick="openAdminLogin()">Admin Login</a></li>
+  <li><a href="#" id="logoutBtn" onclick="logout()" style="display:none;">Logout</a></li>
+  <li><a href="#Overview">Overview</a></li>
+  <li><a href="circulars.html">Circulars</a></li>
+  <li><a href="recruiters.html">Recruiters</a></li>
+  <li><a href="#Charts">Analytics</a></li>
+  <li><a href="#Placed Students">Placed Students</a></li>
+  <li><a href="forms.html">Forms</a></li>
+  <li><a href="#Contact">Contact</a></li>
+</ul>
+</div>
+  </nav>
+
+</body>
+</html>  

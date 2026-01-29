@@ -3,14 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loader) loader.style.display = "flex";
 });
 
-function switchBatch(folder) {
-  if (!folder) return;
-  window.location.href = "../" + folder + "/";
-}
-
+<script>
 function setCurrentBatch() {
   const path = window.location.pathname.toLowerCase();
-
   const select = document.getElementById("batchSwitcher");
   if (!select) return;
 
@@ -18,10 +13,24 @@ function setCurrentBatch() {
     select.value = "Batch2022";
   } else if (path.includes("batch2023")) {
     select.value = "Batch2023";
+  } else {
+    select.value = "home";
   }
 }
 
-window.addEventListener("load", setCurrentBatch);
+function switchBatch(value) {
+  if (!value) return;
+
+  if (value === "home") {
+    window.location.href = "../index.html"; 
+  } else {
+    window.location.href = value + "/index.html";
+  }
+}
+
+// call on load
+window.onload = setCurrentBatch;
+</script>
 
 /************************************************
  * ADMIN SYSTEM (SINGLE SOURCE)

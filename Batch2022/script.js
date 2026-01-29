@@ -1,10 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("loading");
-  if (loader) loader.style.display = "flex";
-
-  setCurrentBatch();
-});
-
 function switchBatch(value) {
   if (!value) return;
 
@@ -32,6 +25,8 @@ function setCurrentBatch() {
     select.value = "home";
   }
 }
+
+document.addEventListener("DOMContentLoaded", setCurrentBatch);
 
 /************************************************
  * ADMIN SYSTEM (SINGLE SOURCE)
@@ -768,6 +763,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

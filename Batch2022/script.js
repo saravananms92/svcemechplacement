@@ -1,27 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("loading");
   if (loader) loader.style.display = "flex";
+
+  setCurrentBatch();
 });
 
-function switchBatch(folder) {
-  if (!folder) return;
-  window.location.href = "../" + folder + "/";
+function switchBatch(value) {
+  if (!value) return;
+
+  const base = "/svcemechplacement/";
+
+  if (value === "home") {
+    window.location.href = base + "index.html";
+  } else {
+    window.location.href = base + value + "/index.html";
+  }
 }
 
 function setCurrentBatch() {
   const path = window.location.pathname.toLowerCase();
-
   const select = document.getElementById("batchSwitcher");
   if (!select) return;
 
   if (path.includes("batch2022")) {
     select.value = "Batch2022";
-  } else if (path.includes("batch2023")) {
+  } 
+  else if (path.includes("batch2023")) {
     select.value = "Batch2023";
+  } 
+  else {
+    select.value = "home";
   }
 }
-
-window.addEventListener("load", setCurrentBatch);
 
 /************************************************
  * ADMIN SYSTEM (SINGLE SOURCE)
@@ -758,6 +768,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

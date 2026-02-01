@@ -724,6 +724,55 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 }
 
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.student-card {
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.student-card img {
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.student-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.student-prog {
+  font-size: 8px;
+  color: #555;
+}
+.student-reg {
+  font-size: 6px;
+  color: #777;
+}
+
+.student-company {
+  font-size: 10px;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.student-pkg {
+  font-size: 8px;
+  color: #333;
+  font-weight: 400;
+}
+
 /* ===========  TOP RECRUITERS ================ */
 .recruiters {
   display: grid;
@@ -1111,6 +1160,7 @@ tbody tr:hover td {background: #ffe0b2;}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 
 

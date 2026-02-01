@@ -142,7 +142,8 @@ async function fetchAndDrawCharts() {
     populateStudentTable(data);
     populateProgrammeFilter();
     populateCompanyFilter();
-
+    buildStudentGrid(data);
+    
     // ✅ Admin UI
     applyAdminUI();
 
@@ -691,6 +692,34 @@ function updateRowCount() {
       "Showing " + visibleCount + " of " + rows.length + " Students";
   }
 }
+/************************************************
+ * STUDENT GRID
+ ************************************************/
+function buildStudentGrid(data) {
+  const grid = document.getElementById("studentGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  (data.placedStudents || []).forEach(s => {
+    const photoUrl = getPhotoUrl(s.photo);
+
+    const card = document.createElement("div");
+    card.className = "student-card";
+
+    card.innerHTML = `
+      <img src="${photoUrl}" onerror="this.src='https://via.placeholder.com/90x110?text=No+Photo'">
+
+      <div class="student-name">${s.name || ""}</div>
+      <div class="student-reg">${s.registerNo || ""}</div>
+      <div class="student-prog">${s.programme || ""}</div>
+      <div class="student-company">${s.company || ""}</div>
+      <div class="student-pkg">${s.package || ""} LPA</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
 
 /************************************************
  * WINDOW RESIZE REDRAW (OPTIMIZED)
@@ -763,6 +792,7 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 
 
 

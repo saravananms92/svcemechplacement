@@ -308,7 +308,7 @@ function drawCompanyVsStudentsChart(data) {
   const colors = [
     "#0d6efd", "#198754", "#dc3545", "#fd7e14", "#6f42c1",
     "#20c997", "#0dcaf0", "#6610f2", "#adb5bd", "#212529",
-    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+    "#1f77b4", "#66a61e", "#2ca02c", "#d62728", "#9467bd",
     "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
   ];
 
@@ -792,22 +792,4 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

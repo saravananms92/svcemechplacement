@@ -1044,12 +1044,15 @@ tbody tr:hover td {background: #ffe0b2;}
 
 /* ============= FOOTER GRID – FLEX HORIZONTAL LAYOUT =================== */
 .footer-grid {
-  display: flex;                 /* horizontal layout */
-  flex-wrap: wrap;               /* wrap on smaller screens */
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   max-width: 1200px;
-  margin: 12px 20px; justify-content: space-between; /* evenly space cards */
+  margin: 12px auto;          /* ✅ center container */
+  justify-content: center;   /* ✅ center items */
+  padding: 0 20px;           /* optional safe spacing */
 }
+
 
 /* Footer boxes (cards) – responsive widths */
 .footer-box {
@@ -1160,6 +1163,7 @@ tbody tr:hover td {background: #ffe0b2;}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 
 

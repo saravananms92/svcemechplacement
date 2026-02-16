@@ -465,6 +465,10 @@ function drawPackageDistribution(data) {
     else if (pkg > 10) ranges["> 10 LPA"]++;
   });
 
+  /* 🔹 Find max value and add +2 */
+  const maxValue = Math.max(...Object.values(ranges));
+  const yAxisMax = maxValue + 2;
+
   const rows = [
     ["Package Range", "Students", { role: "annotation" }, { role: "style" }],
     ["< 3 LPA", ranges["< 3 LPA"], ranges["< 3 LPA"].toString(), "#c8e6c9"],
@@ -475,7 +479,7 @@ function drawPackageDistribution(data) {
   ];
 
   const table = google.visualization.arrayToDataTable(rows);
-  
+
   new google.visualization.ColumnChart(el).draw(table, {
     height: 420,
     bar: { groupWidth: "55%" },
@@ -484,12 +488,18 @@ function drawPackageDistribution(data) {
     vAxis: {
       title: "No. of Students",
       minValue: 0,
-      format: '0',
-      viewWindow: { min: 0 },
+      viewWindow: {
+        min: 0,
+        max: yAxisMax   // ✅ max + 2 applied here
+      },
+      format: "0",
       gridlines: { count: -1 }
     },
     hAxis: { title: "Package Range" },
-    annotations: { alwaysOutside: true, textStyle: { fontSize: 12, bold: true } },
+    annotations: {
+      alwaysOutside: true,
+      textStyle: { fontSize: 12, bold: true }
+    },
     animation: { startup: true, duration: 800, easing: "out" }
   });
 }
@@ -792,4 +802,5 @@ function downloadChart(chartId, filename) {
 
   img.src = url;
 }
+
 

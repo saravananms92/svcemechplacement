@@ -1,3 +1,4 @@
+
 .batch-switcher {
   background: linear-gradient(135deg, #ff9800, #ff5722);
   color: #fff;
@@ -724,6 +725,55 @@ tbody tr:hover td {background: #ffe0b2;}
   }
 }
 
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.student-card {
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.student-card img {
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.student-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.student-prog {
+  font-size: 10px;
+  color: #555;
+}
+.student-reg {
+  font-size: 10px;
+  color: #777;
+}
+
+.student-company {
+  font-size: 12px;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.student-pkg {
+  font-size: 10px;
+  color: #333;
+  font-weight: 400;
+}
+
 /* ===========  TOP RECRUITERS ================ */
 .recruiters {
   display: grid;
@@ -805,6 +855,128 @@ tbody tr:hover td {background: #ffe0b2;}
   object-position: center;  /* centers the crop */
   display: block;}
 .gallery-card p {  padding: 10px;  font-size: 13px;  line-height: 1.5;  color: #333;}
+
+/******** Gallery Folder View*******/
+/* ===== Gallery Wrapper ===== */
+.gallery {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 16px;
+}
+
+/* ===== Folder Grid ===== */
+.folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* ===== Folder Card ===== */
+.folder {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.folder:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+}
+
+/* ===== Folder Thumbnail ===== */
+.folder img {
+  width: 100%;
+  height: clamp(120px, 18vw, 160px);
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Folder Title ===== */
+.folder h4 {
+  margin: 4px 0;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1f2a44;
+}
+
+/* ===== Viewer Overlay ===== */
+.viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* ===== Viewer Image ===== */
+.viewer img {
+  max-width: 92%;
+  max-height: 88%;
+  border-radius: 6px;
+}
+
+/* ===== Close Button ===== */
+.viewer span {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  font-size: 32px;
+  color: #ffffff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ===== Navigation Buttons ===== */
+.viewer button {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 34px;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+
+.viewer button:first-of-type {
+  left: 20px;
+}
+
+.viewer button:last-of-type {
+  right: 20px;
+}
+
+/* ===== Mobile Optimization ===== */
+@media (max-width: 600px) {
+  .folders {
+    gap: 12px;
+  }
+
+  .folder img {
+    height: 110px;
+  }
+
+  .folder h4 {
+    font-size: 0.9rem;
+    padding: 4px 6px;
+  }
+
+  .viewer button {
+    font-size: 28px;
+  }
+
+  .viewer span {
+    font-size: 28px;
+  }
+}
 
 /* ==============   TESTIMONIALS SECTION ================== */
 .testimonials-section {background: linear-gradient(135deg, #eef3f9, #f9fbff);  padding: 12px 20px;}
@@ -995,12 +1167,15 @@ tbody tr:hover td {background: #ffe0b2;}
 
 /* ============= FOOTER GRID – FLEX HORIZONTAL LAYOUT =================== */
 .footer-grid {
-  display: flex;                 /* horizontal layout */
-  flex-wrap: wrap;               /* wrap on smaller screens */
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   max-width: 1200px;
-  margin: 12px 20px; justify-content: space-between; /* evenly space cards */
+  margin: 12px auto;          /* ✅ center container */
+  justify-content: center;   /* ✅ center items */
+  padding: 0 20px;           /* optional safe spacing */
 }
+
 
 /* Footer boxes (cards) – responsive widths */
 .footer-box {
@@ -1111,4 +1286,10 @@ tbody tr:hover td {background: #ffe0b2;}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+
+
+
+
 

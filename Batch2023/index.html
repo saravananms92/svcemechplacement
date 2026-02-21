@@ -153,6 +153,56 @@ function prev() {
   show();
 }
 </script>
+
+<script>
+let data = [];
+let current = [];
+let index = 0;
+
+fetch("https://script.google.com/macros/s/AKfycbwEhUBY_rYnuSpS6r0D2hakzT0Qs13lqRwL754FMTVMkUV3L8rixSNaYqYxyX_Yem6mMw/exec")
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+    const container = document.getElementById("folders");
+
+    json.forEach((f, i) => {
+      const card = document.createElement("div");
+      card.className = "folder";
+      card.innerHTML = `
+        <img src="${f.cover}">
+        <h4>${f.title}</h4>
+        <p class="count">${f.images.length} Photos</p>
+      `;
+      card.onclick = () => openFolder(i);
+      container.appendChild(card);
+    });
+  });
+
+function openFolder(i) {
+  current = data[i].images;
+  index = 0;
+  show();
+}
+
+function show() {
+  document.getElementById("viewer").style.display = "flex";
+  document.getElementById("viewerImg").src = current[index];
+}
+
+function closeViewer() {
+  document.getElementById("viewer").style.display = "none";
+}
+
+function next() {
+  index = (index + 1) % current.length;
+  show();
+}
+
+function prev() {
+  index = (index - 1 + current.length) % current.length;
+  show();
+}
+</script>
   
   <footer class="placement-footer">
   <div class="footer-grid">

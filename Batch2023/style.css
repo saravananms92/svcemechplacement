@@ -886,13 +886,6 @@ tbody tr:hover td {background: #ffe0b2;}
   box-shadow: 0 10px 22px rgba(0,0,0,0.18);
 }
 
-/* ===== Folder Count ===== */
-.folder .count {
-  font-size: 13px;
-  color: #666;
-  margin-top: 4px;
-}
-
 /* ===== Folder Thumbnail ===== */
 .folder img {
   width: 100%;
